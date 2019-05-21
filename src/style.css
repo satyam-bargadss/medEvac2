@@ -1,9 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
 
-@import url('https://fonts.googleapis.com/css?family=Ultra');
+/*@import url('https://fonts.googleapis.com/css?family=Ultra');*/
 
-body{ margin:0; padding:0; border:none; background:url(../images/bg2.jpg) no-repeat fixed; background-size:cover; list-style:none;}
+body{ margin:0; padding:0; border:none; /*background:url(../images/bg2.jpg) no-repeat fixed;*/ background-size:cover; list-style:none;}
 div,table,tr,td,span,h1,h2,h3,h4,h5,h6,header,section,article,aside,footer,nav{ margin:0; padding:0; border:none;}
 img{ border:none;}
 a img{ border:none;}
@@ -26,7 +26,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 .pull-right{float:right;}
 
 .form_bg{box-shadow:0 0 8px #101010; overflow:hidden; margin-bottom:80px;}
-.header_part{background:url(../images/top_bg.jpg) no-repeat; text-align:center; margin:0; background-position:-20px -662px;}
+.header_part{background:url(./images/top_bg.jpg) no-repeat; text-align:center; margin:0; background-position:-20px -662px;}
 .form_body{background:#F8F2E4; padding:20px;}
 .header_part h2{text-align:center; padding-bottom:20px; padding-top:20px; border-bottom:1px solid #ddd; font-weight:bold; margin-bottom:0;}
 .form_body legend{text-align:left; font-size:1.2rem;}
@@ -34,13 +34,13 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 .btn-rounded{background:#fc4d1e; color:#fff !important;}
 .logo{text-align:center; padding:30px 0;}
 .plan{padding:20px 15px; border-radius:60px 0; text-align:center;}
-.plan h2{color:#fff; font-weight:bold; background:url(../images/border.png) no-repeat center bottom; font-size:24px; text-align:center; padding-bottom:13px; margin:0;}
+.plan h2{color:#fff; font-weight:bold; background:url(./images/border.png) no-repeat center bottom; font-size:24px; text-align:center; padding-bottom:13px; margin:0;}
 .plan .price{font-weight:bold; text-align:center; padding:15px 0; font-size:30px;}
 .light{background:#ffb85c;}
 .medium{background:#ff9653;}
 .dark{background:#ff7145;}
 .plan ul{padding:20px 0 0 0;}
-.plan ul li{padding-bottom:7px; text-align:left; font-weight:400; color:#fff; background:url(../images/tick2.png) no-repeat left center; background-position:-3px 2px; padding-left:28px;}
+.plan ul li{padding-bottom:7px; text-align:left; font-weight:400; color:#fff; background:url(./images/tick2.png) no-repeat left center; background-position:-3px 2px; padding-left:28px;}
 .plan .btn{background:#fff; color:#fc4d1e !important; border-radius:0 0 28px 0;}
 .plan .btn:hover{background:#fc4d1e; color:#fff !important;}
 .mem_inf, .bill_inf, .card_inf, .payment_inf, .subscription_inf{width:100%; margin-bottom:20px;}
@@ -332,7 +332,7 @@ span.nmbr {
 .logo{margin:0 auto;}
 
 .card-signin .head{
-	background:url(../images/top_bg.jpg) no-repeat;
+	background:url(./images/top_bg.jpg) no-repeat;
 	background-position:-179px -590px;
 	text-align:center;
 	padding:20px 0;
