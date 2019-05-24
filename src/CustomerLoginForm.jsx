@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import CustomerManagement from './CustomerManagement';
 import $ from 'jquery';
+import validation from 'jquery-validation';
+import { Redirect,Route } from 'react-router-dom'
 class CustomerLoginForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 				email: '',
-				password: ''
+				password: '',
+				status:'',
+				errMessage:''
 		};
 		this.onSubmit = this.onSubmit.bind(this);
 }
@@ -24,15 +29,15 @@ async  onSubmit(event) {
 
 
 //	Api colling
-
-let response = await fetch('http://127.0.0.1:8081//api/login', {
+try{
+let response = await fetch('http://127.0.0.1:8000/api/login', {
 	method: 'POST', // *GET, POST, PUT, DELETE, etc.
-	mode: 'cors', // no-cors, cors, *same-origin
+
 	cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-	credentials: 'same-origin', // include, *same-origin, omit
+	//credentials: 'same-origin', // include, *same-origin, omit
 	headers: {
 			'Content-Type': 'application/json',
-			'Access-Control-Allow-Origin':'http://192.168.0.12'
+			
 			// 'Content-Type': 'application/x-www-form-urlencoded',
 	},
 	//redirect: 'follow', // manual, *follow, error
@@ -41,17 +46,38 @@ let response = await fetch('http://127.0.0.1:8081//api/login', {
 })
 
   let data = await response.json()
-  return data;
+	console.log(data) ;
+	console.log(data.status);
+	this.setState({
+		status: data.status 
+	});
+	if(data.status == 200){
+		 console.log('redirect in admin dashboard');
+	
+	}
+	if(data.status == 401){
 
+		console.log('something went wrong');
+		this.setState({errMessage:data.message});
+	}
+} catch(error){
+  console.log(error);
+}
 //end Api calling
 
 }
 	componentDidMount(){
-   
+		/*define(["jquery", "jquery.validate"], function( $ ) {
+			$("form").validate();
+		
+	});
+   	*/
 	}
     render() {
         return (
             <div>
+							<Route path="/customer-management" component={CustomerManagement} />
+							{this.state.status ==200?<Redirect to='/customer-management'  />:''}
   <div className="container">
   <div className="logo">
 				<img src="./images/logo3.png" alt="Global Medevac" className="img-fluid"/>
@@ -67,14 +93,14 @@ let response = await fetch('http://127.0.0.1:8081//api/login', {
 					<hr/>
           
 					<img src="./images/E-mail-icon.png" title="email-icon" alt="email-icon"/>
-					<form className="form-signin">
+					<form id="myform"className="form-signin">
 					  <div className="form-label-group">
-						<input type="email" name="email" value={this.state.email} className="form-control"  required autoFocus onChange={e => this.handleChange(e)}/>
+						<input type="email" name="email" value={this.state.email} className="form-control"   required autoFocus onChange={e => this.handleChange(e)}/>
 						<label htmlFor="inputEmail">User Email</label>
 					  </div>
 
 					  <div className="form-label-group">
-						<input type="password" name="password" value={this.state.password} className="form-control" required autoFocus onChange={e => this.handleChange(e)}/>
+						<input type="password" name="password" value={this.state.password}  className="form-control" required autoFocus onChange={e => this.handleChange(e)}/>
 						<label htmlFor="inputPassword">Password</label>
 					  </div>
 
@@ -86,8 +112,9 @@ let response = await fetch('http://127.0.0.1:8081//api/login', {
 					  </div>
 					  <button  className="btn btn-lg btn-primary btn-block text-uppercase waves-effect waves-light" onClick={this.onSubmit}>Sign in</button>
 					</form>
+					 <div>{this.state.errMessage?''}</div>
 					<div className="other_links">
-						<a href="#" className="member" target="_blank">Become a Member</a>
+						<a href="#" className="member" target="_blank">Become a Customer</a>
 						<a href="#" className="agent" target="_blank">Become an Agent</a>
 					</div>
 					<div className="clearfix"></div>

@@ -7,6 +7,7 @@ import CustomerLoginForm from './CustomerLoginForm';
 //import  './css/font-awesome.min.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CustomerRegistrationForm from './CustomerRegistrationForm'
+import CustomerManagement from './CustomerManagement';
 
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
 
 			<Route path="/" exact match  component={CustomerLoginForm} />
 			<Route path="/customer-registration-form" exact component={CustomerRegistrationForm} />
-			<Route path="/agent-registration-form" component='' />
+			<Route path="/customer-management" component={CustomerManagement} />
+			
 		</div>
 	</Router>
     
