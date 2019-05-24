@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import CustomerManagement from './CustomerManagement';
 import $ from 'jquery';
 import validation from 'jquery-validation';
+import  './css/style.css';
 import { Redirect,Route } from 'react-router-dom'
+import { red } from '@material-ui/core/colors';
+import { blockStatement } from '@babel/types';
 class CustomerLoginForm extends Component {
 	constructor(props) {
 		super(props);
@@ -55,10 +58,34 @@ let response = await fetch('http://127.0.0.1:8000/api/login', {
 		 console.log('redirect in admin dashboard');
 	
 	}
-	if(data.status == 401){
+	else if(data.status == 203){
+
+		console.log(data.message);
+		//console.log(data.message.password[0]);
+		if(data.message.email)
+		{
+			this.setState({emailErr : data.message.email[0]})
+		}
+		else
+		{
+			this.setState({emailErr :''})
+		}
+		if(data.message.password)
+		{
+			this.setState({ passwordErr : data.message.password[0]});
+		}
+		else{
+			this.setState({passwordErr :''})
+		  }
+		
+
+				//	console.log(this.state.emailErr)	;
+	}
+	else if(data.status == 401){
 
 		console.log('something went wrong');
 		this.setState({errMessage:data.message});
+		console.log(this.state.errMessage);
 	}
 } catch(error){
   console.log(error);
@@ -75,7 +102,7 @@ let response = await fetch('http://127.0.0.1:8000/api/login', {
 	}
     render() {
         return (
-            <div>
+          <div>
 							<Route path="/customer-management" component={CustomerManagement} />
 							{this.state.status ==200?<Redirect to='/customer-management'  />:''}
   <div className="container">
@@ -95,15 +122,20 @@ let response = await fetch('http://127.0.0.1:8000/api/login', {
 					<img src="./images/E-mail-icon.png" title="email-icon" alt="email-icon"/>
 					<form id="myform"className="form-signin">
 					  <div className="form-label-group">
+							{console.log(this.state.emailErr)}
 						<input type="email" name="email" value={this.state.email} className="form-control"   required autoFocus onChange={e => this.handleChange(e)}/>
 						<label htmlFor="inputEmail">User Email</label>
+						{this.state.emailErr?<span style={{  color:'red',display:'block',paddingLeft:20,paddingTop:5,fontSize:12
+						 }}>{this.state.emailErr}</span>:''}
 					  </div>
-
+					
 					  <div className="form-label-group">
 						<input type="password" name="password" value={this.state.password}  className="form-control" required autoFocus onChange={e => this.handleChange(e)}/>
 						<label htmlFor="inputPassword">Password</label>
-					  </div>
-
+						{this.state.passwordErr?<span style={{  color:'red',display:'block',paddingLeft:20,paddingTop:5,fontSize:12
+						 }}>{this.state.passwordErr}</span>:''}
+					 
+						</div>
 					  <div className="custom-control custom-checkbox mb-3">
 						<input type="checkbox" className="custom-control-input" id="customCheck1"/>
 						<label className="custom-control-label" htmlFor="customCheck1">Remember password</label>
@@ -112,7 +144,8 @@ let response = await fetch('http://127.0.0.1:8000/api/login', {
 					  </div>
 					  <button  className="btn btn-lg btn-primary btn-block text-uppercase waves-effect waves-light" onClick={this.onSubmit}>Sign in</button>
 					</form>
-					 <div>{this.state.errMessage?''}</div>
+					 {this.state.errMessage?<span style={{  color:'red',display:'block',paddingLeft:20,paddingTop:5,fontSize:12
+						 }}>{this.state.errMessage}</span>:''}
 					<div className="other_links">
 						<a href="#" className="member" target="_blank">Become a Customer</a>
 						<a href="#" className="agent" target="_blank">Become an Agent</a>
@@ -122,7 +155,8 @@ let response = await fetch('http://127.0.0.1:8000/api/login', {
 				</div>
 			  </div>
 			</div>
-      </div>
+		  </div>	
+      
       <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
 
   <script type="text/javascript" src="js/popper.min.js"></script>

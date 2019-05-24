@@ -700,5 +700,9 @@ span.nmbr {
 	.bill_inf .bill_add .select{margin-left:0;}
 	.bill_inf .bill_add .edit{margin-top:8px; float:none;}
 	
-	#captcha .captcha-code .code{width:100%;}
+  #captcha .captcha-code .code{width:100%;}
+  .errorMessage{
+    color:red;display:block;padding-left:20;padding-top:5;font-size:12;
+  }				
+  
 }
