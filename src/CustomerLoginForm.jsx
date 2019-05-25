@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import AdminDashboard from './AdminDashboard';
+//import AdminDashboard from './AdminDashboard';
+//import App from './App'
 import $ from 'jquery';
 import validation from 'jquery-validation';
 import  './css/style.css';
-import { Redirect,Route } from 'react-router-dom'
+//import  './mdb.min.css';
+import { Redirect,Route } from 'react-router-dom';
+//import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 //import { red } from '@material-ui/core/colors';
 //import { blockStatement } from '@babel/types';
 
@@ -14,7 +17,8 @@ class CustomerLoginForm extends Component {
 				email: '',
 				password: '',
 				status:'',
-				errMessage:''
+				errMessage:'',
+				redirect:false
 		};
 		this.onSubmit = this.onSubmit.bind(this);
 }
@@ -57,6 +61,10 @@ let response = await fetch('http://127.0.0.1:8000/api/login', {
 	});
 	if(data.status == 200){
 		 console.log('redirect in admin dashboard');
+		 this.setState({
+			 redirect:true
+		 })
+		
 	
 	}
 	else if(data.status == 203){
@@ -94,6 +102,14 @@ let response = await fetch('http://127.0.0.1:8000/api/login', {
 //end Api calling
 
 }
+renderRedirect = () => {
+	/*
+      if(this.state.status=200){
+				console.log(this.state.status);
+		return <Redirect  to='/AdminDashboard' component={AdminDashboard}></Redirect>
+			}
+			*/
+}
 	componentDidMount(){
 		/*define(["jquery", "jquery.validate"], function( $ ) {
 			$("form").validate();
@@ -102,10 +118,15 @@ let response = await fetch('http://127.0.0.1:8000/api/login', {
    	*/
 	}
     render() {
+
+			const { redirect } = this.state;
+
+			if (redirect) {
+				return <Redirect  to='/admin-dashboard' ></Redirect>;
+			}
         return (
           <div>
-							<Route path="/admin-dashboard" component={AdminDashboard} />
-							{this.state.status ==200?<Redirect to='/AdminDashboard'  />:''}
+		     
   <div className="container">
   <div className="logo">
 				<img src="./images/logo3.png" alt="Global Medevac" className="img-fluid"/>

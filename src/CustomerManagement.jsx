@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MDBDataTable } from 'mdbreact';
-
+import  './css/material-dashboard.css';
 
   const data = {
     columns: [
@@ -473,13 +473,13 @@ class CustomerManagement extends Component {
 	
     render() {
         return (
-            <div>
+            <div className="body">
                <div class="wrapper ">
     <div class="sidebar">
     
       <div class="logo">
         <a href="#" class="simple-text logo-normal">
-          <img src="../assets/img/logo3.png" alt="Global Medevac" class="img-fluid"/>
+          <img src="./img/logo3.png" alt="Global Medevac" class="img-fluid"/>
         </a>
       </div>
       <div class="sidebar-wrapper">

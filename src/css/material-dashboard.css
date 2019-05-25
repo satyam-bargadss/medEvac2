@@ -13712,6 +13712,7 @@ h6,
   font-weight: 300;
   line-height: 1.5em;
 }
+.body{background:#eee; overflow:hidden;}
 
 h1,
 .h1 {

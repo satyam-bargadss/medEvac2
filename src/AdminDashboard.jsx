@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import  './css/style.css';
 import  './css/material-dashboard.css';
 import { BrowserRouter as Router, Route, Link ,NavLink} from "react-router-dom";
-import CustomerRegistrationForm from './CustomerRegistrationForm'
-import CustomerManagement from './CustomerManagement';
+//import CustomerRegistrationForm from './CustomerRegistrationForm'
+//import CustomerManagement from './CustomerManagement';
 
 class AdminDashboard extends Component {
     render() {
         return (
-            <div>
+            <div className="body">
+            
                 <div className="wrapper ">
     <div className="sidebar">
    
       <div className="logo">
         <a href="#" className="simple-text logo-normal">
-          <img src="../assets/img/logo3.png" alt="Global Medevac" className="img-fluid"/>
+          <img src="./img/logo3.png" alt="Global Medevac" className="img-fluid"/>
         </a>
       </div>
       <div className="sidebar-wrapper">
@@ -47,7 +48,7 @@ class AdminDashboard extends Component {
         <ul className="nav">
           
           <li className="nav-item ">
-            <a className="nav-link" href="./Customer-management.html">
+            <a className="nav-link" href="/customer-management">
               <i className="material-icons">person</i>
               <p>Customer Management</p>
             </a>
