@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import CustomerManagement from './CustomerManagement';
+import AdminDashboard from './AdminDashboard';
 import $ from 'jquery';
 import validation from 'jquery-validation';
 import  './css/style.css';
 import { Redirect,Route } from 'react-router-dom'
-import { red } from '@material-ui/core/colors';
-import { blockStatement } from '@babel/types';
+//import { red } from '@material-ui/core/colors';
+//import { blockStatement } from '@babel/types';
+
 class CustomerLoginForm extends Component {
 	constructor(props) {
 		super(props);
@@ -103,8 +104,8 @@ let response = await fetch('http://127.0.0.1:8000/api/login', {
     render() {
         return (
           <div>
-							<Route path="/customer-management" component={CustomerManagement} />
-							{this.state.status ==200?<Redirect to='/customer-management'  />:''}
+							<Route path="/admin-dashboard" component={AdminDashboard} />
+							{this.state.status ==200?<Redirect to='/AdminDashboard'  />:''}
   <div className="container">
   <div className="logo">
 				<img src="./images/logo3.png" alt="Global Medevac" className="img-fluid"/>
