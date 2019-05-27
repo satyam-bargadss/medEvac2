@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-//import AdminDashboard from './AdminDashboard';
+import AdminDashboard from './AdminDashboard';
 //import App from './App'
 import $ from 'jquery';
 import validation from 'jquery-validation';
 import  './css/style.css';
-//import  './mdb.min.css';
-import { Redirect,Route } from 'react-router-dom';
-//import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import  './mdb.min.css';
+import  './css/material-dashboard.css';
+//import { Redirect,Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link,Redirect } from "react-router-dom";
 //import { red } from '@material-ui/core/colors';
 //import { blockStatement } from '@babel/types';
 
@@ -18,7 +19,8 @@ class CustomerLoginForm extends Component {
 				password: '',
 				status:'',
 				errMessage:'',
-				redirect:false
+				redirect:false,
+				isadminLogin:false,
 		};
 		this.onSubmit = this.onSubmit.bind(this);
 }
@@ -62,9 +64,10 @@ let response = await fetch('http://127.0.0.1:8000/api/login', {
 	if(data.status == 200){
 		 console.log('redirect in admin dashboard');
 		 this.setState({
-			 redirect:true
+			 redirect:true,
+       isadminLogin:true
 		 })
-		
+		 await localStorage.setItem('isAdminAuth', true);
 	
 	}
 	else if(data.status == 203){
@@ -103,12 +106,12 @@ let response = await fetch('http://127.0.0.1:8000/api/login', {
 
 }
 renderRedirect = () => {
-	/*
+	
       if(this.state.status=200){
 				console.log(this.state.status);
-		return <Redirect  to='/AdminDashboard' component={AdminDashboard}></Redirect>
+		return <Redirect  to='/AdminDashboard' component={AdminDashboard} render={(props) => <AdminDashboard {...props} isAuthed={this.state.isadminLogin} />}></Redirect>
 			}
-			*/
+			
 }
 	componentDidMount(){
 		/*define(["jquery", "jquery.validate"], function( $ ) {
@@ -118,12 +121,14 @@ renderRedirect = () => {
    	*/
 	}
     render() {
-
+         
 			const { redirect } = this.state;
-
+           
 			if (redirect) {
-				return <Redirect  to='/admin-dashboard' ></Redirect>;
-			}
+				return (
+				 <Redirect  to='/admin-dashboard' component={AdminDashboard} render={(props) => <AdminDashboard {...props} isAuthed={this.state.isadminLogin} />}></Redirect>
+					)	}
+			else{
         return (
           <div>
 		     
@@ -188,7 +193,8 @@ renderRedirect = () => {
   <script type="text/javascript" src="js/mdb.min.js"></script>
             </div>
         );
-    }
+		}
+	}
 }
 
 export default CustomerLoginForm;

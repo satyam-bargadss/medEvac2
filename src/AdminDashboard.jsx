@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import  './css/style.css';
 import  './css/material-dashboard.css';
-import { BrowserRouter as Router, Route, Link ,NavLink} from "react-router-dom";
-//import CustomerRegistrationForm from './CustomerRegistrationForm'
-//import CustomerManagement from './CustomerManagement';
-
+import  './mdb.min.css';
+//import { BrowserRouter as Router, Route, Link ,NavLink} from "react-router-dom";
+import CustomerRegistrationForm from './CustomerRegistrationForm'
+import CustomerManagement from './CustomerManagement';
+import { BrowserRouter as Router, Route, Switch,Link ,NavLink } from "react-router-dom";
 class AdminDashboard extends Component {
+      constructor(props) {
+        super(props);
+        console.log(props);
+        localStorage.getItem('isAdminAuth');
+      }
+      
     render() {
         return (
             <div className="body">
@@ -48,10 +55,10 @@ class AdminDashboard extends Component {
         <ul className="nav">
           
           <li className="nav-item ">
-            <a className="nav-link" href="/customer-management">
+            <NavLink className="nav-link" to="/customer-management" >
               <i className="material-icons">person</i>
               <p>Customer Management</p>
-            </a>
+            </NavLink>
           </li>
 		  <li className="nav-item ">
             <a className="nav-link" href="./agent-management.html">
@@ -136,6 +143,15 @@ class AdminDashboard extends Component {
 		</div>
         <div className="container-fluid">
           <div className="row">
+            <h1>hellow abcdefgh</h1>
+          <Router>
+		      <Route path="/customer-registration" component={Test} />
+      <Route path="/customber-management"   render={(props) => <CustomerManagement/>}></Route>
+          
+	   </Router>
+       
+
+            
 			<div className="clearfix"></div>
             
           <div className="row">
@@ -147,6 +163,9 @@ class AdminDashboard extends Component {
      
       <footer className="footer">
         <div className="container-fluid">
+
+
+
           <div className="copyright float-right">
             &copy;
             <script>
@@ -165,5 +184,5 @@ class AdminDashboard extends Component {
         );
     }
 }
-
+const Test= ()=> {return(<h1>hellow</h1>)};
 export default AdminDashboard;
