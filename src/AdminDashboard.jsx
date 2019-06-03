@@ -2,55 +2,50 @@ import React, { Component } from 'react';
 import  './css/style.css';
 import  './css/material-dashboard.css';
 import  './mdb.min.css';
-//import { BrowserRouter as Router, Route, Link ,NavLink} from "react-router-dom";
+import { BrowserRouter as Router, Route, Link ,NavLink,Redirect} from "react-router-dom";
 import CustomerRegistrationForm from './CustomerRegistrationForm'
 import CustomerManagement from './CustomerManagement';
-import { BrowserRouter as Router, Route, Switch,Link ,NavLink } from "react-router-dom";
+
+//import { BrowserRouter as Router, Route, Switch,Link ,NavLink } from "react-router-dom";
+
 class AdminDashboard extends Component {
       constructor(props) {
         super(props);
         console.log(props);
-        localStorage.getItem('isAdminAuth');
+	
+      var isAdminAuth =   window.sessionStorage.getItem('isAdminAuth');
+      var data =   window.sessionStorage.getItem('data');
+      console.log(isAdminAuth);
+      console.log(data);
       }
-      
+      adminLogout = ()=>{
+        alert('hi');
+        window.sessionStorage.removeItem("isAdminAuth");
+        window.sessionStorage.removeItem("data");
+        if(window.sessionStorage.removeItem("isAdminAuth") != true)
+        {
+         this.props.history.push('/');
+          
+        }
+      }
     render() {
         return (
+            <Router>
             <div className="body">
-            
-                <div className="wrapper ">
+            <div className="wrapper ">
     <div className="sidebar">
    
       <div className="logo">
-        <a href="#" className="simple-text logo-normal">
-          <img src="./img/logo3.png" alt="Global Medevac" className="img-fluid"/>
-        </a>
+        <h3 onClick={this.adminLogout} className="simple-text logo-normal" 
+        >
+          <img src="./images/logo.png" alt="Global Medevac" className="img-fluid"/>
+        </h3>
       </div>
       <div className="sidebar-wrapper">
-        {
-            /*
-      <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about/">About</Link>
-            </li>
-            <li>
-              <Link to="/users/">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Route path="/" exact component={Index} />
-        <Route path="/about/" component={About} />
-        <Route path="/users/" component={Users} />
-      </div>
-    </Router>
-    */
-        }
+        
+            
+     
+        
         
         <ul className="nav">
           
@@ -100,7 +95,7 @@ class AdminDashboard extends Component {
       <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div className="container-fluid">
           <div className="navbar-wrapper">
-            <a className="navbar-brand" href="#pablo">Dashboard</a>
+            <a className="navbar-brand">Dashboard</a>
           </div>
           <button className="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span className="sr-only">Toggle navigation</span>
@@ -118,10 +113,10 @@ class AdminDashboard extends Component {
                 </button>
               </div>
             </form>
-            <ul className="navbar-nav">
+            <ul className="navbar-nav" onClick={this.adminLogout}>
              
               <li className="nav-item dropdown">
-                <a className="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a className="nav-link"  id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i className="material-icons">person</i>
                   <p className="d-lg-none d-md-block">
                     Account
@@ -144,18 +139,14 @@ class AdminDashboard extends Component {
         <div className="container-fluid">
           <div className="row">
             <h1>hellow abcdefgh</h1>
-          <Router>
-		      <Route path="/customer-registration" component={Test} />
-      <Route path="/customber-management"   render={(props) => <CustomerManagement/>}></Route>
-          
-	   </Router>
-       
+   
 
+           
             
 			<div className="clearfix"></div>
             
           <div className="row">
-            
+          <Route path="/customer-management" component={CustomerManagement}/>
           
           </div>
         </div>
@@ -179,10 +170,11 @@ class AdminDashboard extends Component {
   </div>
   
   
- </div>  
-            </div>
+ </div> 
+ </div>
+ </Router>   
         );
     }
 }
-const Test= ()=> {return(<h1>hellow</h1>)};
+
 export default AdminDashboard;

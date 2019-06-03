@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import AdminDashboard from './AdminDashboard';
 //import App from './App'
 import $ from 'jquery';
+import * as myConst from './helper/Constant';
+
 import validation from 'jquery-validation';
+import {MDBInput} from 'mdbreact';
 import  './css/style.css';
 import  './mdb.min.css';
 import  './css/material-dashboard.css';
@@ -10,7 +13,7 @@ import  './css/material-dashboard.css';
 import { BrowserRouter as Router, Route, Link,Redirect } from "react-router-dom";
 //import { red } from '@material-ui/core/colors';
 //import { blockStatement } from '@babel/types';
-
+const URL = myConst.HTTP_URL;
 class CustomerLoginForm extends Component {
 	constructor(props) {
 		super(props);
@@ -23,6 +26,7 @@ class CustomerLoginForm extends Component {
 				isadminLogin:false,
 		};
 		this.onSubmit = this.onSubmit.bind(this);
+		console.log(URL);
 }
 handleChange = (e) => {
 	this.setState({
@@ -56,18 +60,28 @@ let response = await fetch('http://127.0.0.1:8000/api/login', {
 })
 
   let data = await response.json()
-	console.log(data) ;
-	console.log(data.status);
+
+	//console.log(data.status);
 	this.setState({
 		status: data.status 
 	});
 	if(data.status == 200){
-		 console.log('redirect in admin dashboard');
+		// console.log('redirect in admin dashboard');
+		 //console.log(data) ;
+		 
 		 this.setState({
 			 redirect:true,
        isadminLogin:true
 		 })
-		 await localStorage.setItem('isAdminAuth', true);
+		 
+		 await window.sessionStorage.setItem('isAdminAuth', true);
+     await window.sessionStorage.setItem('data',JSON.stringify(data));
+		 var adminDetails = await window.sessionStorage.getItem('data');
+		 console.log(window.sessionStorage.getItem('data'));
+		 console.log(window.sessionStorage.getItem('isAdminAuth'));
+		 console.log(adminDetails['name']);
+
+		
 	
 	}
 	else if(data.status == 203){
@@ -120,11 +134,15 @@ renderRedirect = () => {
 	});
    	*/
 	}
+	componentWillUnmount()
+	{
+
+	}
     render() {
          
 			const { redirect } = this.state;
            
-			if (redirect) {
+			if (window.sessionStorage.getItem('isAdminAuth')) {
 				return (
 				 <Redirect  to='/admin-dashboard' component={AdminDashboard} render={(props) => <AdminDashboard {...props} isAuthed={this.state.isadminLogin} />}></Redirect>
 					)	}
@@ -134,7 +152,7 @@ renderRedirect = () => {
 		     
   <div className="container">
   <div className="logo">
-				<img src="./images/logo3.png" alt="Global Medevac" className="img-fluid"/>
+				<img src="./images/logo.png" alt="Global Medevac" className="img-fluid"/>
 			</div>
   <div className="row">
 			  <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -150,15 +168,15 @@ renderRedirect = () => {
 					<form id="myform"className="form-signin">
 					  <div className="form-label-group">
 							{console.log(this.state.emailErr)}
-						<input type="email" name="email" value={this.state.email} className="form-control"   required autoFocus onChange={e => this.handleChange(e)}/>
-						<label htmlFor="inputEmail">User Email</label>
+						<MDBInput autoComplete="off"className="border border-light" label="User Email" type="email" name="email" value={this.state.email} className="form-control"   required autoFocus onChange={e => this.handleChange(e)}/>
+					
 						{this.state.emailErr?<span style={{  color:'red',display:'block',paddingLeft:20,paddingTop:5,fontSize:12
 						 }}>{this.state.emailErr}</span>:''}
 					  </div>
 					
 					  <div className="form-label-group">
-						<input type="password" name="password" value={this.state.password}  className="form-control" required autoFocus onChange={e => this.handleChange(e)}/>
-						<label htmlFor="inputPassword">Password</label>
+						<MDBInput className="border border-light" label ="Password" type="password" name="password" value={this.state.password}  className="form-control" required autoFocus onChange={e => this.handleChange(e)}/>
+					
 						{this.state.passwordErr?<span style={{  color:'red',display:'block',paddingLeft:20,paddingTop:5,fontSize:12
 						 }}>{this.state.passwordErr}</span>:''}
 					 
