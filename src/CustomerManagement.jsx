@@ -265,7 +265,7 @@ constructor(props) {
 					</div>
 				</div>
 		</div>
-    <br/><br/>
+    <br/>
 		<div class="container-fluid">
 				<div class="col-md-12">
 					<div class="card">
