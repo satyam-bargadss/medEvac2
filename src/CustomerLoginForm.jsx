@@ -20,6 +20,7 @@ class CustomerLoginForm extends Component {
 		this.state = {
 				email: '',
 				password: '',
+				rememberMe: true,
 				status:'',
 				errMessage:'',
 				redirect:false,
@@ -27,20 +28,47 @@ class CustomerLoginForm extends Component {
 		};
 		this.onSubmit = this.onSubmit.bind(this);
 		console.log(URL);
+		if(window.sessionStorage.getItem('isAdminAuth')===true){
+			this.props.history.push('/admin-dashboard');
+		}
 }
 handleChange = (e) => {
 	this.setState({
 			[e.target.name]: e.target.value
 	})
 }
+/*handleCheck = () => {
+	this.setState({rememberMe: !this.state.rememberMe},()=>{
+		console.log(this.state.rerememberMe);
+	}
+		);
+		
+}
+*/
+handleCheck = ()=>{
+	this.setState((preState) => ({
+		rememberMe: !preState.rememberMe 
+		}),()=>{
+			console.log(this.state.rememberMe);
+		});
+	 //console.log(this.state.isSpouse); 
+}
 async  onSubmit(event) {
 	event.preventDefault();
 	const form = {
 	  email: this.state.email,
-	  password: this.state.password
+		password: this.state.password,
+		rememberMe:this.state.rememberMe
 	}
-	console.log(form);
-
+		//console.log(form);
+	//const { user, rememberMe } = this.state;
+  localStorage.setItem('rememberMe', form.rememberMe);
+	localStorage.setItem('adminEmail', form.rememberMe  ? form.email : '');
+	localStorage.setItem('adminPassword', form.rememberMe ? form.password : '');
+	console.log(window.localStorage.getItem('rememberMe'));
+	console.log(window.localStorage.getItem('adminEmail'));
+	console.log(form.rememberMe);
+//return false;
 
 //	Api colling
 try{
@@ -75,11 +103,21 @@ let response = await fetch('http://127.0.0.1:8000/api/login', {
 		 })
 		 
 		 await window.sessionStorage.setItem('isAdminAuth', true);
+		 console.log(this.state.redirect);
+		 //return false;
      await window.sessionStorage.setItem('data',JSON.stringify(data));
 		 var adminDetails = await window.sessionStorage.getItem('data');
-		 console.log(window.sessionStorage.getItem('data'));
-		 console.log(window.sessionStorage.getItem('isAdminAuth'));
-		 console.log(adminDetails['name']);
+		 if(window.sessionStorage.getItem("isAdminAuth"))
+        {
+					setTimeout(()=>{
+						this.props.history.push('/admin-dashboard');
+					}, 1000)
+        
+          
+        }
+		// console.log(window.sessionStorage.getItem('data'));
+		// console.log(window.sessionStorage.getItem('isAdminAuth'));
+		 //console.log(adminDetails['name']);
 
 		
 	
@@ -127,21 +165,18 @@ renderRedirect = () => {
 			}
 			
 }
-	componentDidMount(){
-		/*define(["jquery", "jquery.validate"], function( $ ) {
-			$("form").validate();
-		
-	});
-   	*/
-	}
-	componentWillUnmount()
-	{
-
+	
+	componentDidMount() {
+		const rememberMe = localStorage.getItem('rememberMe');
+		console.log(rememberMe);
+		let  email = rememberMe ? localStorage.getItem('adminEmail') : '';
+		let password = rememberMe ? localStorage.getItem('adminPassword') : '';
+		this.setState({ email:email,password:password,rememberMe:rememberMe });
 	}
     render() {
          
-			const { redirect } = this.state;
-           
+		//	const { redirect } = this.state;
+         
 			if (window.sessionStorage.getItem('isAdminAuth')) {
 				return (
 				 <Redirect  to='/admin-dashboard' component={AdminDashboard} render={(props) => <AdminDashboard {...props} isAuthed={this.state.isadminLogin} />}></Redirect>
@@ -167,7 +202,7 @@ renderRedirect = () => {
 					<img src="./images/E-mail-icon.png" title="email-icon" alt="email-icon"/>
 					<form id="myform"className="form-signin">
 					  <div className="form-label-group">
-							{console.log(this.state.emailErr)}
+						
 						<MDBInput autoComplete="off"className="border border-light" label="User Email" type="email" name="email" value={this.state.email} className="form-control"   required autoFocus onChange={e => this.handleChange(e)}/>
 					
 						{this.state.emailErr?<span style={{  color:'red',display:'block',paddingLeft:20,paddingTop:5,fontSize:12
@@ -182,9 +217,9 @@ renderRedirect = () => {
 					 
 						</div>
 					  <div className="custom-control custom-checkbox mb-3">
-						<input type="checkbox" className="custom-control-input" id="customCheck1"/>
+						<input type="checkbox" className="custom-control-input" id="customCheck1" name="rememberMe" onChange = {this.handleCheck} defaultChecked={this.state.rememberMe}/>
 						<label className="custom-control-label" htmlFor="customCheck1">Remember password</label>
-						
+
 						<a href="" className="pull-right">Forgot Password?</a>
 					  </div>
 					  <button  className="btn btn-lg btn-primary btn-block text-uppercase waves-effect waves-light" onClick={this.onSubmit}>Sign in</button>
@@ -213,6 +248,7 @@ renderRedirect = () => {
         );
 		}
 	}
-}
+	}
+
 
 export default CustomerLoginForm;

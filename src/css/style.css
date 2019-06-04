@@ -23,6 +23,17 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	list-style:none;
 }
 
+#root table tr td .btn-rounded{
+  border-radius:40px;
+  width:85px;
+  height:33px;
+  padding:0;
+  text-align:center;
+  box-shadow:2px 2px 0 #898989;
+  color:#000 !important;
+  background:#ddd;
+}
+
 .form_bg{box-shadow:0 0 8px #101010; overflow:hidden; margin-bottom:80px;}
 .header_part{background:url(/images/top_bg.jpg) no-repeat; text-align:center; margin:0; background-size:cover;}
 .form_body{background:#F8F2E4; padding:20px;}
@@ -374,7 +385,9 @@ span.nmbr {
 #myform label{padding-left:32px; padding-top:3px; font-size:16px; margin:0;}
 #myform label.active{padding-left:32px; padding-top:18px;}
 
-.card{border-radius:1rem 1rem 0 0 !important;}
+.card{border-radius:1rem 1rem 0 0 !important; border-radius:6px !important;}
+.card .card-body table tr td{padding:0 8px;}
+#root .card{margin-bottom:0;}
 
 .card-signin .head{
 	background:url(/images/top_bg.jpg) no-repeat;

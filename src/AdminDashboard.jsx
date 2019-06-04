@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import  './css/style.css';
 import  './css/material-dashboard.css';
 import  './mdb.min.css';
-import { BrowserRouter as Router, Route, Link ,NavLink,Redirect} from "react-router-dom";
+import { HashRouter as Router, Route, Link ,NavLink,Redirect} from "react-router-dom";
 import CustomerRegistrationForm from './CustomerRegistrationForm'
 import CustomerManagement from './CustomerManagement';
 
@@ -16,6 +16,7 @@ class AdminDashboard extends Component {
       var isAdminAuth =   window.sessionStorage.getItem('isAdminAuth');
       var data =   window.sessionStorage.getItem('data');
       console.log(isAdminAuth);
+     
       console.log(data);
       }
       adminLogout = ()=>{
@@ -50,7 +51,7 @@ class AdminDashboard extends Component {
         <ul className="nav">
           
           <li className="nav-item ">
-            <NavLink className="nav-link" to="/customer-management" >
+            <NavLink className="nav-link" to="/customer-management" activeClassName=" active">
               <i className="material-icons">person</i>
               <p>Customer Management</p>
             </NavLink>
@@ -138,7 +139,7 @@ class AdminDashboard extends Component {
 		</div>
         <div className="container-fluid">
           <div className="row">
-            <h1>hellow abcdefgh</h1>
+            
    
 
            

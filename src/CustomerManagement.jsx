@@ -253,29 +253,23 @@ constructor(props) {
 	
     render() {
         return (
-            <div className="body">
-               <div class="wrapper ">
-    
-    <div class="main-panel">
+           
      
       <div class="content">
 		<div class="container-fluid">
-			<div class="row">
 				<div class="col-md-12">
-					<div class="buttons ml-3">
+					<div class="buttons ml-3" style={{overflow:'hidden'}}>
 						<a href="../../../Customer_Registration_Form.html" class="btn btn-info pull-left mb-4">New Customer</a>
 						<a href="#" class="btn btn-info pull-left mb-4">Import Customers</a>
 						<a href="#" class="btn btn-info pull-left mb-4">Contacts</a>
 					</div>
 				</div>
-			</div>
 		</div>
 		<div class="container-fluid">
-			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header card-header-primary">
-						  <h4 class="card-title pull-left my-3">Customers Summary</h4>
+						  <h4 class="card-title pull-left ">Customers Summary</h4>
 						</div>
 						<div class="card-body">
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
@@ -305,22 +299,21 @@ constructor(props) {
 						</div>
 					</div>
 				</div>
-			</div>
 		</div>
+    <br/>
         <div class="container-fluid">
-          <div class="row">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title pull-left my-3">Customer Management</h4>
+                  <h4 class="card-title pull-left ">Customer Management</h4>
                 </div>
                 <div class="card-body">
 				   <table border="0" cellspacing="5" cellpadding="5">
 						<tr>
-							<td>Date Range:</td>
+							<td>Date:</td>
 							<td><input type="date" name="start_date" id="start_date" class="form-control" /></td>
 							<td><input type="date" name="end_date" id="end_date" class="form-control" /></td>
-							<td><button class="btn btn-rounded my-3 waves-effect" type="submit">Search</button></td>
+							<td><button class="btn btn-rounded  waves-effect" type="submit">Search</button></td>
 						</tr>
 				   </table>
 					 <MDBDataTable
@@ -331,13 +324,8 @@ constructor(props) {
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
-      
-    </div>
-  </div>  
-            </div>
         );
     }
 }
