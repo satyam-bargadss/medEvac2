@@ -16,7 +16,7 @@ class AdminDashboard extends Component {
       var isAdminAuth =   window.sessionStorage.getItem('isAdminAuth');
       var data =   window.sessionStorage.getItem('data');
       console.log(isAdminAuth);
-     
+      
       console.log(data);
       }
       adminLogout = ()=>{
@@ -30,8 +30,10 @@ class AdminDashboard extends Component {
         }
       }
     render() {
+      
         return (
             <Router>
+              if
             <div className="body">
             <div className="wrapper ">
     <div className="sidebar">

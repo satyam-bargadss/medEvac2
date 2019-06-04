@@ -387,14 +387,14 @@ span.nmbr {
 
 .card{border-radius:1rem 1rem 0 0 !important; border-radius:6px !important;}
 .card .card-body table tr td{padding:0 8px;}
-#root .card{margin-bottom:0;}
+#root .card{margin-bottom:0; margin-top:0;}
 
 .card-signin .head{
 	background:url(/images/top_bg.jpg) no-repeat;
 	background-position:-20px -20px;
 	text-align:center;
 	padding:20px 0;
-	border-radius:1rem 1rem 0 0;
+	border-radius:0.4rem 0.4rem 0 0;
 	font-weight:bold;
 }
 .card-signin .head h2{
