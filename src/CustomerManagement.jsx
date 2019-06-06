@@ -255,7 +255,7 @@ constructor(props) {
         return (
            
      
-      <div class="content">
+      <div class="content" style={{width: '100%'}}>
 		<div class="container-fluid">
 				<div class="col-md-12">
 					<div class="buttons ml-3" style={{overflow:'hidden'}}>
@@ -270,7 +270,7 @@ constructor(props) {
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header card-header-primary">
-						  <h4 class="card-title pull-left ">Customers Summary</h4>
+						  <h4 class="card-title pull-left ">Members Summary</h4>
 						</div>
 						<div class="card-body">
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">

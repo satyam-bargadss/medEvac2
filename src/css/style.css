@@ -77,6 +77,14 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 .accordion .btn-info{background:#4f3279 !important;}
 .accordion .btn-danger{background:#9e1c20 !important;}
 
+.card .card-body span{font-size:12px;}
+.card .card-body h3{margin:10px 0; line-height:1rem;font-size:1rem;}
+.MuiInput-root-8{width:100%;}
+.md-form label{font-size:1rem; margin-bottom:.5rem; top:-6px !important;}
+.MuiInput-underline-12:before{border-bottom:1px solid #ced4da !important;}
+.react-datepicker__input-container input[type="text"]{width:100%;}
+.react-datepicker-wrapper{position:relative;bottom:-5px;}
+
 
 /* MDB select===========================*/
 

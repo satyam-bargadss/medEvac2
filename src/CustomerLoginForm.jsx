@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+﻿import React, { Component } from 'react';
 import AdminDashboard from './AdminDashboard';
 //import App from './App'
 import $ from 'jquery';
@@ -203,7 +203,7 @@ renderRedirect = () => {
 					<form id="myform"className="form-signin">
 					  <div className="form-label-group">
 						
-						<MDBInput autoComplete="off"className="border border-light" label="User Email" type="email" name="email" value={this.state.email} className="form-control"   required autoFocus onChange={e => this.handleChange(e)}/>
+						<MDBInput autoComplete="off"className="border border-light" label="Member ID or Email Address" type="email" name="email" value={this.state.email} className="form-control"   required autoFocus onChange={e => this.handleChange(e)}/>
 					
 						{this.state.emailErr?<span style={{  color:'red',display:'block',paddingLeft:20,paddingTop:5,fontSize:12
 						 }}>{this.state.emailErr}</span>:''}
@@ -218,7 +218,7 @@ renderRedirect = () => {
 						</div>
 					  <div className="custom-control custom-checkbox mb-3">
 						<input type="checkbox" className="custom-control-input" id="customCheck1" name="rememberMe" onChange = {this.handleCheck} defaultChecked={this.state.rememberMe}/>
-						<label className="custom-control-label" htmlFor="customCheck1">Remember password</label>
+						<label className="custom-control-label" htmlFor="customCheck1">Remember Password</label>
 
 						<a href="" className="pull-right">Forgot Password?</a>
 					  </div>
@@ -227,7 +227,7 @@ renderRedirect = () => {
 					 {this.state.errMessage?<span style={{  color:'red',display:'block',paddingLeft:20,paddingTop:5,fontSize:12
 						 }}>{this.state.errMessage}</span>:''}
 					<div className="other_links">
-						<a href="#" className="member" target="_blank">Become a Customer</a>
+						<a href="#" className="member" target="_blank">Become a Member</a>
 						<a href="#" className="agent" target="_blank">Become an Agent</a>
 					</div>
 					<div className="clearfix"></div>

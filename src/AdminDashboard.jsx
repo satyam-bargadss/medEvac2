@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import  './css/style.css';
 import  './css/material-dashboard.css';
 import  './mdb.min.css';
-import { HashRouter as Router, Route, Link ,NavLink,Redirect} from "react-router-dom";
+import { HashRouter as Router, Route, Switch ,NavLink,Redirect} from "react-router-dom";
 import CustomerRegistrationForm from './CustomerRegistrationForm'
 import CustomerManagement from './CustomerManagement';
+import Dashboard  from './Dashboard';
+import MemberRegistrationForm from './MemberRegistrationForm';
 
 //import { BrowserRouter as Router, Route, Switch,Link ,NavLink } from "react-router-dom";
 
@@ -51,35 +53,41 @@ class AdminDashboard extends Component {
         
         
         <ul className="nav">
+        <li className="nav-item ">
+            <NavLink className="nav-link" to="/Dashboard"  activeClassName=" active">
+            <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </NavLink>
+          </li>
           
           <li className="nav-item ">
-            <NavLink className="nav-link" to="/customer-management" activeClassName=" active">
+            <NavLink className="nav-link" to="/customer-management"  activeClassName=" active">
               <i className="material-icons">person</i>
-              <p>Customer Management</p>
+              <p>Members</p>
             </NavLink>
           </li>
 		  <li className="nav-item ">
             <a className="nav-link" href="./agent-management.html">
               <i className="material-icons">person</i>
-              <p>Agent Management</p>
+              <p>Agents</p>
             </a>
           </li>
           <li className="nav-item ">
             <a className="nav-link" href="./commission.html">
               <i className="material-icons">content_paste</i>
-              <p>Commission</p>
+              <p>Commissions</p>
             </a>
           </li>
           <li className="nav-item ">
             <a className="nav-link" href="./Customership-plan.html">
               <i className="material-icons">library_books</i>
-              <p>Membership Plan</p>
+              <p>Membership Plans</p>
             </a>
           </li>
           <li className="nav-item ">
             <a className="nav-link" href="./service-list.html">
               <i className="material-icons">storage</i>
-              <p>Service List</p>
+              <p>Groups</p>
             </a>
           </li>
           <li className="nav-item ">
@@ -98,7 +106,7 @@ class AdminDashboard extends Component {
       <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div className="container-fluid">
           <div className="navbar-wrapper">
-            <a className="navbar-brand">Dashboard</a>
+            <p className="navbar-brand">Dashboard</p>
           </div>
           <button className="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span className="sr-only">Toggle navigation</span>
@@ -107,7 +115,7 @@ class AdminDashboard extends Component {
             <span className="navbar-toggler-icon icon-bar"></span>
           </button>
           <div className="collapse navbar-collapse justify-content-end">
-            <form className="navbar-form">
+            {/*<form className="navbar-form">
               <div className="input-group no-border">
                 <input type="text" value="" className="form-control" placeholder="Search..."/>
                 <button type="submit" className="btn btn-white btn-round btn-just-icon">
@@ -115,7 +123,7 @@ class AdminDashboard extends Component {
                   <div className="ripple-container"></div>
                 </button>
               </div>
-            </form>
+        </form>*/}
             <ul className="navbar-nav" onClick={this.adminLogout}>
              
               <li className="nav-item dropdown">
@@ -136,30 +144,19 @@ class AdminDashboard extends Component {
       </nav>
       
       <div className="content">
-		<div className="container text-center">
-			<h1>Welcome to Global Medevac!</h1>
-		</div>
-        <div className="container-fluid">
+        <div className="container">           
           <div className="row">
-            
-   
-
-           
-            
-			<div className="clearfix"></div>
-            
-          <div className="row">
-          <Route path="/customer-management" component={CustomerManagement}/>
-          
+            <Switch>
+              <Route path="/Dashboard" component={Dashboard} exact strict/>
+              <Route path="/customer-management" component={CustomerManagement} exact strict/>
+              <Route path="/member-registration" component={MemberRegistrationForm} exact strict/>
+          </Switch>
           </div>
-        </div>
       </div>
-     
+     {
+       /*
       <footer className="footer">
         <div className="container-fluid">
-
-
-
           <div className="copyright float-right">
             &copy;
             <script>
@@ -169,6 +166,8 @@ class AdminDashboard extends Component {
           </div>
         </div>
       </footer>
+      */
+     }
     </div>
   </div>
   

@@ -6,8 +6,8 @@ import  './css/style.css';
 import CustomerLoginForm from './CustomerLoginForm';
 //import  './css/font-awesome.min.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-//import CustomerRegistrationForm from './CustomerRegistrationForm'
-import CustomerManagement from './CustomerManagement';
+import CustomerRegistrationForm from './CustomerRegistrationForm'
+//import CustomerManagement from './CustomerManagement';
 //import Test from './Test';
 import AdminDashboard from './AdminDashboard';
  
@@ -31,8 +31,8 @@ class App extends Component
 			{ /*
 			<Route path="/customer-management" component={CustomerManagement} />
 			*/	}
-		    <Route path="/admin-dashboard" component={AdminDashboard} />
-		
+		    <Route path="/admin-dashboard" exact strict component={AdminDashboard} />
+				<Route path="/member-registration" exact strict component={CustomerRegistrationForm} />
 			
 	   </Router>
 	

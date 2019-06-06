@@ -1,27 +1,32 @@
 import React, { Component } from 'react';
-
-import $ from 'jquery';
-import button from '@material-ui/core/Button';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import { MDBInput } from "mdbreact";
 import {  Form} from 'react-bootstrap/Form';
 import DatePicker from "react-datepicker";
-class CustomerRegistrationForm extends Component {
-
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+class MemberRegistrationForm extends Component {
     constructor(props) {
         super(props);
-       console.log(props) ;
+        console.log(props) ;
+        this.state = {
+         key: 'home',
+       };
        this.state = {
-        key: 'home',
-      };
-      this.state = {
-        startDate: new Date(),
-        isSpouse:false
-      };
-      this.handleChange = this.handleChange.bind(this);
+         startDate: new Date(),
+         isSpouse:false
+       };
+       this.handleChange = this.handleChange.bind(this);
+       this.handleChange2 = this.handleChange2.bind(this);
     }
-     handleSpouse = ()=>{
+     handleChange2(event) {
+        this.setState(oldValues => ({
+          ...oldValues,
+          [event.target.name]: event.target.value,
+        }));
+      }
+    handleSpouse = ()=>{
         this.setState((state) => ({
             isSpouse: !this.state.isSpouse 
           }));
@@ -66,89 +71,90 @@ class CustomerRegistrationForm extends Component {
           startDate: date
         });
       }
-
-    componentDidMount()
-    {
-    console.log('hellow');
-    $('button').on('click',function(){
-        alert('hi');
-    })
-    var room = 1;
-    const education_fields = () => {
-        room++;
-        var objTo = document.getElementById('education_fields')
-        var divtest = document.createElement("div");
-        divtest.setAttribute("class", "col removeclass"+room);
-        var rdiv = 'removeclass'+room;
-        divtest.innerHTML = '<div class="form-row"><div class="col"> <div class="md-form"><input type="text" id="customerRegisterFormDependantFirstName" class="form-control"><label for="customerRegisterFormDependantFirstName">Dependant First Name</label></div></div><div class="col"><div class="md-form"> <input type="text" id="customerRegisterFormDependantLastName" class="form-control"><label for="customerRegisterFormDependantLastName">Dependant Last Name</label></div></div></div><div class="form-row"><div class="col"><div class="md-form"> <input type="date" id="customerRegisterFormDob2" class="form-control"><label for="customerRegisterFormDob2">Date of Birth</label></div></div><div class="col text-center"><div class="md-form"><div class="input-group-btn"> <button class="btn btn-danger my-2" type="button" onclick="remove_education_fields('+ room +');"> <i class="fa fa-minus" aria-hidden="true"></i> </button></div></div></div><div class="clear"></div>';
-        
-        objTo.appendChild(divtest)
-    }
-    $(".collapse.show").each(function(){
-        $(this).prev(".card-header").find(".fa").addClass("fa-minus").removeClass("fa-plus");
-    });
-    $('.wizard li').click(function() {
-        $(this).prevAll().addClass("completed");
-         $(this).nextAll().removeClass("completed");
-         $(this).addClass('active');
-       });
-    // Toggle plus minus icon on show hide of collapse element
-    $(".collapse").on('show.bs.collapse', function(){
-        $(this).prev(".card-header").find(".fa").removeClass("fa-plus").addClass("fa-minus");
-    }).on('hide.bs.collapse', function(){
-        $(this).prev(".card-header").find(".fa").removeClass("fa-minus").addClass("fa-plus");
-    });
-    }
+      componentDidMount()
+      {
+    
+      var room = 1;
+      const education_fields = () => {
+          room++;
+          var objTo = document.getElementById('education_fields')
+          var divtest = document.createElement("div");
+          divtest.setAttribute("class", "col removeclass"+room);
+          var rdiv = 'removeclass'+room;
+          divtest.innerHTML = '<div class="form-row"><div class="col"> <div class="md-form"><input type="text" id="customerRegisterFormDependantFirstName" class="form-control"><label for="customerRegisterFormDependantFirstName">Dependant First Name</label></div></div><div class="col"><div class="md-form"> <input type="text" id="customerRegisterFormDependantLastName" class="form-control"><label for="customerRegisterFormDependantLastName">Dependant Last Name</label></div></div></div><div class="form-row"><div class="col"><div class="md-form"> <input type="date" id="customerRegisterFormDob2" class="form-control"><label for="customerRegisterFormDob2">Date of Birth</label></div></div><div class="col text-center"><div class="md-form"><div class="input-group-btn"> <button class="btn btn-danger my-2" type="button" onclick="remove_education_fields('+ room +');"> <i class="fa fa-minus" aria-hidden="true"></i> </button></div></div></div><div class="clear"></div>';
+          
+          objTo.appendChild(divtest)
+      }
+    
+      }
     render() {
         return (
-            <div>
+            <div style={{width: '100%'}}>
                 
             <div className="container">
-            <div className="col-xs-12 col-sm-6 col-md-6 col-lg-4 offset-sm-3 offset-md-3 offset-lg-4">
-                <div className="logo">
-                    <img src="images/logo.png" alt="Global Medevac" class="img-fluid"/>
-                </div>
-            </div>
-            <div className="col-xs-12 col-sm-12 col-md-10 col-lg-10 offset-md-1 offset-lg-1">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
            <div className="form_bg">
                <div className="header_part">
                    <h2>Customer Registration Form</h2>
                </div>
                <div className="form_body">
+               <div class="px-lg-2 pt-0">
             <Tabs
 id="controlled-tab-example"
 activeKey={this.state.key}
 onSelect={key => this.setState({ key })}
 >
-<Tab eventKey="home" title="Personal Information">
+<Tab eventKey="home" title="Basic Information">
 <form class="text-center" style={{color: '#757575'}}>
                                     <div class="form-row">
                                         <div class="col">
                                             <div class="md-form">
-                                                 
+                                                <Select
+                                                value='US'
+                                                onChange={this.handleChange2}                                               
+                                                >
+                                                    <MenuItem value="us">
+                                                        <em>None</em>
+                                                    </MenuItem>
+                                                    <MenuItem value={10}>South America</MenuItem>
+                                                    <MenuItem value={30}>South America</MenuItem>
+                                                    <MenuItem value={20}>Caribbean Island</MenuItem>
+                                                </Select>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="md-form">
-                                                <MDBInput label="Last Name*" required/>
+                                                &nbsp;
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="col">
-                                            <div class="md-form">                                                 <DatePicker
-                                   selected={this.state.startDate}
-                                               onChange={this.handleChange}
-                                           />
-
+                                            <div class="md-form">
+                                                <MDBInput label="City*" required/>
                                             </div>
                                         </div>
                                         <div class="col">
-                                            &nbsp;
+                                            <div class="md-form">
+                                                <MDBInput label="State*" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="md-form">
+                                                <MDBInput label="Zip Code*" required/>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="md-form">
+                                                &nbsp;
+                                            </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="bs-example">
+                                    {/*<div class="bs-example">
                                         <div class="accordion" id="accordionExample">
                                             <div class="card">
                                                 <div class="card-header" id="headingOne">
@@ -199,171 +205,186 @@ onSelect={key => this.setState({ key })}
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>*/}
                                     <button class="btn btn-rounded my-4 waves-effect" type="submit">Next</button>
                                 </form>
 </Tab>
-<Tab eventKey="profile" title="Profile">
+<Tab eventKey="profile" title="Personal Information">
 <form class="text-center" style={{color: '#757575'}}>
                                     <div class="form-row">
                                         <div class="col">
                                             <div class="md-form">
-                                          
+                                                <Select
+                                                    value='US'
+                                                    onChange={this.handleChange2}                                               
+                                                    >
+                                                    <MenuItem value="us">
+                                                        <em>None</em>
+                                                    </MenuItem>
+                                                    <MenuItem value={10}>Individual</MenuItem>
+                                                    <MenuItem value={20}>Corporate</MenuItem>
+                                                </Select>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="md-form">
-                                                <input type="text" id="customerRegisterFormCity" class="form-control" required/>
-                                                <label for="customerRegisterFormCity">City<span>*</span></label>
-                                                <span ng-show="frm1.n6.$error.required"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="md-form">
-                                        <input type="text" id="customerRegisterFormAddress1" class="form-control" required/>
-                                        <label for="customerRegisterFormAddress1">Address 1<span>*</span></label>
-                                        <span ng-show="frm1.n4.$error.required"></span>
-                                    </div>
-                                    <div class="md-form">
-                                        <input type="text" id="customerRegisterFormAddress2" class="form-control" required/>
-                                        <label for="customerRegisterFormAddress2">Address 2<span>*</span></label>
-                                        <span ng-show="frm1.n5.$error.required"></span>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="md-form">
-                                                <input type="text" id="customerRegisterFormCity" class="form-control" required/>
-                                                <label for="customerRegisterFormCity">City<span>*</span></label>
-                                                <span ng-show="frm1.n6.$error.required"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="md-form">
-                                                <input type="text" id="customerRegisterFormCountry" class="form-control"/>
-                                                <label for="customerRegisterFormCity">Country</label>
+                                                <MDBInput label="First Name*" required/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="col">
                                             <div class="md-form">
-                                                <input type="text" id="customerRegisterFormFirstName" class="form-control"/>
-                                                <label for="customerRegisterFormLocation">Location</label>
+                                                <MDBInput label="Last Name*" required/>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="md-form">
-                                                <input type="text" id="customerRegisterFormLastName" class="form-control"/>
-                                                <label for="customerRegisterFormZipCode">Zip Code<span>*</span></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="md-form">
-                                                <input type="text" id="customerRegisterFormFirstName" class="form-control" required/>
-                                                <label for="customerRegisterFormCellPhone">Cell Phone<span>*</span></label>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="md-form">
-                                                <input type="text" id="customerRegisterFormLastName" class="form-control"/>
-                                                <label for="customerRegisterFormHomePhone">Home Phone</label>
+                                                    <DatePicker
+                                                        selected={this.state.startDate}
+                                                        onChange={this.handleChange}
+                                                   />
                                             </div>
                                         </div>
                                     </div>
-                                                            
+                                    
                                     <div class="form-row">
                                         <div class="col">
                                             <div class="md-form">
-                                                <input type="text" id="customerRegisterFormUserName" class="form-control" required/>
-                                                <label for="customerRegisterFormUserName">User Name<span>*</span></label>
+                                                <MDBInput label="Company Name*" required/>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="md-form">
-                                                <input type="password" id="customerRegisterFormPassword" class="form-control" required/>
-                                                <label for="customerRegisterFormPassword">Password<span>*</span></label>
+                                                <MDBInput label="Mobile No.*" required/>
                                             </div>
                                         </div>
                                     </div>
                                     <button class="btn btn-rounded my-4 waves-effect" type="submit">Next</button>								
                                 </form>
 </Tab>
-<Tab eventKey="third" title="Third">
+<Tab eventKey="third" title="Family Information">
      <form class="text-center" style={{color: '#757575'}}>
                                     <div class="form-row">
-                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                            <div class="plan light">
-                                                <h2>Monthly Plan</h2>
-                                                <ul>
-                                                    <li>Emergency Air Transportation</li>
-                                                    <li>Helicopter Transportation</li>
-                                                    <li>Ground Ambulance Transportation</li>
-                                                    <li>Repatriation / Recuperation</li>
-                                                    <li>Return Transportation</li>
-                                                    <li>Escort Transportation</li>
-                                                    <li>Non-injury transportation</li>
-                                                    <li>Minor Children / Grandchildren Return</li>
-                                                    <li>Organ Retrieval</li>
-                                                    <li>Organ Recipient Transportation</li>
-                                                    <li>Vehicle Return</li>
-                                                    <li>Mortal Remains Transport</li>
-                                                    <li>Worldwide Coverage</li>
-                                                    <li>Pet Return</li>
-                                                </ul>
-                                                <button class="btn btn-rounded waves-effect" type="submit">Buy Plan</button>	
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                            <div class="plan medium">
-                                                <h2>Yearly Plan</h2>
-                                                <ul>
-                                                    <li>Emergency Air Transportation</li>
-                                                    <li>Helicopter Transportation</li>
-                                                    <li>Ground Ambulance Transportation</li>
-                                                    <li>Repatriation / Recuperation</li>
-                                                    <li>Return Transportation</li>
-                                                    <li>Escort Transportation</li>
-                                                    <li>Non-injury transportation</li>
-                                                    <li>Minor Children / Grandchildren Return</li>
-                                                    <li>Organ Retrieval</li>
-                                                    <li>Organ Recipient Transportation</li>
-                                                    <li>Vehicle Return</li>
-                                                    <li>Mortal Remains Transport</li>
-                                                    <li>Worldwide Coverage</li>
-                                                    <li>Pet Return</li>
-                                                </ul>
-                                                <button class="btn btn-rounded waves-effect" type="submit">Buy Plan</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                            <div class="plan dark">
-                                                <h2>5 Years Plan</h2>
-                                                <ul>
-                                                    <li>Emergency Air Transportation</li>
-                                                    <li>Helicopter Transportation</li>
-                                                    <li>Ground Ambulance Transportation</li>
-                                                    <li>Repatriation / Recuperation</li>
-                                                    <li>Return Transportation</li>
-                                                    <li>Escort Transportation</li>
-                                                    <li>Non-injury transportation</li>
-                                                    <li>Minor Children / Grandchildren Return</li>
-                                                    <li>Organ Retrieval</li>
-                                                    <li>Organ Recipient Transportation</li>
-                                                    <li>Vehicle Return</li>
-                                                    <li>Mortal Remains Transport</li>
-                                                    <li>Worldwide Coverage</li>
-                                                    <li>Pet Return</li>
-                                                </ul>
-                                                <button class="btn btn-rounded waves-effect" type="submit">Buy Plan</button>
+                                        <div class="bs-example">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <h2 class="mb-0">
+                                                            <button type="button" onClick = {this.handleSpouse}class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">Spouse Information <i class="fa fa-plus"></i></button>									
+                                                        </h2>
+                                                    </div>
+                                                    {this.isSpouse==true?this.spouseField:''}
+                                                </div>
+                                            
+                                                <div class="card">
+                                                    <div class="card-header" id="headingTwo">
+                                                        <h2 class="mb-0">
+                                                            <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo">Dependant Information <i class="fa fa-plus"></i></button>
+                                                        </h2>
+                                                    </div>
+                                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div id="education_fields">
+                                
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="col">
+                                                                    <div class="md-form">
+                                                                        <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
+                                                                        <label for="customerRegisterFormDependantFirstName">Dependant First Name</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="md-form">
+                                                                        <input type="text" id="customerRegisterFormDependantLastName" class="form-control"/>
+                                                                        <label for="customerRegisterFormDependantLastName">Dependant Last Name</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="col">
+                                                                    <div class="md-form">
+                                                                        <input type="date" id="customerRegisterFormDob2" class="form-control"/>
+                                                                        <label for="customerRegisterFormDob2">Date of Birth</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col text-center">
+                                                                    <button class="btn btn-info my-2" type="button"  onclick="education_fields();"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <button class="btn btn-rounded my-4 waves-effect" type="submit">Next</button>
                                 </form>
 </Tab>
-<Tab eventKey="fourth" title="Fourth">
-     <div class="form-row">
+<Tab eventKey="fourth" title="Membership">
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="md-form">
+                                                <Select
+                                                    value='US'
+                                                    onChange={this.handleChange2}                                               
+                                                    >
+                                                    <MenuItem value="us">
+                                                        <em>None</em>
+                                                    </MenuItem>
+                                                    <MenuItem value={10}>Individual</MenuItem>
+                                                    <MenuItem value={20}>Corporate</MenuItem>
+                                                </Select>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="md-form">
+                                                <Select
+                                                    value='US'
+                                                    onChange={this.handleChange2}                                               
+                                                    >
+                                                    <MenuItem value="us">
+                                                        <em>None</em>
+                                                    </MenuItem>
+                                                    <MenuItem value={10}>Annual Base Plan</MenuItem>
+                                                    <MenuItem value={20}>Monthly Base Plan</MenuItem>
+                                                    <MenuItem value={30}>Annual Premium Plan</MenuItem>
+                                                    <MenuItem value={40}>Monthly Premium Plan</MenuItem>
+                                                    <MenuItem value={50}>Annual International Plan</MenuItem>
+                                                    <MenuItem value={60}>Monthly International Plan</MenuItem>
+                                                </Select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="md-form">
+                                                <Select
+                                                    value='US'
+                                                    onChange={this.handleChange2}                                               
+                                                    >
+                                                    <MenuItem value="us">
+                                                        <em>None</em>
+                                                    </MenuItem>
+                                                    <MenuItem value={10}>$1,000</MenuItem>
+                                                    <MenuItem value={20}>$83.33</MenuItem>
+                                                    <MenuItem value={30}>$2,500</MenuItem>
+                                                    <MenuItem value={40}>$208.33</MenuItem>
+                                                    <MenuItem value={50}>$750.00</MenuItem>
+                                                    <MenuItem value={60}>$62.50</MenuItem>
+                                                </Select>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="md-form">
+                                                &nbsp;
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-rounded my-4 waves-effect" type="submit">Next</button>
+
+     {/*<div class="form-row">
                                     <div class="mem_inf">
                                         <div class="head">
                                             <h3>Member Info</h3>
@@ -505,9 +526,35 @@ onSelect={key => this.setState({ key })}
                                             <button class="btn btn-rounded my-4 waves-effect" type="submit">Next</button>
                                         </form>
                                     </div>
-                                </div>
+                                </div>*/}
 </Tab>
-<Tab eventKey="fifth" title="Fifth">
+<Tab eventKey="fifth" title="Payment">
+   {/* <div class="form-row">
+                                    <div class="payment_inf">
+                                        <div class="head">
+                                            <h3>Payment Info</h3>
+                                        </div>
+                                        <p><strong>Name on card:</strong> John Doe</p>
+                                        <p><strong>Card Number:</strong> xxxx xxxx xxxx 1253</p>
+                                        <p><strong>Card Expiration:</strong> 04/2022</p>
+                                    </div>
+                                    
+                                    <div class="subscription_inf">
+                                        <div class="head">
+                                            <h3>Subscription Info</h3>
+                                        </div>
+                                        <p>You have subscribed for <strong>Monthly Plan</strong></p>
+                                    </div>
+                                    
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="thank_you my-4">
+                                            <h3>Thank You!</h3>
+                                            <p>You're now a member of our list of awesome people.</p>
+                                        </div>
+                                    </div>
+                                </div>*/}
+</Tab>
+<Tab eventKey="sixth" title="Success">
     <div class="form-row">
                                     <div class="payment_inf">
                                         <div class="head">
@@ -538,9 +585,10 @@ onSelect={key => this.setState({ key })}
 </div>
 </div>
 </div>
+</div>
     </div>
         )
     }
 }
 
-export default CustomerRegistrationForm;
+export default MemberRegistrationForm;
