@@ -11,61 +11,81 @@ class MemberRegistrationForm extends Component {
         super(props);
         console.log(props) ;
         this.state = {
-         key: 'home',
-       };
+            key: 2
+          };
        this.state = {
          startDate: new Date(),
-         isSpouse:false
+         isDependent:false,
+         addDependentByOne:'0'
        };
        this.handleChange = this.handleChange.bind(this);
        this.handleChange2 = this.handleChange2.bind(this);
     }
+    handleTab(key) {
+        alert('selected ' + key);
+        this.setState({key});
+      }
      handleChange2(event) {
         this.setState(oldValues => ({
           ...oldValues,
           [event.target.name]: event.target.value,
         }));
       }
-    handleSpouse = ()=>{
-        this.setState((state) => ({
-            isSpouse: !this.state.isSpouse 
+    handleDepentent = ()=>{
+        this.setState((preState) => ({
+            isSpouse: !preState.isSpouse 
           }));
          console.log(this.state.isSpouse); 
      }
-     
-    spouseField = ()=>{
-        return(
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
+     addDependent = ()=>{
+        
+                 this.setState((preState) =>({
+                     addDependentByOne: preState + 1
+                 }),() =>{
+                     console.log(this.state.addDependentByOne)
+                 })            
+            }
+
+             dependentField =() =>{
+              var dependentFields = [];
+              for(let i=1; i<=3; i++)
+              {
+                dependentFields.push(<div class="card-body">
+                <div id="education_fields">
+
+                </div>
                 <div class="form-row">
                     <div class="col">
                         <div class="md-form">
-                            <input type="text" id="customerRegisterFormSpouseFirstName"class="form-control"/>
-                            <label for="customerRegisterFormSpouseFirstName">Spouse First Name</label>
+                            <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
+                            <label htmlFor="customerRegisterFormDependantFirstName">Dependant First Name{i}</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="md-form">
-                            <input type="text" id="customerRegisterFormSpouseLastName" class="form-control"/>
-                            <label for="customerRegisterFormSpouseLastName">Spouse Last Name</label>
+                            <input type="text" id="customerRegisterFormDependantLastName" class="form-control"/>
+                            <label htmlFor="customerRegisterFormDependantLastName">Dependant Last Name{i}</label>
                         </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col">
                         <div class="md-form">
-                            <input type="date" id="customerRegisterFormDob1" class="form-control"/>
-                            <label for="customerRegisterFormDob1">Date of Birth</label>
+                            <input type="date" id="customerRegisterFormDob2" class="form-control"/>
+                            <label htmlFor="customerRegisterFormDob2">Date of Birth{i}</label>
                         </div>
                     </div>
-                    <div class="col">
-                        &nbsp;
+                    <div class="col text-center">
+                        <button class="btn btn-info my-2" type="button"  onClick={this.addDependent}> <i class="fa fa-plus" aria-hidden="true"></i> </button>
                     </div>
                 </div>
-            </div>
-        </div>
-        );
-    }
+            </div>);
+              }
+              return(dependentFields);
+             }
+           
+   
+    
     handleChange(date) {
         this.setState({
           startDate: date
@@ -74,19 +94,46 @@ class MemberRegistrationForm extends Component {
       componentDidMount()
       {
     
-      var room = 1;
-      const education_fields = () => {
-          room++;
-          var objTo = document.getElementById('education_fields')
-          var divtest = document.createElement("div");
-          divtest.setAttribute("class", "col removeclass"+room);
-          var rdiv = 'removeclass'+room;
-          divtest.innerHTML = '<div class="form-row"><div class="col"> <div class="md-form"><input type="text" id="customerRegisterFormDependantFirstName" class="form-control"><label for="customerRegisterFormDependantFirstName">Dependant First Name</label></div></div><div class="col"><div class="md-form"> <input type="text" id="customerRegisterFormDependantLastName" class="form-control"><label for="customerRegisterFormDependantLastName">Dependant Last Name</label></div></div></div><div class="form-row"><div class="col"><div class="md-form"> <input type="date" id="customerRegisterFormDob2" class="form-control"><label for="customerRegisterFormDob2">Date of Birth</label></div></div><div class="col text-center"><div class="md-form"><div class="input-group-btn"> <button class="btn btn-danger my-2" type="button" onclick="remove_education_fields('+ room +');"> <i class="fa fa-minus" aria-hidden="true"></i> </button></div></div></div><div class="clear"></div>';
-          
-          objTo.appendChild(divtest)
+        let dependentField =() =>{
+            var dependentFields = [];
+            for(let i=1; i<this.state.addDependentByOne; i++)
+            {
+              dependentFields.push(<div class="card-body">
+              <div id="education_fields">
+
+              </div>
+              <div class="form-row">
+                  <div class="col">
+                      <div class="md-form">
+                          <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
+                          <label htmlFor="customerRegisterFormDependantFirstName">Dependant First Name{i}</label>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="md-form">
+                          <input type="text" id="customerRegisterFormDependantLastName" class="form-control"/>
+                          <label htmlFor="customerRegisterFormDependantLastName">Dependant Last Name{i}</label>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-row">
+                  <div class="col">
+                      <div class="md-form">
+                          <input type="date" id="customerRegisterFormDob2" class="form-control"/>
+                          <label htmlFor="customerRegisterFormDob2">Date of Birth{i}</label>
+                      </div>
+                  </div>
+                  <div class="col text-center">
+                      <button class="btn btn-info my-2" type="button"  onClick={this.addDependent}> <i class="fa fa-plus" aria-hidden="true"></i> </button>
+                  </div>
+              </div>
+          </div>);
+            }
+            return(dependentFields);
+           }
+        
       }
     
-      }
     render() {
         return (
             <div style={{width: '100%'}}>
@@ -95,7 +142,7 @@ class MemberRegistrationForm extends Component {
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
            <div className="form_bg">
                <div className="header_part">
-                   <h2>Customer Registration Form</h2>
+                   <h2>Member Registration Form</h2>
                </div>
                <div className="form_body">
                <div class="px-lg-2 pt-0">
@@ -104,13 +151,14 @@ id="controlled-tab-example"
 activeKey={this.state.key}
 onSelect={key => this.setState({ key })}
 >
-<Tab eventKey="home" title="Basic Information">
+<Tab eventKey={1} activeKey={this.state.key} onSelect={this.handleTab}  title="Basic Information">
 <form class="text-center" style={{color: '#757575'}}>
                                     <div class="form-row">
                                         <div class="col">
                                             <div class="md-form">
                                                 <Select
                                                 value='US'
+                                                name="country"
                                                 onChange={this.handleChange2}                                               
                                                 >
                                                     <MenuItem value="us">
@@ -206,10 +254,10 @@ onSelect={key => this.setState({ key })}
                                             </div>
                                         </div>
                                     </div>*/}
-                                    <button class="btn btn-rounded my-4 waves-effect" type="submit">Next</button>
+                                    <button class="btn btn-rounded my-4 waves-effect" onClick={()=>this.handleTab("2")} type="submit">Next</button> 
                                 </form>
 </Tab>
-<Tab eventKey="profile" title="Personal Information">
+<Tab eventKey={2} title="Personal Information">
 <form class="text-center" style={{color: '#757575'}}>
                                     <div class="form-row">
                                         <div class="col">
@@ -260,69 +308,79 @@ onSelect={key => this.setState({ key })}
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-rounded my-4 waves-effect" type="submit">Next</button>								
+                                    <button class="btn btn-rounded my-4 waves-effect" onClick={()=>this.handleTab("3")} type="submit">Next</button>								
                                 </form>
 </Tab>
-<Tab eventKey="third" title="Family Information">
+<Tab eventKey={3} title="Family Information">
+  
      <form class="text-center" style={{color: '#757575'}}>
                                     <div class="form-row">
-                                        <div class="bs-example">
-                                            <div class="accordion" id="accordionExample">
-                                                <div class="card">
-                                                    <div class="card-header" id="headingOne">
-                                                        <h2 class="mb-0">
-                                                            <button type="button" onClick = {this.handleSpouse}class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">Spouse Information <i class="fa fa-plus"></i></button>									
-                                                        </h2>
-                                                    </div>
-                                                    {this.isSpouse==true?this.spouseField:''}
-                                                </div>
-                                            
-                                                <div class="card">
-                                                    <div class="card-header" id="headingTwo">
-                                                        <h2 class="mb-0">
-                                                            <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo">Dependant Information <i class="fa fa-plus"></i></button>
-                                                        </h2>
-                                                    </div>
-                                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                                        <div class="card-body">
-                                                            <div id="education_fields">
-                                
-                                                            </div>
-                                                            <div class="form-row">
-                                                                <div class="col">
-                                                                    <div class="md-form">
-                                                                        <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
-                                                                        <label for="customerRegisterFormDependantFirstName">Dependant First Name</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <div class="md-form">
-                                                                        <input type="text" id="customerRegisterFormDependantLastName" class="form-control"/>
-                                                                        <label for="customerRegisterFormDependantLastName">Dependant Last Name</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row">
-                                                                <div class="col">
-                                                                    <div class="md-form">
-                                                                        <input type="date" id="customerRegisterFormDob2" class="form-control"/>
-                                                                        <label for="customerRegisterFormDob2">Date of Birth</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col text-center">
-                                                                    <button class="btn btn-info my-2" type="button"  onclick="education_fields();"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
-                                                                </div>
-                                                            </div>
+                                        <div class="col">
+                                            <div class="md-form">
+                                                <MDBInput label="Spouse Name*" required/>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="md-form">
+                                                <DatePicker
+                                                        selected={this.state.startDate}
+                                                        onChange={this.handleChange}
+                                                   />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                            <div class="bs-example">
+                                                <div class="accordion" id="accordionExample">
+                                                    <div class="card">
+                                                        <div class="card-header" id="headingTwo">
+                                                         
+                                                            <h2 class="mb-0">
+                                                                <button type="button" class="btn btn-link collapsed" onClick = {this.handleDepentent}>Dependant Information <i className={this.state.isSpouse?"fa fa-minus":"fa fa-plus"}></i></button>
+                                                            </h2>
                                                         </div>
+                                                              {this.state.isSpouse?<div class="card-body">
+                                                                <div id="education_fields">
+                                    
+                                                                </div>
+                                                                <div class="form-row">
+                                                                    <div class="col">
+                                                                        <div class="md-form">
+                                                                            <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
+                                                                            <label htmlFor="customerRegisterFormDependantFirstName">Dependant First Name</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="md-form">
+                                                                            <input type="text" id="customerRegisterFormDependantLastName" class="form-control"/>
+                                                                            <label htmlFor="customerRegisterFormDependantLastName">Dependant Last Name</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-row">
+                                                                    <div class="col">
+                                                                        <div class="md-form">
+                                                                            <input type="date" id="customerRegisterFormDob2" class="form-control"/>
+                                                                            <label htmlFor="customerRegisterFormDob2">Date of Birth</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col text-center">
+                                                                        <button class="btn btn-info my-2" type="button"  onClick={this.addDependent}> <i class="fa fa-plus" aria-hidden="true"></i> </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>:
+                                                              ''
+                                                              }
+                                                             {this.state.isSpouse ? this.dependentField():''}              
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <button class="btn btn-rounded my-4 waves-effect" type="submit">Next</button>
+                                    <button class="btn btn-rounded my-4 waves-effect" onClick={()=>this.handleTab("4")} type="submit">Next</button>
                                 </form>
 </Tab>
-<Tab eventKey="fourth" title="Membership">
+<Tab eventKey={4} title="Membership">
+                        <form class="text-center" style={{color: '#757575'}}>            
                                     <div class="form-row">
                                         <div class="col">
                                             <div class="md-form">
@@ -382,8 +440,8 @@ onSelect={key => this.setState({ key })}
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-rounded my-4 waves-effect" type="submit">Next</button>
-
+                                    <button class="btn btn-rounded my-4 waves-effect" onClick={()=>this.handleTab("5")} type="submit">Next</button>
+                        </form>
      {/*<div class="form-row">
                                     <div class="mem_inf">
                                         <div class="head">
@@ -528,7 +586,8 @@ onSelect={key => this.setState({ key })}
                                     </div>
                                 </div>*/}
 </Tab>
-<Tab eventKey="fifth" title="Payment">
+<Tab eventKey={5} title="Payment">
+                <form class="text-center" style={{color: '#757575'}}>
    {/* <div class="form-row">
                                     <div class="payment_inf">
                                         <div class="head">
@@ -553,9 +612,11 @@ onSelect={key => this.setState({ key })}
                                         </div>
                                     </div>
                                 </div>*/}
+                                <button class="btn btn-rounded my-4 waves-effect" onClick={()=>this.handleTab("6")} type="submit">Next</button>
+                            </form>
 </Tab>
-<Tab eventKey="sixth" title="Success">
-    <div class="form-row">
+<Tab eventKey={6} title="Success">
+                         <div class="form-row">
                                     <div class="payment_inf">
                                         <div class="head">
                                             <h3>Payment Info</h3>

@@ -28,39 +28,7 @@ class CustomerRegistrationForm extends Component {
          console.log(this.state.isSpouse); 
      }
      
-    spouseField = ()=>{
-        return(
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-                <div class="form-row">
-                    <div class="col">
-                        <div class="md-form">
-                            <input type="text" id="customerRegisterFormSpouseFirstName"class="form-control"/>
-                            <label for="customerRegisterFormSpouseFirstName">Spouse First Name</label>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="md-form">
-                            <input type="text" id="customerRegisterFormSpouseLastName" class="form-control"/>
-                            <label for="customerRegisterFormSpouseLastName">Spouse Last Name</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col">
-                        <div class="md-form">
-                            <input type="date" id="customerRegisterFormDob1" class="form-control"/>
-                            <label for="customerRegisterFormDob1">Date of Birth</label>
-                        </div>
-                    </div>
-                    <div class="col">
-                        &nbsp;
-                    </div>
-                </div>
-            </div>
-        </div>
-        );
-    }
+   
     handleChange(date) {
         this.setState({
           startDate: date
@@ -69,35 +37,8 @@ class CustomerRegistrationForm extends Component {
 
     componentDidMount()
     {
-    console.log('hellow');
-    $('button').on('click',function(){
-        alert('hi');
-    })
-    var room = 1;
-    const education_fields = () => {
-        room++;
-        var objTo = document.getElementById('education_fields')
-        var divtest = document.createElement("div");
-        divtest.setAttribute("class", "col removeclass"+room);
-        var rdiv = 'removeclass'+room;
-        divtest.innerHTML = '<div class="form-row"><div class="col"> <div class="md-form"><input type="text" id="customerRegisterFormDependantFirstName" class="form-control"><label for="customerRegisterFormDependantFirstName">Dependant First Name</label></div></div><div class="col"><div class="md-form"> <input type="text" id="customerRegisterFormDependantLastName" class="form-control"><label for="customerRegisterFormDependantLastName">Dependant Last Name</label></div></div></div><div class="form-row"><div class="col"><div class="md-form"> <input type="date" id="customerRegisterFormDob2" class="form-control"><label for="customerRegisterFormDob2">Date of Birth</label></div></div><div class="col text-center"><div class="md-form"><div class="input-group-btn"> <button class="btn btn-danger my-2" type="button" onclick="remove_education_fields('+ room +');"> <i class="fa fa-minus" aria-hidden="true"></i> </button></div></div></div><div class="clear"></div>';
-        
-        objTo.appendChild(divtest)
-    }
-    $(".collapse.show").each(function(){
-        $(this).prev(".card-header").find(".fa").addClass("fa-minus").removeClass("fa-plus");
-    });
-    $('.wizard li').click(function() {
-        $(this).prevAll().addClass("completed");
-         $(this).nextAll().removeClass("completed");
-         $(this).addClass('active');
-       });
-    // Toggle plus minus icon on show hide of collapse element
-    $(".collapse").on('show.bs.collapse', function(){
-        $(this).prev(".card-header").find(".fa").removeClass("fa-plus").addClass("fa-minus");
-    }).on('hide.bs.collapse', function(){
-        $(this).prev(".card-header").find(".fa").removeClass("fa-minus").addClass("fa-plus");
-    });
+ 
+   
     }
     render() {
         return (
@@ -112,7 +53,7 @@ class CustomerRegistrationForm extends Component {
             <div className="col-xs-12 col-sm-12 col-md-10 col-lg-10 offset-md-1 offset-lg-1">
            <div className="form_bg">
                <div className="header_part">
-                   <h2>Customer Registration Form</h2>
+                   <h2>Member Registration Form</h2>
                </div>
                <div className="form_body">
             <Tabs
@@ -136,10 +77,11 @@ onSelect={key => this.setState({ key })}
                                     </div>
                                     <div class="form-row">
                                         <div class="col">
-                                            <div class="md-form">                                                 <DatePicker
-                                   selected={this.state.startDate}
+                                            <div class="md-form">
+                                            <DatePicker
+                                                selected={this.state.startDate}
                                                onChange={this.handleChange}
-                                           />
+                                            />
 
                                             </div>
                                         </div>
