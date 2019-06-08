@@ -1,8 +1,9 @@
 import React, { Component,Fragment } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import  './css/material-dashboard.css';
+import * as myConst from './helper/Constant';
 import Switch from 'react-toggle-switch'
-  
+const URL = myConst.HTTP_URL;
 	
 class CustomerManagement extends Component {
 constructor(props) {

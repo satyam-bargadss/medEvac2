@@ -55,7 +55,7 @@ class AdminDashboard extends Component {
         <ul className="nav">
         <li className="nav-item ">
             <NavLink className="nav-link" to="/Dashboard"  activeClassName=" active">
-            <i class="material-icons">dashboard</i>
+            <i className="material-icons">dashboard</i>
               <p>Dashboard</p>
             </NavLink>
           </li>
@@ -146,6 +146,7 @@ class AdminDashboard extends Component {
       <div className="content">
         <div className="container">           
           <div className="row">
+          
             <Switch>
               <Route path="/Dashboard" component={Dashboard} exact strict/>
               <Route path="/customer-management" component={CustomerManagement} exact strict/>

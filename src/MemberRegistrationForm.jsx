@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import { MDBInput } from "mdbreact";
-import {  Form} from 'react-bootstrap/Form';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
 import DatePicker from "react-datepicker";
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import * as myConst from './helper/Constant';
+
+const URL = myConst.HTTP_URL;
 class MemberRegistrationForm extends Component {
     constructor(props) {
         super(props);
@@ -16,13 +21,18 @@ class MemberRegistrationForm extends Component {
        this.state = {
          startDate: new Date(),
          isDependent:false,
-         addDependentByOne:'0'
+         addDependentByOne:'0',
+         country:'USA',
+         type:'',
+         plan:'',
+         amount:''
        };
        this.handleChange = this.handleChange.bind(this);
        this.handleChange2 = this.handleChange2.bind(this);
+       this.submitStep4 = this.submitStep4.bind(this);
     }
     handleTab(key) {
-        alert('selected ' + key);
+       // alert('selected ' + key);
         this.setState({key});
       }
      handleChange2(event) {
@@ -86,14 +96,96 @@ class MemberRegistrationForm extends Component {
            
    
     
-    handleChange(date) {
-        this.setState({
-          startDate: date
-        });
-      }
+             handleChange = (e) => {
+
+                this.setState({
+                        [e.target.name]: e.target.value
+                })
+               
+                console.log(e.target.value.length);
+                console.log(e.target.value);
+            }
+            submitStep1 = (event) =>{
+                //return false;
+                event.preventDefault();
+                 console.log(event);
+                  this.handleTab(2);
+                
+                
+                
+            }
+            submitStep2 = (event) =>{
+                //return false;
+                event.preventDefault();
+                 console.log(event);
+                  this.handleTab(3);
+                
+                
+                
+            }
+            submitStep3 = (event) =>{
+              
+                console.log('hi');
+                event.preventDefault();
+                console.log(this.state);
+                this.handleTab(4);
+            }
+            submitStep4 (event){
+                event.preventDefault();
+                //console.log(this.state);
+              // let formData = await this.state;
+               //console.log(formData);
+                //return false;
+               // event.preventDefault();
+                const formCustomber = {
+                      state: this.state.state_s,
+                      city:this.state.city,
+                      amount:this.state.amount,
+                      plan:this.state.plan,
+                      planid:this.state.planid,
+                      type:this.state.type,
+                      zipcode:this.state.zipcode,
+                      companyname:this.state.companyname,
+                      firstname:this.state.firstname,
+                      mobilenumber:this.state.mobilenumber,
+                      spousename:this.state.spousename
+
+                  }
+                    this.handleTab(6);
+                  /*
+                try{
+                    let response = await fetch(URL+'customber', {
+                        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    
+                        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                        //credentials: 'same-origin', // include, *same-origin, omit
+                        headers: {
+                                'Content-Type': 'application/json',
+                                
+                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        //redirect: 'follow', // manual, *follow, error
+                        //referrer: 'no-referrer', // no-referrer, *client
+                        body: JSON.stringify(formData), // body data type must match "Content-Type" header
+                    })
+                    let data = await response.json()
+
+                    console.log(data);
+                console.log(this.state);
+                console.log('hi');
+                return false;
+                //this.handleTab(6);
+            }
+            catch(error){
+                console.log(error);
+              }
+              */
+        }
       componentDidMount()
       {
-    
+        this.setState({
+            country: 'USA',
+        })
         let dependentField =() =>{
             var dependentFields = [];
             for(let i=1; i<this.state.addDependentByOne; i++)
@@ -135,6 +227,7 @@ class MemberRegistrationForm extends Component {
       }
     
     render() {
+      
         return (
             <div style={{width: '100%'}}>
                 
@@ -145,54 +238,61 @@ class MemberRegistrationForm extends Component {
                    <h2>Member Registration Form</h2>
                </div>
                <div className="form_body">
-               <div class="px-lg-2 pt-0">
+               <div className="px-lg-2 pt-0">
             <Tabs
 id="controlled-tab-example"
 activeKey={this.state.key}
 onSelect={key => this.setState({ key })}
 >
-<Tab eventKey={1} activeKey={this.state.key} onSelect={this.handleTab}  title="Basic Information">
-<form class="text-center" style={{color: '#757575'}}>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="md-form">
+<Tab eventKey={1} activeKey={this.state.key}   title="Basic Information">
+<form className="text-center" style={{color: '#757575'}} >
+                                    <div className="form-row">
+                                        <div className="col">
+                                            <div className="md-form">
+                                            <InputLabel htmlFor="amount-pic">Country</InputLabel>
                                                 <Select
-                                                value='US'
+                                                value={this.state.country}                                               
                                                 name="country"
-                                                onChange={this.handleChange2}                                               
+                                                onChange={this.handleChange} 
+                                                placeholder='US' 
+                                                                               
                                                 >
-                                                    <MenuItem value="us">
-                                                        <em>None</em>
+                                                    <MenuItem value="us" >
+                                                        US
                                                     </MenuItem>
-                                                    <MenuItem value={10}>South America</MenuItem>
-                                                    <MenuItem value={30}>South America</MenuItem>
-                                                    <MenuItem value={20}>Caribbean Island</MenuItem>
+                                                    <MenuItem value={'Bahamas'}>Bahamas</MenuItem>
+                                                    <MenuItem value={'Barbados'}>Barbados</MenuItem>
+                                                    <MenuItem value={'jamaica'}>Jamaica</MenuItem>
+                                                    <MenuItem value={'antigua'}>Antigua</MenuItem>
+                                                    <MenuItem value={'trinidadandTobago'}>Trinidad and Tobago</MenuItem>
+                                                    <MenuItem value={'dominicanrepublic'}>Dominican Republic</MenuItem>
                                                 </Select>
+                                        
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="md-form">
+                                        <div className="col">
+                                            <div className="md-form">
                                                 &nbsp;
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="md-form">
-                                                <MDBInput label="City*" required/>
+                                    <div className="form-row">
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="City*" name='city' value={this.state.city} onChange={e => this.handleChange(e)} required/>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="md-form">
-                                                <MDBInput label="State*" required/>
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="State*" name='state_s' value={this.state.state_s} onChange={e => this.handleChange(e)}required/>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="md-form">
-                                                <MDBInput label="Zip Code*" required/>
+                                    <div className="form-row">
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Zip Code*" name='zipcode' value={this.state.zipcode} onChange={e => this.handleChange(e)} required/>
                                             </div>
                                         </div>
                                         <div class="col">
@@ -202,69 +302,20 @@ onSelect={key => this.setState({ key })}
                                         </div>
                                     </div>
                                     
-                                    {/*<div class="bs-example">
-                                        <div class="accordion" id="accordionExample">
-                                            <div class="card">
-                                                <div class="card-header" id="headingOne">
-                                                    <h2 class="mb-0">
-                                                        <button type="button" onClick = {this.handleSpouse}class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">Spouse Information <i class="fa fa-plus"></i></button>									
-                                                    </h2>
-                                                </div>
-                                                {this.isSpouse==true?this.spouseField:''}
-                                            </div>
-                                          
-                                            <div class="card">
-                                                <div class="card-header" id="headingTwo">
-                                                    <h2 class="mb-0">
-                                                        <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo">Dependant Information <i class="fa fa-plus"></i></button>
-                                                    </h2>
-                                                </div>
-                                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                                    <div class="card-body">
-                                                        <div id="education_fields">
-                            
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="col">
-                                                                <div class="md-form">
-                                                                    <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
-                                                                    <label for="customerRegisterFormDependantFirstName">Dependant First Name</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col">
-                                                                <div class="md-form">
-                                                                    <input type="text" id="customerRegisterFormDependantLastName" class="form-control"/>
-                                                                    <label for="customerRegisterFormDependantLastName">Dependant Last Name</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="col">
-                                                                <div class="md-form">
-                                                                    <input type="date" id="customerRegisterFormDob2" class="form-control"/>
-                                                                    <label for="customerRegisterFormDob2">Date of Birth</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col text-center">
-                                                                <button class="btn btn-info my-2" type="button"  onclick="education_fields();"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>*/}
-                                    <button class="btn btn-rounded my-4 waves-effect" onClick={()=>this.handleTab("2")} type="submit">Next</button> 
+                                   
+                                    <button className="btn btn-rounded my-4 waves-effect" onClick={this.submitStep1}>Next</button> 
                                 </form>
 </Tab>
 <Tab eventKey={2} title="Personal Information">
-<form class="text-center" style={{color: '#757575'}}>
-                                    <div class="form-row">
-                                        <div class="col">
+<form className="text-center" style={{color: '#757575'}}>
+                                    <div className="form-row">
+                                        <div className="col">
                                             <div class="md-form">
+                                            <InputLabel htmlFor="age-simple">Type</InputLabel>
                                                 <Select
-                                                    value='US'
-                                                    onChange={this.handleChange2}                                               
+                                                    value={this.state.type}
+                                                    onChange={this.handleChange}
+                                                    name='type'                                               
                                                     >
                                                     <MenuItem value="us">
                                                         <em>None</em>
@@ -274,20 +325,20 @@ onSelect={key => this.setState({ key })}
                                                 </Select>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="md-form">
-                                                <MDBInput label="First Name*" required/>
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="First Name*" name="firstname" value={this.state.firstname} onChange={e => this.handleChange(e)} required/>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="md-form">
-                                                <MDBInput label="Last Name*" required/>
+                                    <div className="form-row">
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Last Name*" name="lastname" value={this.state.lastname} onChange={e => this.handleChange(e)} required/>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="md-form">
+                                        <div className="col">
+                                            <div className="md-form">
                                                     <DatePicker
                                                         selected={this.state.startDate}
                                                         onChange={this.handleChange}
@@ -296,32 +347,32 @@ onSelect={key => this.setState({ key })}
                                         </div>
                                     </div>
                                     
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="md-form">
-                                                <MDBInput label="Company Name*" required/>
+                                    <div className="form-row">
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Company Name*" name="companyname" value={this.state.companyname} onChange={e => this.handleChange(e)} required/>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="md-form">
-                                                <MDBInput label="Mobile No.*" required/>
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Mobile No.*" name="mobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)} required/>
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-rounded my-4 waves-effect" onClick={()=>this.handleTab("3")} type="submit">Next</button>								
+                                    <button className="btn btn-rounded my-4 waves-effect" onClick={this.submitStep2} >Next</button>								
                                 </form>
 </Tab>
 <Tab eventKey={3} title="Family Information">
   
-     <form class="text-center" style={{color: '#757575'}}>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="md-form">
-                                                <MDBInput label="Spouse Name*" required/>
+     <form className="text-center" style={{color: '#757575'}}>
+                                    <div className="form-row">
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Spouse Name*" name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} required/>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="md-form">
+                                        <div className="col">
+                                            <div className="md-form">
                                                 <DatePicker
                                                         selected={this.state.startDate}
                                                         onChange={this.handleChange}
@@ -329,38 +380,38 @@ onSelect={key => this.setState({ key })}
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                            <div class="bs-example">
-                                                <div class="accordion" id="accordionExample">
-                                                    <div class="card">
-                                                        <div class="card-header" id="headingTwo">
+                                    <div className="form-row">
+                                            <div className="bs-example">
+                                                <div className="accordion" id="accordionExample">
+                                                    <div className="card">
+                                                        <div className="card-header" id="headingTwo">
                                                          
-                                                            <h2 class="mb-0">
-                                                                <button type="button" class="btn btn-link collapsed" onClick = {this.handleDepentent}>Dependant Information <i className={this.state.isSpouse?"fa fa-minus":"fa fa-plus"}></i></button>
+                                                            <h2 className="mb-0">
+                                                                <button type="button" className="btn btn-link collapsed" onClick = {this.handleDepentent}>Dependant Information <i className={this.state.isSpouse?"fa fa-minus":"fa fa-plus"}></i></button>
                                                             </h2>
                                                         </div>
-                                                              {this.state.isSpouse?<div class="card-body">
+                                                              {this.state.isSpouse?<div className="card-body">
                                                                 <div id="education_fields">
                                     
                                                                 </div>
-                                                                <div class="form-row">
-                                                                    <div class="col">
-                                                                        <div class="md-form">
+                                                                <div className="form-row">
+                                                                    <div className="col">
+                                                                        <div className="md-form">
                                                                             <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
                                                                             <label htmlFor="customerRegisterFormDependantFirstName">Dependant First Name</label>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col">
-                                                                        <div class="md-form">
+                                                                    <div className="col">
+                                                                        <div className="md-form">
                                                                             <input type="text" id="customerRegisterFormDependantLastName" class="form-control"/>
                                                                             <label htmlFor="customerRegisterFormDependantLastName">Dependant Last Name</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="form-row">
-                                                                    <div class="col">
-                                                                        <div class="md-form">
-                                                                            <input type="date" id="customerRegisterFormDob2" class="form-control"/>
+                                                                <div className="form-row">
+                                                                    <div className="col">
+                                                                        <div className="md-form">
+                                                                            <input type="date" id="customerRegisterFormDob2" classn="form-control"/>
                                                                             <label htmlFor="customerRegisterFormDob2">Date of Birth</label>
                                                                         </div>
                                                                     </div>
@@ -376,7 +427,7 @@ onSelect={key => this.setState({ key })}
                                                 </div>
                                             </div>
                                         </div>
-                                    <button class="btn btn-rounded my-4 waves-effect" onClick={()=>this.handleTab("4")} type="submit">Next</button>
+                                    <button class="btn btn-rounded my-4 waves-effect" onClick={this.submitStep3} >Next</button>
                                 </form>
 </Tab>
 <Tab eventKey={4} title="Membership">
@@ -384,33 +435,24 @@ onSelect={key => this.setState({ key })}
                                     <div class="form-row">
                                         <div class="col">
                                             <div class="md-form">
-                                                <Select
-                                                    value='US'
-                                                    onChange={this.handleChange2}                                               
-                                                    >
-                                                    <MenuItem value="us">
-                                                        <em>None</em>
-                                                    </MenuItem>
-                                                    <MenuItem value={10}>Individual</MenuItem>
-                                                    <MenuItem value={20}>Corporate</MenuItem>
-                                                </Select>
+                                            <MDBInput label="Group Code*" name='planid'onChange={this.handleChange} required/>
+                                                
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="md-form">
+                                            <InputLabel htmlFor="amount-pic">Plan</InputLabel>
                                                 <Select
-                                                    value='US'
-                                                    onChange={this.handleChange2}                                               
+                                                    value={this.state.plan}
+                                                    name='plan'
+                                                    onChange={this.handleChange}                                               
                                                     >
-                                                    <MenuItem value="us">
-                                                        <em>None</em>
-                                                    </MenuItem>
-                                                    <MenuItem value={10}>Annual Base Plan</MenuItem>
-                                                    <MenuItem value={20}>Monthly Base Plan</MenuItem>
-                                                    <MenuItem value={30}>Annual Premium Plan</MenuItem>
-                                                    <MenuItem value={40}>Monthly Premium Plan</MenuItem>
-                                                    <MenuItem value={50}>Annual International Plan</MenuItem>
-                                                    <MenuItem value={60}>Monthly International Plan</MenuItem>
+                                                    <MenuItem value={'Annual Base Plan'}>Annual Base Plan</MenuItem>
+                                                    <MenuItem value={'Monthly Base Plan'}>Monthly Base Plan</MenuItem>
+                                                    <MenuItem value={'Annual Premium Plan'}>Annual Premium Plan</MenuItem>
+                                                    <MenuItem value={'Monthly Premium Plan'}>Monthly Premium Plan</MenuItem>
+                                                    <MenuItem value={'Annual International Plan'}>Annual International Plan</MenuItem>
+                                                    <MenuItem value={'Monthly International Plan'}>Monthly International Plan</MenuItem>
                                                 </Select>
                                             </div>
                                         </div>
@@ -418,19 +460,19 @@ onSelect={key => this.setState({ key })}
                                     <div class="form-row">
                                         <div class="col">
                                             <div class="md-form">
+                                            <InputLabel htmlFor="amount-pic">Amount</InputLabel>
                                                 <Select
-                                                    value='US'
-                                                    onChange={this.handleChange2}                                               
+                                                    value={this.state.amount}
+                                                    name='amount'
+                                                    onChange={this.handleChange}                                               
                                                     >
-                                                    <MenuItem value="us">
-                                                        <em>None</em>
-                                                    </MenuItem>
-                                                    <MenuItem value={10}>$1,000</MenuItem>
-                                                    <MenuItem value={20}>$83.33</MenuItem>
-                                                    <MenuItem value={30}>$2,500</MenuItem>
-                                                    <MenuItem value={40}>$208.33</MenuItem>
-                                                    <MenuItem value={50}>$750.00</MenuItem>
-                                                    <MenuItem value={60}>$62.50</MenuItem>
+                                                  
+                                                    <MenuItem value={1000}>$1,000</MenuItem>
+                                                    <MenuItem value={83.33}>$83.33</MenuItem>
+                                                    <MenuItem value={2500}>$2,500</MenuItem>
+                                                    <MenuItem value={208.33}>$208.33</MenuItem>
+                                                    <MenuItem value={750}>$750.00</MenuItem>
+                                                    <MenuItem value={62.50}>$62.50</MenuItem>
                                                 </Select>
                                             </div>
                                         </div>
@@ -438,153 +480,12 @@ onSelect={key => this.setState({ key })}
                                             <div class="md-form">
                                                 &nbsp;
                                             </div>
+
                                         </div>
                                     </div>
-                                    <button class="btn btn-rounded my-4 waves-effect" onClick={()=>this.handleTab("5")} type="submit">Next</button>
+                                    <button class="btn btn-rounded my-4 waves-effect" onClick={this.submitStep4}>Next</button>
                         </form>
-     {/*<div class="form-row">
-                                    <div class="mem_inf">
-                                        <div class="head">
-                                            <h3>Member Info</h3>
-                                        </div>
-                                        <p><strong>Name:</strong> John Doe</p>
-                                        <p><strong>Address:</strong> 1720 Poplar Street, Charleston, West Virginia, Zip Code: 25362</p>
-                                        <p><strong>Contact No:</strong> 720-131-5698</p>
-                                    </div>
-                                    
-                                    <div class="bill_inf">
-                                        <div class="head">
-                                            <h3>Billing Address</h3>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                                <div class="bill_add">
-                                                    <div class="row">
-                                                        <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7 pr-0">
-                                                            <p>My billing address is same as:</p>
-                                                        </div>
-                                                        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
-                                                            <label id="img_category_label"class="field"for="img_category" data-value="">
-                                                                <div id="img_category"class="psuedo_select"name="img_category">
-                                                                    <span class="selected"></span>
-                                                                    <ul id="img_category_options"class="options">
-                                                                        <li class="option" data-value="Residence">Residence</li>
-                                                                        <li class="option" data-value="mailing">Mailing</li>
-                                                                        <li class="option" data-value="others">Others</li>
-                                                                    </ul>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                                <div class="bill_add">
-                                                    <div class="row">
-                                                        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
-                                                            <p>Change your plan:</p>
-                                                        </div>
-                                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pl-0">
-                                                            <label id="img_category_label"class="field"for="img_category" data-value="">
-                                                                <div id="img_category"class="psuedo_select"name="img_category">
-                                                                    <span class="selected"></span>
-                                                                    <ul id="img_category_options"class="options">
-                                                                        <li class="option" data-value="Monthly">Monthly</li>
-                                                                        <li class="option" data-value="Yearly">Yearly</li>
-                                                                        <li class="option" data-value="5 Years Plan">5 Years Plan</li>
-                                                                    </ul>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-xs-12 col-sm-6 col-md-1 col-lg-1 pl-0">
-                                                            <a href="#" class="edit"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="card_inf">
-                                        <div class="head">
-                                            <h3>Credit Card Information</h3>
-                                        </div>
-                                        <form class="text-center" style={{color: '#757575'}}>
-                                            <div class="form-row">
-                                                <div class="col">
-                                                    <div class="md-form">
-                                                        <input type="number" id="customerRegisterFormCardNumber" class="form-control"/>
-                                                        <label for="customerRegisterFormCardNumber">Card Number</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="md-form">
-                                                        <input type="text" id="customerRegisterFormCardName" class="form-control"/>
-                                                        <label for="customerRegisterFormCardName">Full Name on Card</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                                                    <div class="md-form">
-                                                        <label id="img_category_label"class="field"for="img_category"data-value="">
-                                                            <span>Expiry Month</span>
-                                                            <div id="img_category"class="psuedo_select"name="img_category">
-                                                                <span class="selected"></span>
-                                                                <ul id="img_category_options"class="options">
-                                                                    <li class="option" data-value="01">01</li>
-                                                                    <li class="option" data-value="02">02</li>
-                                                                    <li class="option" data-value="03">03</li>
-                                                                    <li class="option" data-value="04">04</li>
-                                                                    <li class="option" data-value="05">05</li>
-                                                                    <li class="option" data-value="06">06</li>
-                                                                    <li class="option" data-value="07">07</li>
-                                                                    <li class="option" data-value="08">08</li>
-                                                                    <li class="option" data-value="09">09</li>
-                                                                    <li class="option" data-value="10">10</li>
-                                                                    <li class="option" data-value="11">11</li>
-                                                                    <li class="option" data-value="12">12</li>
-                                                                </ul>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                                                    <div class="md-form">
-                                                        <label id="img_category_label"class="field"for="img_category"data-value="">
-                                                            <span>Expiry Year</span>
-                                                            <div id="img_category"class="psuedo_select"name="img_category">
-                                                                <span class="selected"></span>
-                                                                <ul id="img_category_options"class="options">
-                                                                    <li class="option" data-value="2019">2019</li>
-                                                                    <li class="option" data-value="2020">2020</li>
-                                                                    <li class="option" data-value="2021">2021</li>
-                                                                    <li class="option" data-value="2022">2022</li>
-                                                                    <li class="option" data-value="2023">2023</li>
-                                                                    <li class="option" data-value="2024">2024</li>
-                                                                    <li class="option" data-value="2025">2025</li>
-                                                                    <li class="option" data-value="2026">2026</li>
-                                                                    <li class="option" data-value="2027">2027</li>
-                                                                    <li class="option" data-value="2028">2028</li>
-                                                                    <li class="option" data-value="2029">2029</li>
-                                                                    <li class="option" data-value="2030">2030</li>
-                                                                </ul>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                                                    <div class="md-form">
-                                                        <input type="number" id="customerRegisterFormCvvNumber" class="form-control"/>
-                                                        <label for="customerRegisterFormCvvNumber">CVV</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-rounded my-4 waves-effect" type="submit">Back</button>
-                                            <button class="btn btn-rounded my-4 waves-effect" type="submit">Next</button>
-                                        </form>
-                                    </div>
-                                </div>*/}
+ 
 </Tab>
 <Tab eventKey={5} title="Payment">
                 <form class="text-center" style={{color: '#757575'}}>
@@ -619,11 +520,21 @@ onSelect={key => this.setState({ key })}
                          <div class="form-row">
                                     <div class="payment_inf">
                                         <div class="head">
-                                            <h3>Payment Info</h3>
+                                            <h3>Membership Info</h3>
                                         </div>
-                                        <p><strong>Name on card:</strong> John Doe</p>
-                                        <p><strong>Card Number:</strong> xxxx xxxx xxxx 1253</p>
-                                        <p><strong>Card Expiration:</strong> 04/2022</p>
+                                        <p><strong>firstname:{this.state.firstname}</strong> </p>
+                                        <p><strong>lastname:{this.state.lastname}</strong> </p>
+                                        <p><strong>country:{this.state.country}</strong> </p>
+                                        <p><strong>city:{this.state.lastname}</strong> </p>
+                                        <p><strong>state: {this.state.city}</strong> </p>
+                                        <p><strong>mobilenumber: {this.state.mobilenumber}</strong> </p>                                       
+                                        <p><strong>companyname:{this.state.companyname}</strong> </p>
+                                        <p><strong>spousename: {this.state.spousename}</strong> </p>
+                                        <p><strong>plan: {this.state.plan}</strong> </p>
+                                        <p><strong>Group Code: {this.state.planid}</strong> </p>
+                                        <p><strong>amount:{this.state.amount}</strong> </p>
+                                        
+                                        
                                     </div>
                                     
                                     <div class="subscription_inf">

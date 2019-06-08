@@ -110,7 +110,7 @@ let response = await fetch(URL+'login', {
 		 if(window.sessionStorage.getItem("isAdminAuth"))
         {
 					setTimeout(()=>{
-						this.props.history.push('/admin-dashboard');
+						this.props.history.push('/admin-dashboard#/dashboard');
 					}, 1000)
         
           

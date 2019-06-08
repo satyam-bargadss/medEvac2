@@ -88,6 +88,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 table.table thead th{font-weight:600 !important; font-size:14px !important;}
 table.table-striped tr td, table.table-striped tr th{border:1px solid rgba(0, 0, 0, 0.06);}
 table.table-striped tr th{border-top:1px solid rgba(0, 0, 0, 0.06) !important;}
+div.dataTables_wrapper div.dataTables_paginate{padding-bottom:0;}
 
 .nav-tabs{padding:0 !important;}
 .nav-tabs a{
@@ -464,7 +465,7 @@ span.nmbr {
 
 #myform input{border-radius:2rem; border:1px solid #9e1c20; height:52px; padding:29px 25px 12px; margin-bottom:0; box-sizing:border-box;}
 #myform input:focus{box-shadow:0 0 0 0.2rem rgba(158,28,32,.25);}
-#myform label{padding-left:32px; padding-top:3px; font-size:16px; margin:0;}
+#myform label{padding-left:32px; padding-top:10px; font-size:16px; margin:0;}
 #myform label.active{padding-left:32px; padding-top:18px;}
 
 .card{border-radius:1rem 1rem 0 0 !important; border-radius:6px !important;}
@@ -541,7 +542,7 @@ span.nmbr {
 	border-color:#9e1c20;
 	box-shadow:0 0 0 0.2rem rgba(158,28,32,.25);
 }
-
+.custom-control-label{margin-top:0 !important; padding-top:0 !important;}
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before{
 	background-color:#9e1c20;
 }
