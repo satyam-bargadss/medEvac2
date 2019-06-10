@@ -360,7 +360,7 @@ class MemberRegistrationForm extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="subHead">
+                                    <div className="subHead px-2">
                                         <div className="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="defaultUnchecked"/>
                                             <label className="custom-control-label" for="defaultUnchecked">Same as Member Address</label>
