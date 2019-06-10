@@ -64,7 +64,7 @@ class MemberRegistrationForm extends Component {
                 <div id="education_fields">
 
                 </div>
-                <div class="form-row px-1">
+                <div class="form-row px-2">
                     <div class="col">
                         <div class="md-form">
                             <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
@@ -78,7 +78,7 @@ class MemberRegistrationForm extends Component {
                         </div>
                     </div>
                 </div>
-                <div class="form-row px-1">
+                <div class="form-row px-2">
                     <div class="col">
                         <div class="md-form">
                             <input type="date" id="customerRegisterFormDob2" class="form-control"/>
@@ -194,7 +194,7 @@ class MemberRegistrationForm extends Component {
               <div id="education_fields">
 
               </div>
-              <div class="form-row px-1">
+              <div class="form-row px-2">
                   <div class="col">
                       <div class="md-form">
                           <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
@@ -208,7 +208,7 @@ class MemberRegistrationForm extends Component {
                       </div>
                   </div>
               </div>
-              <div class="form-row px-1">
+              <div class="form-row px-2">
                   <div class="col">
                       <div class="md-form">
                           <input type="date" id="customerRegisterFormDob2" class="form-control"/>
@@ -246,7 +246,7 @@ class MemberRegistrationForm extends Component {
                                 <div className="card-body">Personal Information</div>
                         </div>
                    </div>
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
                                                  <MDBInput label="First Name*" name="firstname" value={this.state.firstname} onChange={e => this.handleChange(e)} required/>
@@ -258,7 +258,7 @@ class MemberRegistrationForm extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
                                                     <DatePicker
@@ -274,7 +274,7 @@ class MemberRegistrationForm extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
                                             {/*<MDBInput label="Zip Code*" name='zipcode' value={this.state.zipcode} onChange={e => this.handleChange(e)} required/>*/}
@@ -292,7 +292,7 @@ class MemberRegistrationForm extends Component {
                                         <div className="card-body">Contact Information</div>
                                     </div>
                                 </div>
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
                                             <InputLabel htmlFor="amount-pic">Country</InputLabel>
@@ -321,7 +321,7 @@ class MemberRegistrationForm extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
                                                 <MDBInput label="Address 1" name="address1" required/>
@@ -334,7 +334,7 @@ class MemberRegistrationForm extends Component {
                                         </div>
                                     </div>
                                     
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
                                                 <MDBInput label="City*" name='city' value={this.state.city} onChange={e => this.handleChange(e)} required/>
@@ -347,7 +347,7 @@ class MemberRegistrationForm extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
                                                 <MDBInput label="Zip Code*" name='zipcode' value={this.state.zipcode} onChange={e => this.handleChange(e)} required/>
@@ -368,7 +368,7 @@ class MemberRegistrationForm extends Component {
                                         <h4><strong>Mailing Address</strong></h4>
                                     </div>
 
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
                                                 <MDBInput label="Mailing Address 1" name="maddress1" required/>
@@ -381,7 +381,7 @@ class MemberRegistrationForm extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
                                                 <MDBInput label="City*" name='city' value={this.state.city} onChange={e => this.handleChange(e)} required/>
@@ -394,7 +394,7 @@ class MemberRegistrationForm extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
                                                 <MDBInput label="Zip*" name='zip' required/>
@@ -413,7 +413,7 @@ class MemberRegistrationForm extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
                                                 <MDBInput label="Spouse Name*" name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} required/>
@@ -428,7 +428,7 @@ class MemberRegistrationForm extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                             <div className="bs-example">
                                                 <div className="accordion" id="accordionExample">
                                                     <div className="card">
@@ -442,7 +442,7 @@ class MemberRegistrationForm extends Component {
                                                                 <div id="education_fields">
                                     
                                                                 </div>
-                                                                <div className="form-row px-1">
+                                                                <div className="form-row px-2">
                                                                     <div className="col">
                                                                         <div className="md-form">
                                                                             <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
@@ -456,7 +456,7 @@ class MemberRegistrationForm extends Component {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="form-row px-1">
+                                                                <div className="form-row px-2">
                                                                     <div className="col">
                                                                         <div className="md-form">
                                                                             <input type="date" id="customerRegisterFormDob2" classn="form-control"/>
@@ -482,7 +482,7 @@ class MemberRegistrationForm extends Component {
                                     </div>
                                 </div>
 
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
                                                 {/*<MDBInput label="Group Code*" name='planid'onChange={this.handleChange} required/>*/}         
@@ -507,7 +507,7 @@ class MemberRegistrationForm extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div class="md-form">
                                             <InputLabel htmlFor="age-simple">Type</InputLabel>
@@ -531,7 +531,7 @@ class MemberRegistrationForm extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
                                                 <MDBInput label="Group Code*" name='planid'onChange={this.handleChange} required/>
@@ -544,7 +544,7 @@ class MemberRegistrationForm extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="form-row px-1">
+                                    <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
                                                 <MDBInput label="Agent Manager" name="agentmanager"/>
@@ -557,7 +557,7 @@ class MemberRegistrationForm extends Component {
                                         </div>
                                     </div>
                       
-   {/* <div class="form-row px-1">
+   {/* <div class="form-row px-2">
                                     <div class="payment_inf">
                                         <div class="head">
                                             <h3>Payment Info</h3>
@@ -588,7 +588,7 @@ class MemberRegistrationForm extends Component {
                                 </div>    
                             </form>
 
-                         {/*<div class="form-row px-1">
+                         {/*<div class="form-row px-2">
                                     <div class="payment_inf">
                                         <div class="head">
                                             <h3>Membership Info</h3>

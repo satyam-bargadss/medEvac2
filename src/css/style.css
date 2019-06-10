@@ -91,7 +91,7 @@ table.table-striped tr th{border-top:1px solid rgba(0, 0, 0, 0.06) !important;}
 div.dataTables_wrapper div.dataTables_paginate{padding-bottom:0;}
 
 .head .card{box-shadow:none !important; background:#4f3279 !important;}
-.head .text-dark{color:#fff !important;}
+.head .text-dark{color:#fff !important; font-size:15px;}
 .subHead h5{font-size:14px;}
 .MuiInput-root-26{width:100%;}
 .MuiInput-underline-30:before{border-bottom:1px solid #ced4da !important;}
