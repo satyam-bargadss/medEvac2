@@ -59,6 +59,13 @@ class AdminDashboard extends Component {
               <p>Dashboard</p>
             </NavLink>
           </li>
+
+          <li className="nav-item ">
+            <NavLink className="nav-link" to="/customer-management"  activeClassName=" active">
+              <i className="material-icons">person</i>
+              <p>User</p>
+            </NavLink>
+          </li>
           
           <li className="nav-item ">
             <NavLink className="nav-link" to="/customer-management"  activeClassName=" active">
