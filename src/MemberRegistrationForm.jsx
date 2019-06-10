@@ -64,7 +64,7 @@ class MemberRegistrationForm extends Component {
                 <div id="education_fields">
 
                 </div>
-                <div class="form-row">
+                <div class="form-row px-1">
                     <div class="col">
                         <div class="md-form">
                             <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
@@ -78,7 +78,7 @@ class MemberRegistrationForm extends Component {
                         </div>
                     </div>
                 </div>
-                <div class="form-row">
+                <div class="form-row px-1">
                     <div class="col">
                         <div class="md-form">
                             <input type="date" id="customerRegisterFormDob2" class="form-control"/>
@@ -194,7 +194,7 @@ class MemberRegistrationForm extends Component {
               <div id="education_fields">
 
               </div>
-              <div class="form-row">
+              <div class="form-row px-1">
                   <div class="col">
                       <div class="md-form">
                           <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
@@ -208,7 +208,7 @@ class MemberRegistrationForm extends Component {
                       </div>
                   </div>
               </div>
-              <div class="form-row">
+              <div class="form-row px-1">
                   <div class="col">
                       <div class="md-form">
                           <input type="date" id="customerRegisterFormDob2" class="form-control"/>
@@ -235,18 +235,64 @@ class MemberRegistrationForm extends Component {
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
            <div className="form_bg">
                <div className="header_part">
-                   <h2>Member Registration Form</h2>
+                   <h2>Member Application</h2>
                </div>
                <div className="form_body">
                <div className="px-lg-2 pt-0">
-            <Tabs
-id="controlled-tab-example"
-activeKey={this.state.key}
-onSelect={key => this.setState({ key })}
->
-<Tab eventKey={1} activeKey={this.state.key}   title="Basic Information">
-<form className="text-center" style={{color: '#757575'}} >
-                                    <div className="form-row">
+               
+               <form style={{color: '#757575'}} >
+                   <div className="head">
+                        <div className="card bg-light text-dark">
+                                <div className="card-body">Personal Information</div>
+                        </div>
+                   </div>
+                                    <div className="form-row px-1">
+                                        <div className="col">
+                                            <div className="md-form">
+                                                 <MDBInput label="First Name*" name="firstname" value={this.state.firstname} onChange={e => this.handleChange(e)} required/>
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="md-form">
+                                            <MDBInput label="Last Name*" name="lastname" value={this.state.lastname} onChange={e => this.handleChange(e)} required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="form-row px-1">
+                                        <div className="col">
+                                            <div className="md-form">
+                                                    <DatePicker
+                                                        selected={this.state.startDate}
+                                                        onChange={this.handleChange}
+                                                   />
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Mobile No.*" name="mobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)} required/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-row px-1">
+                                        <div className="col">
+                                            <div className="md-form">
+                                            {/*<MDBInput label="Zip Code*" name='zipcode' value={this.state.zipcode} onChange={e => this.handleChange(e)} required/>*/}
+                                                <MDBInput label="Email Address*" name="email" required/>
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Set Your Password*" name="password" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div className="head">
+                                    <div className="card text-dark bg-light">
+                                        <div className="card-body">Contact Information</div>
+                                    </div>
+                                </div>
+                                    <div className="form-row px-1">
                                         <div className="col">
                                             <div className="md-form">
                                             <InputLabel htmlFor="amount-pic">Country</InputLabel>
@@ -267,7 +313,6 @@ onSelect={key => this.setState({ key })}
                                                     <MenuItem value={'trinidadandTobago'}>Trinidad and Tobago</MenuItem>
                                                     <MenuItem value={'dominicanrepublic'}>Dominican Republic</MenuItem>
                                                 </Select>
-                                        
                                             </div>
                                         </div>
                                         <div className="col">
@@ -276,7 +321,20 @@ onSelect={key => this.setState({ key })}
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="form-row">
+                                    <div className="form-row px-1">
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Address 1" name="address1" required/>
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Address 2 (Optional)" name="address2"/> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="form-row px-1">
                                         <div className="col">
                                             <div className="md-form">
                                                 <MDBInput label="City*" name='city' value={this.state.city} onChange={e => this.handleChange(e)} required/>
@@ -284,88 +342,78 @@ onSelect={key => this.setState({ key })}
                                         </div>
                                         <div className="col">
                                             <div className="md-form">
-                                                <MDBInput label="State*" name='state_s' value={this.state.state_s} onChange={e => this.handleChange(e)}required/>
+                                                <MDBInput label="State*" name='state_s' value={this.state.state_s} onChange={e => this.handleChange(e)}required/>                                              
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="form-row">
+                                    <div className="form-row px-1">
                                         <div className="col">
                                             <div className="md-form">
                                                 <MDBInput label="Zip Code*" name='zipcode' value={this.state.zipcode} onChange={e => this.handleChange(e)} required/>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="md-form">
+                                        <div className="col">
+                                            <div className="md-form">
                                                 &nbsp;
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                   
-                                    <button className="btn btn-rounded my-4 waves-effect" onClick={this.submitStep1}>Next</button> 
-                                </form>
-</Tab>
-<Tab eventKey={2} title="Personal Information">
-<form className="text-center" style={{color: '#757575'}}>
-                                    <div className="form-row">
+
+                                    <div className="subHead">
+                                        <div className="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="defaultUnchecked"/>
+                                            <label className="custom-control-label" for="defaultUnchecked">Same as Member Address</label>
+                                        </div>
+                                        <h4><strong>Mailing Address</strong></h4>
+                                    </div>
+
+                                    <div className="form-row px-1">
                                         <div className="col">
-                                            <div class="md-form">
-                                            <InputLabel htmlFor="age-simple">Type</InputLabel>
-                                                <Select
-                                                    value={this.state.type}
-                                                    onChange={this.handleChange}
-                                                    name='type'                                               
-                                                    >
-                                                    <MenuItem value="us">
-                                                        <em>None</em>
-                                                    </MenuItem>
-                                                    <MenuItem value={10}>Individual</MenuItem>
-                                                    <MenuItem value={20}>Corporate</MenuItem>
-                                                </Select>
+                                            <div className="md-form">
+                                                <MDBInput label="Mailing Address 1" name="maddress1" required/>
                                             </div>
                                         </div>
                                         <div className="col">
                                             <div className="md-form">
-                                                <MDBInput label="First Name*" name="firstname" value={this.state.firstname} onChange={e => this.handleChange(e)} required/>
+                                                <MDBInput label="Mailing Address 2 (Optional)" name="maddress2" required/>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="form-row">
+
+                                    <div className="form-row px-1">
                                         <div className="col">
                                             <div className="md-form">
-                                                <MDBInput label="Last Name*" name="lastname" value={this.state.lastname} onChange={e => this.handleChange(e)} required/>
+                                                <MDBInput label="City*" name='city' value={this.state.city} onChange={e => this.handleChange(e)} required/>
                                             </div>
                                         </div>
                                         <div className="col">
                                             <div className="md-form">
-                                                    <DatePicker
-                                                        selected={this.state.startDate}
-                                                        onChange={this.handleChange}
-                                                   />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="form-row">
-                                        <div className="col">
-                                            <div className="md-form">
-                                                <MDBInput label="Company Name*" name="companyname" value={this.state.companyname} onChange={e => this.handleChange(e)} required/>
-                                            </div>
-                                        </div>
-                                        <div className="col">
-                                            <div className="md-form">
-                                                <MDBInput label="Mobile No.*" name="mobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)} required/>
+                                                <MDBInput label="State*" name='state_s' value={this.state.state_s} onChange={e => this.handleChange(e)}required/>                                              
                                             </div>
                                         </div>
                                     </div>
-                                    <button className="btn btn-rounded my-4 waves-effect" onClick={this.submitStep2} >Next</button>								
-                                </form>
-</Tab>
-<Tab eventKey={3} title="Family Information">
-  
-     <form className="text-center" style={{color: '#757575'}}>
-                                    <div className="form-row">
+
+                                    <div className="form-row px-1">
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Zip*" name='zip' required/>
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="md-form">
+                                                &nbsp;                                            
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="head">
+                                        <div className="card text-dark bg-light">
+                                            <div className="card-body">Family Information</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-row px-1">
                                         <div className="col">
                                             <div className="md-form">
                                                 <MDBInput label="Spouse Name*" name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} required/>
@@ -380,7 +428,7 @@ onSelect={key => this.setState({ key })}
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="form-row">
+                                    <div className="form-row px-1">
                                             <div className="bs-example">
                                                 <div className="accordion" id="accordionExample">
                                                     <div className="card">
@@ -394,7 +442,7 @@ onSelect={key => this.setState({ key })}
                                                                 <div id="education_fields">
                                     
                                                                 </div>
-                                                                <div className="form-row">
+                                                                <div className="form-row px-1">
                                                                     <div className="col">
                                                                         <div className="md-form">
                                                                             <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
@@ -408,7 +456,7 @@ onSelect={key => this.setState({ key })}
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="form-row">
+                                                                <div className="form-row px-1">
                                                                     <div className="col">
                                                                         <div className="md-form">
                                                                             <input type="date" id="customerRegisterFormDob2" classn="form-control"/>
@@ -427,21 +475,18 @@ onSelect={key => this.setState({ key })}
                                                 </div>
                                             </div>
                                         </div>
-                                    <button class="btn btn-rounded my-4 waves-effect" onClick={this.submitStep3} >Next</button>
-                                </form>
-</Tab>
-<Tab eventKey={4} title="Membership">
-                        <form class="text-center" style={{color: '#757575'}}>            
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="md-form">
-                                            <MDBInput label="Group Code*" name='planid'onChange={this.handleChange} required/>
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="md-form">
-                                            <InputLabel htmlFor="amount-pic">Plan</InputLabel>
+
+                                <div className="head">
+                                    <div className="card text-dark bg-light">
+                                        <div className="card-body">Membership</div>
+                                    </div>
+                                </div>
+
+                                    <div className="form-row px-1">
+                                        <div className="col">
+                                            <div className="md-form">
+                                                {/*<MDBInput label="Group Code*" name='planid'onChange={this.handleChange} required/>*/}         
+                                                <InputLabel htmlFor="amount-pic">Plan</InputLabel>
                                                 <Select
                                                     value={this.state.plan}
                                                     name='plan'
@@ -456,40 +501,63 @@ onSelect={key => this.setState({ key })}
                                                 </Select>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="md-form">
-                                            <InputLabel htmlFor="amount-pic">Amount</InputLabel>
-                                                <Select
-                                                    value={this.state.amount}
-                                                    name='amount'
-                                                    onChange={this.handleChange}                                               
-                                                    >
-                                                  
-                                                    <MenuItem value={1000}>$1,000</MenuItem>
-                                                    <MenuItem value={83.33}>$83.33</MenuItem>
-                                                    <MenuItem value={2500}>$2,500</MenuItem>
-                                                    <MenuItem value={208.33}>$208.33</MenuItem>
-                                                    <MenuItem value={750}>$750.00</MenuItem>
-                                                    <MenuItem value={62.50}>$62.50</MenuItem>
-                                                </Select>
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Membership Fees" name="fees"/>
                                             </div>
                                         </div>
-                                        <div class="col">
+                                    </div>
+                                    <div className="form-row px-1">
+                                        <div className="col">
                                             <div class="md-form">
+                                            <InputLabel htmlFor="age-simple">Type</InputLabel>
+                                                <Select
+                                                    value={this.state.type}
+                                                    onChange={this.handleChange}
+                                                    name='type'                                               
+                                                    >
+                                                    <MenuItem value="us">
+                                                        <em>None</em>
+                                                    </MenuItem>
+                                                    <MenuItem value={10}>Individual</MenuItem>
+                                                    <MenuItem value={20}>Corporate</MenuItem>
+                                                </Select>             
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Company Name*" name="companyname" value={this.state.companyname} onChange={e => this.handleChange(e)} required/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-row px-1">
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Group Code*" name='planid'onChange={this.handleChange} required/>
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Writing Agent" name="writingagent"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-row px-1">
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Agent Manager" name="agentmanager"/>
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="md-form">
                                                 &nbsp;
                                             </div>
-
                                         </div>
                                     </div>
-                                    <button class="btn btn-rounded my-4 waves-effect" onClick={this.submitStep4}>Next</button>
-                        </form>
- 
-</Tab>
-<Tab eventKey={5} title="Payment">
-                <form class="text-center" style={{color: '#757575'}}>
-   {/* <div class="form-row">
+                      
+   {/* <div class="form-row px-1">
                                     <div class="payment_inf">
                                         <div class="head">
                                             <h3>Payment Info</h3>
@@ -513,11 +581,14 @@ onSelect={key => this.setState({ key })}
                                         </div>
                                     </div>
                                 </div>*/}
-                                <button class="btn btn-rounded my-4 waves-effect" onClick={()=>this.handleTab("6")} type="submit">Next</button>
+                                <div className="buttons text-center">
+                                    <button className="btn btn-rounded my-4 waves-effect" type="submit">Cancel</button>
+                                    <button className="btn btn-rounded my-4 waves-effect" type="submit">Preview & Edit</button>
+                                    <button className="btn btn-rounded my-4 waves-effect" type="submit">Save & Payment</button>
+                                </div>    
                             </form>
-</Tab>
-<Tab eventKey={6} title="Success">
-                         <div class="form-row">
+
+                         {/*<div class="form-row px-1">
                                     <div class="payment_inf">
                                         <div class="head">
                                             <h3>Membership Info</h3>
@@ -550,9 +621,8 @@ onSelect={key => this.setState({ key })}
                                             <p>You're now a member of our list of awesome people.</p>
                                         </div>
                                     </div>
-                                </div>
-</Tab>
-</Tabs>
+                                </div>*/}
+
 </div>
 </div>
 </div>
