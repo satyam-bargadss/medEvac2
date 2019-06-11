@@ -324,12 +324,12 @@ class MemberRegistrationForm extends Component {
                                     <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
-                                                <MDBInput label="Address 1" name="address1" required/>
+                                                <MDBInput label="Member Address 1" name="address1" required/>
                                             </div>
                                         </div>
                                         <div className="col">
                                             <div className="md-form">
-                                                <MDBInput label="Address 2 (Optional)" name="address2"/> 
+                                                <MDBInput label="Member Address 2 (Optional)" name="address2"/> 
                                             </div>
                                         </div>
                                     </div>
@@ -510,7 +510,7 @@ class MemberRegistrationForm extends Component {
                                     <div className="form-row px-2">
                                         <div className="col">
                                             <div class="md-form">
-                                            <InputLabel htmlFor="age-simple">Type</InputLabel>
+                                            <InputLabel htmlFor="age-simple">Plan Type</InputLabel>
                                                 <Select
                                                     value={this.state.type}
                                                     onChange={this.handleChange}
@@ -539,7 +539,7 @@ class MemberRegistrationForm extends Component {
                                         </div>
                                         <div className="col">
                                             <div className="md-form">
-                                                <MDBInput label="Writing Agent" name="writingagent"/>
+                                                <MDBInput label="Writing Agent" name="writingagent" value ={this.state.writingagent} onChange={this.handleChange}/>
                                             </div>
                                         </div>
                                     </div>

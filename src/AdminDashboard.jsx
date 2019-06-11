@@ -61,9 +61,9 @@ class AdminDashboard extends Component {
           </li>
 
           <li className="nav-item ">
-            <NavLink className="nav-link" to="/customer-management"  activeClassName=" active">
+            <NavLink className="nav-link" to="/user">
               <i className="material-icons">person</i>
-              <p>User</p>
+              <p>Users</p>
             </NavLink>
           </li>
           
@@ -158,6 +158,7 @@ class AdminDashboard extends Component {
               <Route path="/Dashboard" component={Dashboard} exact strict/>
               <Route path="/customer-management" component={CustomerManagement} exact strict/>
               <Route path="/member-registration" component={MemberRegistrationForm} exact strict/>
+              <Route path="/user" component={MemberRegistrationForm} exact strict/>
           </Switch>
           </div>
       </div>
