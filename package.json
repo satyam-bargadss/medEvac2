@@ -9,6 +9,7 @@
     "install": "^0.12.2",
     "jquery": "^3.4.1",
     "jquery-validation": "^1.19.0",
+    "material-ui-next-pickers": "0.0.21",
     "mdbreact": "^4.15.0",
     "npm": "^6.9.0",
     "react": "^16.8.6",

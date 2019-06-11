@@ -30,11 +30,9 @@ class MemberRegistrationForm extends Component {
        this.handleChange = this.handleChange.bind(this);
        this.handleChange2 = this.handleChange2.bind(this);
        this.submitStep4 = this.submitStep4.bind(this);
+       this.handleSubmit = this.handleSubmit.bind(this);
     }
-    handleTab(key) {
-       // alert('selected ' + key);
-        this.setState({key});
-      }
+  
      handleChange2(event) {
         this.setState(oldValues => ({
           ...oldValues,
@@ -67,13 +65,13 @@ class MemberRegistrationForm extends Component {
                 <div class="form-row px-2">
                     <div class="col">
                         <div class="md-form">
-                            <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
+                            <input type="text" name={`customerRegisterFormDependantFirstName${i}`} value={this.state.customerRegisterFormDependantFirstNamei} onChange={e => this.handleChange(e)} class="form-control"/>
                             <label htmlFor="customerRegisterFormDependantFirstName">Dependant First Name{i}</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="md-form">
-                            <input type="text" id="customerRegisterFormDependantLastName" class="form-control"/>
+                            <input type="text" name={`customerRegisterFormDependantLastName${i}`}  value={this.state.customerRegisterFormDependantLastNamei} onChange={e => this.handleChange(e)} class="form-control"/>
                             <label htmlFor="customerRegisterFormDependantLastName">Dependant Last Name{i}</label>
                         </div>
                     </div>
@@ -81,13 +79,11 @@ class MemberRegistrationForm extends Component {
                 <div class="form-row px-2">
                     <div class="col">
                         <div class="md-form">
-                            <input type="date" id="customerRegisterFormDob2" class="form-control"/>
+                            <input type="date" name={`customerRegisterFormDob${i}`}   value={this.state.customerRegisterFormDobi} onChange={e => this.handleChange(e)} class="form-control"/>
                             <label htmlFor="customerRegisterFormDob2">Date of Birth{i}</label>
                         </div>
                     </div>
-                    <div class="col text-center">
-                        <button class="btn btn-info my-2" type="button"  onClick={this.addDependent}> <i class="fa fa-plus" aria-hidden="true"></i> </button>
-                    </div>
+                   
                 </div>
             </div>);
               }
@@ -105,31 +101,40 @@ class MemberRegistrationForm extends Component {
                 console.log(e.target.value.length);
                 console.log(e.target.value);
             }
-            submitStep1 = (event) =>{
-                //return false;
-                event.preventDefault();
-                 console.log(event);
-                  this.handleTab(2);
+           async handleSubmit(event) {
+               event.preventDefault();
+               console.log(this.state);
+               //return false
+               
+               try{
+                let response = await fetch(URL+'customber', {
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
                 
-                
-                
-            }
-            submitStep2 = (event) =>{
-                //return false;
-                event.preventDefault();
-                 console.log(event);
-                  this.handleTab(3);
-                
-                
-                
-            }
-            submitStep3 = (event) =>{
-              
-                console.log('hi');
-                event.preventDefault();
-                console.log(this.state);
-                this.handleTab(4);
-            }
+                    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                    //credentials: 'same-origin', // include, *same-origin, omit
+                    headers: {
+                            'Content-Type': 'application/json',
+                            
+                            // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    //redirect: 'follow', // manual, *follow, error
+                    //referrer: 'no-referrer', // no-referrer, *client
+                    body: JSON.stringify(this.state), // body data type must match "Content-Type" header
+                })
+                let data = await response.json()
+
+                console.log(data);
+            console.log(this.state);
+            console.log('hi');
+           // return false;
+            //this.handleTab(6);
+           
+        }
+        catch(error){
+            console.log(error);
+          }
+           
+           }
             submitStep4 (event){
                 event.preventDefault();
                 //console.log(this.state);
@@ -197,13 +202,13 @@ class MemberRegistrationForm extends Component {
               <div class="form-row px-2">
                   <div class="col">
                       <div class="md-form">
-                          <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
+                          <input type="text" key={i} id="customerRegisterFormDependantFirstName" class="form-control"/>
                           <label htmlFor="customerRegisterFormDependantFirstName">Dependant First Name{i}</label>
                       </div>
                   </div>
                   <div class="col">
                       <div class="md-form">
-                          <input type="text" id="customerRegisterFormDependantLastName" class="form-control"/>
+                          <input type="text" key={i} id="customerRegisterFormDependantLastName" class="form-control"/>
                           <label htmlFor="customerRegisterFormDependantLastName">Dependant Last Name{i}</label>
                       </div>
                   </div>
@@ -211,7 +216,7 @@ class MemberRegistrationForm extends Component {
               <div class="form-row px-2">
                   <div class="col">
                       <div class="md-form">
-                          <input type="date" id="customerRegisterFormDob2" class="form-control"/>
+                          <input type="date" key={i}  id="customerRegisterFormDob2" class="form-control"/>
                           <label htmlFor="customerRegisterFormDob2">Date of Birth{i}</label>
                       </div>
                   </div>
@@ -240,7 +245,7 @@ class MemberRegistrationForm extends Component {
                <div className="form_body">
                <div className="px-lg-2 pt-0">
                
-               <form style={{color: '#757575'}} >
+               <form style={{color: '#757575'}} onSubmit={this.handleSubmit}>
                    <div className="head">
                         <div className="card bg-light text-dark">
                                 <div className="card-body">Personal Information</div>
@@ -278,12 +283,12 @@ class MemberRegistrationForm extends Component {
                                         <div className="col">
                                             <div className="md-form">
                                             {/*<MDBInput label="Zip Code*" name='zipcode' value={this.state.zipcode} onChange={e => this.handleChange(e)} required/>*/}
-                                                <MDBInput label="Email Address*" name="email" required/>
+                                                <MDBInput label="Email Address*" name="email" required value={this.state.email} onChange={e => this.handleChange(e)}/>
                                             </div>
                                         </div>
                                         <div className="col">
                                             <div className="md-form">
-                                                <MDBInput label="Set Your Password*" name="password" required/>
+                                                <MDBInput label="Set Your Password*" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
                                             </div>
                                         </div>
                                     </div>
@@ -324,12 +329,12 @@ class MemberRegistrationForm extends Component {
                                     <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
-                                                <MDBInput label="Member Address 1" name="address1" required/>
+                                                <MDBInput label="Member Address 1" name="address1" value={this.state.address1} onChange={e => this.handleChange(e)} required/>
                                             </div>
                                         </div>
                                         <div className="col">
                                             <div className="md-form">
-                                                <MDBInput label="Member Address 2 (Optional)" name="address2"/> 
+                                                <MDBInput label="Member Address 2 (Optional)" name="address2" value={this.state.address2} onChange={e => this.handleChange(e)}/> 
                                             </div>
                                         </div>
                                     </div>
@@ -371,25 +376,12 @@ class MemberRegistrationForm extends Component {
                                     <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
-                                                <MDBInput label="Mailing Address 1" name="maddress1" required/>
+                                                <MDBInput label="Mailing Address 1" name="maddress1" value={this.state.maddress1} onChange={e => this.handleChange(e)} required/>
                                             </div>
                                         </div>
                                         <div className="col">
                                             <div className="md-form">
-                                                <MDBInput label="Mailing Address 2 (Optional)" name="maddress2" required/>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="form-row px-2">
-                                        <div className="col">
-                                            <div className="md-form">
-                                                <MDBInput label="City*" name='city' value={this.state.city} onChange={e => this.handleChange(e)} required/>
-                                            </div>
-                                        </div>
-                                        <div className="col">
-                                            <div className="md-form">
-                                                <MDBInput label="State*" name='state_s' value={this.state.state_s} onChange={e => this.handleChange(e)}required/>                                              
+                                                <MDBInput label="Mailing Address 2 (Optional)" name="maddress2" value={this.state.maddress2} onChange={e => this.handleChange(e)} required/>
                                             </div>
                                         </div>
                                     </div>
@@ -397,7 +389,20 @@ class MemberRegistrationForm extends Component {
                                     <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
-                                                <MDBInput label="Zip*" name='zip' required/>
+                                                <MDBInput label="City*" name='city1' value={this.state.city1} onChange={e => this.handleChange(e)} required/>
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="State*" name='state_s1' value={this.state.state_s1} onChange={e => this.handleChange(e)}required/>                                              
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-row px-2">
+                                        <div className="col">
+                                            <div className="md-form">
+                                                <MDBInput label="Zip*" name='zip' value={this.state.zip} onChange={e => this.handleChange(e)}required/>
                                             </div>
                                         </div>
                                         <div className="col">
@@ -445,13 +450,13 @@ class MemberRegistrationForm extends Component {
                                                                 <div className="form-row px-2">
                                                                     <div className="col">
                                                                         <div className="md-form">
-                                                                            <input type="text" id="customerRegisterFormDependantFirstName" class="form-control"/>
+                                                                            <input type="text" name="customerRegisterFormDependantFirstName" value={this.state.customerRegisterFormDependantFirstName} onChange={e => this.handleChange(e)} class="form-control"/>
                                                                             <label htmlFor="customerRegisterFormDependantFirstName">Dependant First Name</label>
                                                                         </div>
                                                                     </div>
                                                                     <div className="col">
                                                                         <div className="md-form">
-                                                                            <input type="text" id="customerRegisterFormDependantLastName" class="form-control"/>
+                                                                            <input type="text" name="customerRegisterFormDependantLastName" value={this.state.customerRegisterFormDependantLastName} onChange={e => this.handleChange(e)} class="form-control"/>
                                                                             <label htmlFor="customerRegisterFormDependantLastName">Dependant Last Name</label>
                                                                         </div>
                                                                     </div>
@@ -547,7 +552,7 @@ class MemberRegistrationForm extends Component {
                                     <div className="form-row px-2">
                                         <div className="col">
                                             <div className="md-form">
-                                                <MDBInput label="Agent Manager" name="agentmanager"/>
+                                                <MDBInput label="Agent Manager" name="agentmanager" value ={this.state.agentmanager} onChange={this.handleChange}/>
                                             </div>
                                         </div>
                                         <div className="col">
@@ -557,30 +562,7 @@ class MemberRegistrationForm extends Component {
                                         </div>
                                     </div>
                       
-   {/* <div class="form-row px-2">
-                                    <div class="payment_inf">
-                                        <div class="head">
-                                            <h3>Payment Info</h3>
-                                        </div>
-                                        <p><strong>Name on card:</strong> John Doe</p>
-                                        <p><strong>Card Number:</strong> xxxx xxxx xxxx 1253</p>
-                                        <p><strong>Card Expiration:</strong> 04/2022</p>
-                                    </div>
-                                    
-                                    <div class="subscription_inf">
-                                        <div class="head">
-                                            <h3>Subscription Info</h3>
-                                        </div>
-                                        <p>You have subscribed for <strong>Monthly Plan</strong></p>
-                                    </div>
-                                    
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="thank_you my-4">
-                                            <h3>Thank You!</h3>
-                                            <p>You're now a member of our list of awesome people.</p>
-                                        </div>
-                                    </div>
-                                </div>*/}
+  
                                 <div className="buttons text-center">
                                     <button className="btn btn-rounded my-4 waves-effect" type="submit">Cancel</button>
                                     <button className="btn btn-rounded my-4 waves-effect" type="submit">Preview & Edit</button>
@@ -588,41 +570,7 @@ class MemberRegistrationForm extends Component {
                                 </div>    
                             </form>
 
-                         {/*<div class="form-row px-2">
-                                    <div class="payment_inf">
-                                        <div class="head">
-                                            <h3>Membership Info</h3>
-                                        </div>
-                                        <p><strong>firstname:{this.state.firstname}</strong> </p>
-                                        <p><strong>lastname:{this.state.lastname}</strong> </p>
-                                        <p><strong>country:{this.state.country}</strong> </p>
-                                        <p><strong>city:{this.state.lastname}</strong> </p>
-                                        <p><strong>state: {this.state.city}</strong> </p>
-                                        <p><strong>mobilenumber: {this.state.mobilenumber}</strong> </p>                                       
-                                        <p><strong>companyname:{this.state.companyname}</strong> </p>
-                                        <p><strong>spousename: {this.state.spousename}</strong> </p>
-                                        <p><strong>plan: {this.state.plan}</strong> </p>
-                                        <p><strong>Group Code: {this.state.planid}</strong> </p>
-                                        <p><strong>amount:{this.state.amount}</strong> </p>
-                                        
-                                        
-                                    </div>
-                                    
-                                    <div class="subscription_inf">
-                                        <div class="head">
-                                            <h3>Subscription Info</h3>
-                                        </div>
-                                        <p>You have subscribed for <strong>Monthly Plan</strong></p>
-                                    </div>
-                                    
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="thank_you my-4">
-                                            <h3>Thank You!</h3>
-                                            <p>You're now a member of our list of awesome people.</p>
-                                        </div>
-                                    </div>
-                                </div>*/}
-
+                     
 </div>
 </div>
 </div>

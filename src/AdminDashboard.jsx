@@ -7,7 +7,10 @@ import CustomerRegistrationForm from './CustomerRegistrationForm'
 import CustomerManagement from './CustomerManagement';
 import Dashboard  from './Dashboard';
 import MemberRegistrationForm from './MemberRegistrationForm';
-
+import Agent from './Agent'
+import AgentRegistrationForm from './AgentRegistrationForm';
+import membershipPlan from './membershipPlan';
+import plans from './plans';
 //import { BrowserRouter as Router, Route, Switch,Link ,NavLink } from "react-router-dom";
 
 class AdminDashboard extends Component {
@@ -73,23 +76,23 @@ class AdminDashboard extends Component {
               <p>Members</p>
             </NavLink>
           </li>
-		  <li className="nav-item ">
-            <a className="nav-link" href="./agent-management.html">
+		   <li className="nav-item ">
+       <NavLink className="nav-link" to="/agent"  activeClassName=" active">
               <i className="material-icons">person</i>
               <p>Agents</p>
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item ">
-            <a className="nav-link" href="./commission.html">
+            <a className="nav-link" href="#">
               <i className="material-icons">content_paste</i>
               <p>Commissions</p>
             </a>
           </li>
           <li className="nav-item ">
-            <a className="nav-link" href="./Customership-plan.html">
+            <NavLink className="nav-link" to="/membership-plan" activeClassName=" active">
               <i className="material-icons">library_books</i>
               <p>Membership Plans</p>
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item ">
             <a className="nav-link" href="./service-list.html">
@@ -122,15 +125,7 @@ class AdminDashboard extends Component {
             <span className="navbar-toggler-icon icon-bar"></span>
           </button>
           <div className="collapse navbar-collapse justify-content-end">
-            {/*<form className="navbar-form">
-              <div className="input-group no-border">
-                <input type="text" value="" className="form-control" placeholder="Search..."/>
-                <button type="submit" className="btn btn-white btn-round btn-just-icon">
-                  <i className="material-icons">search</i>
-                  <div className="ripple-container"></div>
-                </button>
-              </div>
-        </form>*/}
+       
             <ul className="navbar-nav" onClick={this.adminLogout}>
              
               <li className="nav-item dropdown">
@@ -158,7 +153,11 @@ class AdminDashboard extends Component {
               <Route path="/Dashboard" component={Dashboard} exact strict/>
               <Route path="/customer-management" component={CustomerManagement} exact strict/>
               <Route path="/member-registration" component={MemberRegistrationForm} exact strict/>
-              <Route path="/user" component={MemberRegistrationForm} exact strict/>
+              <Route path="/agent-registration" component={AgentRegistrationForm} exact strict/>
+              <Route path="/agent" component={Agent} exact strict/>
+              <Route path="/membership-plan" component={membershipPlan} exact strict/>
+              <Route path="/plans" component={plans} exact strict/>
+              <Route path="/user" component='' exact strict/>
           </Switch>
           </div>
       </div>
