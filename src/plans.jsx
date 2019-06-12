@@ -12,95 +12,7 @@ import * as myConst from './helper/Constant';
 class plans extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
-        this.state = {
-          switched: false,
-          data:  {
-            columns: [
-              {
-                label: 'Service Name',
-                field: 'services',
-                sort: 'asc',
-                width: 150
-              },
-              {
-                label: 'Selected Services',
-                field: 'selected',
-                sort: 'asc',
-                width: 150
-              }
-            ],
-            rows: [
-              {
-                services:'Medical Evacuationand Emergency Air Transportation',
-                selected: ''
-              },
-              {
-                services:'Helicopter Transportation',
-                selected: ''
-              },
-              {
-                services:'Ground Ambulance Transportation',
-                selected: ''
-              },
-              {
-                services:'Medical Repatriation',
-                selected: ''
-              },
-              {
-                services:'Return Transportation',
-                selected: ''
-              },
-              {
-                services:'Visitor Transportion',
-                selected: ''
-              },
-              {
-                services:'Escort Transportation',
-                selected: ''
-              },
-              {
-                services:'Minor Children / Grandchildren Return',
-                selected: ''
-              },
-              {
-                services:'Vehicle Return',
-                selected: ''
-              },
-              {
-                services:'Mortal Remains Transport',
-                selected: ''
-              },
-              {
-                services:'Organ Retrieval',
-                selected: ''
-              },
-              {
-                services:'Organ Recipient Transportation',
-                selected: ''
-              },
-              {
-                services:'Travel Expense',
-                selected: ''
-              },
-              {
-                services:'Transportation to Rehabilitation Centers and Hospice settings',
-                selected: ''
-              },
-              {
-                services:'Worldwide Coverage',
-                selected: ''
-              },
-              {
-                services:'Pet Return',
-                selected: ''
-              },
-              {
-                services:'Global Medevac Concierge Service',
-                selected: ''
-              }
-            ]}
-        };
+        
       }
     render() {
         return (
@@ -125,16 +37,178 @@ class plans extends Component {
                                                 </div>
                                             </div>
                                     </div>
-                                    <br/>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <MDBDataTable
-                                                striped
-                                                hover
-                                                data={this.state.data}
-                                                />
+                                        
+                                        <div className="head">
+                                            <div className="card bg-light text-dark">
+                                                <div className="card-body">List of Services</div>
                                             </div>
                                         </div>
+
+                                        <div className="servicelist px-2">
+                                          <div className="form-row">
+                                            <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                              <div className="custom-control custom-checkbox">
+                                                <input type="checkbox" name="" class="custom-control-input" id="defaultUnchecked" value=""/>
+                                                <label className="custom-control-label pl-3" htmlFor="defaultUnchecked">Select All</label>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <hr/>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" class="custom-control-input" id="defaultUnchecked1"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Medical Evacuationand Emergency Air Transportation</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked2"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Helicopter Transportation</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked3"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Ground Ambulance Transportation</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked4"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Medical Repatriation</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked5"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Return Transportation</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked6"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Visitor Transportion</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked7"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Escort Transportation</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked8"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Minor Children / Grandchildren Return</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked9"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Vehicle Return</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked10"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Mortal Remains Transport</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked11"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Organ Retrieval</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked12"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Organ Recipient Transportation</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked13"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Travel Expense</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked14"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Transportation to Rehabilitation Centers and Hospice settings</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" class="custom-control-input" id="defaultUnchecked15"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Worldwide Coverage</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked16"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Pet Return</span>
+                                            </div>
+                                          </div>
+                                          <div className="form-row">
+                                            <div className="col-xs-6 col-sm-6 col-md-7 col-lg-7 pb-2">
+                                              <div className="custom-control custom-checkbox pr-2">
+                                                <input type="checkbox" className="custom-control-input" id="defaultUnchecked17"/>
+                                                <label className="custom-control-label" htmlFor="defaultUnchecked">&nbsp;</label>
+                                              </div>
+                                              <span>Global Medevac Concierge Service</span>
+                                            </div>
+                                          </div>
+                                        </div>
+
                                         <div className="form-row px-2">
                                             <div className="col">
                                                 <div className="md-form">

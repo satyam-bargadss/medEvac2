@@ -4,6 +4,8 @@ import { MDBDataTable } from 'mdbreact';
 import  './css/material-dashboard.css';
 import * as myConst from './helper/Constant';
 import Switch from 'react-toggle-switch';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import { HashRouter as Router, Route ,NavLink,Redirect} from "react-router-dom";
 const URL = myConst.HTTP_URL;
 class Agent extends Component {
@@ -253,17 +255,26 @@ class Agent extends Component {
                     <div class="card-body">
                        <table border="0" cellspacing="5" cellpadding="5">
                             <tr>
-                                <td>Date:</td>
+                                <td className="date">Date:</td>
                                 <td><input type="date" name="start_date" id="start_date" class="form-control" /></td>
                                 <td><input type="date" name="end_date" id="end_date" class="form-control" /></td>
+                                <td className="select">
+                                  <Select>
+                                    <MenuItem value={'agentid'}>Agent ID</MenuItem>
+                                    <MenuItem value={'agentname'}>Agent Name</MenuItem>
+                                    <MenuItem value={'agenttype'}>Agent Type</MenuItem>
+                                    <MenuItem value={'agentgroup'}>Group Code</MenuItem>
+                                    <MenuItem value={'agentgroup'}>Tier</MenuItem>
+                                  </Select>
+                                </td>
                                 <td><button class="btn btn-rounded  waves-effect" type="submit">Search</button></td>
                             </tr>
                        </table>
                          <MDBDataTable
-              striped
-               hover
-               data={this.state.data}
-                />
+                          striped
+                          hover
+                          data={this.state.data}
+                        />
                     </div>
                   </div>
                 </div>

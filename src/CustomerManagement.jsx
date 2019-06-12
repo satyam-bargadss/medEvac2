@@ -1,4 +1,6 @@
 import React, { Component,Fragment } from 'react';
+import { HashRouter as Router, Route
+   ,NavLink,Redirect} from "react-router-dom";
 import { MDBDataTable } from 'mdbreact';
 import  './css/material-dashboard.css';
 import * as myConst from './helper/Constant';
@@ -251,6 +253,7 @@ toggleSwitch = () => {
     };
   });
 };
+
 	
     render() {
         return (
@@ -260,7 +263,9 @@ toggleSwitch = () => {
 		<div class="container-fluid">
 				<div class="col-md-12">
 					<div class="buttons ml-3" style={{overflow:'hidden'}}>
-						<a href="../../../Customer_Registration_Form.html" class="btn btn-info pull-left mb-4">Add Member</a>
+          <NavLink class="btn btn-info pull-left mb-4" className="nav-link" to="/member-registration"  activeClassName=" active">
+                  <span>Add Member</span>
+                </NavLink>
 						<a href="#" class="btn btn-info pull-left mb-4">Import Members</a>
 						<a href="#" class="btn btn-info pull-left mb-4">Contacts</a>
 					</div>

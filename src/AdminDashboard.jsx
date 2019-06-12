@@ -9,8 +9,10 @@ import Dashboard  from './Dashboard';
 import MemberRegistrationForm from './MemberRegistrationForm';
 import Agent from './Agent'
 import AgentRegistrationForm from './AgentRegistrationForm';
+import Commissions from './Commissions';
 import membershipPlan from './membershipPlan';
 import plans from './plans';
+import Thanks from './Thanks';
 //import { BrowserRouter as Router, Route, Switch,Link ,NavLink } from "react-router-dom";
 
 class AdminDashboard extends Component {
@@ -83,10 +85,10 @@ class AdminDashboard extends Component {
             </NavLink>
           </li>
           <li className="nav-item ">
-            <a className="nav-link" href="#">
+            <NavLink className="nav-link" to="/Commisions" activeClassName=" active">
               <i className="material-icons">content_paste</i>
               <p>Commissions</p>
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item ">
             <NavLink className="nav-link" to="/membership-plan" activeClassName=" active">
@@ -155,9 +157,11 @@ class AdminDashboard extends Component {
               <Route path="/member-registration" component={MemberRegistrationForm} exact strict/>
               <Route path="/agent-registration" component={AgentRegistrationForm} exact strict/>
               <Route path="/agent" component={Agent} exact strict/>
+              <Route path="/Commissions" component={Commissions} exact strict/>
               <Route path="/membership-plan" component={membershipPlan} exact strict/>
               <Route path="/plans" component={plans} exact strict/>
               <Route path="/user" component='' exact strict/>
+              <Route path="/thanks" component={Thanks} exact strict/>
           </Switch>
           </div>
       </div>
