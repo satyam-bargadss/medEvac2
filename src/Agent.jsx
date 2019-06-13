@@ -41,6 +41,12 @@ class Agent extends Component {
                 width: 100
               },
               {
+                label: 'Level',
+                field: 'level',
+                sort: 'asc',
+                width: 100
+              },
+              {
                 label: 'Actions',
                 field: 'actions',
                 sort: 'asc',
@@ -53,6 +59,7 @@ class Agent extends Component {
                 name: 'Tiger Nixon',
                 type: 'Individual',
                 group: 'Platinum Memberships in FL ACH',
+                level: '1',
                 actions: ''
               },
               {
@@ -60,8 +67,9 @@ class Agent extends Component {
                 name: 'Garrett Winters',
                 type: 'Individual',
                 group: 'Home Office ACH',
-                actions:<Fragment><a href="#"><span class="view"></span></a>
-                <a href="#"><span class="edit"></span></a>
+                level: '2',
+                actions:<Fragment><a href="#"><span className="view"></span></a>
+                <a href="#"><span className="edit"></span></a>
                 <Switch onClick={this.toggleSwitch} on={true}/>
                 </Fragment>
               },
@@ -70,6 +78,7 @@ class Agent extends Component {
                 name: 'Ashton Cox',
                 type: 'Corporate',
                 group: 'Electronic ACH Debit',
+                level: '3',
                 actions: ''
               },
               {
@@ -77,6 +86,7 @@ class Agent extends Component {
                 name: 'Cedric Kelly',
                 type: 'Individual',
                 group: 'Electronic ACH Debit',
+                level: '4',
                 actions: ''
               },
               {
@@ -84,6 +94,7 @@ class Agent extends Component {
                 name: 'Airi Satou',
                 type: 'Individual',
                 group: 'Electronic ACH Debit',
+                level: '5',
                 actions: ''
               },
               {
@@ -91,6 +102,7 @@ class Agent extends Component {
                 name: 'Brielle Williamson',
                 type: 'Corporate',
                 group: 'Home Office ACH',
+                level: '6',
                 actions: ''
               },
               {
@@ -98,6 +110,7 @@ class Agent extends Component {
                 name: 'Herrod Chandler',
                 type: 'Individual',
                 group: 'Home Office ACH',
+                level: '7',
                 actions: ''
               },
               {
@@ -105,6 +118,7 @@ class Agent extends Component {
                 name: 'Rhona Davidson',
                 type: 'Individual',
                 group: 'Home Office ACH',
+                level: '8',
                 actions: ''
               },
               {
@@ -112,6 +126,7 @@ class Agent extends Component {
                 name: 'Colleen Hurst',
                 type: 'Individual',
                 group: 'Home Office ACH',
+                level: '9',
                 actions: ''
               },
               {
@@ -119,6 +134,7 @@ class Agent extends Component {
                 name: 'Sonya Frost',
                 type: 'Corporate',
                 group: 'Home Office ACH',
+                level: '10',
                 actions: ''
               },
               {
@@ -126,6 +142,7 @@ class Agent extends Component {
                 name: 'Jena Gaines',
                 type: 'Corporate',
                 group: 'Home Office ACH',
+                level: '11',
                 actions: ''
               },
               {
@@ -133,6 +150,7 @@ class Agent extends Component {
                 name: 'Quinn Flynn',
                 type: 'Corporate',
                 group: 'Home Office ACH',
+                level: '12',
                 actions: ''
               },
               {
@@ -140,6 +158,7 @@ class Agent extends Component {
                 name: 'Charde Marshall',
                 type: 'Individual',
                 group: 'Platinum Memberships in FL ACH',
+                level: '11',
                 actions: ''
               },
               {
@@ -147,6 +166,7 @@ class Agent extends Component {
                 name: 'Haley Kennedy',
                 type: 'Individual',
                 group: 'Home Office ACH',
+                level: '10',
                 actions: ''
               },
               {
@@ -154,6 +174,7 @@ class Agent extends Component {
                 name: 'Tatyana Fitzpatrick',
                 type: 'Individual',
                 group: 'Home Office ACH',
+                level: '9',
                 actions: ''
               },
               {
@@ -161,6 +182,7 @@ class Agent extends Component {
                 name: '	Michael Silva',
                 type: 'Individual',
                 group: 'Home Office ACH',
+                level: '8',
                 actions: ''
               },
               {
@@ -168,6 +190,7 @@ class Agent extends Component {
                 name: 'John Doe',
                 type: 'Individual',
                 group: 'Home Office ACH',
+                level: '7',
                 actions: ''
               },
               {
@@ -175,6 +198,7 @@ class Agent extends Component {
                 name: 'Gloria Little',
                 type: 'Individual',
                 group: 'Home Office ACH',
+                level: '6',
                 actions: ''
               },
               {
@@ -182,6 +206,7 @@ class Agent extends Component {
                 name: 'Bradley Greer',
                 type: 'Individual',
                 group: 'Home Office ACH',
+                level: '5',
                 actions: ''
               },
               {
@@ -189,6 +214,7 @@ class Agent extends Component {
                 name: 'Dai Rios',
                 type: 'Corporate',
                 group: 'Home Office ACH',
+                level: '4',
                 actions: ''
               }
             ]}
@@ -196,77 +222,77 @@ class Agent extends Component {
       }
     render() {
         return (
-            <div class="content" style={{width: '100%'}}>
-            <div class="container-fluid">
-                    <div class="col-md-12">
-                        <div class="buttons ml-3" style={{overflow:'hidden'}}>
+            <div className="content" style={{width: '100%'}}>
+            <div className="container-fluid">
+                    <div className="col-md-12">
+                        <div className="buttons ml-3" style={{overflow:'hidden'}}>
                         <NavLink class="btn btn-info pull-left mb-4" className="nav-link" to="/agent-registration"  activeClassName=" active">
                   <span>Add Agent
                       
                   </span>
                 </NavLink>
-                            <a href="#" class="btn btn-info pull-left mb-4">Import Agents</a>
+                            <a href="#" className="btn btn-info pull-left mb-4">Import Agents</a>
                         </div>
                     </div>
             </div>
         <br/>
-            <div class="container-fluid">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header card-header-primary">
-                              <h4 class="card-title pull-left ">Agents Summary</h4>
+            <div className="container-fluid">
+                    <div className="col-md-12">
+                        <div className="card">
+                            <div className="card-header card-header-primary">
+                              <h4 className="card-title pull-left ">Agents Summary</h4>
                             </div>
-                            <div class="card-body">
-                                <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
-                                    <h3 class="bold">11</h3>
-                                    <span class="text-dark">Total Agents</span>
+                            <div className="card-body">
+                                <div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
+                                    <h3 className="bold">11</h3>
+                                    <span className="text-dark">Total Agents</span>
                                 </div>
-                                <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
-                                    <h3 class="bold">11</h3>
-                                    <span class="text-success">Active Agents</span>
+                                <div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
+                                    <h3 className="bold">11</h3>
+                                    <span className="text-success">Active Agents</span>
                                 </div>
-                                <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
-                                    <h3 class="bold">0</h3>
-                                    <span class="text-danger">Inactive Agents</span>
+                                <div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
+                                    <h3 className="bold">0</h3>
+                                    <span className="text-danger">Inactive Agents</span>
                                 </div>
-                                <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
-                                    <h3 class="bold">11</h3>
-                                    <span class="text-info">Active Contacts</span>
+                                <div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
+                                    <h3 className="bold">11</h3>
+                                    <span className="text-info">Active Contacts</span>
                                 </div>
-                                <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
-                                    <h3 class="bold">0</h3>
-                                    <span class="text-danger">Inactive Contacts</span>
+                                <div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
+                                    <h3 className="bold">0</h3>
+                                    <span className="text-danger">Inactive Contacts</span>
                                 </div>
-                                <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left">
-                                    <h3 class="bold">1</h3>
-                                    <span class="text-danger">Contacts Logged In Today</span>
+                                <div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left">
+                                    <h3 className="bold">1</h3>
+                                    <span className="text-danger">Contacts Logged In Today</span>
                                 </div>
                             </div>
                         </div>
                     </div>
             </div>
         <br/><br/>
-            <div class="container-fluid">
-                <div class="col-md-12">
-                  <div class="card">
-                    <div class="card-header card-header-primary">
-                      <h4 class="card-title pull-left ">Agent Management</h4>
+            <div className="container-fluid">
+                <div className="col-md-12">
+                  <div className="card">
+                    <div className="card-header card-header-primary">
+                      <h4 className="card-title pull-left ">Agent Management</h4>
                     </div>
-                    <div class="card-body">
+                    <div className="card-body">
                        <table border="0" cellspacing="5" cellpadding="5">
                             <tr>
                                 <td className="date">Date:</td>
-                                <td><input type="date" name="start_date" id="start_date" class="form-control" /></td>
-                                <td><input type="date" name="end_date" id="end_date" class="form-control" /></td>
+                                <td><input type="date" name="start_date" id="start_date" className="form-control" /></td>
+                                <td><input type="date" name="end_date" id="end_date" className="form-control" /></td>
                                 <td className="select">
                                   <Select>
                                     <MenuItem value={'agentid'}>Agent ID</MenuItem>
                                     <MenuItem value={'agentname'}>Agent Name</MenuItem>
                                     <MenuItem value={'agenttype'}>Agent Type</MenuItem>
-                                    <MenuItem value={'agentgroup'}>Tier</MenuItem>
+                                    <MenuItem value={'level'}>Level</MenuItem>
                                   </Select>
                                 </td>
-                                <td><button class="btn btn-rounded  waves-effect" type="submit">Search</button></td>
+                                <td><button className="btn btn-rounded  waves-effect" type="submit">Filter</button></td>
                             </tr>
                        </table>
                          <MDBDataTable

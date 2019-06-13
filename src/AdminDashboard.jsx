@@ -10,6 +10,7 @@ import MemberRegistrationForm from './MemberRegistrationForm';
 import Agent from './Agent'
 import AgentRegistrationForm from './AgentRegistrationForm';
 import Commissions from './Commissions';
+import CreateCommission from './CreateCommission';
 import membershipPlan from './membershipPlan';
 import plans from './plans';
 import Thanks from './Thanks';
@@ -27,7 +28,7 @@ class AdminDashboard extends Component {
       console.log(data);
       }
       adminLogout = ()=>{
-        alert('hi');
+       // alert('hi');
         window.sessionStorage.removeItem("isAdminAuth");
         window.sessionStorage.removeItem("data");
         if(window.sessionStorage.removeItem("isAdminAuth") != true)
@@ -85,7 +86,7 @@ class AdminDashboard extends Component {
             </NavLink>
           </li>
           <li className="nav-item ">
-            <NavLink className="nav-link" to="/Commisions" activeClassName=" active">
+            <NavLink className="nav-link" to="/commissions" activeClassName=" active">
               <i className="material-icons">content_paste</i>
               <p>Commissions</p>
             </NavLink>
@@ -157,7 +158,8 @@ class AdminDashboard extends Component {
               <Route path="/member-registration" component={MemberRegistrationForm} exact strict/>
               <Route path="/agent-registration" component={AgentRegistrationForm} exact strict/>
               <Route path="/agent" component={Agent} exact strict/>
-              <Route path="/Commissions" component={Commissions} exact strict/>
+              <Route path="/commissions" component={Commissions} exact strict/>
+              <Route path="/create-commission" component={CreateCommission} exact strict/>
               <Route path="/membership-plan" component={membershipPlan} exact strict/>
               <Route path="/plans" component={plans} exact strict/>
               <Route path="/user" component='' exact strict/>

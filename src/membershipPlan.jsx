@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import  './css/material-dashboard.css';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import * as myConst from './helper/Constant';
 import Switch from 'react-toggle-switch';
 import { HashRouter as Router, Route ,NavLink,Redirect} from "react-router-dom";
@@ -26,8 +28,8 @@ class membershipPlan extends Component {
                 width: 150
               },
               {
-                label: 'Plan Description',
-                field: 'desc',
+                label: 'Plan Fees',
+                field: 'fees',
                 sort: 'asc',
                 width: 200
               },
@@ -41,122 +43,122 @@ class membershipPlan extends Component {
             rows: [
               {
                 id:'0001',
-                name: 'Monthly',
-                desc: 'Description goes here',
+                name: 'Annual Base Plan',
+                fees: '$6,999',
                 actions: ''
               },
               {
                 id:'0002',
-                name: 'Yearly',
-                desc: 'Description goes here',
+                name: 'Monthly Base Plan',
+                fees: '$1,999',
                 actions:''
               },
               {
                 id:'0003',
-                name: 'Yearly',
-                desc: 'Description goes here',
+                name: 'Monthly Base Plan',
+                fees: '$1,999',
                 actions: ''
               },
               {
                 id:'0004',
-                name: '5 Years Plan',
-                desc: 'Description goes here',
+                name: 'Monthly International Plan',
+                fees: '$3,499',
                 actions: ''
               },
               {
                 id:'0005',
-                name: 'Monthly',
-                desc: 'Description goes here',
+                name: 'Monthly Premium Plan',
+                fees: '$2,999',
                 actions: ''
               },
               {
                 id:'0006',
-                name: 'Monthly',
-                desc: 'Description goes here',
+                name: 'Monthly Premium Plan',
+                fees: '$2,999',
                 actions: ''
               },
               {
                 id:'0007',
-                name: 'Monthly',
-                desc: 'Description goes here',
+                name: 'Monthly Base Plan',
+                fees: '$1,999',
                 actions: ''
               },
               {
                 id:'0008',
-                name: 'Monthly',
-                desc: 'Description goes here',
+                name: 'Annual Premium Plan',
+                fees: '$9,999',
                 actions: ''
               },
               {
                 id:'0009',
-                name: 'Monthly',
-                desc: 'Description goes here',
+                name: 'Monthly Premium Plan',
+                fees: '$2,999',
                 actions: ''
               },
               {
                 id:'0010',
-                name: 'Monthly',
-                desc: 'Description goes here',
+                name: 'Monthly Premium Plan',
+                fees: '$2,999',
                 actions: ''
               },
               {
                 id:'0011',
-                name: 'Yearly',
-                desc: 'Description goes here',
+                name: 'Monthly Base Plan',
+                fees: '#1,999',
                 actions: ''
               },
               {
                 id:'0012',
-                name: 'Yearly',
-                desc: 'Description goes here',
+                name: 'Annual Premium Plan',
+                fees: '$9,999',
                 actions: ''
               },
               {
                 id:'0013',
-                name: '5 Years Plan',
-                desc: 'Description goes here',
+                name: 'Monthly International Plan',
+                fees: '$3,499',
                 actions: ''
               },
               {
                 id:'0014',
-                name: 'Monthly',
-                desc: 'Description goes here',
+                name: 'Annual International Plan',
+                fees: '$12,999',
                 actions: ''
               },
               {
                 id:'0015',
-                name: 'Monthly',
-                desc: 'Description goes here',
+                name: 'Monthly Premium Plan',
+                fees: '$2,999',
                 actions: ''
               },
               {
                 id:'0016',
-                name: 'Monthly',
-                desc: 'Description goes here',
+                name: 'Monthly Premium Plan',
+                fees: '$2,999',
                 actions: ''
               },
               {
                 id:'0017',
-                name: 'Yearly',
-                desc: 'Description goes here',
+                name: 'Monthly Premium Plan',
+                fees: '$2,999',
                 actions: ''
               },
               {
                 id:'0018',
-                name: 'Monthly',
-                desc: 'Description goes here',
+                name: 'Annual Premium Plan',
+                fees: '$9,999',
                 actions: ''
               },
               {
                 id:'0019',
-                name: 'Monthly',
-                desc: 'Description goes here',
+                name: 'Monthly Base Plan',
+                fees: '$1,999',
                 actions: ''
               },
               {
                 id:'0020',
-                name: 'Monthly',
-                desc: 'Description goes here',
+                name: 'Monthly Base Plan',
+                fees: '$1,999',
                 actions: ''
               }
             ]}
@@ -164,69 +166,74 @@ class membershipPlan extends Component {
       }
     render() {
         return (
-                <div class="content" style={{width: '100%'}}>
-                    <div class="container-fluid">
-                            <div class="col-md-12">
-                                <div class="buttons ml-3" style={{overflow:'hidden'}}>
+                <div className="content" style={{width: '100%'}}>
+                    <div className="container-fluid">
+                            <div className="col-md-12">
+                                <div className="buttons ml-3" style={{overflow:'hidden'}}>
                                 <NavLink class="btn btn-info pull-left mb-4" className="nav-link" to="/plans"  activeClassName=" active">
-                        <span>Add Plan
-                            
-                        </span>
-                        </NavLink>
-                                    <a href="#" class="btn btn-info pull-left mb-4">Export Plan</a>
+                                  <span>Add Plan</span>
+                                </NavLink>
+                                    <a href="#" className="btn btn-info pull-left mb-4">Export Plan</a>
                                 </div>
                             </div>
                     </div>
                 <br/>
-                    <div class="container-fluid">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header card-header-primary">
-                                    <h4 class="card-title pull-left ">Plans Summary</h4>
+                    <div className="container-fluid">
+                            <div className="col-md-12">
+                                <div className="card">
+                                    <div className="card-header card-header-primary">
+                                    <h4 className="card-title pull-left ">Plans Summary</h4>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 pull-left border-right">
-                                            <h3 class="bold">11</h3>
-                                            <span class="text-dark">Total Plans</span>
+                                    <div className="card-body">
+                                        <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 pull-left border-right">
+                                            <h3 className="bold">11</h3>
+                                            <span className="text-dark">Total Plans</span>
                                         </div>
-                                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 pull-left border-right">
-                                            <h3 class="bold">11</h3>
-                                            <span class="text-success">Active Plans</span>
+                                        <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 pull-left border-right">
+                                            <h3 className="bold">11</h3>
+                                            <span className="text-success">Active Plans</span>
                                         </div>
-                                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 pull-left">
-                                            <h3 class="bold">0</h3>
-                                            <span class="text-danger">Inactive Plans</span>
+                                        <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 pull-left">
+                                            <h3 className="bold">0</h3>
+                                            <span className="text-danger">Inactive Plans</span>
                                         </div>
-                                        {/*<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
-                                            <h3 class="bold">11</h3>
-                                            <span class="text-info">Active Contacts</span>
+                                        {/*<div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
+                                            <h3 className="bold">11</h3>
+                                            <span className="text-info">Active Contacts</span>
                                         </div>
-                                        <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
-                                            <h3 class="bold">0</h3>
-                                            <span class="text-danger">Inactive Contacts</span>
+                                        <div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
+                                            <h3 className="bold">0</h3>
+                                            <span className="text-danger">Inactive Contacts</span>
                                         </div>
-                                        <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left">
-                                            <h3 class="bold">1</h3>
-                                            <span class="text-danger">Contacts Logged In Today</span>
+                                        <div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left">
+                                            <h3 className="bold">1</h3>
+                                            <span className="text-danger">Contacts Logged In Today</span>
                                         </div>*/}
                                     </div>
                                 </div>
                             </div>
                     </div>
                 <br/><br/>
-                    <div class="container-fluid">
-                        <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header card-header-primary">
-                            <h4 class="card-title pull-left ">Plan Management</h4>
+                    <div className="container-fluid">
+                        <div className="col-md-12">
+                        <div className="card">
+                            <div className="card-header card-header-primary">
+                            <h4 className="card-title pull-left ">Plan Management</h4>
                             </div>
-                            <div class="card-body">
+                            <div className="card-body">
                             <table border="0" cellspacing="5" cellpadding="5">
                                     <tr>
                                         <td>Date:</td>
-                                        <td><input type="date" name="start_date" id="start_date" class="form-control" /></td>
-                                        <td><input type="date" name="end_date" id="end_date" class="form-control" /></td>
-                                        <td><button class="btn btn-rounded  waves-effect" type="submit">Search</button></td>
+                                        <td><input type="date" name="start_date" id="start_date" className="form-control" /></td>
+                                        <td><input type="date" name="end_date" id="end_date" className="form-control" /></td>
+                                        <td className="select">
+                                          <Select>
+                                            <MenuItem value={'planid'}>Plan ID</MenuItem>
+                                            <MenuItem value={'planname'}>Plan Name</MenuItem>
+                                            <MenuItem value={'planfees'}>Plan Fees</MenuItem>
+                                          </Select>
+                                        </td>
+                                        <td><button className="btn btn-rounded  waves-effect" type="submit">Filter</button></td>
                                     </tr>
                             </table>
                                 <MDBDataTable

@@ -2,6 +2,8 @@ import React, { Component,Fragment } from 'react';
 import { HashRouter as Router, Route
    ,NavLink,Redirect} from "react-router-dom";
 import { MDBDataTable } from 'mdbreact';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import  './css/material-dashboard.css';
 import * as myConst from './helper/Constant';
 import Switch from 'react-toggle-switch'
@@ -13,87 +15,45 @@ constructor(props) {
   console.log(props);
   this.state = {
     switched: false,
-    data:  {
-      columns: [
-        {
-          label: 'Member ID',
-          field: 'customerId',
-          sort: 'asc',
-          width: 150
-        },
-        {
-          label: 'First Name',
-          field: 'firstName',
-          sort: 'asc',
-          width: 150
-        },
-        {
-          label: 'Last Name',
-          field: 'LastName',
-          sort: 'asc',
-          width: 150
-        },
-        {
-          label: 'DOB',
-          field: 'DOB',
-          sort: 'asc',
-          width: 270
-        },
-        {
-          label: 'Country',
-          field: 'created_at',
-          sort: 'asc',
-          width: 200
-        },
-        {
-          label: 'Actions',
-          field: 'actions',
-          sort: 'asc',
-          width: 100
-        }
-      ],
-      rows: [
-        {
-          id:'0001',
-          name: 'Tiger Nixon',
-          date: '2011/04/25',
-          plan: 'Monthly',
-          amount: '$1,999',
-          dater: '2011/05/24',
-          actions: ''
-        },
-        {
-          id:'0002',
-          name: 'Garrett Winters',
-          date: '2011/07/25',
-          plan: 'Yearly',
-          amount: '$3,499',
-          dater: '2012/07/24',
-          actions:<Fragment><a href="#"><span class="view"></span></a>
-          <a href="#"><span class="edit"></span></a>
-          <Switch onClick={this.toggleSwitch} on={true}/>
-          </Fragment>
-        },
-        {
-          id:'0003',
-          name: 'Ashton Cox',
-          date: '2009/01/12',
-          plan: 'Yearly',
-          amount: '$3,499',
-          dater: '2010/01/11',
-          actions: ''
-        },
+    columns:[
+      {
+        label: 'Member ID',
+        field: 'customerId',
+        sort: 'desc',
+        width: 150
+      },
+      {
+        label: 'First Name',
+        field: 'firstName',
        
-        {
-          id:'0020',
-          name: 'Dai Rios',
-          date: '2012/09/26',
-          plan: 'Monthly',
-          amount: '$1,999',
-          dater: '2012/10/25',
-          actions: ''
-        }
-      ]}
+        width: 150
+      },
+      {
+        label: 'Last Name',
+        field: 'LastName',
+       
+        width: 150
+      },
+      {
+        label: 'DOB',
+        field: 'DOB',
+      
+        width: 270
+      },
+      {
+        label: 'Country',
+        field: 'country',
+        
+        width: 200
+      },
+      {
+        label: 'Created at',
+        field: 'created_at',
+     
+        width: 200
+
+      }
+    ]
   };
 }
 /*
@@ -105,17 +65,59 @@ toggleSwitch = () => {
   });
 };
 */
+async fetchUser(username,assa,aasss) {
+     
+  try{
+    let response = await fetch(URL+'customber', {
+      method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      //credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+          'Content-Type': 'application/json',
+          
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    })
+    
+      let data = await response.json()
+    
+     // console.log(data.customers.customers);
+     // return await  data.customers;
+      this.setState(()=>({
+        rows:data.customers
+      }))
+      
+     
+} catch(error){
+  console.log(error);
+}
+//end Api calling
+
+}
 componentDidMount(){
 
-
+ let rows =  this.fetchUser();
+ console.log(rows);
+ this.setState(()=>({
+      rows:rows
+ }))
   
 }
 	
     render() {
+         
+
+         let data={
+          columns: this.state.columns,
+           rows:this.state.rows
+         }
         return (
            
      
       <div class="content" style={{width: '100%'}}>
+        {console.log(data)}
+        
 		<div class="container-fluid">
 				<div class="col-md-12">
 					<div class="buttons ml-3" style={{overflow:'hidden'}}>
@@ -173,21 +175,31 @@ componentDidMount(){
                 <div class="card-body">
 				   <table border="0" cellspacing="5" cellpadding="5">
 						<tr>
-							<td>Date:</td>
+							<td className="date">Date:</td>
 							<td><input type="date" name="start_date" id="start_date" class="form-control" /></td>
 							<td><input type="date" name="end_date" id="end_date" class="form-control" /></td>
-							<td><button class="btn btn-rounded  waves-effect" type="submit">Search</button></td>
+              <td className="select">
+                  <Select>
+                    <MenuItem value={'memberid'}>Member ID</MenuItem>
+                    <MenuItem value={'firstname'}>First Name</MenuItem>
+                    <MenuItem value={'lastname'}>Last Name</MenuItem>
+                    <MenuItem value={'dob'}>DOB</MenuItem>
+                    <MenuItem value={'country'}>Country</MenuItem>
+                  </Select>
+              </td>
+							<td><button class="btn btn-rounded  waves-effect" type="submit">Filter</button></td>
 						</tr>
 				   </table>
 					 <MDBDataTable
           striped
            hover
-           data={this.state.data}
+           data={data}
             />
                 </div>
               </div>
             </div>
         </div>
+        {console.log(this.state.data)}
       </div>
         );
     }
