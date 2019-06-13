@@ -247,7 +247,7 @@ class AgentRegistrationForm extends Component {
                                             </div>
                                         </div>
     
-                                        <div className="form-row px-2">
+                                        {/*<div className="form-row px-2">
                                             <div className="col">
                                                 <div className="md-form">
                                                     <MDBInput label="Routing No." name="routingnumber"/>
@@ -258,22 +258,8 @@ class AgentRegistrationForm extends Component {
                                                     <MDBInput label="Other Account Instructions" name="other"/>
                                                 </div>
                                             </div>
-                                        </div>
-    
-                                        <div className="form-row px-2">
-                                            <div className="col">
-                                                <div className="md-form">
-                                                    <MDBInput label="Billing Address 1" name="bladdress1"/>
-                                                </div>
-                                            </div>
-                                            <div className="col">
-                                                <div className="md-form">
-                                                    <MDBInput label="Billing Address 2" name="bladdress2"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                          
-    
+                                        </div>*/}
+
                                     <div className="buttons text-center">
                                         <button className="btn btn-rounded my-4 waves-effect" type="submit">Cancel</button>
                                         <button className="btn btn-rounded my-4 waves-effect" type="submit">Preview & Edit</button>

@@ -263,7 +263,6 @@ class Agent extends Component {
                                     <MenuItem value={'agentid'}>Agent ID</MenuItem>
                                     <MenuItem value={'agentname'}>Agent Name</MenuItem>
                                     <MenuItem value={'agenttype'}>Agent Type</MenuItem>
-                                    <MenuItem value={'agentgroup'}>Group Code</MenuItem>
                                     <MenuItem value={'agentgroup'}>Tier</MenuItem>
                                   </Select>
                                 </td>

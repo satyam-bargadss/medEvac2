@@ -325,7 +325,7 @@ class MemberRegistrationForm extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput label="Member Address 1" name="address1" value={this.state.address1} onChange={e => this.handleChange(e)} required/>
+                                              <MDBInput label="Member Address 1*" name="address1" value={this.state.address1} onChange={e => this.handleChange(e)} required/>
                                           </div>
                                       </div>
                                       <div className="col">
@@ -372,7 +372,7 @@ class MemberRegistrationForm extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput label="Mailing Address 1" name="maddress1" value={this.state.maddress1} onChange={e => this.handleChange(e)} required/>
+                                              <MDBInput label="Mailing Address 1*" name="maddress1" value={this.state.maddress1} onChange={e => this.handleChange(e)} required/>
                                           </div>
                                       </div>
                                       <div className="col">
@@ -385,12 +385,12 @@ class MemberRegistrationForm extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput label="City*" name='city1' value={this.state.city1} onChange={e => this.handleChange(e)} required/>
+                                              <MDBInput label="City" name='city1' value={this.state.city1} onChange={e => this.handleChange(e)}/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput label="State*" name='state_s1' value={this.state.state_s1} onChange={e => this.handleChange(e)}required/>                                              
+                                              <MDBInput label="State" name='state_s1' value={this.state.state_s1} onChange={e => this.handleChange(e)}/>                                              
                                           </div>
                                       </div>
                                   </div>
@@ -398,7 +398,7 @@ class MemberRegistrationForm extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput label="Zip*" name='zip' value={this.state.zip} onChange={e => this.handleChange(e)}required/>
+                                              <MDBInput label="Zip" name='zip' value={this.state.zip} onChange={e => this.handleChange(e)}/>
                                           </div>
                                       </div>
                                       <div className="col">
