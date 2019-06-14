@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Dropdown from 'react-bootstrap/Dropdown'
 import  './css/style.css';
 import  './css/material-dashboard.css';
 import  './mdb.min.css';
@@ -47,7 +48,9 @@ class AdminDashboard extends Component {
     <div className="sidebar">
    
       <div className="logo">
-        <h3 onClick={this.adminLogout} className="simple-text logo-normal" 
+        {/* adding tongle drop down */}
+        
+       <h3 onClick={this.adminLogout} className="simple-text logo-normal" 
         >
           <img src="./images/logo.png" alt="Global Medevac" className="img-fluid"/>
         </h3>
@@ -66,12 +69,12 @@ class AdminDashboard extends Component {
             </NavLink>
           </li>
 
-          <li className="nav-item ">
+          {/*<li className="nav-item ">
             <NavLink className="nav-link" to="/user">
               <i className="material-icons">person</i>
               <p>Users</p>
             </NavLink>
-          </li>
+        </li>*/}
           
           <li className="nav-item ">
             <NavLink className="nav-link" to="/customer-management"  activeClassName=" active">
@@ -98,15 +101,21 @@ class AdminDashboard extends Component {
             </NavLink>
           </li>
           <li className="nav-item ">
-            <a className="nav-link" href="./service-list.html">
+            <a className="nav-link" href="#">
               <i className="material-icons">storage</i>
               <p>Groups</p>
             </a>
           </li>
           <li className="nav-item ">
-            <a className="nav-link" href="./reports.html">
+            <a className="nav-link" href="#">
               <i className="material-icons">insert_chart_outlined</i>
               <p>Reports</p>
+            </a>
+          </li>
+          <li className="nav-item ">
+            <a className="nav-link" href="#">
+            <i class="material-icons">settings</i>
+              <p>Admin Settings</p>
             </a>
           </li>
         
@@ -128,7 +137,8 @@ class AdminDashboard extends Component {
             <span className="navbar-toggler-icon icon-bar"></span>
           </button>
           <div className="collapse navbar-collapse justify-content-end">
-       
+          {
+            /*
             <ul className="navbar-nav" onClick={this.adminLogout}>
              
               <li className="nav-item dropdown">
@@ -144,6 +154,18 @@ class AdminDashboard extends Component {
                 </div>
               </li>
             </ul>
+        
+            */
+           <Dropdown>
+           <Dropdown.Toggle id="dropdown-basic">
+           <i className="material-icons">person</i>
+           </Dropdown.Toggle>
+ 
+         <Dropdown.Menu>
+          <Dropdown.Item onClick={this.adminLogout}>Logout</Dropdown.Item>
+         </Dropdown.Menu>
+       </Dropdown>
+          }
           </div>
         </div>
       </nav>

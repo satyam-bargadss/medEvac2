@@ -15,6 +15,11 @@ constructor(props) {
   console.log(props);
   this.state = {
     switched: false,
+    numberOfcustomers:'',
+    activeUsers:'',
+    inActiveUsers:'',
+    usCustomber:'',
+    internationalCustomber:'',
     columns:[
       {
         label: 'Member ID',
@@ -52,6 +57,11 @@ constructor(props) {
      
         width: 200
 
+      },
+      {
+        label: 'Group Code',
+        field: 'groupCode',
+        width: 200
       }
     ]
   };
@@ -85,7 +95,12 @@ async fetchUser(username,assa,aasss) {
      // console.log(data.customers.customers);
      // return await  data.customers;
       this.setState(()=>({
-        rows:data.customers
+        rows:data.customers,
+        activeUsers:data.activeUsers,
+        inActiveUsers:data.inActiveUsers,
+        usCustomber:data.usCustomber,
+        internationalCustomber:data.internationalCustomber,
+        totalCustomers:data.totalCustomers
       }))
       
      
@@ -100,7 +115,8 @@ componentDidMount(){
  let rows =  this.fetchUser();
  console.log(rows);
  this.setState(()=>({
-      rows:rows
+      rows:rows,
+     
  }))
   
 }
@@ -138,28 +154,28 @@ componentDidMount(){
 						</div>
 						<div class="card-body">
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
-								<h3 class="bold">11</h3>
+								<h3 class="bold">{this.state.totalCustomers}</h3>
 								<span class="text-dark">Total Members</span>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
-								<h3 class="bold">11</h3>
+								<h3 class="bold">{this.state.activeUsers}</h3>
 								<span class="text-success">Active Members</span>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
-								<h3 class="bold">0</h3>
+								<h3 class="bold">{this.state.inActiveUsers}</h3>
 								<span class="text-danger">Inactive Members</span>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
-								<h3 class="bold">11</h3>
-								<span class="text-info">Active Members</span>
+								<h3 class="bold">{this.state.usCustomber}</h3>
+								<span class="text-info">US Members</span>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
-								<h3 class="bold">0</h3>
-								<span class="text-danger">Inactive Members</span>
+								<h3 class="bold">{this.state.internationalCustomber}</h3>
+								<span class="text-danger">International Members</span>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left">
 								<h3 class="bold">1</h3>
-								<span class="text-danger">Contacts Logged In Today</span>
+								<span class="text-danger">Upcoming Renewals</span>
 							</div>
 						</div>
 					</div>

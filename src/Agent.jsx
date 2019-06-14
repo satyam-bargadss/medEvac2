@@ -23,26 +23,26 @@ class Agent extends Component {
                 width: 150
               },
               {
-                label: 'Agent Name',
-                field: 'name',
+                label: 'First Name',
+                field: 'fname',
                 sort: 'asc',
                 width: 150
               },
               {
-                label: 'Agent Type',
-                field: 'type',
+                label: 'Last Name',
+                field: 'lname',
                 sort: 'asc',
                 width: 200
               },
               {
-                label: 'Group',
-                field: 'group',
+                label: 'Level',
+                field: 'level',
                 sort: 'asc',
                 width: 100
               },
               {
-                label: 'Level',
-                field: 'level',
+                label: 'Agent Status',
+                field: 'status',
                 sort: 'asc',
                 width: 100
               },
@@ -56,18 +56,18 @@ class Agent extends Component {
             rows: [
               {
                 id:'0001',
-                name: 'Tiger Nixon',
-                type: 'Individual',
-                group: 'Platinum Memberships in FL ACH',
-                level: '1',
+                fname: 'Tiger',
+                lname: 'Nixon',
+                level: '12',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0002',
-                name: 'Garrett Winters',
-                type: 'Individual',
-                group: 'Home Office ACH',
-                level: '2',
+                fname: 'Garrett',
+                lname: 'Winters',
+                level: '11',
+                status: 'Active',
                 actions:<Fragment><a href="#"><span className="view"></span></a>
                 <a href="#"><span className="edit"></span></a>
                 <Switch onClick={this.toggleSwitch} on={true}/>
@@ -75,146 +75,146 @@ class Agent extends Component {
               },
               {
                 id:'0003',
-                name: 'Ashton Cox',
-                type: 'Corporate',
-                group: 'Electronic ACH Debit',
-                level: '3',
+                fname: 'Ashton',
+                lname: 'Cox',
+                level: '10',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0004',
-                name: 'Cedric Kelly',
-                type: 'Individual',
-                group: 'Electronic ACH Debit',
-                level: '4',
+                fname: 'Cedric',
+                lname: 'Kelly',
+                level: '9',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0005',
-                name: 'Airi Satou',
-                type: 'Individual',
-                group: 'Electronic ACH Debit',
-                level: '5',
+                fname: 'Airi',
+                lname: 'Satou',
+                level: '8',
+                status: 'Inactive',
                 actions: ''
               },
               {
                 id:'0006',
-                name: 'Brielle Williamson',
-                type: 'Corporate',
-                group: 'Home Office ACH',
-                level: '6',
+                fname: 'Brielle',
+                lname: 'Williamson',
+                level: '7',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0007',
-                name: 'Herrod Chandler',
-                type: 'Individual',
-                group: 'Home Office ACH',
-                level: '7',
+                fname: 'Herrod',
+                lname: 'Chandler',
+                level: '6',
+                Status: 'Active',
                 actions: ''
               },
               {
                 id:'0008',
-                name: 'Rhona Davidson',
-                type: 'Individual',
-                group: 'Home Office ACH',
-                level: '8',
+                fname: 'Rhona',
+                lname: 'Davidson',
+                level: '5',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0009',
-                name: 'Colleen Hurst',
-                type: 'Individual',
-                group: 'Home Office ACH',
-                level: '9',
+                fname: 'Colleen',
+                lname: 'Hurst',
+                level: '4',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0010',
-                name: 'Sonya Frost',
-                type: 'Corporate',
-                group: 'Home Office ACH',
-                level: '10',
+                fname: 'Sonya',
+                lname: 'Frost',
+                level: '3',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0011',
-                name: 'Jena Gaines',
-                type: 'Corporate',
-                group: 'Home Office ACH',
-                level: '11',
+                fname: 'Jena',
+                lname: 'Gaines',
+                level: '2',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0012',
-                name: 'Quinn Flynn',
-                type: 'Corporate',
-                group: 'Home Office ACH',
-                level: '12',
+                fname: 'Quinn',
+                lname: 'Flynn',
+                level: '1',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0013',
-                name: 'Charde Marshall',
-                type: 'Individual',
-                group: 'Platinum Memberships in FL ACH',
-                level: '11',
+                fname: 'Charde',
+                lname: 'Marshall',
+                level: '12',
+                status: 'Inactive',
                 actions: ''
               },
               {
                 id:'0014',
-                name: 'Haley Kennedy',
-                type: 'Individual',
-                group: 'Home Office ACH',
-                level: '10',
+                fname: 'Haley',
+                lname: 'Kennedy',
+                level: '11',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0015',
-                name: 'Tatyana Fitzpatrick',
-                type: 'Individual',
-                group: 'Home Office ACH',
-                level: '9',
+                fname: 'Tatyana',
+                lname: 'Fitzpatrick',
+                level: '10',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0016',
-                name: '	Michael Silva',
-                type: 'Individual',
-                group: 'Home Office ACH',
-                level: '8',
+                fname: 'Michael',
+                lname: 'Silva',
+                level: '9',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0017',
-                name: 'John Doe',
-                type: 'Individual',
-                group: 'Home Office ACH',
-                level: '7',
+                fname: 'John',
+                lname: 'Doe',
+                level: '8',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0018',
-                name: 'Gloria Little',
-                type: 'Individual',
-                group: 'Home Office ACH',
-                level: '6',
+                fname: 'Gloria',
+                lname: 'Little',
+                level: '7',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0019',
-                name: 'Bradley Greer',
-                type: 'Individual',
-                group: 'Home Office ACH',
-                level: '5',
+                fname: 'Bradley',
+                lname: 'Greer',
+                level: '6',
+                status: 'Active',
                 actions: ''
               },
               {
                 id:'0020',
-                name: 'Dai Rios',
-                type: 'Corporate',
-                group: 'Home Office ACH',
-                level: '4',
+                fname: 'Dai',
+                lname: 'Rios',
+                level: '5',
+                status: 'Active',
                 actions: ''
               }
             ]}
@@ -256,16 +256,16 @@ class Agent extends Component {
                                     <span className="text-danger">Inactive Agents</span>
                                 </div>
                                 <div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
-                                    <h3 className="bold">11</h3>
-                                    <span className="text-info">Active Contacts</span>
+                                    <h3 className="bold">$10,000</h3>
+                                    <span className="text-info">Total Commissions Paid</span>
                                 </div>
                                 <div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
-                                    <h3 className="bold">0</h3>
-                                    <span className="text-danger">Inactive Contacts</span>
+                                    <h3 className="bold">$15,500</h3>
+                                    <span className="text-danger">Total Commissions Due</span>
                                 </div>
                                 <div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left">
-                                    <h3 className="bold">1</h3>
-                                    <span className="text-danger">Contacts Logged In Today</span>
+                                    <h3 className="bold">25</h3>
+                                    <span className="text-danger">Total Agent Managers</span>
                                 </div>
                             </div>
                         </div>

@@ -119,6 +119,17 @@ div.dataTables_wrapper div.dataTables_paginate{padding-bottom:0;}
 .servicelist .custom-checkbox .custom-control-label::before, .servicelist .custom-checkbox .custom-control-label::after{top:0.15rem; left:-23px;} 
 .servicelist span{font-weight:400;}
 
+.collapse .dropdown .btn-primary, .collapse .dropdown .btn-primary:hover, .show>.btn-primary.dropdown-toggle{
+  background-color:transparent !important;
+  color:#4f3279;
+  box-shadow:none;
+}
+.show>.btn-primary.dropdown-toggle:focus{box-shadow:none;}
+.show>.btn.btn-primary.dropdown-toggle:focus{color:#4f3279;}
+.dropdown-menu .dropdown-item:hover, .dropdown-menu .dropdown-item:focus, .dropdown-menu a:hover, .dropdown-menu a:focus, .dropdown-menu a:active{color:#fff !important;}
+.show>.btn.btn-primary.dropdown-toggle:hover, .show>.btn.btn-primary.dropdown-toggle:focus{background-color:transparent !important; color:#4f3279 !important; box-shadow:none !important;}
+.collapse .btn-primary:not([disabled]):not(.disabled):active{background-color:transparent !important; box-shadow:}
+
 input[type="date"]{width:100%; padding-top:5px;}
 input[type="date"]+label{margin-top:14px;}
 
