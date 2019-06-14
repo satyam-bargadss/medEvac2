@@ -30,26 +30,20 @@ class Commissions extends Component {
                 width: 150
               },
               {
-                label: 'FYC',
+                label: '1st Year Commission Rate',
                 field: 'fyc',
                 sort: 'asc',
                 width: 200
               },
               {
-                label: 'Renewal',
+                label: 'Renewal Commission Rate',
                 field: 'renewal',
                 sort: 'asc',
                 width: 100
               },
               {
-                label: '5 Years & CLM',
+                label: '5 Year & Lifetime Membership Commission Rate',
                 field: 'clm',
-                sort: 'asc',
-                width: 100
-              },
-              {
-                label: 'Actions',
-                field: 'actions',
                 sort: 'asc',
                 width: 100
               }
@@ -60,88 +54,77 @@ class Commissions extends Component {
                 level: '1',
                 fyc: '40%',
                 renewal:'5%',
-                clm:'20%',
-                actions: ''
+                clm:'20%'
               },
               {
                 levelid:'0002',
                 level: '2',
                 fyc: '60%',
                 renewal:'9%',
-                clm:'26%',
-                actions: ''
+                clm:'26%'
               },
               {
                 levelid:'0003',
                 level: '3',
                 fyc: '75%',
                 renewal:'12%',
-                clm:'28%',
-                actions: ''
+                clm:'28%'
               },
               {
                 levelid:'0004',
                 level: '4',
                 fyc: '60%',
                 renewal:'9%',
-                clm:'26%',
-                actions: ''
+                clm:'26%'
               },
               {
                 levelid:'0005',
                 level: '5',
                 fyc: '10%',
                 renewal:'2%',
-                clm:'35%',
-                actions: ''
+                clm:'35%'
               },
               {
                 levelid:'0006',
                 level: '6',
                 fyc: '70%',
                 renewal:'18%',
-                clm:'33%',
-                actions: ''
+                clm:'33%'
               },
               {
                 levelid:'0007',
                 level: '7',
                 fyc: '45%',
                 renewal:'6%',
-                clm:'23%',
-                actions: ''
+                clm:'23%'
               },
               {
                 levelid:'0008',
                 level: '8',
                 fyc: '50%',
                 renewal:'7%',
-                clm:'24%',
-                actions: ''
+                clm:'24%'
               },
               {
                 levelid:'0009',
                 level: '9',
                 fyc: '70%',
                 renewal:'10%',
-                clm:'27%',
-                actions: ''
+                clm:'27%'
               },
               {
                 levelid:'0010',
                 level: '10',
                 fyc: '35%',
                 renewal:'18%',
-                clm:'33%',
-                actions: ''
+                clm:'33%'
               },
               {
                 levelid:'0011',
                 level: '11',
                 fyc: '15%',
                 renewal:'10%',
-                clm:'32%',
-                actions: ''
+                clm:'32%'
               }
             ]}
         };

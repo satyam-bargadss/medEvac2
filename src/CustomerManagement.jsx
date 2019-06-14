@@ -174,7 +174,7 @@ componentDidMount(){
 								<span class="text-danger">International Members</span>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left">
-								<h3 class="bold">1</h3>
+								<h3 class="bold">0</h3>
 								<span class="text-danger">Upcoming Renewals</span>
 							</div>
 						</div>

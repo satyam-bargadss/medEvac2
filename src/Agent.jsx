@@ -45,12 +45,6 @@ class Agent extends Component {
                 field: 'status',
                 sort: 'asc',
                 width: 100
-              },
-              {
-                label: 'Actions',
-                field: 'actions',
-                sort: 'asc',
-                width: 100
               }
             ],
             rows: [
@@ -59,163 +53,140 @@ class Agent extends Component {
                 fname: 'Tiger',
                 lname: 'Nixon',
                 level: '12',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0002',
                 fname: 'Garrett',
                 lname: 'Winters',
                 level: '11',
-                status: 'Active',
-                actions:<Fragment><a href="#"><span className="view"></span></a>
-                <a href="#"><span className="edit"></span></a>
-                <Switch onClick={this.toggleSwitch} on={true}/>
-                </Fragment>
+                status: 'Active'
               },
               {
                 id:'0003',
                 fname: 'Ashton',
                 lname: 'Cox',
                 level: '10',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0004',
                 fname: 'Cedric',
                 lname: 'Kelly',
                 level: '9',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0005',
                 fname: 'Airi',
                 lname: 'Satou',
                 level: '8',
-                status: 'Inactive',
-                actions: ''
+                status: 'Inactive'
               },
               {
                 id:'0006',
                 fname: 'Brielle',
                 lname: 'Williamson',
                 level: '7',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0007',
                 fname: 'Herrod',
                 lname: 'Chandler',
                 level: '6',
-                Status: 'Active',
-                actions: ''
+                Status: 'Active'
               },
               {
                 id:'0008',
                 fname: 'Rhona',
                 lname: 'Davidson',
                 level: '5',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0009',
                 fname: 'Colleen',
                 lname: 'Hurst',
                 level: '4',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0010',
                 fname: 'Sonya',
                 lname: 'Frost',
                 level: '3',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0011',
                 fname: 'Jena',
                 lname: 'Gaines',
                 level: '2',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0012',
                 fname: 'Quinn',
                 lname: 'Flynn',
                 level: '1',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0013',
                 fname: 'Charde',
                 lname: 'Marshall',
                 level: '12',
-                status: 'Inactive',
-                actions: ''
+                status: 'Inactive'
               },
               {
                 id:'0014',
                 fname: 'Haley',
                 lname: 'Kennedy',
                 level: '11',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0015',
                 fname: 'Tatyana',
                 lname: 'Fitzpatrick',
                 level: '10',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0016',
                 fname: 'Michael',
                 lname: 'Silva',
                 level: '9',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0017',
                 fname: 'John',
                 lname: 'Doe',
                 level: '8',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0018',
                 fname: 'Gloria',
                 lname: 'Little',
                 level: '7',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0019',
                 fname: 'Bradley',
                 lname: 'Greer',
                 level: '6',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               },
               {
                 id:'0020',
                 fname: 'Dai',
                 lname: 'Rios',
                 level: '5',
-                status: 'Active',
-                actions: ''
+                status: 'Active'
               }
             ]}
         };

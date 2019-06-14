@@ -15,6 +15,7 @@ import CreateCommission from './CreateCommission';
 import membershipPlan from './membershipPlan';
 import plans from './plans';
 import Thanks from './Thanks';
+import MemberView from './MemberView';
 //import { BrowserRouter as Router, Route, Switch,Link ,NavLink } from "react-router-dom";
 
 class AdminDashboard extends Component {
@@ -186,6 +187,7 @@ class AdminDashboard extends Component {
               <Route path="/plans" component={plans} exact strict/>
               <Route path="/user" component='' exact strict/>
               <Route path="/thanks" component={Thanks} exact strict/>
+              <Route path="/MemberView" component={MemberView} exact strict/>
           </Switch>
           </div>
       </div>

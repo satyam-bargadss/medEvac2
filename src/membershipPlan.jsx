@@ -28,16 +28,16 @@ class membershipPlan extends Component {
                 width: 150
               },
               {
-                label: 'Plan Fees',
+                label: 'Annual Plan Fees',
                 field: 'fees',
                 sort: 'asc',
                 width: 200
               },
               {
-                label: 'Actions',
-                field: 'actions',
+                label: 'Monthly Plan Fees',
+                field: 'mfees',
                 sort: 'asc',
-                width: 100
+                width: 200
               }
             ],
             rows: [
@@ -45,121 +45,121 @@ class membershipPlan extends Component {
                 id:'0001',
                 name: 'Annual Base Plan',
                 fees: '$6,999',
-                actions: ''
+                mfees: '$583.25'
               },
               {
                 id:'0002',
                 name: 'Monthly Base Plan',
                 fees: '$1,999',
-                actions:''
+                mfees: '$1,999'
               },
               {
                 id:'0003',
                 name: 'Monthly Base Plan',
                 fees: '$1,999',
-                actions: ''
+                mfees: '$1,999'
               },
               {
                 id:'0004',
                 name: 'Monthly International Plan',
                 fees: '$3,499',
-                actions: ''
+                mfees: '$3,499'
               },
               {
                 id:'0005',
                 name: 'Monthly Premium Plan',
                 fees: '$2,999',
-                actions: ''
+                mfees: '$2,999'
               },
               {
                 id:'0006',
                 name: 'Monthly Premium Plan',
                 fees: '$2,999',
-                actions: ''
+                mfees: '$2,999'
               },
               {
                 id:'0007',
                 name: 'Monthly Base Plan',
                 fees: '$1,999',
-                actions: ''
+                mfees: '$1,999'
               },
               {
                 id:'0008',
                 name: 'Annual Premium Plan',
                 fees: '$9,999',
-                actions: ''
+                mfees: '833.25'
               },
               {
                 id:'0009',
                 name: 'Monthly Premium Plan',
                 fees: '$2,999',
-                actions: ''
+                mfees: '$2,999'
               },
               {
                 id:'0010',
                 name: 'Monthly Premium Plan',
                 fees: '$2,999',
-                actions: ''
+                mfees: '$2,999'
               },
               {
                 id:'0011',
                 name: 'Monthly Base Plan',
                 fees: '#1,999',
-                actions: ''
+                mfees: '$1,999'
               },
               {
                 id:'0012',
                 name: 'Annual Premium Plan',
                 fees: '$9,999',
-                actions: ''
+                mfees: '$833.25'
               },
               {
                 id:'0013',
                 name: 'Monthly International Plan',
                 fees: '$3,499',
-                actions: ''
+                mfees: '$3,499'
               },
               {
                 id:'0014',
                 name: 'Annual International Plan',
                 fees: '$12,999',
-                actions: ''
+                mfees: '$1,083.25'
               },
               {
                 id:'0015',
                 name: 'Monthly Premium Plan',
                 fees: '$2,999',
-                actions: ''
+                mfees: '$2,999'
               },
               {
                 id:'0016',
                 name: 'Monthly Premium Plan',
                 fees: '$2,999',
-                actions: ''
+                mfees: '$2,999'
               },
               {
                 id:'0017',
                 name: 'Monthly Premium Plan',
                 fees: '$2,999',
-                actions: ''
+                mfees: '$2,999'
               },
               {
                 id:'0018',
                 name: 'Annual Premium Plan',
                 fees: '$9,999',
-                actions: ''
+                mfees: '$833.25'
               },
               {
                 id:'0019',
                 name: 'Monthly Base Plan',
                 fees: '$1,999',
-                actions: ''
+                mfees: '$1,999'
               },
               {
                 id:'0020',
                 name: 'Monthly Base Plan',
                 fees: '$1,999',
-                actions: ''
+                mfees: '$1,999'
               }
             ]}
         };
