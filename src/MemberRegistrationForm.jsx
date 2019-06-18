@@ -246,17 +246,18 @@ class MemberRegistrationForm extends Component {
              {!this.state.isPreviewSave?
              <div className="form_bg">
              <div className="header_part">
-                 <h2>Member Application</h2>
+                 <h2>Client Application</h2>
              </div>
              <div className="form_body">
              <div className="px-lg-2 pt-0">
              
              <form style={{color: '#757575'}}  onSubmit={this.handleSubmit}>
-                 <div className="head">
-                      <div className="card bg-light text-dark">
-                              <div className="card-body">Personal Information</div>
-                      </div>
-                 </div>
+                                <div className="head">
+                                    <div className="card bg-light text-dark">
+                                            <div className="card-body">Personal Information</div>
+                                    </div>
+                                </div>
+                                <br/>
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
@@ -281,41 +282,53 @@ class MemberRegistrationForm extends Component {
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" type="number" label="Mobile No.*" name="mobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)} required/>
+                                              <MDBInput autoComplete="off" type="number" label="Primary Mobile Number*" name="mobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)} required/>
                                           </div>
                                       </div>
                                   </div>
 
                                   <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                          {/*<MDBInput label="Zip Code*" name='zipcode' value={this.state.zipcode} onChange={e => this.handleChange(e)} required/>*/}
-                                              <MDBInput autoComplete="off" label="Email Address*" type="email" name="email" required value={this.state.email} onChange={e => this.handleChange(e)}/>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <MDBInput autoComplete="off" required label="Set Your Password*" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-                                          </div>
-                                      </div>
+                                    <div className="col">
+                                        <div classname="md-form">
+                                            <MDBInput autoComplete="off" type="number" label="Alternate Mobile Number" name="alternatemobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)}/>
+                                        </div>
+                                    </div>
+                                    <div className="col">
+                                        <div classname="md-form">
+                                            <MDBInput autoComplete="off" label="Email Address*" type="email" name="email" required value={this.state.email} onChange={e => this.handleChange(e)}/>
+                                        </div>
+                                    </div>
                                   </div>
-                              <div className="head">
-                                  <div className="card text-dark bg-light">
-                                      <div className="card-body">Contact Information</div>
-                                  </div>
-                              </div>
+
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                          <InputLabel htmlFor="country">Country* </InputLabel>
+                                            <MDBInput autoComplete="off" required label="Set Your Password*" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
+                                          </div>
+                                      </div>
+                                      <div className="col">
+                                          <div className="md-form">
+                                              &nbsp;
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                    <div className="head">
+                                        <div className="card text-dark bg-light">
+                                            <div className="card-body">Contact Information</div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                  <div className="form-row px-2">
+                                      <div className="col">
+                                          <div className="md-form">
+                                            <InputLabel htmlFor="country">Country* </InputLabel>
                                               <Select id="country"
                                               value={this.state.country}                                               
                                               name="country"
                                               onChange={this.handleChange} 
                                               placeholder='US' 
-                                              required
-                                            
-                                                                             
+                                              required                               
                                               >
                                                   <MenuItem value="US" >
                                                       US
@@ -385,6 +398,36 @@ class MemberRegistrationForm extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
+                                            <InputLabel htmlFor="country">Country* </InputLabel>
+                                              <Select id="country"
+                                              value={this.state.country}                                               
+                                              name="country"
+                                              onChange={this.handleChange} 
+                                              placeholder='US' 
+                                              required                               
+                                              >
+                                                  <MenuItem value="US" >
+                                                      US
+                                                  </MenuItem>
+                                                  <MenuItem value={'Bahamas'}>Bahamas</MenuItem>
+                                                  <MenuItem value={'Barbados'}>Barbados</MenuItem>
+                                                  <MenuItem value={'Jamaica'}>Jamaica</MenuItem>
+                                                  <MenuItem value={'Antigua'}>Antigua</MenuItem>
+                                                  <MenuItem value={'TrinidadandTobago'}>Trinidad and Tobago</MenuItem>
+                                                  <MenuItem value={'Dominicanrepublic'}>Dominican Republic</MenuItem>
+                                              </Select>
+                                          </div>
+                                      </div>
+                                      <div className="col">
+                                          <div className="md-form">
+                                              &nbsp;
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div className="form-row px-2">
+                                      <div className="col">
+                                          <div className="md-form">
                                               <MDBInput autoComplete="off" label="Mailing Address 1*" name="maddress1" value={this.state.maddress1} onChange={e => this.handleChange(e)} required/>
                                           </div>
                                       </div>
@@ -426,7 +469,7 @@ class MemberRegistrationForm extends Component {
                                           <div className="card-body">Family Information</div>
                                       </div>
                                   </div>
-
+                                    <br/>
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
@@ -498,11 +541,10 @@ class MemberRegistrationForm extends Component {
                                       <div className="card-body">Membership</div>
                                   </div>
                               </div>
-
+                                <br/>
                                   <div className="form-row px-2">
                                       <div className="col">
-                                          <div className="md-form">
-                                              {/*<MDBInput label="Group Code*" name='planid'onChange={this.handleChange} required/>*/}         
+                                          <div className="md-form">        
                                               <InputLabel htmlFor="age-simple">Plan* </InputLabel>
                                               <Select
                                                  
@@ -523,8 +565,7 @@ class MemberRegistrationForm extends Component {
                                           </div>
                                       </div>
                                       <div className="col">
-                                          <div className="md-form">
-                                             
+                                          <div className="md-form">  
                                               <MDBInput autoComplete="off" readOnly value={this.state.fees}   label="Membership Fees" name="fees"/>
                                           </div>
                                       </div>
@@ -541,16 +582,16 @@ class MemberRegistrationForm extends Component {
                                                   required                                             
                                                   >
                                                   <MenuItem value="US" selected>
-                                                      <em>None</em>
+                                                      <em>Individual</em>
                                                   </MenuItem>
-                                                  <MenuItem value={10}>Individual</MenuItem>
-                                                  <MenuItem value={20}>Corporate</MenuItem>
+                                                  <MenuItem value={10}>Corporate</MenuItem>
+                                                  <MenuItem value={20}>Government</MenuItem>
                                               </Select>             
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Company Name*" name="companyname" value={this.state.companyname} onChange={e => this.handleChange(e)} required/>
+                                              <MDBInput autoComplete="off"  label="Company, Government or Group Name" name="companyname" value={this.state.companyname} onChange={e => this.handleChange(e)}/>
                                           </div>
                                       </div>
                                   </div>
@@ -571,7 +612,7 @@ class MemberRegistrationForm extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Agent Manager*" name="agentmanager" value ={this.state.agentmanager} onChange={this.handleChange} required/>
+                                              <MDBInput autoComplete="off"  label="Agent Manager" name="agentmanager" value ={this.state.agentmanager} onChange={this.handleChange}/>
                                           </div>
                                       </div>
                                       <div className="col">
@@ -594,7 +635,7 @@ class MemberRegistrationForm extends Component {
 </div>
 </div>: <div className="form_bg">
              <div className="header_part">
-                 <h2>Preview Member Application</h2>
+                 <h2>Preview Client Application</h2>
              </div>
              <div className="form_body">
              <div className="px-lg-2 pt-0">
@@ -605,6 +646,7 @@ class MemberRegistrationForm extends Component {
                               <div className="card-body">Personal Information</div>
                       </div>
                  </div>
+                 <br/>
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
@@ -629,21 +671,33 @@ class MemberRegistrationForm extends Component {
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" type="number" label="Mobile No.*" name="mobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)} required/>
+                                              <MDBInput autoComplete="off" type="number" label="Primary Phone Number*" name="mobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)} required/>
                                           </div>
                                       </div>
                                   </div>
 
                                   <div className="form-row px-2">
+                                    <div className="col">
+                                      <div className="md-form">
+                                            <MDBInput autoComplete="off" type="number" label="Alternate Phone Number*" name="alternatemobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)}/> 
+                                      </div>          
+                                    </div>
+                                    <div className="col">
+                                        <div className="md-form">   
+                                            <MDBInput autoComplete="off" label="Email Address*" type="email" name="email" required value={this.state.email} onChange={e => this.handleChange(e)}/>          
+                                        </div>      
+                                    </div>
+                                  </div>
+
+                                  <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                          {/*<MDBInput label="Zip Code*" name='zipcode' value={this.state.zipcode} onChange={e => this.handleChange(e)} required/>*/}
-                                              <MDBInput autoComplete="off" label="Email Address*" type="email" name="email" required value={this.state.email} onChange={e => this.handleChange(e)}/>
+                                            <MDBInput autoComplete="off" required label="Set Your Password*" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />     
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" required label="Set Your Password*" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
+                                              &nbsp;
                                           </div>
                                       </div>
                                   </div>
@@ -652,6 +706,7 @@ class MemberRegistrationForm extends Component {
                                       <div className="card-body">Contact Information</div>
                                   </div>
                               </div>
+                              <br/>
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
@@ -729,6 +784,7 @@ class MemberRegistrationForm extends Component {
                                       </div>
                                       <h4><strong>Mailing Address</strong></h4>
                                   </div>
+                                  <br/>
 
                                   <div className="form-row px-2">
                                       <div className="col">
@@ -759,7 +815,7 @@ class MemberRegistrationForm extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput  type="number" required autoComplete="off" label="Zip *" name='zip' value={this.state.zip} onChange={e => this.handleChange(e)}/>
+                                              <MDBInput  type="number" required autoComplete="off" label="Zip*" name='zip' value={this.state.zip} onChange={e => this.handleChange(e)}/>
                                           </div>
                                       </div>
                                       <div className="col">
@@ -774,6 +830,7 @@ class MemberRegistrationForm extends Component {
                                           <div className="card-body">Family Information</div>
                                       </div>
                                   </div>
+                                  <br/>
 
                                   <div className="form-row px-2">
                                       <div className="col">
@@ -846,6 +903,7 @@ class MemberRegistrationForm extends Component {
                                       <div className="card-body">Membership</div>
                                   </div>
                               </div>
+                              <br/>
 
                                   <div className="form-row px-2">
                                       <div className="col">
@@ -888,16 +946,16 @@ class MemberRegistrationForm extends Component {
                                                   required                                             
                                                   >
                                                   <MenuItem value="us">
-                                                      <em>None</em>
+                                                      <em>Individual</em>
                                                   </MenuItem>
-                                                  <MenuItem value={10}>Individual</MenuItem>
-                                                  <MenuItem value={20}>Corporate</MenuItem>
+                                                  <MenuItem value={10}>Corporate</MenuItem>
+                                                  <MenuItem value={20}>Government</MenuItem>
                                               </Select>             
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Company Name*" name="companyname" value={this.state.companyname} onChange={e => this.handleChange(e)} required/>
+                                              <MDBInput autoComplete="off"  label="Company, Government or Group Name" name="companyname" value={this.state.companyname} onChange={e => this.handleChange(e)}/>
                                           </div>
                                       </div>
                                   </div>
@@ -918,7 +976,7 @@ class MemberRegistrationForm extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Agent Manager*" name="agentmanager" value ={this.state.agentmanager} onChange={this.handleChange} required/>
+                                              <MDBInput autoComplete="off"  label="Agent Manager" name="agentmanager" value ={this.state.agentmanager} onChange={this.handleChange}/>
                                           </div>
                                       </div>
                                       <div className="col">

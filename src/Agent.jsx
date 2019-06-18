@@ -6,7 +6,7 @@ import * as myConst from './helper/Constant';
 import Switch from 'react-toggle-switch';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { HashRouter as Router, Route ,NavLink,Redirect} from "react-router-dom";
+import { HashRouter as Router, Route ,NavLink,Link} from "react-router-dom";
 const URL = myConst.HTTP_URL;
 class Agent extends Component {
     constructor(props) {
@@ -14,184 +14,101 @@ class Agent extends Component {
         console.log(props);
         this.state = {
           switched: false,
-          data:  {
             columns: [
               {
                 label: 'Agent ID',
-                field: 'id',
+                field: 'agentId',
                 sort: 'asc',
                 width: 150
               },
               {
                 label: 'First Name',
-                field: 'fname',
+                field: 'firstName',
                 sort: 'asc',
                 width: 150
               },
               {
                 label: 'Last Name',
-                field: 'lname',
+                field: 'lastName',
                 sort: 'asc',
                 width: 200
               },
               {
-                label: 'Level',
-                field: 'level',
+                label: 'Date Of Birth',
+                field: 'dob',
                 sort: 'asc',
-                width: 100
+                width: 200
               },
               {
                 label: 'Agent Status',
-                field: 'status',
+                field: 'isActive',
                 sort: 'asc',
                 width: 100
+              },
+              {
+                label: 'Action',
+                field: 'view',  
+                width: 100
               }
-            ],
-            rows: [
-              {
-                id:'0001',
-                fname: 'Tiger',
-                lname: 'Nixon',
-                level: '12',
-                status: 'Active'
-              },
-              {
-                id:'0002',
-                fname: 'Garrett',
-                lname: 'Winters',
-                level: '11',
-                status: 'Active'
-              },
-              {
-                id:'0003',
-                fname: 'Ashton',
-                lname: 'Cox',
-                level: '10',
-                status: 'Active'
-              },
-              {
-                id:'0004',
-                fname: 'Cedric',
-                lname: 'Kelly',
-                level: '9',
-                status: 'Active'
-              },
-              {
-                id:'0005',
-                fname: 'Airi',
-                lname: 'Satou',
-                level: '8',
-                status: 'Inactive'
-              },
-              {
-                id:'0006',
-                fname: 'Brielle',
-                lname: 'Williamson',
-                level: '7',
-                status: 'Active'
-              },
-              {
-                id:'0007',
-                fname: 'Herrod',
-                lname: 'Chandler',
-                level: '6',
-                Status: 'Active'
-              },
-              {
-                id:'0008',
-                fname: 'Rhona',
-                lname: 'Davidson',
-                level: '5',
-                status: 'Active'
-              },
-              {
-                id:'0009',
-                fname: 'Colleen',
-                lname: 'Hurst',
-                level: '4',
-                status: 'Active'
-              },
-              {
-                id:'0010',
-                fname: 'Sonya',
-                lname: 'Frost',
-                level: '3',
-                status: 'Active'
-              },
-              {
-                id:'0011',
-                fname: 'Jena',
-                lname: 'Gaines',
-                level: '2',
-                status: 'Active'
-              },
-              {
-                id:'0012',
-                fname: 'Quinn',
-                lname: 'Flynn',
-                level: '1',
-                status: 'Active'
-              },
-              {
-                id:'0013',
-                fname: 'Charde',
-                lname: 'Marshall',
-                level: '12',
-                status: 'Inactive'
-              },
-              {
-                id:'0014',
-                fname: 'Haley',
-                lname: 'Kennedy',
-                level: '11',
-                status: 'Active'
-              },
-              {
-                id:'0015',
-                fname: 'Tatyana',
-                lname: 'Fitzpatrick',
-                level: '10',
-                status: 'Active'
-              },
-              {
-                id:'0016',
-                fname: 'Michael',
-                lname: 'Silva',
-                level: '9',
-                status: 'Active'
-              },
-              {
-                id:'0017',
-                fname: 'John',
-                lname: 'Doe',
-                level: '8',
-                status: 'Active'
-              },
-              {
-                id:'0018',
-                fname: 'Gloria',
-                lname: 'Little',
-                level: '7',
-                status: 'Active'
-              },
-              {
-                id:'0019',
-                fname: 'Bradley',
-                lname: 'Greer',
-                level: '6',
-                status: 'Active'
-              },
-              {
-                id:'0020',
-                fname: 'Dai',
-                lname: 'Rios',
-                level: '5',
-                status: 'Active'
-              }
-            ]}
-        };
+            ]
+        
       }
+    }
+    async fetchAgents(username,assa,aasss) {
+     
+      try{
+        let response = await fetch(URL+'agent', {
+          method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        
+          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          //credentials: 'same-origin', // include, *same-origin, omit
+          headers: {
+              'Content-Type': 'application/json',
+              
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+          }
+        })
+        
+          let data = await response.json()
+        
+         // console.log(data.customers.customers);
+         // return await  data.customers;
+          this.setState(()=>({
+            rows:data.agents,
+            activeAgents:data.activeAgents,
+            inActiveAgents:data.inActiveAgents,
+            totalAgents:data.totalAgents
+          }))
+         
+          // console.log('hi');
+           const newrows =  this.state.rows.map((row) => {
+
+            return {...row, view: <Link to="/agentview">view</Link>};
+        });
+        this.setState({rows: newrows });
+    } catch(error){
+      console.log(error);
+    }
+    //end Api calling
+    
+    }
+    componentDidMount(){
+     
+           const agents= this.fetchAgents();
+            console.log(agents) ;
+           
+          
+          }
+    
+     
+   
     render() {
+   
+   
+      let data={
+        columns: this.state.columns,
+         rows:this.state.rows
+       }
         return (
             <div className="content" style={{width: '100%'}}>
             <div className="container-fluid">
@@ -269,7 +186,7 @@ class Agent extends Component {
                          <MDBDataTable
                           striped
                           hover
-                          data={this.state.data}
+                          data={data}
                         />
                     </div>
                   </div>

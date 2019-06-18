@@ -7,13 +7,13 @@ import { HashRouter as Router, Route
  import * as myConst from './helper/Constant';
  import Switch from 'react-toggle-switch'
 
-class MemberView extends Component {
+class agentView extends Component {
     render() {
         return (
             <div style={{width: '100%'}}>
                 <div className="form_bg">
              <div className="header_part">
-                 <h2>View Client Application</h2>
+                 <h2>View Agent Application</h2>
              </div>
              <div className="form_body">
              <div className="px-lg-2 pt-0">
@@ -47,7 +47,7 @@ class MemberView extends Component {
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <label htmlFor="mobileno">Primary Mobile Number</label>
+                                              <label htmlFor="mobileno">Mobile Number</label>
                                               <p>+91 9876543210</p>
                                           </div>
                                       </div>
@@ -56,14 +56,14 @@ class MemberView extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                            <label htmlFor="mobileno">Alternate Mobile Number</label>
-                                            <p>+91 9876543210</p>
+                                              <label htmlFor="email">Email Address</label>
+                                              <p>abcd@gmail.com</p>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <label htmlFor="email">Email Address</label>
-                                              <p>abcd@gmail.com</p>
+                                              <label htmlFor="password">Set Your Password</label>
+                                              <p>xxxxxxxx</p>
                                           </div>
                                       </div>
                                   </div>
@@ -71,8 +71,8 @@ class MemberView extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <label htmlFor="password">Set Your Password</label>
-                                              <p>xxxxxxxx</p>
+                                              <label htmlFor="approval">Agent Approval</label>
+                                              <p>Approved</p>
                                           </div>
                                       </div>
                                       <div className="col">
@@ -104,13 +104,13 @@ class MemberView extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <label htmlFor="maddress1">Client Address 1</label>
+                                              <label htmlFor="baddress1">Billing Address 1</label>
                                               <p>gegegegej gegegnen</p>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <label htmlFor="maddress2">Client Address 2</label>
+                                              <label htmlFor="baddress2">Billing Address 2</label>
                                               <p>fgegee gghgb g3gf fgw3gg</p>
                                           </div>
                                       </div>
@@ -125,7 +125,7 @@ class MemberView extends Component {
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <label htmlFor="">State</label>
+                                              <label htmlFor="state">State</label>
                                               <p>gegegeg</p>                                              
                                           </div>
                                       </div>
@@ -183,7 +183,7 @@ class MemberView extends Component {
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                            <label htmlFor="">State</label>
+                                            <label htmlFor="state">State</label>
                                             <p>gegegeg</p>                                              
                                           </div>
                                       </div>
@@ -201,86 +201,40 @@ class MemberView extends Component {
                                               &nbsp;                                            
                                           </div>
                                       </div>
-                                  </div>
-
-                                  <div className="head">
-                                      <div className="card text-dark bg-light">
-                                          <div className="card-body">Family Information</div>
-                                      </div>
-                                  </div>
-
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="spouse">Spouse Name</label>
-                                              <p>Joanna</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="spousedob">Spouse Date of Birth</label>
-                                              <p>01/07/1987</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div className="form-row px-2">
-                                        <div className="form-row px-2">
-                                            <div className="col">
-                                                <div className="md-form">
-                                                    <label htmlFor="dfirstname">Dependant First Name</label>                      
-                                                </div>
-                                            </div>
-                                            <div className="col">
-                                                <div className="md-form">
-                                                    <label htmlFor="dlastname">Dependant Last Name</label>                         
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="form-row px-2">
-                                            <div className="col">
-                                                <div className="md-form">
-                                                    <label htmlFor="ddob">Date of Birth</label>                    
-                                                </div>
-                                            </div>
-                                            <div className="col">
-                                                <div className="md-form">
-                                                     &nbsp;
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>                                    
+                                  </div>                                    
 
                               <div className="head">
                                   <div className="card text-dark bg-light">
-                                      <div className="card-body">Membership</div>
+                                      <div className="card-body">Billing Information</div>
                                   </div>
                               </div>
+ 
+                                  <div className="form-row px-2">
+                                      <div className="col">
+                                          <div className="md-form">       
+                                              <label htmlFor="method">Method of Payment</label>
+                                              <p>Check</p>
+                                          </div>
+                                      </div>
+                                      <div className="col">
+                                          <div className="md-form">
+                                              <label htmlFor="mode">Payment Mode</label>
+                                              <p>One Time</p>
+                                          </div>
+                                      </div>
+                                  </div>
 
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">       
-                                              <label htmlFor="plan">Plan</label>
-                                              <p>Annual Base Plan</p>
+                                              <label htmlFor="bankname">Bank Name</label>
+                                              <p>SBI</p>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <label htmlFor="mfees">Membership Fees</label>
-                                              <p>$1000</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                            <label htmlFor="plantype">Plan Type</label>
-                                            <p>Corporate</p>             
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="company">Company, Government or Group Name</label>
-                                              <p>Bargad Software Solutions</p>
+                                            <label htmlFor="accountname">Account Name</label>
+                                            <p>Savings</p>
                                           </div>
                                       </div>
                                   </div>
@@ -288,23 +242,8 @@ class MemberView extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <label htmlFor="groupcode">Group Code</label>
-                                              <p>IndBar101</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="wagent">Writing Agent</label>
-                                              <p>James Vince</p>
-                                          </div>
-                                      </div>
-                                  </div>
-
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="agentmanager">Agent Manager</label>
-                                              <p>Paul</p>
+                                              <label htmlFor="accountnumber">Account Number</label>
+                                              <p>12345678911</p>             
                                           </div>
                                       </div>
                                       <div className="col">
@@ -313,43 +252,6 @@ class MemberView extends Component {
                                           </div>
                                       </div>
                                   </div>
-
-                                  <div className="head">
-                                    <div className="card text-dark bg-light">
-                                      <div className="card-body">Payment Type</div>
-                                    </div>
-                                 </div>
-
-                                 <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="paymenttype">Payment Type</label>
-                                              <p>Check</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="paymenttype">Payment Date</label>
-                                              <p>20/05/2019</p>
-                                          </div>
-                                      </div>
-                                  </div>
-
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="amount">Amount</label>
-                                              <p>$4,000</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="renewaldate">Renewal Date</label>
-                                              <p>19/06/2019</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                    
 
                               <div className="buttons text-center">
                                   <button className="btn btn-rounded my-4 waves-effect">Close</button>
@@ -365,4 +267,4 @@ class MemberView extends Component {
     }
 }
 
-export default MemberView;
+export default agentView;

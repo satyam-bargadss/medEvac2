@@ -22,7 +22,7 @@ constructor(props) {
     internationalCustomber:'',
     columns:[
       {
-        label: 'Member ID',
+        label: 'Client ID',
         field: 'customerId',
         sort: 'desc',
         width: 150
@@ -52,8 +52,8 @@ constructor(props) {
         width: 200
       },
       {
-        label: 'Created at',
-        field: 'created_at',
+        label: 'Client Start Date',
+        field: 'client_sdate',
      
         width: 200
 
@@ -138,9 +138,9 @@ componentDidMount(){
 				<div class="col-md-12">
 					<div class="buttons ml-3" style={{overflow:'hidden'}}>
           <NavLink class="btn btn-info pull-left mb-4" className="nav-link" to="/member-registration"  activeClassName=" active">
-                  <span>Add Member</span>
+                  <span>Add Client</span>
                 </NavLink>
-						<a href="#" class="btn btn-info pull-left mb-4">Import Members</a>
+						<a href="#" class="btn btn-info pull-left mb-4">Import Clients</a>
 						<a href="#" class="btn btn-info pull-left mb-4">Contacts</a>
 					</div>
 				</div>
@@ -150,28 +150,28 @@ componentDidMount(){
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header card-header-primary">
-						  <h4 class="card-title pull-left ">Members Summary</h4>
+						  <h4 class="card-title pull-left ">Clients Summary</h4>
 						</div>
 						<div class="card-body">
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
 								<h3 class="bold">{this.state.totalCustomers}</h3>
-								<span class="text-dark">Total Members</span>
+								<span class="text-dark">Total Clients</span>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
 								<h3 class="bold">{this.state.activeUsers}</h3>
-								<span class="text-success">Active Members</span>
+								<span class="text-success">Active Clients</span>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
 								<h3 class="bold">{this.state.inActiveUsers}</h3>
-								<span class="text-danger">Inactive Members</span>
+								<span class="text-danger">Inactive Clients</span>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
 								<h3 class="bold">{this.state.usCustomber}</h3>
-								<span class="text-info">US Members</span>
+								<span class="text-info">US Clients</span>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left border-right">
 								<h3 class="bold">{this.state.internationalCustomber}</h3>
-								<span class="text-danger">International Members</span>
+								<span class="text-danger">International Clients</span>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-left">
 								<h3 class="bold">0</h3>
@@ -186,7 +186,7 @@ componentDidMount(){
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title pull-left ">Member Management</h4>
+                  <h4 class="card-title pull-left ">Client Management</h4>
                 </div>
                 <div class="card-body">
 				   <table border="0" cellspacing="5" cellpadding="5">
@@ -196,7 +196,7 @@ componentDidMount(){
 							<td><input type="date" name="end_date" id="end_date" class="form-control" /></td>
               <td className="select">
                   <Select>
-                    <MenuItem value={'memberid'}>Member ID</MenuItem>
+                    <MenuItem value={'memberid'}>Client ID</MenuItem>
                     <MenuItem value={'firstname'}>First Name</MenuItem>
                     <MenuItem value={'lastname'}>Last Name</MenuItem>
                     <MenuItem value={'dob'}>DOB</MenuItem>

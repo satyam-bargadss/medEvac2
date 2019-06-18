@@ -16,6 +16,8 @@ import membershipPlan from './membershipPlan';
 import plans from './plans';
 import Thanks from './Thanks';
 import MemberView from './MemberView';
+import report from './report';
+import agentview from './agentView'
 //import { BrowserRouter as Router, Route, Switch,Link ,NavLink } from "react-router-dom";
 
 class AdminDashboard extends Component {
@@ -80,7 +82,7 @@ class AdminDashboard extends Component {
           <li className="nav-item ">
             <NavLink className="nav-link" to="/customer-management"  activeClassName=" active">
               <i className="material-icons">person</i>
-              <p>Members</p>
+              <p>Clients</p>
             </NavLink>
           </li>
 		   <li className="nav-item ">
@@ -108,10 +110,10 @@ class AdminDashboard extends Component {
             </a>
           </li>
           <li className="nav-item ">
-            <a className="nav-link" href="#">
+            <NavLink className="nav-link" to="/report" activeClassName=" active">
               <i className="material-icons">insert_chart_outlined</i>
               <p>Reports</p>
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item ">
             <a className="nav-link" href="#">
@@ -188,6 +190,8 @@ class AdminDashboard extends Component {
               <Route path="/user" component='' exact strict/>
               <Route path="/thanks" component={Thanks} exact strict/>
               <Route path="/MemberView" component={MemberView} exact strict/>
+              <Route path="/report" component={report} exact strict/>
+              <Route path="/agentview::agentId" component={agentview} exact strict/>
           </Switch>
           </div>
       </div>
