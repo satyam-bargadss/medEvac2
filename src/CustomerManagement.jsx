@@ -1,6 +1,6 @@
 import React, { Component,Fragment } from 'react';
 import { HashRouter as Router, Route
-   ,NavLink,Redirect} from "react-router-dom";
+   ,NavLink,Redirect,Link} from "react-router-dom";
 import { MDBDataTable } from 'mdbreact';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -12,7 +12,7 @@ const URL = myConst.HTTP_URL;
 class CustomerManagement extends Component {
 constructor(props) {
   super(props);
-  console.log(props);
+ 
   this.state = {
     switched: false,
     numberOfcustomers:'',
@@ -52,17 +52,15 @@ constructor(props) {
         width: 200
       },
       {
-        label: 'Client Start Date',
-        field: 'client_sdate',
-     
-        width: 200
-
-      },
-      {
         label: 'Group Code',
         field: 'groupCode',
         width: 200
-      }
+      },
+      {
+        label: 'Action',
+        field: 'action',
+        width: 200
+      },
     ]
   };
 }
@@ -102,7 +100,11 @@ async fetchUser(username,assa,aasss) {
         internationalCustomber:data.internationalCustomber,
         totalCustomers:data.totalCustomers
       }))
-      
+      const newrows =  this.state.rows.map((row) => {
+
+        return {...row, action: <Link to={`/MemberView/${row.customerId}`}><img src={require('./css/img/view.png')} /></Link>};
+    });
+    this.setState({rows: newrows });   
      
 } catch(error){
   console.log(error);

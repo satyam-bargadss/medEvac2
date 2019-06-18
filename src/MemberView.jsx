@@ -8,247 +8,147 @@ import { HashRouter as Router, Route
  import Switch from 'react-toggle-switch'
 
 class MemberView extends Component {
+    constructor(props) {
+        super(props);
+       // console.log(props);
+        console.log(props.match.params.customerId); 
+    }
+    
     render() {
         return (
             <div style={{width: '100%'}}>
+            <div className="container">
+            <div class="col-lg-12">
                 <div className="form_bg">
              <div className="header_part">
-                 <h2>View Client Application</h2>
+                 <h2>Client Summary</h2>
              </div>
              <div className="form_body">
              <div className="px-lg-2 pt-0">
              
              <form style={{color: '#757575'}}  onSubmit={this.handleSubmit2}>
+                                <div className="summary">
+                                    <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Client Name</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">John Doe</span> 
+
+                                    <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Client Type</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Individual</span>
+
+                                    <div classname="clearfix"></div>
+
+                                    <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Membership Date</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">04/26/2019</span> 
+
+                                    <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Renewal Date</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">05/25/2019</span>
+
+                                    <div classname="clearfix"></div>
+
+                                    <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Agent Name</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Josh Matthews</span>  
+
+                                    <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Payment Received</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">$1,999</span>   
+                                </div>
+                                
                                 <div className="head">
                                     <div className="card bg-light text-dark">
-                                            <div className="card-body">Personal Information</div>
+                                        <div className="card-body">Client Information</div>
                                     </div>
                                 </div>
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                               <label htmlFor="firstname">First Name</label>
-                                               <p>John</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                                <label htmlFor="lastname">Last Name</label>
-                                                <p>Doe</p>
-                                          </div>
-                                      </div>
+
+                                  <div className="subHead pt-3 px-2">
+                                    <h4 classname="text-dark">Personal Information</h4>
+                                  </div>
+                                  
+                                  <div className="form-row px-2 pt-3">
+                                    <label htmlFor="dob" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Date of Birth</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">06/23/1983</span>
+
+                                    <label htmlFor="mobileno" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Primary Mobile Number</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">+91 9876543210</span>
                                   </div>
                                   <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                            <label htmlFor="dob">Date of Birth</label>
-                                            <p>23/06/1983</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="mobileno">Primary Mobile Number</label>
-                                              <p>+91 9876543210</p>
-                                          </div>
-                                      </div>
+                                    <label htmlFor="alternatemobileno" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Alternate Mobile Number</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">+91 8080123456</span>
+
+                                    <label htmlFor="email" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Email Address</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">abcd@gmail.com</span>
                                   </div>
 
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                            <label htmlFor="mobileno">Alternate Mobile Number</label>
-                                            <p>+91 9876543210</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="email">Email Address</label>
-                                              <p>abcd@gmail.com</p>
-                                          </div>
-                                      </div>
+                                  <div className="subHead pt-3 px-2">
+                                    <h4 classname="text-dark">Family Information</h4>
                                   </div>
 
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="password">Set Your Password</label>
-                                              <p>xxxxxxxx</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              &nbsp;
-                                          </div>
-                                      </div>
+                                  <div className="form-row px-2 pt-3 pb-4">
+                                    <label htmlFor="sname" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Spouse Name</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Joanna Doe</span>
+
+                                    <label htmlFor="dname1" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Dependant Name 1</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Max Doe</span>
                                   </div>
 
                                     <div className="head">
                                         <div className="card text-dark bg-light">
-                                            <div className="card-body">Contact Information</div>
+                                            <div className="card-body">Account Information</div>
                                         </div>
                                     </div>
 
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                                <label htmlFor="country">Country</label>
-                                                <p>US</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              &nbsp;
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="maddress1">Client Address 1</label>
-                                              <p>gegegegej gegegnen</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="maddress2">Client Address 2</label>
-                                              <p>fgegee gghgb g3gf fgw3gg</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="city">City</label>
-                                              <p>gegheg</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="">State</label>
-                                              <p>gegegeg</p>                                              
-                                          </div>
-                                      </div>
-                                  </div>
+                                    <div className="subHead pt-3 px-2">
+                                      <h4 classname="text-dark">Billing Information</h4>
+                                    </div>
 
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="zip">Zip Code</label>
-                                              <p>712311</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              &nbsp;
-                                          </div>
-                                      </div>
-                                  </div>
+                                    <div className="form-row px-2 pt-3">
+                                      <label htmlFor="country" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Country</label>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">US</span>
 
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="country">Country</label>
-                                              <p>US</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              &nbsp;
-                                          </div>
-                                      </div>
-                                  </div>
+                                      <label htmlFor="caddress1" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Client Address 1</label>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">vbvjlj vkj wfwj</span>
+                                   </div>
 
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="maddress1">Mailing Address 1</label>
-                                              <p>gbrsylk8l8l</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="maddress2">Mailing Address 2</label>
-                                              <p>uilhukkfjktS</p>
-                                          </div>
-                                      </div>
-                                  </div>
+                                   <div className="form-row px-2">
+                                      <label htmlFor="caddress2" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Client Address 2</label>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">vjwhwvjwhbj  jwbrnr</span>
 
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                            <label htmlFor="city">City</label>
-                                            <p>gegheg</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                            <label htmlFor="">State</label>
-                                            <p>gegegeg</p>                                              
-                                          </div>
-                                      </div>
-                                  </div>
+                                      <label htmlFor="city" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">City</label>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Abcdefgh</span>
+                                   </div>
 
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                            <label htmlFor="zip">Zip Code</label>
-                                            <p>712311</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              &nbsp;                                            
-                                          </div>
-                                      </div>
-                                  </div>
+                                   <div className="form-row px-2">
+                                      <label htmlFor="state" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">State</label>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">vjwhwvjwhbj  jwbrnr</span>
 
-                                  <div className="head">
-                                      <div className="card text-dark bg-light">
-                                          <div className="card-body">Family Information</div>
-                                      </div>
-                                  </div>
+                                      <label htmlFor="zip" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Zip Code</label>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">456987</span>
+                                   </div>
 
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="spouse">Spouse Name</label>
-                                              <p>Joanna</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="spousedob">Spouse Date of Birth</label>
-                                              <p>01/07/1987</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div className="form-row px-2">
-                                        <div className="form-row px-2">
-                                            <div className="col">
-                                                <div className="md-form">
-                                                    <label htmlFor="dfirstname">Dependant First Name</label>                      
-                                                </div>
-                                            </div>
-                                            <div className="col">
-                                                <div className="md-form">
-                                                    <label htmlFor="dlastname">Dependant Last Name</label>                         
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="form-row px-2">
-                                            <div className="col">
-                                                <div className="md-form">
-                                                    <label htmlFor="ddob">Date of Birth</label>                    
-                                                </div>
-                                            </div>
-                                            <div className="col">
-                                                <div className="md-form">
-                                                     &nbsp;
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>                                    
+                                   <div className="subHead pt-3 px-2">
+                                      <h4 classname="text-dark">Mailing Information</h4>
+                                    </div>
+
+                                    <div className="form-row px-2 pt-3">
+                                      <label htmlFor="country" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Country</label>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">US</span>
+
+                                      <label htmlFor="caddress1" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Client Address 1</label>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">vbvjlj vkj wfwj</span>
+                                   </div>
+
+                                   <div className="form-row px-2">
+                                      <label htmlFor="caddress2" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Client Address 2</label>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">vjwhwvjwhbj  jwbrnr</span>
+
+                                      <label htmlFor="city" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">City</label>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Abcdefgh</span>
+                                   </div>
+
+                                   <div className="form-row px-2 pb-4">
+                                      <label htmlFor="state" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">State</label>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">vjwhwvjwhbj  jwbrnr</span>
+
+                                      <label htmlFor="zip" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Zip Code</label>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">456987</span>
+                                   </div>                                    
 
                               <div className="head">
                                   <div className="card text-dark bg-light">
@@ -256,100 +156,48 @@ class MemberView extends Component {
                                   </div>
                               </div>
 
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">       
-                                              <label htmlFor="plan">Plan</label>
-                                              <p>Annual Base Plan</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="mfees">Membership Fees</label>
-                                              <p>$1000</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                            <label htmlFor="plantype">Plan Type</label>
-                                            <p>Corporate</p>             
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="company">Company, Government or Group Name</label>
-                                              <p>Bargad Software Solutions</p>
-                                          </div>
-                                      </div>
-                                  </div>
+                              <div className="subHead pt-3 px-2">
+                                <h4 classname="text-dark">Plan Information</h4>
+                              </div>
 
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="groupcode">Group Code</label>
-                                              <p>IndBar101</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="wagent">Writing Agent</label>
-                                              <p>James Vince</p>
-                                          </div>
-                                      </div>
-                                  </div>
+                              <div className="form-row px-2 pt-3">
+                                <label htmlFor="plan" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Plan</label>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Monthly Base Plan</span>
 
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="agentmanager">Agent Manager</label>
-                                              <p>Paul</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              &nbsp;
-                                          </div>
-                                      </div>
-                                  </div>
+                                <label htmlFor="plan" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Company, Government or Group Name</label>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Bargad Software Solutions</span>
+                              </div>
+
+                              <div className="subHead pt-3 px-2">
+                                <h4 classname="text-dark">Agent Information</h4>
+                              </div>
+
+                              <div className="form-row px-2 pt-3 pb-4">
+                                <label htmlFor="groupcode" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Group Code</label>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">IndBar101</span>
+
+                                <label htmlFor="groupcode" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Agent Manager</label>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Paul McCarthy</span>
+                              </div>
 
                                   <div className="head">
                                     <div className="card text-dark bg-light">
-                                      <div className="card-body">Payment Type</div>
+                                      <div className="card-body">Payment Summary</div>
                                     </div>
                                  </div>
 
-                                 <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="paymenttype">Payment Type</label>
-                                              <p>Check</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="paymenttype">Payment Date</label>
-                                              <p>20/05/2019</p>
-                                          </div>
-                                      </div>
-                                  </div>
+                              <div className="form-row px-2 pt-3">
+                                <label htmlFor="paymenttype" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Payment Type</label>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Check</span>
 
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="amount">Amount</label>
-                                              <p>$4,000</p>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <label htmlFor="renewaldate">Renewal Date</label>
-                                              <p>19/06/2019</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                    
+                                <label htmlFor="pdate" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Payment Date</label>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">04/26/2019</span>
+                              </div>
+
+                              <div className="form-row px-2 pb-3">
+                                <label htmlFor="pdate" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Mode of Payment</label>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Monthly</span>
+                              </div>
 
                               <div className="buttons text-center">
                                   <button className="btn btn-rounded my-4 waves-effect">Close</button>
@@ -360,6 +208,8 @@ class MemberView extends Component {
 </div>
 </div>
 </div>
+</div>
+            </div>
             </div>
         );
     }

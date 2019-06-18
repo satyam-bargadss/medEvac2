@@ -9,7 +9,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import * as myConst from './helper/Constant';
-
+import Select2, {Option} from '@material/react-select';
+import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 const URL = myConst.HTTP_URL;
 class MemberRegistrationForm extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class MemberRegistrationForm extends Component {
             isPreviewSave: false
           };
        this.state = {
+         options: [],
          startDate: new Date(),
          isDependent:false,
          addDependentByOne:'0',
@@ -34,7 +36,44 @@ class MemberRegistrationForm extends Component {
        this.handleChange2 = this.handleChange2.bind(this);
       
        this.handleSubmit = this.handleSubmit.bind(this);
+      this.getUsedrByIdName();
     }
+
+    async  getUsedrByIdName() {
+      
+        
+       //return false
+       
+       try{
+        let response = await fetch(URL+'agents-byname', {
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            //credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+                    'Content-Type': 'application/json',
+                    
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+            }
+            //redirect: 'follow', // manual, *follow, error
+            //referrer: 'no-referrer', // no-referrer, *client
+          // body data type must match "Content-Type" header
+        })
+        let data = await response.json()
+
+        //console.log(data);
+    if(data.status ==200)
+    {
+      console.log(data.AgentByIdName);
+      this.setState({options: data.AgentByIdName})
+      
+       console.log(this.state.options);
+    }
+}
+catch(error){
+    console.log(error);
+  }
+     } 
   
      handleChange2(event) {
         this.setState(oldValues => ({
@@ -42,6 +81,7 @@ class MemberRegistrationForm extends Component {
           [event.target.name]: event.target.value,
         }));
       }
+
     mailingAddressSame(){
 
     }
@@ -113,7 +153,7 @@ class MemberRegistrationForm extends Component {
                   
                }))
             }
-               console.log(this.state.fees);
+               console.log(this.state);
              
                
             }
@@ -604,7 +644,18 @@ class MemberRegistrationForm extends Component {
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Writing Agent*" name="writingagent" value ={this.state.writingagent} onChange={this.handleChange} required/>
+                                              {/*<MDBInput autoComplete="off"  label="Writing Agent*" name="writingagent" value ={this.state.writingagent} onChange={this.handleChange} required/>*/}
+                                              <Select2
+                                                    label='Select Agent'
+                                                    name="selectedAgentId"
+                                                    value={this.state.selectedAgentId}
+                                                   
+                                                    onChange={this.handleChange}
+                                                    >
+                                                         <Option value='' disabled selected>Please Select</Option>
+                                                         {this.state.options.map((row1) => <Option key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</Option>)}                                         
+                                                    </Select2>
+                                                   
                                           </div>
                                       </div>
                                   </div>
@@ -612,7 +663,16 @@ class MemberRegistrationForm extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Agent Manager" name="agentmanager" value ={this.state.agentmanager} onChange={this.handleChange}/>
+                                          <Select2
+                                                    label='Select Manager'
+                                                    name="selectedManagerId"
+                                                    value={this.state.selectedManagerId}
+                                                   
+                                                    onChange={this.handleChange}
+                                                    >
+                                                         <Option value='' disabled selected>Please Select</Option>
+                                                         {this.state.options.map((row1) => <Option key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</Option>)}                                         
+                                                    </Select2>
                                           </div>
                                       </div>
                                       <div className="col">
@@ -968,7 +1028,17 @@ class MemberRegistrationForm extends Component {
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Writing Agent*" name="writingagent" value ={this.state.writingagent} onChange={this.handleChange} required/>
+                                              {/*<MDBInput autoComplete="off"  label="Writing Agent*" name="writingagent" value ={this.state.writingagent} onChange={this.handleChange} required/>*/}
+                                              <Select2
+                                                    label='Select Agent'
+                                                    name="selectedAgentId"
+                                                    value={this.state.selectedAgentId}
+                                                   
+                                                    onChange={this.handleChange}
+                                                    >
+                                                         <Option value='' disabled selected>Please Select</Option>
+                                                         {this.state.options.map((row1) => <Option key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</Option>)}                                         
+                                                    </Select2>
                                           </div>
                                       </div>
                                   </div>
@@ -976,7 +1046,16 @@ class MemberRegistrationForm extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Agent Manager" name="agentmanager" value ={this.state.agentmanager} onChange={this.handleChange}/>
+                                          <Select2
+                                                    label='Select Manager'
+                                                    name="selectedManagerId"
+                                                    value={this.state.selectedManagerId}
+                                                   
+                                                    onChange={this.handleChange}
+                                                    >
+                                                         <Option value='' disabled selected>Please Select</Option>
+                                                         {this.state.options.map((row1) => <Option key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</Option>)}                                         
+                                                    </Select2>
                                           </div>
                                       </div>
                                       <div className="col">
