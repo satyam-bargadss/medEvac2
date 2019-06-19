@@ -330,7 +330,7 @@ catch(error){
                                   <div className="form-row px-2">
                                     <div className="col">
                                         <div classname="md-form">
-                                            <MDBInput autoComplete="off" type="number" label="Alternate Mobile Number" name="alternatemobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)}/>
+                                            <MDBInput autoComplete="off" type="number" label="Alternate Mobile Number" name="alternatemobilenumber" value={this.state.alternatemobilenumber} onChange={e => this.handleChange(e)}/>
                                         </div>
                                     </div>
                                     <div className="col">

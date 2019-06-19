@@ -17,7 +17,8 @@ import plans from './plans';
 import Thanks from './Thanks';
 import MemberView from './MemberView';
 import report from './report';
-import agentview from './agentView'
+import agentview from './agentView';
+import AgentCommReport from './AgentCommReport'
 //import { BrowserRouter as Router, Route, Switch,Link ,NavLink } from "react-router-dom";
 
 class AdminDashboard extends Component {
@@ -116,6 +117,12 @@ class AdminDashboard extends Component {
             </NavLink>
           </li>
           <li className="nav-item ">
+            <NavLink className="nav-link" to="/agentcomm-report" activeClassName=" active">
+              <i className="material-icons">insert_chart_outlined</i>
+              <p>Agent-wise Comm. Reports</p>
+            </NavLink>
+          </li>
+          <li className="nav-item ">
             <a className="nav-link" href="#">
             <i class="material-icons">settings</i>
               <p>Admin Settings</p>
@@ -191,7 +198,8 @@ class AdminDashboard extends Component {
               <Route path="/thanks" component={Thanks} exact strict/>
               <Route path="/MemberView/:customerId" component={MemberView} exact strict/>
               <Route path="/report" component={report} exact strict/>
-              <Route path="/agentview" component={agentview} exact strict/>
+              <Route path="/agentview/:agentId" component={agentview} exact strict/>
+              <Route path="/agentcomm-report" component={AgentCommReport} exact strict/>
              
           </Switch>
           </div>

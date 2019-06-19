@@ -6,14 +6,19 @@ import * as myConst from './helper/Constant';
 import Switch from 'react-toggle-switch';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import Modal from 'react-responsive-modal';
+
 import { HashRouter as Router, Route ,NavLink,Link} from "react-router-dom";
 const URL = myConst.HTTP_URL;
 class Agent extends Component {
     constructor(props) {
         super(props);
         console.log(props);
+        //console.log(this.props.location.state.message)
         this.state = {
           switched: false,
+           open:false,
+          
             columns: [
               {
                 label: 'Agent ID',
@@ -54,6 +59,12 @@ class Agent extends Component {
         
       }
     }
+    onOpenModal = () => {
+      this.setState({ open: true });
+    };
+    onCloseModal = () => {
+      this.setState({ open: false });
+    };
     async fetchAgents(username,assa,aasss) {
      
       try{
@@ -83,7 +94,7 @@ class Agent extends Component {
           // console.log('hi');
            const newrows =  this.state.rows.map((row) => {
 
-            return {...row, view: <Link to="/agentview">view</Link>};
+            return {...row, view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><img src={require('./css/img/view.png')} /></Link><Link data-toggle="tooltip" title="Add Manager" onClick={this.onOpenModal}><i className="material-icons">add_circle</i></Link></React.Fragment>};
         });
         this.setState({rows: newrows });
     } catch(error){
@@ -109,8 +120,10 @@ class Agent extends Component {
         columns: this.state.columns,
          rows:this.state.rows
        }
+       const { open } = this.state;
         return (
             <div className="content" style={{width: '100%'}}>
+              {this.state.sucessMessage?<p style={{'color':'green'}}>Thank you</p>:''}
             <div className="container-fluid">
                     <div className="col-md-12">
                         <div className="buttons ml-3" style={{overflow:'hidden'}}>
@@ -192,6 +205,21 @@ class Agent extends Component {
                   </div>
                 </div>
             </div>
+            <Modal open={open} onClose={this.onCloseModal} center>
+              <div className="header_part">
+                <h2>Add Agent Manager</h2>
+              </div>
+              <div className="modalBody pt-3">
+                <label htmlFor="agentname" className="col-sm-4 col-md-4 col-lg-4">Agent Name</label>
+                <span className="col-sm-8 col-md-8 col-lg-8">Paul McCarthy</span>
+
+                <label htmlFor="selectmanager" className="col-sm-4 col-md-4 col-lg-4">Select Manager</label>
+                <span className="col-sm-8 col-md-8 col-lg-8">
+
+                </span>
+              </div>
+            </Modal>
+
           </div>
         );
     }

@@ -73,6 +73,10 @@ class AgentRegistrationForm extends Component {
         {
         setTimeout(()=>{
            this.props.history.push('/thanks');
+           this.props.history.push({
+            pathname: '/agent',
+            state: { message: 'sucess'}
+          })
        }, 1000)
         }
    }
@@ -444,9 +448,9 @@ class AgentRegistrationForm extends Component {
                                                 <div className="md-form">
                                                     <Select
                                                     label='Choose Country'
-                                                    name="country"
+                                                    name="country1"
 
-                                                    value={this.state.country}
+                                                    value={this.state.country1}
                                                     onChange={this.handleChange}
                                                     >
                                                         <Option value='pomsky'>Bahamas</Option>

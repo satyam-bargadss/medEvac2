@@ -7,6 +7,8 @@ import Tab from 'react-bootstrap/Tab';
 import { MDBInput } from "mdbreact";
 import {  Form} from 'react-bootstrap/Form';
 import DatePicker from "react-datepicker";
+import * as myConst from './helper/Constant';
+const URL = myConst.HTTP_URL;
 class CustomerRegistrationForm extends Component {
 
     constructor(props) {

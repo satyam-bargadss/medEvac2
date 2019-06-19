@@ -5,18 +5,89 @@ import { HashRouter as Router, Route
  import Select from '@material-ui/core/Select';
  import MenuItem from '@material-ui/core/MenuItem';
  import * as myConst from './helper/Constant';
- import Switch from 'react-toggle-switch'
+const URL = myConst.HTTP_URL;
 
 class MemberView extends Component {
     constructor(props) {
         super(props);
        // console.log(props);
-        console.log(props.match.params.customerId); 
+        console.log(props.match.params.customerId);
+        this.state ={        
+          customerId:props.match.params.customerId
+        }
+        this.fetchUser(this.state.customerId);
     }
+    convertDate(data){
+      if(date!=='')
+      {
+      var date = new Date(data);
+      return((date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear());
+      }
+      return null;
+   
+    }
+    async fetchUser(customerId) {
+     
+      try{
+        let response = await fetch(URL+'customberById?customerId='+customerId, {
+          method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        
+          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          //credentials: 'same-origin', // include, *same-origin, omit
+          headers: {
+              'Content-Type': 'application/json',
+              
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+          }
+
+        })
+        
+          let data = await response.json()
+          if(data.status==200)
+          {
+            console.log(data.customer)
+            console.log(data.customer[0].firstName); 
+             this.setState({
+              DOB:data.customer[0].DOB,
+              Dependent2LastName:data.customer[0].Dependent2LastName,
+              firstName:data.customer[0].firstName,
+              LastName:data.customer[0].LastName,
+              ModBy:data.customer[0].ModBy,
+              address1:data.customer[0].address1,
+              address2:data.customer[0].address2,
+              cellPhone:data.customer[0].cellPhone,
+              city:data.customer[0].city,
+              city1:data.customer[0].city1,
+              companyName:data.customer[0].companyName,
+              dependent1DOB:data.customer[0].dependent1DOB,
+              email:data.customer[0].email,
+              groupCode:data.customer[0].groupCode,
+              created_at:data.customer[0].created_at,
+              country:data.customer[0].country,
+              companyName:data.customer[0].companyName,
+              mailing_address1:data.customer[0].mailing_address1,
+              mailing_address2:data.customer[0].mailing_address2,
+              spouseFirstName:data.customer[0].spouseFirstName,
+              zip:data.customer[0].zip,
+              zip1: data.customer[0].zip1,
+              agentFirstName:data.customer[0].agentFirstName,
+              agentLastName : data.customer[0].agentLastName ,
+             })
+          }
+         
+         
+          
+         
+    } catch(error){
+      console.log(error);
+    }
+    //end Api calling
     
+    }
     render() {
         return (
             <div style={{width: '100%'}}>
+              {console.log(this.state.LastName)}
             <div className="container">
             <div class="col-lg-12">
                 <div className="form_bg">
@@ -29,26 +100,26 @@ class MemberView extends Component {
              <form style={{color: '#757575'}}  onSubmit={this.handleSubmit2}>
                                 <div className="summary">
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Client Name</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">John Doe</span> 
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.firstName+" "+this.state.LastName}</span> 
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Client Type</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Individual</span>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"> </span>
 
                                     <div classname="clearfix"></div>
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Membership Date</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">04/26/2019</span> 
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.convertDate(this.state.created_at)}</span> 
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Renewal Date</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">05/25/2019</span>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"></span>
 
                                     <div classname="clearfix"></div>
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Agent Name</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Josh Matthews</span>  
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"><p>{this.state.agentFirstName} </p><p>{this.state.agentLastName?this.state.agentLastName:''}</p></span>  
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Payment Received</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">$1,999</span>   
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"></span>   
                                 </div>
                                 
                                 <div className="head">
@@ -63,17 +134,17 @@ class MemberView extends Component {
                                   
                                   <div className="form-row px-2 pt-3">
                                     <label htmlFor="dob" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Date of Birth</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">06/23/1983</span>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.convertDate(this.state.DOB)}</span>
 
                                     <label htmlFor="mobileno" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Primary Mobile Number</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">+91 9876543210</span>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.cellPhone}</span>
                                   </div>
                                   <div className="form-row px-2">
                                     <label htmlFor="alternatemobileno" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Alternate Mobile Number</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">+91 8080123456</span>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold"></span>
 
                                     <label htmlFor="email" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Email Address</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">abcd@gmail.com</span>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.email?this.state.email:' '}</span>
                                   </div>
 
                                   <div className="subHead pt-3 px-2">
@@ -82,10 +153,10 @@ class MemberView extends Component {
 
                                   <div className="form-row px-2 pt-3 pb-4">
                                     <label htmlFor="sname" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Spouse Name</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Joanna Doe</span>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.spouseFirstName}</span>
 
                                     <label htmlFor="dname1" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Dependant Name 1</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Max Doe</span>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold"></span>
                                   </div>
 
                                     <div className="head">
@@ -100,23 +171,23 @@ class MemberView extends Component {
 
                                     <div className="form-row px-2 pt-3">
                                       <label htmlFor="country" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Country</label>
-                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">US</span>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.country?this.state.country:' '}</span>
 
                                       <label htmlFor="caddress1" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Client Address 1</label>
-                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">vbvjlj vkj wfwj</span>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.address1}</span>
                                    </div>
 
                                    <div className="form-row px-2">
                                       <label htmlFor="caddress2" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Client Address 2</label>
-                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">vjwhwvjwhbj  jwbrnr</span>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.address2?this.state.address2:''}</span>
 
                                       <label htmlFor="city" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">City</label>
-                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Abcdefgh</span>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.city1?this.state.city1:''}</span>
                                    </div>
 
                                    <div className="form-row px-2">
                                       <label htmlFor="state" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">State</label>
-                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">vjwhwvjwhbj  jwbrnr</span>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.state1}</span>
 
                                       <label htmlFor="zip" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Zip Code</label>
                                       <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">456987</span>
@@ -131,23 +202,23 @@ class MemberView extends Component {
                                       <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">US</span>
 
                                       <label htmlFor="caddress1" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Client Address 1</label>
-                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">vbvjlj vkj wfwj</span>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.mailing_address1?this.state.mailing_address1:''}</span>
                                    </div>
 
                                    <div className="form-row px-2">
                                       <label htmlFor="caddress2" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Client Address 2</label>
-                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">vjwhwvjwhbj  jwbrnr</span>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.mailing_address2?this.state.mailing_address2:''}</span>
 
                                       <label htmlFor="city" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">City</label>
-                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Abcdefgh</span>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold"></span>
                                    </div>
 
                                    <div className="form-row px-2 pb-4">
                                       <label htmlFor="state" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">State</label>
-                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">vjwhwvjwhbj  jwbrnr</span>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.state1?this.state1:''}</span>
 
                                       <label htmlFor="zip" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Zip Code</label>
-                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">456987</span>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.zip?this.state.zip:''}</span>
                                    </div>                                    
 
                               <div className="head">
@@ -162,10 +233,10 @@ class MemberView extends Component {
 
                               <div className="form-row px-2 pt-3">
                                 <label htmlFor="plan" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Plan</label>
-                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Monthly Base Plan</span>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold"></span>
 
                                 <label htmlFor="plan" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Company, Government or Group Name</label>
-                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Bargad Software Solutions</span>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.companyName?this.state.companyName:''}</span>
                               </div>
 
                               <div className="subHead pt-3 px-2">
@@ -174,10 +245,10 @@ class MemberView extends Component {
 
                               <div className="form-row px-2 pt-3 pb-4">
                                 <label htmlFor="groupcode" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Group Code</label>
-                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">IndBar101</span>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.groupCode?this.state.groupCode:''}</span>
 
                                 <label htmlFor="groupcode" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Agent Manager</label>
-                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Paul McCarthy</span>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold"></span>
                               </div>
 
                                   <div className="head">
@@ -188,15 +259,15 @@ class MemberView extends Component {
 
                               <div className="form-row px-2 pt-3">
                                 <label htmlFor="paymenttype" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Payment Type</label>
-                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Check</span>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold"></span>
 
                                 <label htmlFor="pdate" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Payment Date</label>
-                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">04/26/2019</span>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold"></span>
                               </div>
 
                               <div className="form-row px-2 pb-3">
                                 <label htmlFor="pdate" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Mode of Payment</label>
-                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Monthly</span>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold"></span>
                               </div>
 
                               <div className="buttons text-center">
