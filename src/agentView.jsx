@@ -25,7 +25,7 @@ class agentView extends Component {
     if(date!=='')
     {
     var date = new Date(data);
-    return((date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear());
+    return((date.getMonth() + 1) + '-' + date.getDate() + '-' +  date.getFullYear());
     }
     return null;
  

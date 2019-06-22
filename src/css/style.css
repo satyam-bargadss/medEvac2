@@ -81,7 +81,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 .card .card-body h3{margin:10px 0; line-height:1rem;font-size:1rem;}
 .MuiInput-root-8{width:100%;}
 .md-form label{font-size:1rem; margin-bottom:.5rem; top:-6px !important;}
-.MuiInput-underline-12:before{border-bottom:1px solid #ced4da !important;}
+.MuiInput-underline-12:before, .MuiInput-underline-80:before{border-bottom:1px solid #ced4da !important;}
 .react-datepicker__input-container input[type="text"]{width:100%;}
 .react-datepicker-wrapper{position:relative;bottom:-5px;}
 .bs-example{width:100%;}
@@ -158,11 +158,18 @@ div.dataTables_wrapper div.dataTables_paginate{padding-bottom:0;}
 input[type="date"]{width:100%; padding-top:5px;}
 input[type="date"]+label{margin-top:14px;}
 
-.md-form label.MuiInputLabel-animated-59, .md-form label.MuiInputLabel-animated-9{transform:translateY(-14px) scale(.8);}
+.md-form label.MuiInputLabel-animated-59, .md-form label.MuiInputLabel-animated-9, .md-form label.MuiInputLabel-animated-181, .md-form label.MuiInputLabel-animated-135, .md-form label.MuiInputLabel-animated-77, .md-form label.MuiInputLabel-animated-113{transform:translateY(-14px) scale(.8);}
 .MuiInputBase-root-21{font-size:0.9rem !important; font-weight:400 !important;}
 .MuiInputBase-input-31{color:#495057 !important;}
+.MuiInput-root-76, .MuiInput-root-152, .MuiInput-root-130, .MuiInput-root-198{width:100%;}
+.MuiInput-underline-156:before, .MuiInput-underline-98:before, .MuiInput-underline-134:before, .MuiInput-underline-202:before{border-bottom:1px solid #ced4da !important;}
 .MuiSelect-select-2:focus, .MuiSelect-select-20:focus{background:none !important;}
 .navbar-absolute .navbar-brand{display:none !important;}
+.styles_modal__gNwvD{width:550px !important; height:500px; padding:0 !important;}
+.picky{width:63%; top:-8px; right:0px !important;}
+.modalBody{padding:0 20px; height:215px;}
+.modalBody textarea{min-height:90px;}
+.picky__dropdown{max-height:215px !important;}
 
 .nav-tabs{padding:0 !important;}
 .nav-tabs a{

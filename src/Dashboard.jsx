@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Switch ,NavLink,Redirect} from "react-router-dom";
 import MemberRegistrationForm from './MemberRegistrationForm';
+import AgentRegistrationForm from './AgentRegistrationForm';
+import membershipPlan from './membershipPlan';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -19,9 +21,13 @@ class Dashboard extends Component {
                 <NavLink class="btn btn-info pull-left mb-4" className="nav-link" to="/member-registration"  activeClassName=" active">
                   <span>Add Client</span>
                 </NavLink>
-                <a href="#" class="btn btn-info pull-left mb-4">Add Agent</a>
+                <NavLink class="btn btn-info pull-left mb-4" className="nav-link" to="/agent-registration"  activeClassName=" active">
+                  <span>Add Agent</span>
+                </NavLink>
                 <a href="#" class="btn btn-info pull-left mb-4">Review Commissions</a>
-                <a href="#" class="btn btn-info pull-left mb-4">See Membership Plans</a>
+                <NavLink class="btn btn-info pull-left mb-4" className="nav-link" to="/membership-plan"  activeClassName=" active">
+                  <span>See Membership Plans</span>
+                </NavLink>
               </div>
             </div>
 		</div>

@@ -223,7 +223,7 @@ class membershipPlan extends Component {
                             <div className="card-body">
                             <table border="0" cellspacing="5" cellpadding="5">
                                     <tr>
-                                        <td>Date:</td>
+                                        <td className="date">Date:</td>
                                         <td><input type="date" name="start_date" id="start_date" className="form-control" /></td>
                                         <td><input type="date" name="end_date" id="end_date" className="form-control" /></td>
                                         <td className="select">

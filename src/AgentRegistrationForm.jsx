@@ -87,7 +87,7 @@ class AgentRegistrationForm extends Component {
     }
     render() {
              console.log(this.state.isPreviewSave);
-            
+           
              console.log(this.state);
             if(this.state.isPreviewSave==false)
             {
@@ -180,7 +180,7 @@ class AgentRegistrationForm extends Component {
                                             <div className="col">
                                                 <div className="md-form">
                                                     <Select
-                                                    label='Choose Country'
+                                                    label='Choose Country *'
                                                     name="country"
 
                                                     value={this.state.country}
@@ -206,7 +206,7 @@ class AgentRegistrationForm extends Component {
                                         <div className="form-row px-2">
                                             <div className="col">
                                                 <div className="md-form">
-                                                    <MDBInput label="Billing Address 1" name="billingaddress1"  onChange={this.handleChange}  value={this.state.billingaddress1} required/>
+                                                    <MDBInput label="Billing Address 1*" name="billingaddress1"  onChange={this.handleChange}  value={this.state.billingaddress1} required/>
                                                 </div>
                                             </div>
                                             <div className="col">
@@ -253,12 +253,12 @@ class AgentRegistrationForm extends Component {
                                         <div className="form-row px-2">
                                             <div className="col">
                                                 <div className="md-form">
-                                                    <MDBInput label="Mailing Address 1" name="maddress1"  onChange={this.handleChange} value={this.state.maddress1} required/>
+                                                    <MDBInput label="Mailing Address 1*" name="maddress1"  onChange={this.handleChange} value={this.state.maddress1} required/>
                                                 </div>
                                             </div>
                                             <div className="col">
                                                 <div className="md-form">
-                                                    <MDBInput label="Mailing Address 2 (Optional)" name="maddress2"  onChange={this.handleChange} value={this.state.maddress2} required/>
+                                                    <MDBInput label="Mailing Address 2 (Optional)" name="maddress2"  onChange={this.handleChange} value={this.state.maddress2}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -299,7 +299,7 @@ class AgentRegistrationForm extends Component {
                                             <div className="col">
                                                 <div className="md-form">
                                                     <Select
-                                                    label='Choose Country'
+                                                    label='Choose Payment Method'
                                                     name="paymentMethod"
                                                     value={this.state.paymentMethod}
                                                     onChange={this.handleChange}

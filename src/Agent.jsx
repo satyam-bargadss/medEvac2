@@ -7,18 +7,23 @@ import Switch from 'react-toggle-switch';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Modal from 'react-responsive-modal';
+import Picky from 'react-picky';
+import 'react-picky/dist/picky.css';
 
 import { HashRouter as Router, Route ,NavLink,Link} from "react-router-dom";
+import { array } from 'prop-types';
 const URL = myConst.HTTP_URL;
+
 class Agent extends Component {
     constructor(props) {
         super(props);
         console.log(props);
+        this.handleSelectedManager = this.handleSelectedManager.bind(this);
         //console.log(this.props.location.state.message)
         this.state = {
           switched: false,
            open:false,
-          
+           manager:[],
             columns: [
               {
                 label: 'Agent ID',
@@ -59,12 +64,84 @@ class Agent extends Component {
         
       }
     }
-    onOpenModal = () => {
+    onOpenModal = (agentId,agentFirstName,agentLastname) => {
+       console.log(agentFirstName);
+        console.log(agentLastname);
       this.setState({ open: true });
-    };
+      this.setState({
+            agentId:agentId,
+            firstName:agentFirstName,
+            lastName:agentLastname
+      },()=>{
+        console.log(agentId)
+       return this.getAgentForManager(this.state.agentId);
+      })
+      
+    }
+    
     onCloseModal = () => {
       this.setState({ open: false });
     };
+    async  getAgentForManager(currentAgentId) {
+      
+        
+      //return false
+    
+      try{
+       let response = await fetch(URL+'agent-for-manager?agentId='+currentAgentId, {
+           method: 'GET', // *GET, POST, PUT, DELETE, etc.
+       
+           cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+           //credentials: 'same-origin', // include, *same-origin, omit
+           headers: {
+                   'Content-Type': 'application/json',
+                   
+                   // 'Content-Type': 'application/x-www-form-urlencoded',
+           }
+           //redirect: 'follow', // manual, *follow, error
+           //referrer: 'no-referrer', // no-referrer, *client
+         // body data type must match "Content-Type" header
+       })
+       let data = await response.json()
+
+       //console.log(data);
+   if(data.status ==200)
+   {
+     console.log(data.agentManager);
+    await  this.setState({agentManager: data.agentManager})
+    /* for (var i = 1; i <= 1000; i++) {
+      bigList.push({ id: i, name: `Item ${i}` });
+    } */
+    /*  
+   await this.state.agentManager.map((row)=>{
+      console.log(row.agentId);
+      var newArray = [];    
+      newArray.push({id:row.agentId, name:row.firstName + ' '+row.lastName})
+      console.log(newArray);
+      this.setState({
+        manager:newArray 
+     })
+     })
+     */
+    var newArray = [];    
+    for(let i=0;i<this.state.agentManager.length;i++)
+    {
+      console.log(this.state.agentManager[i].agentId);
+      newArray.push({id:this.state.agentManager[i].agentId, name:this.state.agentManager[i].firstName + ' '+this.state.agentManager[i].lastName})
+     
+    }
+    console.log(newArray);
+   
+    this.setState({ manager: newArray });
+    //this.setState(preState=>{})
+    // console.log(this.state.manager);
+   }
+}
+catch(error){
+   console.log(error);
+ }
+ 
+    } 
     async fetchAgents(username,assa,aasss) {
      
       try{
@@ -94,7 +171,7 @@ class Agent extends Component {
           // console.log('hi');
            const newrows =  this.state.rows.map((row) => {
 
-            return {...row, view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><img src={require('./css/img/view.png')} /></Link><Link data-toggle="tooltip" title="Add Manager" onClick={this.onOpenModal}><i className="material-icons">add_circle</i></Link></React.Fragment>};
+            return {...row, view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.firstName,row.lastName)}><i className="material-icons">add_circle</i></a></React.Fragment>};
         });
         this.setState({rows: newrows });
     } catch(error){
@@ -103,6 +180,7 @@ class Agent extends Component {
     //end Api calling
     
     }
+    
     componentDidMount(){
      
            const agents= this.fetchAgents();
@@ -111,8 +189,61 @@ class Agent extends Component {
           
           }
     
-     
-   
+     selectMultipleOption = (value) => {
+            console.count('onChange')
+            console.log("Val", value);
+            this.setState(()=>
+            ({ selectedManager: value }));
+            console.log(this.state.selectedManager)
+        }
+        
+      async handleSelectedManager(event)
+      {
+        event.preventDefault();
+        await console.log(this.state.selectedManager);
+        //submit data
+        const managerData = {
+          currentAgent: this.state.agentId,
+          selectetedmanager:this.state.selectedManager
+        }
+        try{
+          let response = await fetch(URL+'insert-agent-manager', {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            //credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+                'Content-Type': 'application/json',
+                
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            //redirect: 'follow', // manual, *follow, error
+            //referrer: 'no-referrer', // no-referrer, *client
+            body: JSON.stringify(managerData), // body data type must match "Content-Type" header
+          })
+          
+            let data = await response.json()
+          
+            //console.log(data.status);
+            this.setState({
+              status: data.status 
+            });
+            if(data.status == 200){
+              // console.log('redirect in admin dashboard');
+               //console.log(data) ;
+               
+               this.setState({
+                 redirect:true,
+                 isadminLogin:true
+               })
+              }
+            }
+            catch(error){
+              console.log(error);
+            }
+      }
+      
+      
     render() {
    
    
@@ -205,18 +336,37 @@ class Agent extends Component {
                   </div>
                 </div>
             </div>
-            <Modal open={open} onClose={this.onCloseModal} center>
+            <Modal  open={open} onClose={this.onCloseModal} center>
               <div className="header_part">
                 <h2>Add Agent Manager</h2>
               </div>
               <div className="modalBody pt-3">
-                <label htmlFor="agentname" className="col-sm-4 col-md-4 col-lg-4">Agent Name</label>
-                <span className="col-sm-8 col-md-8 col-lg-8">Paul McCarthy</span>
-
-                <label htmlFor="selectmanager" className="col-sm-4 col-md-4 col-lg-4">Select Manager</label>
-                <span className="col-sm-8 col-md-8 col-lg-8">
-
-                </span>
+                <label htmlFor="agentname" className="col-sm-4 col-md-4 col-lg-4 pull-left">Agent Name</label>
+                <div className="col-sm-8 col-md-8 col-lg-8 pull-left">{this.state.firstName + ' '+this.state.lastName} </div>
+                <div className="clearfix"></div><br/>
+                <form onSubmit={this.handleSelectedManager}>  
+                <label htmlFor="selectmanager" className="col-sm-4 col-md-4 col-lg-4 pull-left">Select Manager</label>
+                <div className="col-sm-8 col-md-8 col-lg-8 pull-left">
+                  <Picky
+                    
+                    options={this.state.manager}
+                    value={this.state.selectedManager}
+                    multiple={true}
+                    open={true}
+                    onChange={this.selectMultipleOption}
+                    labelKey="name"
+                    multiple={true}
+                    valueKey="id"
+                    includeSelectAll={true}
+                   includeFilter={true}
+                   dropdownHeight={600}
+                  />
+                </div>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <div className="buttons text-center">
+                    <button className="btn btn-rounded my-4 waves-effect">Submit</button>
+                </div>
+                 </form>
               </div>
             </Modal>
 

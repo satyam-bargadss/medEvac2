@@ -16,6 +16,10 @@ class MemberRegistrationForm extends Component {
     constructor(props) {
         super(props);
         console.log(props) ;
+      
+            //this.getManagerByIdName(this.state.selectedAgentId);
+        
+      
         this.state = {
             key: 2,
             isPreviewSave: false
@@ -29,7 +33,8 @@ class MemberRegistrationForm extends Component {
          type:'',
          plan:'',
          amount:'',
-         fees:''
+         fees:'',
+         selectedManagerId:''
        };
        this.handleChange = this.handleChange.bind(this);
        this.handleSubmit2 = this.handleSubmit2.bind(this);
@@ -38,7 +43,169 @@ class MemberRegistrationForm extends Component {
        this.handleSubmit = this.handleSubmit.bind(this);
       this.getUsedrByIdName();
     }
+    
+    
+      
+        
+        //return false
+        onChangeAgentHandler =(e)=>{
+            this.setState({
+                [e.target.name]: e.target.value},()=>{
+                    console.log(this.state.selectedAgentId)
+                    return this.getManagerByIdName(this.state.selectedAgentId);
+                  })
+        }
+        onChangeMemberPlanHandler =(e)=>{
+            this.setState({
+                [e.target.name]: e.target.value},()=>{
+                    console.log(this.state.plan)
+                    return this.getPlanDetailId(this.state.plan);
+                    //getManagerByIdName
+                  })
+        }
 
+        //get Plan Detail
+        async getPlanDetailId(currentPlanId) {
+      
+        
+            //return false
+          
+            try{
+             let response = await fetch(URL+'get-plan-detail?currentPlanId='+currentPlanId, {
+                 method: 'GET', // *GET, POST, PUT, DELETE, etc.
+             
+                 cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                 //credentials: 'same-origin', // include, *same-origin, omit
+                 headers: {
+                         'Content-Type': 'application/json',
+                         
+                         // 'Content-Type': 'application/x-www-form-urlencoded',
+                 }
+                 //redirect: 'follow', // manual, *follow, error
+                 //referrer: 'no-referrer', // no-referrer, *client
+               // body data type must match "Content-Type" header
+             })
+             let data = await response.json()
+      
+             console.log(data);
+         if(data.status ==200)
+         {
+           
+          await  this.setState({plan_detail: data.plan_detail});
+          this.setState({fees: data.plan_detail[0].fee});
+          this.setState({frequency: data.plan_detail[0].frequency});
+          this.setState({initiationFee: data.plan_detail[0].initiatonFee});
+          console.log(this.state.plan_detail);
+          /*
+          var newArray = [];    
+          for(let i=0;i<this.state.agentManager.length;i++)
+          {
+            console.log(this.state.agentManager[i].agentId);
+            newArray.push({id:this.state.agentManager[i].agentId, name:this.state.agentManager[i].firstName + ' '+this.state.agentManager[i].lastName})
+           
+          }
+          console.log(newArray);
+         
+          this.setState({ manager: newArray });
+          //this.setState(preState=>{})
+          // console.log(this.state.manager);
+            */
+         }
+       
+      }
+      catch(error){
+         console.log(error);
+       }
+       
+          
+      } 
+        //end Get Plan Detail
+        async getManagerByIdName(currentAgentId) {
+      
+        
+            //return false
+          
+            try{
+             let response = await fetch(URL+'manager-by-agent?currentAgent='+currentAgentId, {
+                 method: 'GET', // *GET, POST, PUT, DELETE, etc.
+             
+                 cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                 //credentials: 'same-origin', // include, *same-origin, omit
+                 headers: {
+                         'Content-Type': 'application/json',
+                         
+                         // 'Content-Type': 'application/x-www-form-urlencoded',
+                 }
+                 //redirect: 'follow', // manual, *follow, error
+                 //referrer: 'no-referrer', // no-referrer, *client
+               // body data type must match "Content-Type" header
+             })
+             let data = await response.json()
+      
+             //console.log(data);
+         if(data.status ==200)
+         {
+           
+          await  this.setState({agentManager: data.agentManager});
+          console.log(this.state.agentManager);
+          /*
+          var newArray = [];    
+          for(let i=0;i<this.state.agentManager.length;i++)
+          {
+            console.log(this.state.agentManager[i].agentId);
+            newArray.push({id:this.state.agentManager[i].agentId, name:this.state.agentManager[i].firstName + ' '+this.state.agentManager[i].lastName})
+           
+          }
+          console.log(newArray);
+         
+          this.setState({ manager: newArray });
+          //this.setState(preState=>{})
+          // console.log(this.state.manager);
+            */
+         }
+       
+      }
+      catch(error){
+         console.log(error);
+       }
+       
+          
+      } 
+      async  getPlanByIdName() {
+      
+        
+        //return false
+        
+        try{
+         let response = await fetch(URL+'get-plan', {
+             method: 'GET', // *GET, POST, PUT, DELETE, etc.
+         
+             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+             //credentials: 'same-origin', // include, *same-origin, omit
+             headers: {
+                     'Content-Type': 'application/json',
+                     
+                     // 'Content-Type': 'application/x-www-form-urlencoded',
+             }
+             //redirect: 'follow', // manual, *follow, error
+             //referrer: 'no-referrer', // no-referrer, *client
+           // body data type must match "Content-Type" header
+         })
+         let data = await response.json()
+ 
+         console.log(data.planDetails);
+     if(data.status ==200)
+     {
+       console.log(data.planDetails);
+       this.setState({planOption: data.planDetails})
+       
+        console.log(this.state.planOption);
+     }
+ }
+ catch(error){
+     console.log(error);
+   }
+      } 
     async  getUsedrByIdName() {
       
         
@@ -236,6 +403,9 @@ catch(error){
         this.setState({
             country: 'USA',
         })
+         this.getManagerByIdName(this.state.selectedAgentId);
+         this.getManagerByIdName();
+         this.getPlanByIdName();
         let dependentField =() =>{
             var dependentFields = [];
             for(let i=1; i<this.state.addDependentByOne; i++)
@@ -440,8 +610,8 @@ catch(error){
                                           <div className="md-form">
                                             <InputLabel htmlFor="country">Country* </InputLabel>
                                               <Select id="country"
-                                              value={this.state.country}                                               
-                                              name="country"
+                                              value={this.state.country1}                                               
+                                              name="country1"
                                               onChange={this.handleChange} 
                                               placeholder='US' 
                                               required                               
@@ -590,17 +760,14 @@ catch(error){
                                                  
                                                   value={this.state.plan}
                                                   name='plan'
-                                                  onChange={this.handleChange}    
+                                                  onChange={this. onChangeMemberPlanHandler}    
                                                   inputProps={{
                                                     id: 'plan-required',
                                                   }}           
                                                   >
-                                                  <MenuItem value={'$1000'}>Annual Base Plan</MenuItem>
-                                                  <MenuItem value={'$2000'}>Monthly Base Plan</MenuItem>
-                                                  <MenuItem value={'$3000'}>Annual Premium Plan</MenuItem>
-                                                  <MenuItem value={'$4000'}>Monthly Premium Plan</MenuItem>
-                                                  <MenuItem value={'$5000'}>Annual International Plan</MenuItem>
-                                                  <MenuItem value={'$6000'}>Monthly International Plan</MenuItem>
+                                                 
+                                                  {this.state.planOption? this.state.planOption.map((row2) => <MenuItem key={row2.planId} value={row2.planId}>{row2.planName}</MenuItem>) :''}
+                                                 
                                               </Select>
                                           </div>
                                       </div>
@@ -609,11 +776,23 @@ catch(error){
                                               <MDBInput autoComplete="off" readOnly value={this.state.fees}   label="Membership Fees" name="fees"/>
                                           </div>
                                       </div>
-                                  </div>
+                                      </div>
+                                      <div className="form-row px-2">
+                                      <div className="col">
+                                          <div className="md-form">  
+                                              <MDBInput autoComplete="off" readOnly value={this.state.frequency}   label="Frequency " name="frequency"/>
+                                          </div>
+                                      </div>
+                                      <div className="col">
+                                          <div className="md-form">  
+                                              <MDBInput autoComplete="off" readOnly value={this.state.initiationFee}   label="Initiation Fees" name="initiationFee"/>
+                                          </div>
+                                      </div>
+                                      </div>
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                          <InputLabel htmlFor="age-simple">Plan Type*</InputLabel>
+                                          <InputLabel htmlFor="age-simple">Client Type*</InputLabel>
                                               <Select
                                                   id="plantype"
                                                   value={this.state.type}
@@ -621,11 +800,11 @@ catch(error){
                                                   name='type'  
                                                   required                                             
                                                   >
-                                                  <MenuItem value="US" selected>
+                                                  <MenuItem value="Individual" selected>
                                                       <em>Individual</em>
                                                   </MenuItem>
-                                                  <MenuItem value={10}>Corporate</MenuItem>
-                                                  <MenuItem value={20}>Government</MenuItem>
+                                                  <MenuItem value="Corporate">Corporate</MenuItem>
+                                                  <MenuItem value="Government">Government</MenuItem>
                                               </Select>             
                                           </div>
                                       </div>
@@ -650,7 +829,7 @@ catch(error){
                                                     name="selectedAgentId"
                                                     value={this.state.selectedAgentId}
                                                    
-                                                    onChange={this.handleChange}
+                                                    onChange={this.onChangeAgentHandler}
                                                     >
                                                          <Option value='' disabled selected>Please Select</Option>
                                                          {this.state.options.map((row1) => <Option key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</Option>)}                                         
@@ -670,9 +849,10 @@ catch(error){
                                                    
                                                     onChange={this.handleChange}
                                                     >
-                                                         <Option value='' disabled selected>Please Select</Option>
-                                                         {this.state.options.map((row1) => <Option key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</Option>)}                                         
+                                                       {this.state.agentManager? this.state.agentManager.map((row2) => <Option key={row2.agentId} value={row2.agentId}>{row2.firstName+" "+row2.lastName}</Option>) :''}
+                                                                                               
                                                     </Select2>
+                                                    {console.log(this.state.agentManager)}
                                           </div>
                                       </div>
                                       <div className="col">
@@ -845,7 +1025,35 @@ catch(error){
                                       <h4><strong>Mailing Address</strong></h4>
                                   </div>
                                   <br/>
-
+                                  <div className="form-row px-2">
+                                      <div className="col">
+                                          <div className="md-form">
+                                            <InputLabel htmlFor="country">Country* </InputLabel>
+                                              <Select id="country"
+                                              value={this.state.country1}                                               
+                                              name="country1"
+                                              onChange={this.handleChange} 
+                                              placeholder='US' 
+                                              required                               
+                                              >
+                                                  <MenuItem value="US" >
+                                                      US
+                                                  </MenuItem>
+                                                  <MenuItem value={'Bahamas'}>Bahamas</MenuItem>
+                                                  <MenuItem value={'Barbados'}>Barbados</MenuItem>
+                                                  <MenuItem value={'Jamaica'}>Jamaica</MenuItem>
+                                                  <MenuItem value={'Antigua'}>Antigua</MenuItem>
+                                                  <MenuItem value={'TrinidadandTobago'}>Trinidad and Tobago</MenuItem>
+                                                  <MenuItem value={'Dominicanrepublic'}>Dominican Republic</MenuItem>
+                                              </Select>
+                                          </div>
+                                      </div>
+                                      <div className="col">
+                                          <div className="md-form">
+                                              &nbsp;
+                                          </div>
+                                      </div>
+                                  </div>
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
@@ -965,39 +1173,46 @@ catch(error){
                               </div>
                               <br/>
 
-                                  <div className="form-row px-2">
+                              <div className="form-row px-2">
                                       <div className="col">
-                                          <div className="md-form">
-                                              {/*<MDBInput label="Group Code*" name='planid'onChange={this.handleChange} required/>*/}         
+                                          <div className="md-form">        
                                               <InputLabel htmlFor="age-simple">Plan* </InputLabel>
                                               <Select
                                                  
-                                                 value={this.state.plan}
-                                                 name='plan'
-                                                 onChange={this.handleChange}    
-                                                 inputProps={{
-                                                   id: 'plan-required',
-                                                 }}           
-                                                 >
-                                                 <MenuItem value={'$1000'}>Annual Base Plan</MenuItem>
-                                                 <MenuItem value={'$2000'}>Monthly Base Plan</MenuItem>
-                                                 <MenuItem value={'$3000'}>Annual Premium Plan</MenuItem>
-                                                 <MenuItem value={'$4000'}>Monthly Premium Plan</MenuItem>
-                                                 <MenuItem value={'$5000'}>Annual International Plan</MenuItem>
-                                                 <MenuItem value={'$6000'}>Monthly International Plan</MenuItem>
-                                             </Select>
+                                                  value={this.state.plan}
+                                                  name='plan'
+                                                  onChange={this. onChangeMemberPlanHandler}    
+                                                  inputProps={{
+                                                    id: 'plan-required',
+                                                  }}           
+                                                  >
+                                                 
+                                                  {this.state.planOption? this.state.planOption.map((row2) => <MenuItem key={row2.planId} value={row2.planId}>{row2.planName}</MenuItem>) :''}
+                                                 
+                                              </Select>
                                           </div>
                                       </div>
                                       <div className="col">
-                                          <div className="md-form">
-                                          <MDBInput autoComplete="off" readOnly value={this.state.fees}   label="Membership Fees" name="fees"/>
+                                          <div className="md-form">  
+                                              <MDBInput autoComplete="off" readOnly value={this.state.fees}   label="Membership Fees" name="fees"/>
                                           </div>
                                       </div>
+                                      <div className="col">
+                                          <div className="md-form">  
+                                              <MDBInput autoComplete="off" readOnly value={this.state.frequency}   label="Membership Fees" name="frequency"/>
+                                          </div>
+                                      </div>
+                                      <div className="col">
+                                          <div className="md-form">  
+                                              <MDBInput autoComplete="off" readOnly value={this.state.installationFee}   label="Membership Fees" name="frequency"/>
+                                          </div>
+                                      </div>
+
                                   </div>
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                          <InputLabel htmlFor="age-simple">Plan Type*</InputLabel>
+                                          <InputLabel htmlFor="age-simple">Client Type*</InputLabel>
                                               <Select
                                                   id="plantype"
                                                   value={this.state.type}
@@ -1005,11 +1220,11 @@ catch(error){
                                                   name='type'  
                                                   required                                             
                                                   >
-                                                  <MenuItem value="us">
+                                                  <MenuItem value="Individual" selected>
                                                       <em>Individual</em>
                                                   </MenuItem>
-                                                  <MenuItem value={10}>Corporate</MenuItem>
-                                                  <MenuItem value={20}>Government</MenuItem>
+                                                  <MenuItem value="Corporate">Corporate</MenuItem>
+                                                  <MenuItem value="Government">Government</MenuItem>
                                               </Select>             
                                           </div>
                                       </div>
@@ -1034,7 +1249,79 @@ catch(error){
                                                     name="selectedAgentId"
                                                     value={this.state.selectedAgentId}
                                                    
+                                                    onChange={this.onChangeAgentHandler}
+                                                    >
+                                                         <Option value='' disabled selected>Please Select</Option>
+                                                         {this.state.options.map((row1) => <Option key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</Option>)}                                         
+                                                    </Select2>
+                                                   
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div className="form-row px-2">
+                                      <div className="col">
+                                          <div className="md-form">
+                                          <Select2
+                                                    label='Select Manager'
+                                                    name="selectedManagerId"
+                                                    value={this.state.selectedManagerId}
+                                                   
                                                     onChange={this.handleChange}
+                                                    >
+                                                       {this.state.agentManager? this.state.agentManager.map((row2) => <Option key={row2.agentId} value={row2.agentId}>{row2.firstName+" "+row2.lastName}</Option>) :''}
+                                                                                               
+                                                    </Select2>
+                                                    {console.log(this.state.agentManager)}
+                                          </div>
+                                      </div>
+                                      <div className="col">
+                                          <div className="md-form">
+                                              &nbsp;
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div className="form-row px-2">
+                                      <div className="col">
+                                          <div className="md-form">
+                                          <InputLabel htmlFor="age-simple">Client Type*</InputLabel>
+                                              <Select
+                                                  id="plantype"
+                                                  value={this.state.type}
+                                                  onChange={this.handleChange}
+                                                  name='type'  
+                                                  required                                             
+                                                  >
+                                                  <MenuItem value="Individual">
+                                                      <em>Individual</em>
+                                                  </MenuItem>
+                                                  <MenuItem value='Corporate'>Corporate</MenuItem>
+                                                  <MenuItem value='Government'>Government</MenuItem>
+                                              </Select>             
+                                          </div>
+                                      </div>
+                                      <div className="col">
+                                          <div className="md-form">
+                                              <MDBInput autoComplete="off"  label="Company, Government or Group Name" name="companyname" value={this.state.companyname} onChange={e => this.handleChange(e)}/>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div className="form-row px-2">
+                                      <div className="col">
+                                          <div className="md-form">
+                                              <MDBInput  autoComplete="off" label="Group Code*" name='planid'onChange={this.handleChange} required/>
+                                          </div>
+                                      </div>
+                                      <div className="col">
+                                          <div className="md-form">
+                                              {/*<MDBInput autoComplete="off"  label="Writing Agent*" name="writingagent" value ={this.state.writingagent} onChange={this.handleChange} required/>*/}
+                                              <Select2
+                                                    label='Select Agent'
+                                                    name="selectedAgentId"
+                                                    value={this.state.selectedAgentId}
+                                                   
+                                                    onChange={this.onChangeAgentHandler}
                                                     >
                                                          <Option value='' disabled selected>Please Select</Option>
                                                          {this.state.options.map((row1) => <Option key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</Option>)}                                         
@@ -1053,9 +1340,11 @@ catch(error){
                                                    
                                                     onChange={this.handleChange}
                                                     >
-                                                         <Option value='' disabled selected>Please Select</Option>
-                                                         {this.state.options.map((row1) => <Option key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</Option>)}                                         
+                                                       
+                                                         {this.state.agentManager.map((row2) => <Option key={row2.agentId} value={row2.agentId}>{row2.firstName+" "+row2.lastName}</Option>)}                                         
                                                     </Select2>
+                                                    {console.log(this.state.agentManager)}
+                                                   
                                           </div>
                                       </div>
                                       <div className="col">

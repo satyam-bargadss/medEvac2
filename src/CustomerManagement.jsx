@@ -4,6 +4,7 @@ import { HashRouter as Router, Route
 import { MDBDataTable } from 'mdbreact';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import Modal from 'react-responsive-modal';
 import  './css/material-dashboard.css';
 import * as myConst from './helper/Constant';
 import Switch from 'react-toggle-switch'
@@ -15,6 +16,7 @@ constructor(props) {
  
   this.state = {
     switched: false,
+    open:false,
     numberOfcustomers:'',
     activeUsers:'',
     inActiveUsers:'',
@@ -64,6 +66,18 @@ constructor(props) {
     ]
   };
 }
+
+onOpenModal = () => {
+  
+ this.setState({ open: true });
+ 
+  
+
+ 
+}
+onCloseModal = () => {
+  this.setState({ open: false });
+};
 /*
 toggleSwitch = () => {
   this.setState(prevState => {
@@ -100,9 +114,11 @@ async fetchUser(username,assa,aasss) {
         internationalCustomber:data.internationalCustomber,
         totalCustomers:data.totalCustomers
       }))
+     
+     // console.log('hi');
       const newrows =  this.state.rows.map((row) => {
 
-        return {...row, action: <Link to={`/MemberView/${row.customerId}`}><img src={require('./css/img/view.png')} /></Link>};
+        return {...row, action: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/MemberView/${row.customerId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Claim" onClick={() => this.onOpenModal(row.agentId,row.firstName,row.lastName)}><i className="material-icons">monetization_on</i></a></React.Fragment>};
     });
     this.setState({rows: newrows });   
      
@@ -130,6 +146,7 @@ componentDidMount(){
           columns: this.state.columns,
            rows:this.state.rows
          }
+         const { open } = this.state;
         return (
            
      
@@ -218,6 +235,33 @@ componentDidMount(){
             </div>
         </div>
         {console.log(this.state.data)}
+
+        <Modal className="modal" open={open} onClose={this.onCloseModal} center>
+              <div className="header_part">
+                <h2>Client Claim</h2>
+              </div>
+              <div className="modalBody pt-3">
+                <label htmlFor="date-time" className="col-sm-4 col-md-4 col-lg-4 pull-left">Date & Time</label>
+                <div className="col-sm-8 col-md-8 col-lg-8 pull-left">06/22/2019 10:41AM</div>
+                <div className="clearfix"></div>
+                <label htmlFor="date-time" className="col-sm-4 col-md-4 col-lg-4 pull-left">Member ID</label>
+                <div className="col-sm-8 col-md-8 col-lg-8 pull-left">INDBAR001</div>
+                <div className="clearfix"></div>
+                <label htmlFor="date-time" className="col-sm-4 col-md-4 col-lg-4 pull-left">Member Name</label>
+                <div className="col-sm-8 col-md-8 col-lg-8 pull-left">Satyam Singh</div>
+                <div className="clearfix"></div>
+                <form onSubmit={this.handleSelectedManager}>  
+                <label htmlFor="message" className="col-sm-4 col-md-4 col-lg-4 pull-left">Write Your Message</label>
+                <div className="col-sm-8 col-md-8 col-lg-8 pull-left">
+                  <textarea placeholder="Write your message here" name="message" className="form-control"></textarea>
+                </div>
+                <div className="clearfix"></div><br/><br/>
+                <div className="buttons text-center">
+                    <button className="btn btn-rounded my-4 waves-effect">Submit</button>
+                </div>
+                 </form>
+              </div>
+        </Modal>
       </div>
         );
     }

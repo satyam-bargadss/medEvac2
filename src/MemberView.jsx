@@ -136,11 +136,11 @@ class MemberView extends Component {
                                     <label htmlFor="dob" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Date of Birth</label>
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.convertDate(this.state.DOB)}</span>
 
-                                    <label htmlFor="mobileno" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Primary Mobile Number</label>
+                                    <label htmlFor="mobileno" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Primary Phone Number</label>
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.cellPhone}</span>
                                   </div>
                                   <div className="form-row px-2">
-                                    <label htmlFor="alternatemobileno" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Alternate Mobile Number</label>
+                                    <label htmlFor="alternatemobileno" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Alternate Phone Number</label>
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold"></span>
 
                                     <label htmlFor="email" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Email Address</label>
