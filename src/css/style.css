@@ -165,9 +165,9 @@ input[type="date"]+label{margin-top:14px;}
 .MuiInput-underline-156:before, .MuiInput-underline-98:before, .MuiInput-underline-134:before, .MuiInput-underline-202:before{border-bottom:1px solid #ced4da !important;}
 .MuiSelect-select-2:focus, .MuiSelect-select-20:focus{background:none !important;}
 .navbar-absolute .navbar-brand{display:none !important;}
-.styles_modal__gNwvD{width:550px !important; height:500px; padding:0 !important;}
+.styles_modal__gNwvD{width:550px !important; height:auto; min-height:402px; padding:0 !important;}
 .picky{width:63%; top:-8px; right:0px !important;}
-.modalBody{padding:0 20px; height:215px;}
+.modalBody{padding:0 20px; height:auto;}
 .modalBody textarea{min-height:90px;}
 .picky__dropdown{max-height:215px !important;}
 

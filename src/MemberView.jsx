@@ -26,6 +26,11 @@ class MemberView extends Component {
       return null;
    
     }
+    redirect = () => {
+    
+        this.setState({redirect:true})
+      return this.state.redirect;
+    }
     async fetchUser(customerId) {
      
       try{
@@ -48,6 +53,13 @@ class MemberView extends Component {
             console.log(data.customer)
             console.log(data.customer[0].firstName); 
              this.setState({
+              frequency:data.customer[0].frequency,
+              fee:data.customer[0].fee,
+              familyFee:data.customer[0].familyFee,
+              planName:data.customer[0].planName,
+              country1:data.customer[0].country1,
+              type:data.customer[0].clientType,
+              mobile2:data.customer[0].mobile2,
               DOB:data.customer[0].DOB,
               Dependent2LastName:data.customer[0].Dependent2LastName,
               firstName:data.customer[0].firstName,
@@ -86,7 +98,9 @@ class MemberView extends Component {
     }
     render() {
         return (
+          
             <div style={{width: '100%'}}>
+               {this.state.redirect?<Redirect to='/customer-management'/>:''}
               {console.log(this.state.LastName)}
             <div className="container">
             <div class="col-lg-12">
@@ -103,9 +117,20 @@ class MemberView extends Component {
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.firstName+" "+this.state.LastName}</span> 
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Client Type</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"> </span>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{ this.state.type?this.state.type:'' }</span>
 
                                     <div classname="clearfix"></div>
+
+                                    <label htmlFor="membershipplan" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Membership Plan</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"> {this.state.planName?this.state.planName:''}</span>
+
+                                    <label htmlFor="fees" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Membership Fees</label>
+                                    {this.state.type=='family'?<span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.familyFee?this.state.familyFee:''}
+                                    </span>:<span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.fee?this.state.fee:''}
+                                    </span>}
+                                    
+
+                                    <div className="clearfix"></div>
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Membership Date</label>
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.convertDate(this.state.created_at)}</span> 
@@ -141,7 +166,7 @@ class MemberView extends Component {
                                   </div>
                                   <div className="form-row px-2">
                                     <label htmlFor="alternatemobileno" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Alternate Phone Number</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold"></span>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.mobile2?this.state.mobile2:''}</span>
 
                                     <label htmlFor="email" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Email Address</label>
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.email?this.state.email:' '}</span>
@@ -271,7 +296,7 @@ class MemberView extends Component {
                               </div>
 
                               <div className="buttons text-center">
-                                  <button className="btn btn-rounded my-4 waves-effect">Close</button>
+                                  <button className="btn btn-rounded my-4 waves-effect" onClick={this.redirect}>Close</button>
                               </div>    
                           </form>
 

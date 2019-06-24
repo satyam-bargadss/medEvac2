@@ -196,7 +196,7 @@ class AdminDashboard extends Component {
               <Route path="/plans" component={plans} exact strict/>
               <Route path="/user" component='' exact strict/>
               <Route path="/thanks" component={Thanks} exact strict/>
-              <Route path="/MemberView/:customerId" component={MemberView} exact strict/>
+              <Route path="/MemberView/:customerId" component={MemberView} replace exact strict/>
               <Route path="/report" component={report} exact strict/>
               <Route path="/agentview/:agentId" component={agentview} exact strict/>
               <Route path="/agentcomm-report" component={AgentCommReport} exact strict/>

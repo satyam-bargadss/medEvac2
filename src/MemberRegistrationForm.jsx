@@ -59,19 +59,20 @@ class MemberRegistrationForm extends Component {
             this.setState({
                 [e.target.name]: e.target.value},()=>{
                     console.log(this.state.plan)
-                    return this.getPlanDetailId(this.state.plan);
+                    console.log(this.state.type);
+                    return this.getPlanDetailId(this.state.plan,this.state.type);
                     //getManagerByIdName
                   })
         }
 
         //get Plan Detail
-        async getPlanDetailId(currentPlanId) {
+        async getPlanDetailId(currentPlanId,currentclientType) {
       
         
             //return false
           
             try{
-             let response = await fetch(URL+'get-plan-detail?currentPlanId='+currentPlanId, {
+             let response = await fetch(URL+'get-plan-detail?currentPlanId='+currentPlanId+'&clientType='+currentclientType, {
                  method: 'GET', // *GET, POST, PUT, DELETE, etc.
              
                  cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -92,7 +93,14 @@ class MemberRegistrationForm extends Component {
          {
            
           await  this.setState({plan_detail: data.plan_detail});
-          this.setState({fees: data.plan_detail[0].fee});
+          if(this.state.plan_detail[0].familyFee)
+          {
+            this.setState({fees: data.plan_detail[0].familyFee});
+          }
+          else{
+            this.setState({fees: data.plan_detail[0].fee});
+          }
+         
           this.setState({frequency: data.plan_detail[0].frequency});
           this.setState({initiationFee: data.plan_detail[0].initiatonFee});
           console.log(this.state.plan_detail);
@@ -331,38 +339,7 @@ catch(error){
                 isPreviewSave:true
             }))  
               
-               /*
-               console.log(this.state);
-               //return false
-               
-               try{
-                let response = await fetch(URL+'customber', {
-                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                
-                    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                    //credentials: 'same-origin', // include, *same-origin, omit
-                    headers: {
-                            'Content-Type': 'application/json',
-                            
-                            // 'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    //redirect: 'follow', // manual, *follow, error
-                    //referrer: 'no-referrer', // no-referrer, *client
-                    body: JSON.stringify(this.state), // body data type must match "Content-Type" header
-                })
-                let data = await response.json()
-
-                console.log(data);
-            console.log(this.state);
-            console.log('hi');
-           // return false;
-            //this.handleTab(6);
-           
-        }
-        catch(error){
-            console.log(error);
-          }
-           */
+        
            }
          async  handleSubmit2(event) {
              event.preventDefault();
@@ -683,7 +660,7 @@ catch(error){
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Spouse Name" name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} />
+                                              <MDBInput autoComplete="off"  label="Spouse Name" required={ this.state.type =='Family' ?'required':''} name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} />
                                           </div>
                                       </div>
                                       <div className="col">
@@ -691,6 +668,7 @@ catch(error){
                                               <input type="date" name="spouseDateOfBirth"
                                                       value={this.state.spouseDateOfBirth}    
                                                       onChange={this.handleChange}
+                                                      required={ this.state.type =='Family' ?'required':''}
                                                  />
                                               <label htmlFor="spouseDateOfBirth">Spouse Date Of Birth</label>
                                           </div>
@@ -752,6 +730,33 @@ catch(error){
                                   </div>
                               </div>
                                 <br/>
+                                <div className="form-row px-2">
+                                      <div className="col">
+                                          <div className="md-form">
+                                          <InputLabel htmlFor="age-simple">Client Type*</InputLabel>
+                                              <Select
+                                                  id="plantype"
+                                                  value={this.state.type}
+                                                  onChange={this.handleChange}
+                                                  name='type'  
+                                                  required                                             
+                                                  >
+                                                  <MenuItem value="Individual" selected>
+                                                    Individual
+                                                  </MenuItem>
+                                                  <MenuItem value="Family">Family</MenuItem>
+                                                  <MenuItem value="Corporate">Corporate</MenuItem>
+                                                  <MenuItem value="Government">Government</MenuItem>
+                                              </Select>             
+                                          </div>
+                                      </div>
+                                      <div className="col">
+                                          <div className="md-form">
+                                              &nbsp;
+                                          </div>
+                                      </div>
+                                  </div>
+
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">        
@@ -780,7 +785,17 @@ catch(error){
                                       <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">  
-                                              <MDBInput autoComplete="off" readOnly value={this.state.frequency}   label="Frequency " name="frequency"/>
+                                              {/*<MDBInput autoComplete="off" readOnly value={this.state.frequency}   label="Frequency " name="frequency"/>*/}
+                                             
+                                              <MDBInput
+                                                autoComplete="off" 
+                                                readOnly
+                                                label="Frequency"
+                                                value={this.state.frequency}
+                                                  onChange={this.handleChange}
+                                                  name='frequency'  
+                                                  required   
+                                                  />                                            
                                           </div>
                                       </div>
                                       <div className="col">
@@ -792,25 +807,12 @@ catch(error){
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                          <InputLabel htmlFor="age-simple">Client Type*</InputLabel>
-                                              <Select
-                                                  id="plantype"
-                                                  value={this.state.type}
-                                                  onChange={this.handleChange}
-                                                  name='type'  
-                                                  required                                             
-                                                  >
-                                                  <MenuItem value="Individual" selected>
-                                                      <em>Individual</em>
-                                                  </MenuItem>
-                                                  <MenuItem value="Corporate">Corporate</MenuItem>
-                                                  <MenuItem value="Government">Government</MenuItem>
-                                              </Select>             
+                                                <MDBInput autoComplete="off"  label="Company, Government or Group Name" name="companyname" value={this.state.companyname} onChange={e => this.handleChange(e)}/>               
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Company, Government or Group Name" name="companyname" value={this.state.companyname} onChange={e => this.handleChange(e)}/>
+                                          <MDBInput  autoComplete="off" label="Group Code*" name='planid'onChange={this.handleChange} required/>
                                           </div>
                                       </div>
                                   </div>
@@ -818,13 +820,7 @@ catch(error){
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput  autoComplete="off" label="Group Code*" name='planid'onChange={this.handleChange} required/>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              {/*<MDBInput autoComplete="off"  label="Writing Agent*" name="writingagent" value ={this.state.writingagent} onChange={this.handleChange} required/>*/}
-                                              <Select2
+                                          <Select2
                                                     label='Select Agent'
                                                     name="selectedAgentId"
                                                     value={this.state.selectedAgentId}
@@ -834,15 +830,12 @@ catch(error){
                                                          <Option value='' disabled selected>Please Select</Option>
                                                          {this.state.options.map((row1) => <Option key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</Option>)}                                         
                                                     </Select2>
-                                                   
                                           </div>
                                       </div>
-                                  </div>
-
-                                  <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                          <Select2
+                                              {/*<MDBInput autoComplete="off"  label="Writing Agent*" name="writingagent" value ={this.state.writingagent} onChange={this.handleChange} required/>*/}
+                                              <Select2
                                                     label='Select Manager'
                                                     name="selectedManagerId"
                                                     value={this.state.selectedManagerId}
@@ -853,15 +846,10 @@ catch(error){
                                                                                                
                                                     </Select2>
                                                     {console.log(this.state.agentManager)}
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              &nbsp;
+                                                   
                                           </div>
                                       </div>
                                   </div>
-                    
 
                               <div className="buttons text-center">
                                   <button className="btn btn-rounded my-4 waves-effect">Cancel</button>
@@ -1103,7 +1091,7 @@ catch(error){
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Spouse Name" name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} />
+                                              <MDBInput autoComplete="off"  label="Spouse Name" required={ this.state.type =='Family' ?'required':''} name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} />
                                           </div>
                                       </div>
                                       <div className="col">
@@ -1111,6 +1099,7 @@ catch(error){
                                               <input type="date" name="spouseDateOfBirth"
                                                       value={this.state.spouseDateOfBirth}    
                                                       onChange={this.handleChange}
+                                                      required={ this.state.type =='Family' ?'required':''}
                                                  />
                                               <label htmlFor="spouseDateOfBirth">Spouse Date Of Birth</label>
                                           </div>
@@ -1172,7 +1161,32 @@ catch(error){
                                   </div>
                               </div>
                               <br/>
-
+                              <div className="form-row px-2">
+                                      <div className="col">
+                                          <div className="md-form">
+                                          <InputLabel htmlFor="age-simple">Client Type*</InputLabel>
+                                              <Select
+                                                  id="plantype"
+                                                  value={this.state.type}
+                                                  onChange={this.handleChange}
+                                                  name='type'  
+                                                  required                                             
+                                                  >
+                                                  <MenuItem value="Individual" selected>
+                                                      <em>Individual</em>
+                                                  </MenuItem>
+                                                  <MenuItem value="Family">Family</MenuItem>
+                                                  <MenuItem value="Corporate">Corporate</MenuItem>
+                                                  <MenuItem value="Government">Government</MenuItem>
+                                              </Select>             
+                                          </div>
+                                      </div>
+                                      <div className="col">
+                                          <div className="md-form">
+                                              &nbsp;
+                                          </div>
+                                      </div>
+                                  </div>                                                 
                               <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">        
@@ -1197,40 +1211,17 @@ catch(error){
                                               <MDBInput autoComplete="off" readOnly value={this.state.fees}   label="Membership Fees" name="fees"/>
                                           </div>
                                       </div>
-                                      <div className="col">
-                                          <div className="md-form">  
-                                              <MDBInput autoComplete="off" readOnly value={this.state.frequency}   label="Membership Fees" name="frequency"/>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">  
-                                              <MDBInput autoComplete="off" readOnly value={this.state.installationFee}   label="Membership Fees" name="frequency"/>
-                                          </div>
-                                      </div>
-
                                   </div>
+
                                   <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                          <InputLabel htmlFor="age-simple">Client Type*</InputLabel>
-                                              <Select
-                                                  id="plantype"
-                                                  value={this.state.type}
-                                                  onChange={this.handleChange}
-                                                  name='type'  
-                                                  required                                             
-                                                  >
-                                                  <MenuItem value="Individual" selected>
-                                                      <em>Individual</em>
-                                                  </MenuItem>
-                                                  <MenuItem value="Corporate">Corporate</MenuItem>
-                                                  <MenuItem value="Government">Government</MenuItem>
-                                              </Select>             
+                                  <div className="col">
+                                          <div className="md-form">  
+                                              <MDBInput autoComplete="off" readOnly value={this.state.frequency}   label="Frequency" name="frequency"/>
                                           </div>
                                       </div>
                                       <div className="col">
-                                          <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Company, Government or Group Name" name="companyname" value={this.state.companyname} onChange={e => this.handleChange(e)}/>
+                                          <div className="md-form">  
+                                              <MDBInput autoComplete="off" readOnly value={this.state.initiationFee}   label="InitiationFee" name="initiationFee"/>
                                           </div>
                                       </div>
                                   </div>
@@ -1238,12 +1229,19 @@ catch(error){
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput  autoComplete="off" label="Group Code*" name='planid'onChange={this.handleChange} required/>
+                                              <MDBInput autoComplete="off"  label="Company, Government or Group Name" name="companyname" value={this.state.companyname} onChange={e => this.handleChange(e)}/>             
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              {/*<MDBInput autoComplete="off"  label="Writing Agent*" name="writingagent" value ={this.state.writingagent} onChange={this.handleChange} required/>*/}
+                                          <MDBInput  autoComplete="off" label="Group Code*" name='planid'onChange={this.handleChange} required/>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div className="form-row px-2">
+                                      <div className="col">
+                                          <div className="md-form">
                                               <Select2
                                                     label='Select Agent'
                                                     name="selectedAgentId"
@@ -1254,15 +1252,12 @@ catch(error){
                                                          <Option value='' disabled selected>Please Select</Option>
                                                          {this.state.options.map((row1) => <Option key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</Option>)}                                         
                                                     </Select2>
-                                                   
                                           </div>
                                       </div>
-                                  </div>
-
-                                  <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                          <Select2
+                                              {/*<MDBInput autoComplete="off"  label="Writing Agent*" name="writingagent" value ={this.state.writingagent} onChange={this.handleChange} required/>*/}
+                                              <Select2
                                                     label='Select Manager'
                                                     name="selectedManagerId"
                                                     value={this.state.selectedManagerId}
@@ -1273,87 +1268,10 @@ catch(error){
                                                                                                
                                                     </Select2>
                                                     {console.log(this.state.agentManager)}
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              &nbsp;
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                          <InputLabel htmlFor="age-simple">Client Type*</InputLabel>
-                                              <Select
-                                                  id="plantype"
-                                                  value={this.state.type}
-                                                  onChange={this.handleChange}
-                                                  name='type'  
-                                                  required                                             
-                                                  >
-                                                  <MenuItem value="Individual">
-                                                      <em>Individual</em>
-                                                  </MenuItem>
-                                                  <MenuItem value='Corporate'>Corporate</MenuItem>
-                                                  <MenuItem value='Government'>Government</MenuItem>
-                                              </Select>             
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Company, Government or Group Name" name="companyname" value={this.state.companyname} onChange={e => this.handleChange(e)}/>
-                                          </div>
-                                      </div>
-                                  </div>
-
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <MDBInput  autoComplete="off" label="Group Code*" name='planid'onChange={this.handleChange} required/>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              {/*<MDBInput autoComplete="off"  label="Writing Agent*" name="writingagent" value ={this.state.writingagent} onChange={this.handleChange} required/>*/}
-                                              <Select2
-                                                    label='Select Agent'
-                                                    name="selectedAgentId"
-                                                    value={this.state.selectedAgentId}
-                                                   
-                                                    onChange={this.onChangeAgentHandler}
-                                                    >
-                                                         <Option value='' disabled selected>Please Select</Option>
-                                                         {this.state.options.map((row1) => <Option key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</Option>)}                                         
-                                                    </Select2>
-                                          </div>
-                                      </div>
-                                  </div>
-
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                          <Select2
-                                                    label='Select Manager'
-                                                    name="selectedManagerId"
-                                                    value={this.state.selectedManagerId}
-                                                   
-                                                    onChange={this.handleChange}
-                                                    >
-                                                       
-                                                         {this.state.agentManager.map((row2) => <Option key={row2.agentId} value={row2.agentId}>{row2.firstName+" "+row2.lastName}</Option>)}                                         
-                                                    </Select2>
-                                                    {console.log(this.state.agentManager)}
                                                    
                                           </div>
                                       </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                              &nbsp;
-                                          </div>
-                                      </div>
                                   </div>
-                    
 
                               <div className="buttons text-center">
                                   <button className="btn btn-rounded my-4 waves-effect">Cancel</button>

@@ -50,8 +50,8 @@ class Agent extends Component {
                 width: 200
               },
               {
-                label: 'Agent Status',
-                field: 'isActive',
+                label: 'Agent Level',
+                field: 'levelID',
                 sort: 'asc',
                 width: 100
               },
@@ -64,17 +64,18 @@ class Agent extends Component {
         
       }
     }
-    onOpenModal = (agentId,agentFirstName,agentLastname) => {
+    onOpenModal = (agentId,agentFirstName,agentLastname,currentLevelId) => {
        console.log(agentFirstName);
         console.log(agentLastname);
       this.setState({ open: true });
       this.setState({
             agentId:agentId,
             firstName:agentFirstName,
-            lastName:agentLastname
+            lastName:agentLastname,
+            levelID:currentLevelId,
       },()=>{
         console.log(agentId)
-       return this.getAgentForManager(this.state.agentId);
+       return this.getAgentForManager(this.state.agentId,this.state.levelID);
       })
       
     }
@@ -82,13 +83,13 @@ class Agent extends Component {
     onCloseModal = () => {
       this.setState({ open: false });
     };
-    async  getAgentForManager(currentAgentId) {
+    async  getAgentForManager(currentAgentId,currentLevelId) {
       
         
       //return false
     
       try{
-       let response = await fetch(URL+'agent-for-manager?agentId='+currentAgentId, {
+       let response = await fetch(URL+'agent-for-manager?agentId='+currentAgentId+'&currentLevelId='+currentLevelId, {
            method: 'GET', // *GET, POST, PUT, DELETE, etc.
        
            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -171,7 +172,7 @@ catch(error){
           // console.log('hi');
            const newrows =  this.state.rows.map((row) => {
 
-            return {...row, view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.firstName,row.lastName)}><i className="material-icons">add_circle</i></a></React.Fragment>};
+            return {...row, view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.firstName,row.lastName,row.levelID)}><i className="material-icons">add_circle</i></a></React.Fragment>};
         });
         this.setState({rows: newrows });
     } catch(error){
@@ -202,10 +203,12 @@ catch(error){
         event.preventDefault();
         await console.log(this.state.selectedManager);
         //submit data
+        await console.log(this.state.agentId)
         const managerData = {
           currentAgent: this.state.agentId,
           selectetedmanager:this.state.selectedManager
         }
+        console.log(managerData);
         try{
           let response = await fetch(URL+'insert-agent-manager', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -366,7 +369,9 @@ catch(error){
                 <div className="buttons text-center">
                     <button className="btn btn-rounded my-4 waves-effect">Submit</button>
                 </div>
+                <div className="clearfix"></div>
                  </form>
+                 <div className="clearfix"></div>
               </div>
             </Modal>
 
