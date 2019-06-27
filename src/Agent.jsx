@@ -185,7 +185,7 @@ catch(error){
           // console.log('hi');
            const newrows =  this.state.rows.map((row) => {
 
-            return {...row, view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.firstName,row.lastName,row.levelID)}><i className="material-icons">add_circle</i></a></React.Fragment>};
+            return {...row, A:'',B:'', view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.firstName,row.lastName,row.levelID)}><i className="material-icons">add_circle</i></a></React.Fragment>};
         });
         this.setState({rows: newrows });
     } catch(error){
@@ -368,7 +368,7 @@ catch(error){
                     options={this.state.manager}
                     value={this.state.selectedManager}
                     
-                    open={false}
+                    open={true}
                     includeSelectAll={true}
                     onChange={this.selectMultipleOption}
                     labelKey="name"
@@ -383,9 +383,6 @@ catch(error){
                   />:''}
                   
                 </div>
-                <div className="clearfix"></div><br/>
-                <label htmlFor="selectmanager" className="col-sm-4 col-md-4 col-lg-4 pull-left">Upload Document</label>
-                <div className="col-sm-8 col-md-8 col-lg-8 pull-left"><input type="file" name="myFile"/></div>
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <div className="buttons text-center">
                     <button className="btn btn-rounded my-4 waves-effect">Submit</button>

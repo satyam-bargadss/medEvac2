@@ -260,6 +260,9 @@ componentDidMount(){
                 <div className="col-sm-8 col-md-8 col-lg-8 pull-left">
                   <textarea placeholder="Write your message here" name="message" className="form-control"></textarea>
                 </div>
+                <div className="clearfix"></div><br/>
+                <label htmlFor="selectmanager" className="col-sm-4 col-md-4 col-lg-4 pull-left">Upload Document</label>
+                <div className="col-sm-8 col-md-8 col-lg-8 pull-left"><input type="file" name="myFile"/></div>
                 <div className="clearfix"></div><br/><br/>
                 <div className="buttons text-center">
                     <button className="btn btn-rounded my-4 waves-effect">Submit</button>
