@@ -118,7 +118,12 @@ async fetchUser(username,assa,aasss) {
      // console.log('hi');
       const newrows =  this.state.rows.map((row) => {
 
-        return {...row, action: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/MemberView/${row.customerId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Claim" onClick={() => this.onOpenModal(row.agentId,row.firstName,row.lastName)}><i className="material-icons">monetization_on</i></a></React.Fragment>};
+        return {...row, action: 
+        <React.Fragment>
+          <Link data-toggle="tooltip" title="View" to={`/MemberView/${row.customerId}`}><i class="material-icons">visibility</i></Link>
+          <a data-toggle="tooltip" title="Claim" onClick={() => this.onOpenModal(row.agentId,row.firstName,row.lastName)}><i className="material-icons">monetization_on</i></a>
+          <Link data-toggle="tooltip" title="Edit" to={''}><i class="material-icons">edit</i></Link>
+        </React.Fragment>};
     });
     this.setState({rows: newrows });   
      

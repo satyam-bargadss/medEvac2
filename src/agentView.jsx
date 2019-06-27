@@ -21,6 +21,11 @@ class agentView extends Component {
       return null
     }
   }
+  goBackHandler = () =>{
+    setTimeout(()=>{
+      this.props.history.goBack('/agent');
+  }, 1000)
+  }
   convertDate(data){
     if(date!=='')
     {
@@ -100,7 +105,7 @@ class agentView extends Component {
              <div className="form_body">
              <div className="px-lg-2 pt-0">
              
-             <form style={{color: '#757575'}}>
+             <div style={{color: '#757575'}}>
                                 <div className="summary">
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Agent Name</label>
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.firstName?this.state.firstName:''}{this.state.firstName?this.state.lastName:''}</span> 
@@ -221,9 +226,9 @@ class agentView extends Component {
                               </div>
 
                               <div className="buttons text-center">
-                                  <button className="btn btn-rounded my-4 waves-effect">Close</button>
+                                  <button className="btn btn-rounded my-4 waves-effect" onClick={this.goBackHandler}>Close</button>
                               </div>    
-                          </form>
+                          </div>
 
                    
 </div>

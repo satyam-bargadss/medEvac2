@@ -24,6 +24,7 @@ class Agent extends Component {
           switched: false,
            open:false,
            manager:[],
+           selectedManager:[],
             columns: [
               {
                 label: 'Agent ID',
@@ -67,7 +68,7 @@ class Agent extends Component {
     onOpenModal = (agentId,agentFirstName,agentLastname,currentLevelId) => {
        console.log(agentFirstName);
         console.log(agentLastname);
-      this.setState({ open: true });
+   
       this.setState({
             agentId:agentId,
             firstName:agentFirstName,
@@ -77,7 +78,7 @@ class Agent extends Component {
         console.log(agentId)
        return this.getAgentForManager(this.state.agentId,this.state.levelID);
       })
-      
+      this.setState({ open: true });
     }
     
     onCloseModal = () => {
@@ -193,8 +194,12 @@ catch(error){
      selectMultipleOption = (value) => {
             console.count('onChange')
             console.log("Val", value);
-            this.setState(()=>
-            ({ selectedManager: value }));
+            console.log("Val", value);
+          //  const optionValue  = this.state.selectedManager.push(value);
+           
+            this.setState( {
+              selectedManager: value 
+            })
             console.log(this.state.selectedManager)
         }
         
@@ -235,10 +240,7 @@ catch(error){
               // console.log('redirect in admin dashboard');
                //console.log(data) ;
                
-               this.setState({
-                 redirect:true,
-                 isadminLogin:true
-               })
+               this.setState({ open: false });
               }
             }
             catch(error){
@@ -350,20 +352,25 @@ catch(error){
                 <form onSubmit={this.handleSelectedManager}>  
                 <label htmlFor="selectmanager" className="col-sm-4 col-md-4 col-lg-4 pull-left">Select Manager</label>
                 <div className="col-sm-8 col-md-8 col-lg-8 pull-left">
-                  <Picky
+                  {this.state.manager?<Picky
                     
                     options={this.state.manager}
                     value={this.state.selectedManager}
-                    multiple={true}
+                    
                     open={true}
+                    includeSelectAll={true}
                     onChange={this.selectMultipleOption}
                     labelKey="name"
+                    
                     multiple={true}
-                    valueKey="id"
                     includeSelectAll={true}
+                  
+                    valueKey="id"
+                    
                    includeFilter={true}
                    dropdownHeight={600}
-                  />
+                  />:''}
+                  
                 </div>
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <div className="buttons text-center">

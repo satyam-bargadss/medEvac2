@@ -11,6 +11,14 @@ import FormControl from '@material-ui/core/FormControl';
 import * as myConst from './helper/Constant';
 import Select2, {Option} from '@material/react-select';
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+import 'reactstrap';
+import './index.css';
+
 const URL = myConst.HTTP_URL;
 class MemberRegistrationForm extends Component {
     constructor(props) {
@@ -321,14 +329,8 @@ catch(error){
                         [e.target.name]: e.target.value
                 }
                 )
-                if(this.state.plan!=='')
-                {
-               this.setState((preState)=>({
-                 fees:preState.plan
-                  
-               }))
-            }
-               console.log(this.state);
+                
+              // console.log(this.state);
              
                
             }
@@ -469,7 +471,7 @@ catch(error){
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" type="number" label="Primary Mobile Number*" name="mobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)} required/>
+                                              <MDBInput autoComplete="off" type="number" label="Primary Phone Number*" name="mobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)} required/>
                                           </div>
                                       </div>
                                   </div>
@@ -477,7 +479,7 @@ catch(error){
                                   <div className="form-row px-2">
                                     <div className="col">
                                         <div classname="md-form">
-                                            <MDBInput autoComplete="off" type="number" label="Alternate Mobile Number" name="alternatemobilenumber" value={this.state.alternatemobilenumber} onChange={e => this.handleChange(e)}/>
+                                            <MDBInput autoComplete="off" type="number" label="Alternate Phone Number" name="alternatemobilenumber" value={this.state.alternatemobilenumber} onChange={e => this.handleChange(e)}/>
                                         </div>
                                     </div>
                                     <div className="col">
@@ -538,12 +540,12 @@ catch(error){
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" label="Member Address 1*" name="address1" value={this.state.address1} onChange={e => this.handleChange(e)} required/>
+                                              <MDBInput autoComplete="off" label="Client Address 1*" name="address1" value={this.state.address1} onChange={e => this.handleChange(e)} required/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Member Address 2 (Optional)" name="address2" value={this.state.address2} onChange={e => this.handleChange(e)}/> 
+                                              <MDBInput autoComplete="off"  label="Client Address 2 (Optional)" name="address2" value={this.state.address2} onChange={e => this.handleChange(e)}/> 
                                           </div>
                                       </div>
                                   </div>
@@ -577,7 +579,7 @@ catch(error){
                                   <div className="subHead px-2">
                                       <div className="custom-control custom-checkbox">
                                           <input type="checkbox" className="custom-control-input" id="defaultUnchecked"/>
-                                          <label className="custom-control-label" for="defaultUnchecked">Same as Member Address</label>
+                                          <label className="custom-control-label" for="defaultUnchecked">Same as Client Address</label>
                                       </div>
                                       <h4><strong>Mailing Address</strong></h4>
                                   </div>
@@ -820,31 +822,33 @@ catch(error){
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                          <Select2
+                                          <InputLabel htmlFor="select-agent">Select Agent</InputLabel>
+                                            <Select
                                                     label='Select Agent'
                                                     name="selectedAgentId"
                                                     value={this.state.selectedAgentId}
                                                    
                                                     onChange={this.onChangeAgentHandler}
                                                     >
-                                                         <Option value='' disabled selected>Please Select</Option>
-                                                         {this.state.options.map((row1) => <Option key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</Option>)}                                         
-                                                    </Select2>
+                                                         <MenuItem value='' disabled selected>Please Select</MenuItem>
+                                                         {this.state.options.map((row1) => <MenuItem key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</MenuItem>)}                                         
+                                            </Select>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
                                               {/*<MDBInput autoComplete="off"  label="Writing Agent*" name="writingagent" value ={this.state.writingagent} onChange={this.handleChange} required/>*/}
-                                              <Select2
+                                                <InputLabel htmlFor="select-manager">Select Manager</InputLabel>
+                                                <Select
                                                     label='Select Manager'
                                                     name="selectedManagerId"
                                                     value={this.state.selectedManagerId}
                                                    
                                                     onChange={this.handleChange}
                                                     >
-                                                       {this.state.agentManager? this.state.agentManager.map((row2) => <Option key={row2.agentId} value={row2.agentId}>{row2.firstName+" "+row2.lastName}</Option>) :''}
+                                                       {this.state.agentManager? this.state.agentManager.map((row2) => <MenuItem key={row2.agentId} value={row2.agentId}>{row2.firstName+" "+row2.lastName}</MenuItem>) :''}
                                                                                                
-                                                    </Select2>
+                                                </Select>
                                                     {console.log(this.state.agentManager)}
                                                    
                                           </div>
@@ -869,12 +873,12 @@ catch(error){
              <div className="px-lg-2 pt-0">
              
              <form style={{color: '#757575'}}  onSubmit={this.handleSubmit2}>
-                 <div className="head">
-                      <div className="card bg-light text-dark">
-                              <div className="card-body">Personal Information</div>
-                      </div>
-                 </div>
-                 <br/>
+                                    <div className="head">
+                                        <div className="card bg-light text-dark">
+                                                <div className="card-body">Personal Information</div>
+                                        </div>
+                                    </div>
+                                    <br/>
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
@@ -907,7 +911,7 @@ catch(error){
                                   <div className="form-row px-2">
                                     <div className="col">
                                       <div className="md-form">
-                                            <MDBInput autoComplete="off" type="number" label="Alternate Phone Number*" name="alternatemobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)}/> 
+                                            <MDBInput autoComplete="off" type="number" label="Alternate Phone Number*" name="alternatemobilenumber" value={this.state.alternatemobilenumber} onChange={e => this.handleChange(e)}/> 
                                       </div>          
                                     </div>
                                     <div className="col">
@@ -944,9 +948,7 @@ catch(error){
                                               name="country"
                                               onChange={this.handleChange} 
                                               placeholder='US' 
-                                              required
-                                            
-                                                                             
+                                              required                              
                                               >
                                                   <MenuItem value="US" >
                                                       US
@@ -969,12 +971,12 @@ catch(error){
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" label="Member Address 1*" name="address1" value={this.state.address1} onChange={e => this.handleChange(e)} required/>
+                                              <MDBInput autoComplete="off" label="Client Address 1*" name="address1" value={this.state.address1} onChange={e => this.handleChange(e)} required/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Member Address 2 (Optional)" name="address2" value={this.state.address2} onChange={e => this.handleChange(e)}/> 
+                                              <MDBInput autoComplete="off"  label="Client Address 2 (Optional)" name="address2" value={this.state.address2} onChange={e => this.handleChange(e)}/> 
                                           </div>
                                       </div>
                                   </div>
@@ -1008,7 +1010,7 @@ catch(error){
                                   <div className="subHead px-2">
                                       <div className="custom-control custom-checkbox">
                                           <input type="checkbox" className="custom-control-input" id="defaultUnchecked"/>
-                                          <label className="custom-control-label" for="defaultUnchecked">Same as Member Address</label>
+                                          <label className="custom-control-label" for="defaultUnchecked">Same as Client Address</label>
                                       </div>
                                       <h4><strong>Mailing Address</strong></h4>
                                   </div>
@@ -1208,7 +1210,7 @@ catch(error){
                                       </div>
                                       <div className="col">
                                           <div className="md-form">  
-                                              <MDBInput autoComplete="off" readOnly value={this.state.fees}   label="Membership Fees" name="fees"/>
+                                              <MDBInput autoComplete="off"  name="fees" readOnly value={this.state.fees}   label="Membership Fees"/>
                                           </div>
                                       </div>
                                   </div>
@@ -1234,39 +1236,42 @@ catch(error){
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                          <MDBInput  autoComplete="off" label="Group Code*" name='planid'onChange={this.handleChange} required/>
+                                              <MDBInput  autoComplete="off" label="Group Code*" name='planid'onChange={this.handleChange} value={this.state.planid} required/>
                                           </div>
                                       </div>
                                   </div>
 
+
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <Select2
+                                              <InputLabel htmlFor="select-agent">Select Agent</InputLabel>
+                                              <Select
                                                     label='Select Agent'
                                                     name="selectedAgentId"
                                                     value={this.state.selectedAgentId}
                                                    
                                                     onChange={this.onChangeAgentHandler}
                                                     >
-                                                         <Option value='' disabled selected>Please Select</Option>
-                                                         {this.state.options.map((row1) => <Option key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</Option>)}                                         
-                                                    </Select2>
+                                                         <MenuItem value='' disabled selected>Please Select</MenuItem>
+                                                         {this.state.options.map((row1) => <MenuItem key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</MenuItem>)}                                         
+                                                    </Select>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
                                               {/*<MDBInput autoComplete="off"  label="Writing Agent*" name="writingagent" value ={this.state.writingagent} onChange={this.handleChange} required/>*/}
-                                              <Select2
+                                              <InputLabel htmlFor="select-manager">Select Manager</InputLabel>
+                                              <Select
                                                     label='Select Manager'
                                                     name="selectedManagerId"
                                                     value={this.state.selectedManagerId}
                                                    
                                                     onChange={this.handleChange}
                                                     >
-                                                       {this.state.agentManager? this.state.agentManager.map((row2) => <Option key={row2.agentId} value={row2.agentId}>{row2.firstName+" "+row2.lastName}</Option>) :''}
+                                                       {this.state.agentManager? this.state.agentManager.map((row2) => <MenuItem key={row2.agentId} value={row2.agentId}>{row2.firstName+" "+row2.lastName}</MenuItem>) :''}
                                                                                                
-                                                    </Select2>
+                                                    </Select>
                                                     {console.log(this.state.agentManager)}
                                                    
                                           </div>

@@ -524,7 +524,7 @@ class AgentRegistrationForm extends Component {
                                             </div>
                                             <div className="col">
                                                 <div className="md-form">
-                                                    <MDBInput label="Mailing Address 2 (Optional)" name="maddress2"  onChange={this.handleChange} value={this.state.maddress2} required/>
+                                                    <MDBInput label="Mailing Address 2 (Optional)" name="maddress2"  onChange={this.handleChange} value={this.state.maddress2} />
                                                 </div>
                                             </div>
                                         </div>

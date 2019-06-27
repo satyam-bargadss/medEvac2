@@ -28,14 +28,14 @@ class membershipPlan extends Component {
                 width: 150
               },
               {
-                label: 'Annual Plan Fees',
-                field: 'fees',
+                label: 'Individual Fees',
+                field: 'indfees',
                 sort: 'asc',
                 width: 200
               },
               {
-                label: 'Monthly Plan Fees',
-                field: 'mfees',
+                label: 'Family Fees',
+                field: 'familyfees',
                 sort: 'asc',
                 width: 200
               }
@@ -43,123 +43,123 @@ class membershipPlan extends Component {
             rows: [
               {
                 id:'0001',
-                name: 'Annual Base Plan',
-                fees: '$6,999',
-                mfees: '$583.25'
+                name: 'Monthly',
+                indfees: '$6,999',
+                familyfees: '$583.25'
               },
               {
                 id:'0002',
-                name: 'Monthly Base Plan',
-                fees: '$1,999',
-                mfees: '$1,999'
+                name: 'Monthly',
+                indfees: '$1,999',
+                familyfees: '$1,999'
               },
               {
                 id:'0003',
-                name: 'Monthly Base Plan',
-                fees: '$1,999',
-                mfees: '$1,999'
+                name: '5 Year',
+                indfees: '$1,999',
+                familyfees: '$1,999'
               },
               {
                 id:'0004',
-                name: 'Monthly International Plan',
-                fees: '$3,499',
-                mfees: '$3,499'
+                name: 'Annual',
+                indfees: '$3,499',
+                familyfees: '$3,499'
               },
               {
                 id:'0005',
-                name: 'Monthly Premium Plan',
-                fees: '$2,999',
-                mfees: '$2,999'
+                name: 'Monthly',
+                indfees: '$2,999',
+                familyfees: '$2,999'
               },
               {
                 id:'0006',
-                name: 'Monthly Premium Plan',
-                fees: '$2,999',
-                mfees: '$2,999'
+                name: 'Lifetime',
+                indfees: '$2,999',
+                familyfees: '$2,999'
               },
               {
                 id:'0007',
-                name: 'Monthly Base Plan',
-                fees: '$1,999',
-                mfees: '$1,999'
+                name: '5 Year',
+                indfees: '$1,999',
+                familyfees: '$1,999'
               },
               {
                 id:'0008',
-                name: 'Annual Premium Plan',
-                fees: '$9,999',
-                mfees: '833.25'
+                name: 'Annual',
+                indfees: '$9,999',
+                familyfees: '833.25'
               },
               {
                 id:'0009',
-                name: 'Monthly Premium Plan',
-                fees: '$2,999',
-                mfees: '$2,999'
+                name: 'Monthly',
+                indfees: '$2,999',
+                familyfees: '$2,999'
               },
               {
                 id:'0010',
-                name: 'Monthly Premium Plan',
-                fees: '$2,999',
-                mfees: '$2,999'
+                name: 'Monthly',
+                indfees: '$2,999',
+                familyfees: '$2,999'
               },
               {
                 id:'0011',
-                name: 'Monthly Base Plan',
-                fees: '#1,999',
-                mfees: '$1,999'
+                name: 'Annual',
+                indfees: '#1,999',
+                familyfees: '$1,999'
               },
               {
                 id:'0012',
-                name: 'Annual Premium Plan',
-                fees: '$9,999',
-                mfees: '$833.25'
+                name: 'Lifetime',
+                indfees: '$9,999',
+                familyfees: '$833.25'
               },
               {
                 id:'0013',
-                name: 'Monthly International Plan',
-                fees: '$3,499',
-                mfees: '$3,499'
+                name: 'Monthly',
+                indfees: '$3,499',
+                familyfees: '$3,499'
               },
               {
                 id:'0014',
-                name: 'Annual International Plan',
-                fees: '$12,999',
-                mfees: '$1,083.25'
+                name: 'Annual',
+                indfees: '$12,999',
+                familyfees: '$1,083.25'
               },
               {
                 id:'0015',
-                name: 'Monthly Premium Plan',
-                fees: '$2,999',
-                mfees: '$2,999'
+                name: 'Monthly',
+                indfees: '$2,999',
+                familyfees: '$2,999'
               },
               {
                 id:'0016',
-                name: 'Monthly Premium Plan',
-                fees: '$2,999',
-                mfees: '$2,999'
+                name: '5 Year',
+                indfees: '$2,999',
+                familyfees: '$2,999'
               },
               {
                 id:'0017',
-                name: 'Monthly Premium Plan',
-                fees: '$2,999',
-                mfees: '$2,999'
+                name: 'Monthly',
+                indfees: '$2,999',
+                familyfees: '$2,999'
               },
               {
                 id:'0018',
-                name: 'Annual Premium Plan',
-                fees: '$9,999',
-                mfees: '$833.25'
+                name: 'Annual',
+                indfees: '$9,999',
+                familyfees: '$833.25'
               },
               {
                 id:'0019',
-                name: 'Monthly Base Plan',
-                fees: '$1,999',
-                mfees: '$1,999'
+                name: 'Monthly',
+                indfees: '$1,999',
+                familyfees: '$1,999'
               },
               {
                 id:'0020',
-                name: 'Monthly Base Plan',
-                fees: '$1,999',
-                mfees: '$1,999'
+                name: 'Monthly',
+                indfees: '$1,999',
+                familyfees: '$1,999'
               }
             ]}
         };

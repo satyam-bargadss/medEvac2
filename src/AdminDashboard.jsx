@@ -11,6 +11,7 @@ import MemberRegistrationForm from './MemberRegistrationForm';
 import Agent from './Agent'
 import AgentRegistrationForm from './AgentRegistrationForm';
 import Commissions from './Commissions';
+import AgentLevels from './AgentLevels';
 import CreateCommission from './CreateCommission';
 import membershipPlan from './membershipPlan';
 import plans from './plans';
@@ -86,8 +87,8 @@ class AdminDashboard extends Component {
               <p>Clients</p>
             </NavLink>
           </li>
-		   <li className="nav-item ">
-       <NavLink className="nav-link" to="/agent"  activeClassName=" active">
+		      <li className="nav-item ">
+            <NavLink className="nav-link" to="/agent"  activeClassName=" active">
               <i className="material-icons">person</i>
               <p>Agents</p>
             </NavLink>
@@ -96,6 +97,12 @@ class AdminDashboard extends Component {
             <NavLink className="nav-link" to="/commissions" activeClassName=" active">
               <i className="material-icons">content_paste</i>
               <p>Commissions</p>
+            </NavLink>
+          </li>
+          <li className="nav-item ">
+            <NavLink className="nav-link" to="/AgentLevels" activeClassName=" active">
+              <i className="material-icons">content_paste</i>
+              <p>Agents Levels</p>
             </NavLink>
           </li>
           <li className="nav-item ">
@@ -110,7 +117,7 @@ class AdminDashboard extends Component {
               <p>Groups</p>
             </a>
           </li>
-          <li className="nav-item ">
+          {/*<li className="nav-item ">
             <NavLink className="nav-link" to="/report" activeClassName=" active">
               <i className="material-icons">insert_chart_outlined</i>
               <p>Reports</p>
@@ -121,7 +128,7 @@ class AdminDashboard extends Component {
               <i className="material-icons">insert_chart_outlined</i>
               <p>Agent-wise Comm. Reports</p>
             </NavLink>
-          </li>
+      </li>*/}
           <li className="nav-item ">
             <a className="nav-link" href="#">
             <i class="material-icons">settings</i>
@@ -191,6 +198,7 @@ class AdminDashboard extends Component {
               <Route path="/agent-registration" component={AgentRegistrationForm} exact strict/>
               <Route path="/agent" component={Agent} exact strict/>
               <Route path="/commissions" component={Commissions} exact strict/>
+              <Route path="/AgentLevels" component={AgentLevels} exact strict/>
               <Route path="/create-commission" component={CreateCommission} exact strict/>
               <Route path="/membership-plan" component={membershipPlan} exact strict/>
               <Route path="/plans" component={plans} exact strict/>

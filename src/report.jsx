@@ -7,45 +7,46 @@ import { HashRouter as Router, Route
 import Select from '@material-ui/core/Select';
  import * as myConst from './helper/Constant';
  import Switch from 'react-toggle-switch'
-
+ const URL = myConst.HTTP_URL;
 class report extends Component {
     constructor(props) {
         super(props);
         console.log(props);
         this.state = {
           switched: false,
-          data:  {
+         
             columns: [
               {
                 label: 'Member ID',
-                field: 'memberid',
+                field: 'customerId',
                 sort: 'asc',
                 width: 150
               },
               {
-                label: 'Member Name',
+                label: 'Member   Name',
                 field: 'membername',
                 sort: 'asc',
                 width: 150
               },
               {
                 label: 'Plan Name',
-                field: 'planname',
+                field: 'CustomerFee',
                 sort: 'asc',
                 width: 200
               },
               {
                 label: 'Plan Fees',
-                field: 'fees',
+                field: 'CustomerFee',
                 sort: 'asc',
                 width: 100
               },
               {
                 label: 'Agent Name',
-                field: 'agentname',
+                field: 'aFirstName',
                 sort: 'asc',
                 width: 100
               },
+            
               {
                 label: 'Agent Commission',
                 field: 'acommission',
@@ -57,129 +58,48 @@ class report extends Component {
                 field: 'mcommission',
                 sort: 'asc',
                 width: 100
-              },
-              {
-                label: 'Actions',
-                field: 'actions',
-                sort: 'asc',
-                width: 100
-              }
-            ],
-            rows: [
-              {
-                memberid:'0001',
-                membername: 'Tiger Nixon',
-                planname: 'Annual Base Plan',
-                fees:'$6,999',
-                agentname:'John Doe',
-                acommission:'$2,799.60',
-                mcommission:'$279.96',
-                actions:''
-              },
-              {
-                memberid:'0002',
-                membername: 'Garrett Winters',
-                planname: 'Monthly Base Plan',
-                fees:'$1,999',
-                agentname:'John Doe',
-                acommission:'$599.70',
-                mcommission:'$29.98',
-                actions:''
-              },
-              {
-                memberid:'0003',
-                membername: 'Ashton Cox',
-                planname: 'Monthly Base Plan',
-                fees:'$1,999',
-                agentname:'Matthew Henry',
-                acommission:'$799.60',
-                mcommission:'$79.60',
-                actions:''
-              },
-              {
-                memberid:'0004',
-                membername: 'Cedric Kelly',
-                planname: 'Monthly International Plan',
-                fees:'$3,499',
-                agentname:'John Doe',
-                acommission:'$1,399.60',
-                mcommission:'$139.96',
-                actions:''
-              },
-              {
-                memberid:'0005',
-                membername: 'Airi Satou',
-                planname: 'Monthly Premium Plan',
-                fees:'$2,999',
-                agentname:'Gary Stevens',
-                acommission:'$1,499.50',
-                mcommission:'$224.92',
-                actions:''
-              },
-              {
-                memberid:'0006',
-                membername: 'Brielle Williamson',
-                planname: 'Monthly Premium Plan',
-                fees:'$2,999',
-                agentname:'Paul McCarthy',
-                acommission:'$1,199.60',
-                mcommission:'$119.96',
-                actions:''
-              },
-              {
-                memberid:'0007',
-                membername: 'Herrod Chandler',
-                planname: 'Monthly Base Plan',
-                fees:'$1,999',
-                agentname:'David Collins',
-                acommission:'$799.60',
-                mcommission:'$79.96',
-                actions:''
-              },
-              {
-                memberid:'0008',
-                membername: 'Rhona Davidson',
-                planname: 'Annual Premium Plan',
-                fees:'$9,999',
-                agentname:'Paul Willey',
-                acommission:'$3,999.60',
-                mcommission:'$399.96',
-                actions:''
-              },
-              {
-                memberid:'0009',
-                membername: 'Colleen Hurst',
-                planname: 'Monthly Premium Plan',
-                fees:'$2,999',
-                agentname:'Paul Willey',
-                acommission:'$599.80',
-                mcommission:'$29.99',
-                actions:''
-              },
-              {
-                memberid:'0010',
-                membername: 'Sonya Frost',
-                planname: 'Monthly Premium Plan',
-                fees:'$2,999',
-                agentname:'Robert Williamson',
-                acommission:'$599.80',
-                mcommission:'$29.99',
-                actions:''
-              },
-              {
-                memberid:'0011',
-                membername: 'Jena Gaines',
-                planname: 'Monthly Base Plan',
-                fees:'$1,999',
-                agentname:'James Sean',
-                acommission:'$599.70',
-                mcommission:'$59.97',
-                actions:''
-              }
-            ]}
-        };
+              }           
+            ]
+           
+          }
+    }
+    async commisionBymember(username,assa,aasss) {
+     
+      try{
+        let response = await fetch(URL+'member-wise-commision', {
+          method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        
+          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          //credentials: 'same-origin', // include, *same-origin, omit
+          headers: {
+              'Content-Type': 'application/json',
+              
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+          }
+        })
+        
+          let data = await response.json()
+        
+          this.setState(()=>({
+            rows:data.comissionByMember
+          }))
+          console.log(data.comissionByMember);
+    } catch(error){
+      console.log(error);
+    }
+    //end Api calling
+    
+    }
+    componentDidMount(){
+      this.commisionBymember();
     }
     render() {
+
+      let data={
+        columns: this.state.columns,
+         rows:this.state.rows
+       }
+            
         return (
             <div style={{width: '100%'}}>
                 
@@ -210,7 +130,7 @@ class report extends Component {
                          <MDBDataTable
                           striped
                           hover
-                          data={this.state.data}
+                          data={data}
                         />
                     </div>
                   </div>
