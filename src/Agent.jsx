@@ -57,6 +57,18 @@ class Agent extends Component {
                 width: 100
               },
               {
+                label: 'Agent Manager',
+                field: 'agentmanager',
+                sort: 'asc',
+                width: 100
+              },
+              {
+                label: 'Total Commission',
+                field: 'totalcomm',
+                sort: 'asc',
+                width: 100
+              },
+              {
                 label: 'Action',
                 field: 'view',  
                 width: 100
@@ -268,7 +280,6 @@ catch(error){
                       
                   </span>
                 </NavLink>
-                            <a href="#" className="btn btn-info pull-left mb-4">Import Agents</a>
                         </div>
                     </div>
             </div>
@@ -357,7 +368,7 @@ catch(error){
                     options={this.state.manager}
                     value={this.state.selectedManager}
                     
-                    open={true}
+                    open={false}
                     includeSelectAll={true}
                     onChange={this.selectMultipleOption}
                     labelKey="name"
@@ -372,6 +383,9 @@ catch(error){
                   />:''}
                   
                 </div>
+                <div className="clearfix"></div><br/>
+                <label htmlFor="selectmanager" className="col-sm-4 col-md-4 col-lg-4 pull-left">Upload Document</label>
+                <div className="col-sm-8 col-md-8 col-lg-8 pull-left"><input type="file" name="myFile"/></div>
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <div className="buttons text-center">
                     <button className="btn btn-rounded my-4 waves-effect">Submit</button>

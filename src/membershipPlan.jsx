@@ -44,122 +44,26 @@ class membershipPlan extends Component {
               {
                 id:'0001',
                 name: 'Monthly',
-                indfees: '$6,999',
-                familyfees: '$583.25'
+                indfees: '$24.75',
+                familyfees: '$37.50'
               },
               {
                 id:'0002',
-                name: 'Monthly',
-                indfees: '$1,999',
-                familyfees: '$1,999'
+                name: 'Lifetime',
+                indfees: '$3,250',
+                familyfees: '$4,450'
               },
               {
                 id:'0003',
                 name: '5 Year',
-                indfees: '$1,999',
-                familyfees: '$1,999'
+                indfees: '$2,150',
+                familyfees: '$3,150'
               },
               {
                 id:'0004',
                 name: 'Annual',
-                indfees: '$3,499',
-                familyfees: '$3,499'
-              },
-              {
-                id:'0005',
-                name: 'Monthly',
-                indfees: '$2,999',
-                familyfees: '$2,999'
-              },
-              {
-                id:'0006',
-                name: 'Lifetime',
-                indfees: '$2,999',
-                familyfees: '$2,999'
-              },
-              {
-                id:'0007',
-                name: '5 Year',
-                indfees: '$1,999',
-                familyfees: '$1,999'
-              },
-              {
-                id:'0008',
-                name: 'Annual',
-                indfees: '$9,999',
-                familyfees: '833.25'
-              },
-              {
-                id:'0009',
-                name: 'Monthly',
-                indfees: '$2,999',
-                familyfees: '$2,999'
-              },
-              {
-                id:'0010',
-                name: 'Monthly',
-                indfees: '$2,999',
-                familyfees: '$2,999'
-              },
-              {
-                id:'0011',
-                name: 'Annual',
-                indfees: '#1,999',
-                familyfees: '$1,999'
-              },
-              {
-                id:'0012',
-                name: 'Lifetime',
-                indfees: '$9,999',
-                familyfees: '$833.25'
-              },
-              {
-                id:'0013',
-                name: 'Monthly',
-                indfees: '$3,499',
-                familyfees: '$3,499'
-              },
-              {
-                id:'0014',
-                name: 'Annual',
-                indfees: '$12,999',
-                familyfees: '$1,083.25'
-              },
-              {
-                id:'0015',
-                name: 'Monthly',
-                indfees: '$2,999',
-                familyfees: '$2,999'
-              },
-              {
-                id:'0016',
-                name: '5 Year',
-                indfees: '$2,999',
-                familyfees: '$2,999'
-              },
-              {
-                id:'0017',
-                name: 'Monthly',
-                indfees: '$2,999',
-                familyfees: '$2,999'
-              },
-              {
-                id:'0018',
-                name: 'Annual',
-                indfees: '$9,999',
-                familyfees: '$833.25'
-              },
-              {
-                id:'0019',
-                name: 'Monthly',
-                indfees: '$1,999',
-                familyfees: '$1,999'
-              },
-              {
-                id:'0020',
-                name: 'Monthly',
-                indfees: '$1,999',
-                familyfees: '$1,999'
+                indfees: '$297',
+                familyfees: '$474'
               }
             ]}
         };
@@ -173,7 +77,6 @@ class membershipPlan extends Component {
                                 <NavLink class="btn btn-info pull-left mb-4" className="nav-link" to="/plans"  activeClassName=" active">
                                   <span>Add Plan</span>
                                 </NavLink>
-                                    <a href="#" className="btn btn-info pull-left mb-4">Export Plan</a>
                                 </div>
                             </div>
                     </div>
@@ -230,7 +133,8 @@ class membershipPlan extends Component {
                                           <Select>
                                             <MenuItem value={'planid'}>Plan ID</MenuItem>
                                             <MenuItem value={'planname'}>Plan Name</MenuItem>
-                                            <MenuItem value={'planfees'}>Plan Fees</MenuItem>
+                                            <MenuItem value={'indfees'}>Individual Fees</MenuItem>
+                                            <MenuItem value={'familyfees'}>Family Fees</MenuItem>
                                           </Select>
                                         </td>
                                         <td><button className="btn btn-rounded  waves-effect" type="submit">Filter</button></td>

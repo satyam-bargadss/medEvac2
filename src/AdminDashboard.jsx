@@ -15,8 +15,10 @@ import AgentLevels from './AgentLevels';
 import CreateCommission from './CreateCommission';
 import membershipPlan from './membershipPlan';
 import plans from './plans';
+import Groups from './Groups';
 import Thanks from './Thanks';
 import MemberView from './MemberView';
+import AdminSettings from './AdminSettings';
 import report from './report';
 import agentview from './agentView';
 import AgentCommReport from './AgentCommReport'
@@ -101,7 +103,7 @@ class AdminDashboard extends Component {
           </li>
           <li className="nav-item ">
             <NavLink className="nav-link" to="/AgentLevels" activeClassName=" active">
-              <i className="material-icons">content_paste</i>
+              <i className="material-icons">trending_up</i>
               <p>Agents Levels</p>
             </NavLink>
           </li>
@@ -111,11 +113,11 @@ class AdminDashboard extends Component {
               <p>Membership Plans</p>
             </NavLink>
           </li>
-          <li className="nav-item ">
-            <a className="nav-link" href="#">
-              <i className="material-icons">storage</i>
-              <p>Groups</p>
-            </a>
+          <li className="nav-item " >
+              <NavLink className="nav-link" to="/Groups" activeClassName=" active">
+                <i className="material-icons">storage</i>
+                <p>Groups</p>
+              </NavLink>
           </li>
           {/*<li className="nav-item ">
             <NavLink className="nav-link" to="/report" activeClassName=" active">
@@ -130,10 +132,10 @@ class AdminDashboard extends Component {
             </NavLink>
       </li>*/}
           <li className="nav-item ">
-            <a className="nav-link" href="#">
-            <i class="material-icons">settings</i>
+            <NavLink className="nav-link" to="/AdminSettings" activeClassName=" active">
+              <i class="material-icons">settings</i>
               <p>Admin Settings</p>
-            </a>
+            </NavLink>
           </li>
         
         </ul>
@@ -199,6 +201,8 @@ class AdminDashboard extends Component {
               <Route path="/agent" component={Agent} exact strict/>
               <Route path="/commissions" component={Commissions} exact strict/>
               <Route path="/AgentLevels" component={AgentLevels} exact strict/>
+              <Route path="/AdminSettings" component={AdminSettings} exact strict/>
+              <Route path="/Groups" component={Groups} exact strict/>
               <Route path="/create-commission" component={CreateCommission} exact strict/>
               <Route path="/membership-plan" component={membershipPlan} exact strict/>
               <Route path="/plans" component={plans} exact strict/>

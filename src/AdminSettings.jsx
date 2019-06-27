@@ -9,7 +9,7 @@ import { HashRouter as Router, Route
  import Switch from 'react-toggle-switch'
  const URL = myConst.HTTP_URL;
 
-class AgentLevels extends Component {
+class AdminSettings extends Component {
     constructor(props) {
         super(props);
         console.log(props);
@@ -18,125 +18,142 @@ class AgentLevels extends Component {
           data:  {
           columns: [
             {
-              label: 'Level ID',
-              field: 'levelId',
+              label: 'Serial No.',
+              field: 'serial',
               sort: 'asc',
               width: 150
             },
             {
-              label: 'Level Name',
-              field: 'levelName',
+              label: 'Employee ID',
+              field: 'employeeID',
               sort: 'asc',
               width: 150
             },
             {
-              label: '1 st year commission Rate',
-              field: 'firstyrcomm',
+              label: 'Employee Name',
+              field: 'employeeName',
               sort: 'asc',
               width: 150
             },
             {
-              label: 'Renewal Commission Rate',
-              field: 'renewalcomm',
+              label: 'User Name',
+              field: 'userName',
               sort: 'asc',
               width: 200
             },
             {
-              label: '5 Year & Lifetime Membership Commission Rate',
-              field: 'fiveyrlmc',
+              label: 'Designation',
+              field: 'designation',
+              sort: 'asc',
+              width: 200
+            },
+            {
+              label: 'Status',
+              field: 'status',
               sort: 'asc',
               width: 200
             }
           ],
           rows: [
             {
-              levelId:'0001',
-              levelname: '1',
-              firstyrcomm: '40%',
-              renewalcomm:'5%',
-              fiveyrlmc:'20%'
+              serial:'001',
+              employeeID: '2300150',
+              employeeName: 'Trevor Mardock',
+              userName:'trevor001',
+              designation:'Senior Manager',
+              status:'Active'
             },
             {
-               levelId:'0002',
-               levelname: '2',
-               firstyrcomm: '60%',
-               renewalcomm:'9%',
-               fiveyrlmc:'26%'
+              serial:'002',
+              employeeID: '2300151',
+              employeeName: 'Mike Hesson',
+              userName:'mike001',
+              designation:'Senior Manager',
+              status:'Active'
             },
             {
-               levelId:'0003',
-               levelname: '3',
-               firstyrcomm: '75%',
-               renewalcomm:'12%',
-               fiveyrlmc:'28%'
+              serial:'003',
+              employeeID: '2300152',
+              employeeName: 'Mick Foley',
+              userName:'mick005',
+              designation:'Executive',
+              status:'Active'
             },
             {
-              levelId:'0004',
-              levelname: '4',
-              firstyrcomm: '60%',
-              renewalcomm:'9%',
-              fiveyrlmc:'26%'
+              serial:'004',
+              employeeID: '2300153',
+              employeeName: 'Tiffany Reid',
+              userName:'tiff213',
+              designation:'Executive',
+              status:'Active'
             },
             {
-              levelId:'0005',
-              levelname: '5',
-              firstyrcomm: '10%',
-              renewalcomm:'2%',
-              fiveyrlmc:'35%'
+              serial:'005',
+              employeeID: '2300154',
+              employeeName: 'John Doe',
+              userName:'john009',
+              designation:'Consultant',
+              status:'Active'
             },
             {
-              levelId:'0006',
-              levelname: '6',
-              firstyrcomm: '70%',
-              renewalcomm:'18%',
-              fiveyrlmc:'33%'
+              serial:'006',
+              employeeID: '2300155',
+              employeeName: 'Mitchell Watson',
+              userName:'mitch654',
+              designation:'Senior Consultant',
+              status:'Active'
             },
             {
-               levelId:'0007',
-               levelname: '7',
-               firstyrcomm: '45%',
-               renewalcomm:'6%',
-               fiveyrlmc:'23%'
+              serial:'007',
+              employeeID: '2300156',
+              employeeName: 'Ricky Roy',
+              userName:'rick740',
+              designation:'Junior Executive',
+              status:'Active'
             },
             {
-              levelId:'0008',
-              levelname: '8',
-              firstyrcomm: '50%',
-              renewalcomm:'7%',
-              fiveyrlmc:'24%'
+              serial:'008',
+              employeeID: '2300157',
+              employeeName: 'Ronny Martin',
+              userName:'ronny009',
+              designation:'Executive',
+              status:'Active'
             },
             {
-              levelId:'0009',
-              levelname: '9',
-              firstyrcomm: '70%',
-              renewalcomm:'10%',
-              fiveyrlmc:'27%'
+              serial:'009',
+              employeeID: '2300158',
+              employeeName: 'Max Austin',
+              userName:'max159',
+              designation:'Assistant Manager',
+              status:'Active'
             },
             {
-              levelId:'0010',
-              levelname: '10',
-              firstyrcomm: '35%',
-              renewalcomm:'18%',
-              fiveyrlmc:'33%'
+              serial:'010',
+              employeeID: '2300159',
+              employeeName: 'Ross Watson',
+              userName:'ross632',
+              designation:'Executive',
+              status:'Active'
             },
             {
-              levelId:'0011',
-              levelname: '11',
-              firstyrcomm: '15%',
-              renewalcomm:'10%',
-              fiveyrlmc:'32%'
+              serial:'011',
+              employeeID: '2300160',
+              employeeName: 'Damien Doe',
+              userName:'dam005',
+              designation:'Executive',
+              status:'Active'
             },
             {
-                levelId:'0012',
-                levelname: '12',
-                firstyrcomm: '18%',
-                renewalcomm:'10%',
-                fiveyrlmc:'18%'
+              serial:'012',
+              employeeID: '2300161',
+              employeeName: 'Phill Simmons',
+              userName:'phill007',
+              designation:'Executive',
+              status:'Active'
               }
           ]}
         };
     }
-    
     render() {
         return (
             <div style={{width: '100%'}}>
@@ -144,7 +161,7 @@ class AgentLevels extends Component {
                     <div className="col-md-12">
                         <div className="buttons ml-3" style={{overflow:'hidden'}}>
                             <NavLink class="btn btn-info pull-left mb-4" className="nav-link" to="/create-commission"  activeClassName=" active">
-                                <span>Add Level</span>
+                                <span>Add User</span>
                             </NavLink>
                         </div>
                     </div>
@@ -154,20 +171,20 @@ class AgentLevels extends Component {
                     <div className="col-md-12">
                         <div className="card">
                             <div className="card-header card-header-primary">
-                              <h4 className="card-title pull-left ">Level Summary</h4>
+                              <h4 className="card-title pull-left ">User Summary</h4>
                             </div>
                             <div className="card-body">
                                 <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 pull-left border-right">
                                     <h3 className="bold">11</h3>
-                                    <span className="text-dark">No. of Levels</span>
+                                    <span className="text-dark">No. of Users</span>
                                 </div>
                                 <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 pull-left border-right">
                                     <h3 className="bold">11</h3>
-                                    <span className="text-success">Active Levels</span>
+                                    <span className="text-success">Active User</span>
                                 </div>
                                 <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 pull-left">
                                     <h3 className="bold">0</h3>
-                                    <span className="text-danger">Inactive Levels</span>
+                                    <span className="text-danger">Inactive User</span>
                                 </div>
                             </div>
                         </div>
@@ -178,7 +195,7 @@ class AgentLevels extends Component {
                 <div className="col-md-12">
                   <div className="card">
                     <div className="card-header card-header-primary">
-                      <h4 className="card-title pull-left ">Level Management</h4>
+                      <h4 className="card-title pull-left ">User Management</h4>
                     </div>
                     <div className="card-body">
                        <table border="0" cellspacing="5" cellpadding="5">
@@ -188,11 +205,11 @@ class AgentLevels extends Component {
                                 <td><input type="date" name="end_date" id="end_date" className="form-control" /></td>
                                 <td className="select">
                                     <Select>
-                                        <MenuItem value={'slno'}>SL. No.</MenuItem>
-                                        <MenuItem value={'level'}>Level</MenuItem>
-                                        <MenuItem value={'fyc'}>FYC</MenuItem>
-                                        <MenuItem value={'renewal'}>Renewal</MenuItem>
-                                        <MenuItem value={'clm'}>5 Years & CLM</MenuItem>
+                                        <MenuItem value={'serial'}>SL. No.</MenuItem>
+                                        <MenuItem value={'employeeID'}>Employee ID</MenuItem>
+                                        <MenuItem value={'employeeName'}>Employee Name</MenuItem>
+                                        <MenuItem value={'userName'}>User Name</MenuItem>
+                                        <MenuItem value={'designation'}>Designation</MenuItem>
                                     </Select>
                                 </td>
                                 <td><button className="btn btn-rounded  waves-effect" type="submit">Filter</button></td>
@@ -212,4 +229,4 @@ class AgentLevels extends Component {
     }
 }
 
-export default AgentLevels;
+export default AdminSettings;

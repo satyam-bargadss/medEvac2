@@ -3,12 +3,11 @@ import { HashRouter as Router, Route
     ,NavLink,Redirect} from "react-router-dom";
  import { MDBDataTable } from 'mdbreact';
  import  './css/material-dashboard.css';
- import Select from '@material-ui/core/Select';
  import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
  import * as myConst from './helper/Constant';
  import Switch from 'react-toggle-switch'
  const URL = myConst.HTTP_URL;
-
 class Commissions extends Component {
     constructor(props) {
         super(props);
@@ -18,42 +17,56 @@ class Commissions extends Component {
          
             columns: [
               {
-                label: 'Level ID',
-                field: 'AgentId',
+                label: 'Member ID',
+                field: 'customerId',
                 sort: 'asc',
                 width: 150
               },
               {
-                label: 'Commision Fee',
-                field: 'firstName',
+                label: 'Member   Name',
+                field: 'membername',
                 sort: 'asc',
                 width: 150
               },
               {
-                label: '1 st year commission',
-                field: 'lastName',
-                sort: 'asc',
-                width: 150
-              },
-              {
-                label: 'First Name',
-                field: 'Commission',
+                label: 'Plan Name',
+                field: 'CustomerFee',
                 sort: 'asc',
                 width: 200
               },
               {
-                label: 'Last Name',
-                field: 'Commission',
+                label: 'Plan Fees',
+                field: 'CustomerFee',
                 sort: 'asc',
-                width: 200
-              }
+                width: 100
+              },
+              {
+                label: 'Agent Name',
+                field: 'aFirstName',
+                sort: 'asc',
+                width: 100
+              },
+            
+              {
+                label: 'Agent Commission',
+                field: 'acommission',
+                sort: 'asc',
+                width: 100
+              },
+              {
+                label: 'Manager Commission',
+                field: 'mcommission',
+                sort: 'asc',
+                width: 100
+              }           
             ]
-        };
+           
+          }
     }
-    async fetchCommision(username,assa,aasss) {
+    async commisionBymember(username,assa,aasss) {
      
       try{
-        let response = await fetch(URL+'agent-commision', {
+        let response = await fetch(URL+'member-wise-commision', {
           method: 'GET', // *GET, POST, PUT, DELETE, etc.
         
           cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -68,9 +81,9 @@ class Commissions extends Component {
           let data = await response.json()
         
           this.setState(()=>({
-            rows:data.agentComission
+            rows:data.comissionByMember
           }))
-          console.log(data.agentComission);
+          console.log(data.comissionByMember);
     } catch(error){
       console.log(error);
     }
@@ -78,56 +91,23 @@ class Commissions extends Component {
     
     }
     componentDidMount(){
-      this.fetchCommision();
+      this.commisionBymember();
     }
     render() {
-
 
       let data={
         columns: this.state.columns,
          rows:this.state.rows
        }
+            
         return (
             <div style={{width: '100%'}}>
-                <div className="container-fluid">
-                    <div className="col-md-12">
-                        <div className="buttons ml-3" style={{overflow:'hidden'}}>
-                            <NavLink class="btn btn-info pull-left mb-4" className="nav-link" to="/create-commission"  activeClassName=" active">
-                                <span>Add Commission</span>
-                            </NavLink>
-                        </div>
-                    </div>
-                </div>
-                <br/>
-                <div className="container-fluid">
-                    <div className="col-md-12">
-                        <div className="card">
-                            <div className="card-header card-header-primary">
-                              <h4 className="card-title pull-left ">Commissions Summary</h4>
-                            </div>
-                            <div className="card-body">
-                                <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 pull-left border-right">
-                                    <h3 className="bold">11</h3>
-                                    <span className="text-dark">No. of Levels</span>
-                                </div>
-                                <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 pull-left border-right">
-                                    <h3 className="bold">11</h3>
-                                    <span className="text-success">Active Levels</span>
-                                </div>
-                                <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 pull-left">
-                                    <h3 className="bold">0</h3>
-                                    <span className="text-danger">Inactive Levels</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <br/><br/>
+                
             <div className="container-fluid">
                 <div className="col-md-12">
                   <div className="card">
                     <div className="card-header card-header-primary">
-                      <h4 className="card-title pull-left ">Commission Management</h4>
+                      <h4 className="card-title pull-left ">Commission Report</h4>
                     </div>
                     <div className="card-body">
                        <table border="0" cellspacing="5" cellpadding="5">
