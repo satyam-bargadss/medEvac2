@@ -117,11 +117,13 @@ class Commissions extends Component {
                                 <td><input type="date" name="end_date" id="end_date" className="form-control" /></td>
                                 <td className="select">
                                     <Select>
-                                        <MenuItem value={'slno'}>SL. No.</MenuItem>
-                                        <MenuItem value={'level'}>Level</MenuItem>
-                                        <MenuItem value={'fyc'}>FYC</MenuItem>
-                                        <MenuItem value={'renewal'}>Renewal</MenuItem>
-                                        <MenuItem value={'clm'}>5 Years & CLM</MenuItem>
+                                        <MenuItem value={'customerId'}>Member ID</MenuItem>
+                                        <MenuItem value={'membername'}>Member Name</MenuItem>
+                                        <MenuItem value={'planname'}>Plan Name</MenuItem>
+                                        <MenuItem value={'planfees'}>Plan Fees</MenuItem>
+                                        <MenuItem value={'agentname'}>Agent Name</MenuItem>
+                                        <MenuItem value={'agentcomm'}>Agent Commission</MenuItem>
+                                        <MenuItem value={'managercomm'}>Manager Commission</MenuItem>
                                     </Select>
                                 </td>
                                 <td><button className="btn btn-rounded  waves-effect" type="submit">Filter</button></td>

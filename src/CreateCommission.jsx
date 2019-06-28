@@ -17,7 +17,7 @@ class CreateCommission extends Component {
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div className="form_bg">
                             <div className="header_part">
-                                <h2>Create Commission</h2>
+                                <h2>Create Level</h2>
                             </div>
                             <div className="form_body">
                                 <div className="px-lg-5 pt-0">

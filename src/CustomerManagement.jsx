@@ -7,7 +7,17 @@ import Select from '@material-ui/core/Select';
 import Modal from 'react-responsive-modal';
 import  './css/material-dashboard.css';
 import * as myConst from './helper/Constant';
-import Switch from 'react-toggle-switch'
+import Switch from 'react-toggle-switch';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+import 'reactstrap';
+
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
 const URL = myConst.HTTP_URL;
 	
 class CustomerManagement extends Component {
