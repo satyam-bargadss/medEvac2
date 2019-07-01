@@ -33,16 +33,10 @@ class Agent extends Component {
                 width: 150
               },
               {
-                label: 'First Name',
+                label: 'Agent Name',
                 field: 'firstName',
                 sort: 'asc',
                 width: 150
-              },
-              {
-                label: 'Last Name',
-                field: 'lastName',
-                sort: 'asc',
-                width: 200
               },
               {
                 label: 'Date Of Birth',
@@ -185,7 +179,7 @@ catch(error){
           // console.log('hi');
            const newrows =  this.state.rows.map((row) => {
 
-            return {...row, A:'',B:'', view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.firstName,row.lastName,row.levelID)}><i className="material-icons">add_circle</i></a></React.Fragment>};
+            return {...row, A:'', view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.firstName,row.lastName,row.levelID)}><i className="material-icons">add_circle</i></a></React.Fragment>};
         });
         this.setState({rows: newrows });
     } catch(error){
