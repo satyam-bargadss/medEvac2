@@ -59,79 +59,79 @@ class AgentLevels extends Component {
             {
                levelId:'0002',
                levelname: '2',
-               firstyrcomm: '60%',
-               renewalcomm:'9%',
-               fiveyrlmc:'26%'
-            },
-            {
-               levelId:'0003',
-               levelname: '3',
-               firstyrcomm: '75%',
-               renewalcomm:'12%',
-               fiveyrlmc:'28%'
-            },
-            {
-              levelId:'0004',
-              levelname: '4',
-              firstyrcomm: '60%',
-              renewalcomm:'9%',
-              fiveyrlmc:'26%'
-            },
-            {
-              levelId:'0005',
-              levelname: '5',
-              firstyrcomm: '10%',
-              renewalcomm:'2%',
-              fiveyrlmc:'35%'
-            },
-            {
-              levelId:'0006',
-              levelname: '6',
-              firstyrcomm: '70%',
-              renewalcomm:'18%',
-              fiveyrlmc:'33%'
-            },
-            {
-               levelId:'0007',
-               levelname: '7',
                firstyrcomm: '45%',
                renewalcomm:'6%',
                fiveyrlmc:'23%'
             },
             {
-              levelId:'0008',
-              levelname: '8',
-              firstyrcomm: '50%',
-              renewalcomm:'7%',
-              fiveyrlmc:'24%'
+               levelId:'0003',
+               levelname: '3',
+               firstyrcomm: '50%',
+               renewalcomm:'7%',
+               fiveyrlmc:'24%'
             },
             {
-              levelId:'0009',
-              levelname: '9',
+              levelId:'0004',
+              levelname: '4',
+              firstyrcomm: '55%',
+              renewalcomm:'8%',
+              fiveyrlmc:'25%'
+            },
+            {
+              levelId:'0005',
+              levelname: '5',
+              firstyrcomm: '60%',
+              renewalcomm:'9%',
+              fiveyrlmc:'26%'
+            },
+            {
+              levelId:'0006',
+              levelname: '6',
               firstyrcomm: '70%',
               renewalcomm:'10%',
               fiveyrlmc:'27%'
             },
             {
+               levelId:'0007',
+               levelname: '7',
+               firstyrcomm: '75%',
+               renewalcomm:'12%',
+               fiveyrlmc:'28%'
+            },
+            {
+              levelId:'0008',
+              levelname: '8',
+              firstyrcomm: '80%',
+              renewalcomm:'15%',
+              fiveyrlmc:'32%'
+            },
+            {
+              levelId:'0009',
+              levelname: '9',
+              firstyrcomm: '85%',
+              renewalcomm:'16%',
+              fiveyrlmc:'31%'
+            },
+            {
               levelId:'0010',
               levelname: '10',
-              firstyrcomm: '35%',
-              renewalcomm:'18%',
-              fiveyrlmc:'33%'
+              firstyrcomm: '90%',
+              renewalcomm:'17%',
+              fiveyrlmc:'32%'
             },
             {
               levelId:'0011',
               levelname: '11',
-              firstyrcomm: '15%',
-              renewalcomm:'10%',
-              fiveyrlmc:'32%'
+              firstyrcomm: '95%',
+              renewalcomm:'18%',
+              fiveyrlmc:'33%'
             },
             {
                 levelId:'0012',
                 levelname: '12',
-                firstyrcomm: '18%',
-                renewalcomm:'10%',
-                fiveyrlmc:'18%'
+                firstyrcomm: '100%',
+                renewalcomm:'20%',
+                fiveyrlmc:'35%'
               }
           ]}
         };
