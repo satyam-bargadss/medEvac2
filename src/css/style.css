@@ -34,6 +34,15 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   background:#ddd;
 }
 
+.card .card-body .text-center h3{
+  font-weight:bold;
+  font-size:20px;
+}
+
+.card .card-body .text-center h3 + h5{
+  font-size:16px;
+}
+
 .form_bg{box-shadow:0 0 8px #101010; margin-bottom:80px;}
 .header_part{background:url(/images/top_bg.jpg) no-repeat; text-align:center; margin:0; background-size:cover;}
 .form_body{background:#F8F2E4; padding:20px;}

@@ -7,6 +7,7 @@ import Switch from 'react-toggle-switch';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Modal from 'react-responsive-modal';
+import Modal1 from 'react-responsive-modal';
 import Picky from 'react-picky';
 import 'react-picky/dist/picky.css';
 
@@ -23,6 +24,7 @@ class Agent extends Component {
         this.state = {
           switched: false,
            open:false,
+           open1:false,
            manager:[],
            selectedManager:[],
             columns: [
@@ -71,14 +73,13 @@ class Agent extends Component {
         
       }
     }
-    onOpenModal = (agentId,agentFirstName,agentLastname,currentLevelId) => {
-       console.log(agentFirstName);
-        console.log(agentLastname);
+    onOpenModal = (agentId,agentName,currentLevelId) => {
+      console.log(agentName);
    
       this.setState({
             agentId:agentId,
-            firstName:agentFirstName,
-            lastName:agentLastname,
+            agentName:agentName,
+            
             levelID:currentLevelId,
       },()=>{
         console.log(agentId)
@@ -86,9 +87,15 @@ class Agent extends Component {
       })
       this.setState({ open: true });
     }
-    
+    onOpenModal1 = () => {
+      
+      this.setState({ open1 : true });
+    }
     onCloseModal = () => {
       this.setState({ open: false });
+    };
+    onCloseModal1 = () => {
+      this.setState({ open1: false });
     };
     async  getAgentForManager(currentAgentId,currentLevelId) {
       
@@ -179,7 +186,7 @@ catch(error){
           // console.log('hi');
            const newrows =  this.state.rows.map((row) => {
 
-            return {...row, A:'', view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.firstName,row.lastName,row.levelID)}><i className="material-icons">add_circle</i></a></React.Fragment>};
+            return {...row, A:'', view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.agent_name,row.levelID)}><i className="material-icons">add_circle</i></a><Link data-toggle="tooltip" title="Payment Schedule" to="/PaymentSchedule"><i class="material-icons">payment</i></Link></React.Fragment>};
         });
         this.setState({rows: newrows });
     } catch(error){
@@ -352,7 +359,7 @@ catch(error){
               </div>
               <div className="modalBody pt-3">
                 <label htmlFor="agentname" className="col-sm-4 col-md-4 col-lg-4 pull-left">Agent Name</label>
-                <div className="col-sm-8 col-md-8 col-lg-8 pull-left">{this.state.firstName + ' '+this.state.lastName} </div>
+                <div className="col-sm-8 col-md-8 col-lg-8 pull-left">{this.state.agentName !=''?this.state.agentName:''} </div>
                 <div className="clearfix"></div><br/>
                 <form onSubmit={this.handleSelectedManager}>  
                 <label htmlFor="selectmanager" className="col-sm-4 col-md-4 col-lg-4 pull-left">Select Manager</label>

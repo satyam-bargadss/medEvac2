@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+
 import { MDBInput } from "mdbreact";
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -32,7 +33,8 @@ class MemberRegistrationForm extends Component {
       
         this.state = {
             key: 2,
-            isPreviewSave: false
+            isPreviewSave: false,
+            sameAsContactInformation:true
           };
        this.state = {
          options: [],
@@ -322,8 +324,51 @@ catch(error){
               }
               return(dependentFields);
              }
-           
-   
+             notsameAsContactHandler = (sameasValue)=>{
+                if(sameasValue === true){
+                    console.log(sameasValue)
+                    return false
+                    this.setState({country1:this.state.country,
+                       maddress1:this.state.address1,
+                       maddress2:this.state.address2,
+                       city1:this.state.city,
+                       state_s1:this.state.state_s,
+                       zip:this.state.zipcode
+                      })
+                   }//end of same as contact information checked     
+             } 
+             sameAsContactHandler = (event) =>{
+                const target = event.target;
+                const value = target.type === 'checkbox' ? target.checked :'';
+                console.log(value);
+                const name = target.name;
+            
+                this.setState({
+                  [name]: value
+                })
+                if(value === true){
+                 this.setState({country1:this.state.country,
+                    maddress1:this.state.address1,
+                    maddress2:this.state.address2,
+                    city1:this.state.city,
+                    state_s1:this.state.state_s,
+                    zip:this.state.zipcode
+                   })
+                }else{
+                    this.setState({country1:'',
+                        maddress1:'',
+                        maddress2:'',
+                        city1:'',
+                        state_s1:'',
+                        zip:''
+                       }) 
+                }
+                /* alert('cvcgfgfg');
+                const checkBoxValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+                console.log(checkBoxValue);
+                this.setState({sameAsContactInformation:checkBoxValue})
+                */
+             }
     
              handleChange = (e) => {
 
@@ -427,11 +472,11 @@ catch(error){
         
       }
     
-    render() {
-      
+    render() { 
+              
         return (
             <div style={{width: '100%'}}>
-                
+              {this.state.sameAsContactInformation}  
             <div className="container">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
              {!this.state.isPreviewSave?
@@ -480,12 +525,12 @@ catch(error){
 
                                   <div className="form-row px-2">
                                     <div className="col">
-                                        <div classname="md-form">
+                                        <div className="md-form">
                                             <MDBInput autoComplete="off" type="number" label="Alternate Phone Number" name="alternatemobilenumber" value={this.state.alternatemobilenumber} onChange={e => this.handleChange(e)}/>
                                         </div>
                                     </div>
                                     <div className="col">
-                                        <div classname="md-form">
+                                        <div className="md-form">
                                             <MDBInput autoComplete="off" label="Email Address*" type="email" name="email" required value={this.state.email} onChange={e => this.handleChange(e)}/>
                                         </div>
                                     </div>
@@ -579,9 +624,22 @@ catch(error){
                                   </div>
 
                                   <div className="subHead px-2">
-                                      <div className="custom-control custom-checkbox">
-                                          <input type="checkbox" className="custom-control-input" id="defaultUnchecked"/>
-                                          <label className="custom-control-label" for="defaultUnchecked">Same as Client Address</label>
+                                      <div className="">
+                                         {/*
+                                               <input type="checkbox" className="custom-control-input"
+                                               name="sameAsContactInformation"  
+                                               checked={this.state.sameAsContactInformation}
+                                               onChange={this.sameAsContactHandler}/>
+                                              <label className="custom-control-label" for="defaultUnchecked">Same  Client Address</label>
+                                              */
+                                         }
+                                         <input
+                                        
+                                          name="sameAsContactInformation"
+                                            type="checkbox"
+                                            checked={this.state.sameAsContactInformation}
+                                            onChange={this.sameAsContactHandler} />&nbsp;&nbsp;Same as Client Address
+                                             {/*<label className="custom-control-label" HTMLfor="defaultUnchecked">Same as Client Address</label>*/}
                                       </div>
                                       <h4><strong>Mailing Address</strong></h4>
                                   </div>
@@ -590,7 +648,7 @@ catch(error){
                                       <div className="col">
                                           <div className="md-form">
                                             <InputLabel htmlFor="country">Country* </InputLabel>
-                                              <Select id="country"
+                                              <Select id="country1"
                                               value={this.state.country1}                                               
                                               name="country1"
                                               onChange={this.handleChange} 
@@ -1010,9 +1068,22 @@ catch(error){
                                   </div>
 
                                   <div className="subHead px-2">
-                                      <div className="custom-control custom-checkbox">
-                                          <input type="checkbox" className="custom-control-input" id="defaultUnchecked"/>
-                                          <label className="custom-control-label" for="defaultUnchecked">Same as Client Address</label>
+                                      <div className="">
+                                         {/*
+                                               <input type="checkbox" className="custom-control-input"
+                                               name="sameAsContactInformation"  
+                                               checked={this.state.sameAsContactInformation}
+                                               onChange={this.sameAsContactHandler}/>
+                                              <label className="custom-control-label" for="defaultUnchecked">Same  Client Address</label>
+                                              */
+                                         }
+                                         <input
+                                        
+                                          name="sameAsContactInformation"
+                                            type="checkbox"
+                                            checked={this.state.sameAsContactInformation}
+                                            onChange={this.sameAsContactHandler} />&nbsp;&nbsp;Same as Client Address
+                                             {/*<label className="custom-control-label" HTMLfor="defaultUnchecked">Same as Client Address</label>*/}
                                       </div>
                                       <h4><strong>Mailing Address</strong></h4>
                                   </div>

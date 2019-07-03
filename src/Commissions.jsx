@@ -17,13 +17,13 @@ class Commissions extends Component {
          
             columns: [
               {
-                label: 'Member ID',
+                label: 'Client ID',
                 field: 'customerId',
                 sort: 'asc',
                 width: 150
               },
               {
-                label: 'Member   Name',
+                label: 'Client Name',
                 field: 'membername',
                 sort: 'asc',
                 width: 150
