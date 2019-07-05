@@ -21,7 +21,7 @@ class PaymentSchedule extends Component {
               label: 'Serial No.',
               field: 'slNo',
               sort: 'asc',
-              width: 200
+              width: 300
             },
             {
               label: 'Client Name',
@@ -33,7 +33,7 @@ class PaymentSchedule extends Component {
               label: 'Client Type',
               field: 'clienType',
               sort: 'asc',
-              width: 200
+              width: 300
             },
             {
               label: 'Membership Plan',

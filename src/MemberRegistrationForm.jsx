@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-
 import { MDBInput } from "mdbreact";
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -21,6 +20,8 @@ import 'reactstrap';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+import ReactPhoneInput from 'react-phone-input-2';
 
 const URL = myConst.HTTP_URL;
 class MemberRegistrationForm extends Component {
@@ -371,7 +372,15 @@ catch(error){
              }
     
              handleChange = (e) => {
-
+                console.log(e.target);
+                {/*if(e.target.name === "country" && e.target.value!="US"){
+                    var state_input=docoument.getElementByClassName('state_input');
+                    state_input.style.display="block";
+                    var state_option1=docoument.getElementByClassName('state_option1');
+                    state_option1.style.display="block";
+                    var state_option=docoument.getElementByClassName('state_option');
+                    state_option.style.display="block";
+                }*/}
                 this.setState({
                         [e.target.name]: e.target.value
                 }
@@ -381,7 +390,7 @@ catch(error){
              
                
             }
-          
+            
             handleSubmit(event) {
                event.preventDefault();
                this.setState((preState) =>({
@@ -510,15 +519,30 @@ catch(error){
                                       <div className="col">
                                           <div className="md-form">
                                                   <input type="date" name="dob" required value={this.state.dob}
-                                                     onChange={e => this.handleChange(e)}
-                                                    
+                                                     onChange={e => this.handleChange(e)} 
                                                  />
                                         <label htmlFor="Dob">Date Of Birth *</label>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" type="number" label="Primary Phone Number*" name="mobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)} required/>
+                                          {/*<PhoneInput
+                                                placeholder="Primary Phone Number"
+                                                value={this.state.phone}
+                                                onChange={ phone => this.setState({phone})} 
+                                          />*/}
+                                          <InputLabel htmlFor="phone">Primary Phone Number* </InputLabel>
+                                            <ReactPhoneInput
+                                            inputExtraProps={{
+                                                name: 'phone',
+                                                required: true                                                
+                                              }}
+                                            defaultCountry="us"
+                                            value={this.state.phone}
+                                            onChange={phone => this.setState({phone})}
+                                            
+                                            />
+                                              {/*<MDBInput autoComplete="off" type="number" label="Primary Phone Number*" name="mobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)} required/>*/}
                                           </div>
                                       </div>
                                   </div>
@@ -526,7 +550,18 @@ catch(error){
                                   <div className="form-row px-2">
                                     <div className="col">
                                         <div className="md-form">
-                                            <MDBInput autoComplete="off" type="number" label="Alternate Phone Number" name="alternatemobilenumber" value={this.state.alternatemobilenumber} onChange={e => this.handleChange(e)}/>
+                                            {/*<MDBInput autoComplete="off" type="number" label="Alternate Phone Number" name="alternatemobilenumber" value={this.state.alternatemobilenumber} onChange={e => this.handleChange(e)}/>
+                                            <PhoneInput
+                                                placeholder="Alternate Phone Number"
+                                                value={ this.state.phone }
+                                                onChange={ phone1 => this.setState({ phone1 }) } 
+                                            />*/}
+                                            <InputLabel htmlFor="phone">Alternate Phone Number </InputLabel>
+                                            <ReactPhoneInput
+                                            defaultCountry="us"
+                                            value={this.state.phone1}
+                                            onChange={phone1 => this.setState({phone1})}
+                                            required/>
                                         </div>
                                     </div>
                                     <div className="col">
@@ -605,7 +640,66 @@ catch(error){
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput  autoComplete="off" label="State*" name='state_s' value={this.state.state_s} onChange={e => this.handleChange(e)}required/>                                              
+                                              <MDBInput  autoComplete="off" className="state_input" label="State*" name='state_s' value={this.state.state_s} onChange={e => this.handleChange(e)} required/>                                         
+                                              <InputLabel className="state_option1" htmlFor="state">State* </InputLabel>
+                                              <Select className="state_option" value={this.state.state_s}                                               
+                                              name="state_s"
+                                              onChange={this.handleChange} 
+                                              required                               
+                                              >
+                                                  
+                                                    <MenuItem value="AL">Alabama (AL)</MenuItem>
+                                                    <MenuItem value="AK">Alaska (AK)</MenuItem>
+                                                    <MenuItem value="AZ">Arizona (AZ)</MenuItem>
+                                                    <MenuItem value="AR">Arkansas (AR)</MenuItem>
+                                                    <MenuItem value="CA">California (CA)</MenuItem>
+                                                    <MenuItem value="CO">Colorado (CO)</MenuItem>
+                                                    <MenuItem value="CT">Connecticut (CT)</MenuItem>
+                                                    <MenuItem value="DE">Delaware (DE)</MenuItem>
+                                                    <MenuItem value="DC">District Of Columbia (DC)</MenuItem>
+                                                    <MenuItem value="FL">Florida (FL)</MenuItem>
+                                                    <MenuItem value="GA">Georgia (GA)</MenuItem>
+                                                    <MenuItem value="HI">Hawaii (HI)</MenuItem>
+                                                    <MenuItem value="ID">Idaho (ID)</MenuItem>
+                                                    <MenuItem value="IL">Illinois (IL)</MenuItem>
+                                                    <MenuItem value="IN">Indiana (IN)</MenuItem>
+                                                    <MenuItem value="IA">Iowa (IA)</MenuItem>
+                                                    <MenuItem value="KS">Kansas (KS)</MenuItem>
+                                                    <MenuItem value="KY">Kentucky (KY)</MenuItem>
+                                                    <MenuItem value="LA">Louisiana (LA)</MenuItem>
+                                                    <MenuItem value="ME">Maine (ME)</MenuItem>
+                                                    <MenuItem value="MD">Maryland (MD)</MenuItem>
+                                                    <MenuItem value="MA">Massachusetts (MA)</MenuItem>
+                                                    <MenuItem value="MI">Michigan (MI)</MenuItem>
+                                                    <MenuItem value="MN">Minnesota (MN)</MenuItem>
+                                                    <MenuItem value="MS">Mississippi (MS)</MenuItem>
+                                                    <MenuItem value="MO">Missouri (MO)</MenuItem>
+                                                    <MenuItem value="MT">Montana (MT)</MenuItem>
+                                                    <MenuItem value="NE">Nebraska (NE)</MenuItem>
+                                                    <MenuItem value="NV">Nevada (NV)</MenuItem>
+                                                    <MenuItem value="NH">New Hampshire (NH)</MenuItem>
+                                                    <MenuItem value="NJ">New Jersey (NJ)</MenuItem>
+                                                    <MenuItem value="NM">New Mexico (NM)</MenuItem>
+                                                    <MenuItem value="NY">New York (NY)</MenuItem>
+                                                    <MenuItem value="NC">North Carolina (NC)</MenuItem>
+                                                    <MenuItem value="ND">North Dakota (ND)</MenuItem>
+                                                    <MenuItem value="OH">Ohio (OH)</MenuItem>
+                                                    <MenuItem value="OK">Oklahoma (OK)</MenuItem>
+                                                    <MenuItem value="OR">Oregon (OR)</MenuItem>
+                                                    <MenuItem value="PA">Pennsylvania (PA)</MenuItem>
+                                                    <MenuItem value="RI">Rhode Island (RI)</MenuItem>
+                                                    <MenuItem value="SC">South Carolina (SC)</MenuItem>
+                                                    <MenuItem value="SD">South Dakota (SD)</MenuItem>
+                                                    <MenuItem value="TN">Tennessee (TN)</MenuItem>
+                                                    <MenuItem value="TX">Texas (TX)</MenuItem>
+                                                    <MenuItem value="UT">Utah (UT)</MenuItem>
+                                                    <MenuItem value="VT">Vermont</MenuItem>
+                                                    <MenuItem value="VA">Virginia</MenuItem>
+                                                    <MenuItem value="WA">Washington</MenuItem>
+                                                    <MenuItem value="WV">West Virginia</MenuItem>
+                                                    <MenuItem value="WI">Wisconsin</MenuItem>
+                                                    <MenuItem value="WY">Wyoming</MenuItem>
+                                              </Select>
                                           </div>
                                       </div>
                                   </div>
@@ -963,7 +1057,7 @@ catch(error){
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" type="number" label="Primary Phone Number*" name="mobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)} required/>
+                                              <MDBInput autoComplete="off" type="number" label="Primary Phone Number*" name="mobilenumber" value={this.state.mobilenumber}  onChange={e => this.handleChange(e)} required/>
                                           </div>
                                       </div>
                                   </div>
