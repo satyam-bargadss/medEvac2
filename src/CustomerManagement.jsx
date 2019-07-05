@@ -42,25 +42,21 @@ constructor(props) {
       {
         label: 'First Name',
         field: 'firstName',
-       
         width: 150
       },
       {
         label: 'Last Name',
         field: 'LastName',
-       
         width: 150
       },
       {
         label: 'DOB',
         field: 'DOB',
-      
         width: 270
       },
       {
         label: 'Country',
-        field: 'country',
-        
+        field: 'country', 
         width: 200
       },
       {
@@ -133,6 +129,7 @@ async fetchUser(username,assa,aasss) {
           <Link data-toggle="tooltip" title="View" to={`/MemberView/${row.customerId}`}><i class="material-icons">visibility</i></Link>
           <a data-toggle="tooltip" title="Claim" onClick={() => this.onOpenModal(row.agentId,row.firstName,row.lastName)}><i className="material-icons">monetization_on</i></a>
           <Link data-toggle="tooltip" title="Edit" to={''}><i class="material-icons">edit</i></Link>
+          <Link data-toggle="tooltip" title="Installment Schedule" to="/InstallmentSchedule"><i class="material-icons">payment</i></Link>
         </React.Fragment>};
     });
     this.setState({rows: newrows });   
@@ -237,7 +234,7 @@ componentDidMount(){
                     <MenuItem value={'country'}>Country</MenuItem>
                   </Select>
               </td>
-							<td><button class="btn btn-rounded  waves-effect" type="submit">Filter</button></td>
+							<td><button className="btn btn-rounded  waves-effect" type="submit">Filter</button></td>
 						</tr>
 				   </table>
 					 <MDBDataTable

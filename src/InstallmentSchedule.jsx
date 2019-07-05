@@ -9,9 +9,8 @@ import { HashRouter as Router, Route
  import Switch from 'react-toggle-switch';
  import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-const URL = myConst.HTTP_URL
 
-class PaymentSchedule extends Component {
+class InstallmentSchedule extends Component {
     constructor(props) {
         super(props);
         console.log(props);
@@ -20,160 +19,51 @@ class PaymentSchedule extends Component {
           data:  {
           columns: [
             {
-              label: 'Serial No.',
-              field: 'slNo',
+              label: 'Installment No.',
+              field: 'insNo',
+              sort: 'asc',
+              width: 200
+            },
+            {
+              label: 'Month',
+              field: 'month',
               sort: 'asc',
               width: 300
             },
             {
-              label: 'Client Name',
-              field: 'clientName',
+              label: 'Mode',
+              field: 'mode',
               sort: 'asc',
               width: 300
             },
             {
-              label: 'Client Type',
-              field: 'clienType',
+              label: 'Payment Type',
+              field: 'paymentype',
               sort: 'asc',
               width: 300
             },
             {
-              label: 'Membership Plan',
-              field: 'memPlan',
+              label: 'Amount',
+              field: 'amount',
               sort: 'asc',
               width: 300
             },
             {
-              label: 'Fees',
-              field: 'fees',
+              label: 'Status',
+              field: 'status',
               sort: 'asc',
               width: 300
-            },
-            {
-                label: 'Group Code',
-                field: 'groupCode',
-                sort: 'asc',
-                width: 300
-            },
-            {
-                label: 'New Comm',
-                field: 'newComm',
-                sort: 'asc',
-                width: 300
-            },
-            {
-                label: 'ChargeBack Comm',
-                field: 'chargeback',
-                sort: 'asc',
-                width: 300
-            },
-            {
-                label: 'Override Comm',
-                field: 'override',
-                sort: 'asc',
-                width: 300
-            },
-            {
-                label: 'Renewal Comm',
-                field: 'renewal',
-                sort: 'asc',
-                width: 300
-            },
-            {
-                label: 'Total Comm',
-                field: 'total',
-                sort: 'asc',
-                width: 300
-            },
-            {
-                label: '1% Interest on Advance',
-                field: 'interest',
-                sort: 'asc',
-                width: 300
-            },
-            {
-                label: 'Earned Comm',
-                field: 'earnedComm',
-                sort: 'asc',
-                width: 300
             }
           ],
           rows: [
             {
-              slNo:'001',
-              clientName: 'Ranjit Pradhan',
-              clienType: 'Family',
-              memPlan:'Monthly',
-              fees:'37.5',
-              groupCode:'USBAR001',
-              newComm:'',
-              chargeback:'15',
-              override:'7.5',
-              renewal:'',
-              total:'22.5',
-              interest:'0.075',
-              earnedComm:'22.425'
-            },
-            {
-                slNo:'002',
-                clientName: 'Steven Finn',
-                clienType: 'Corporate',
-                memPlan:'Monthly',
-                fees:'24.75',
-                groupCode:'USBAR005',
-                newComm:'',
-                chargeback:'9.9',
-                override:'4.95',
-                renewal:'',
-                total:'14.85',
-                interest:'0.15',
-                earnedComm:'14.70'
-              },
-              {
-                slNo:'003',
-                clientName: 'Shane Bond',
-                clienType: 'Government',
-                memPlan:'Annual',
-                fees:'474',
-                groupCode:'USBAR006',
-                newComm:'189.6',
-                chargeback:'',
-                override:'94.8',
-                renewal:'',
-                total:'94.8',
-                interest:'0.95',
-                earnedComm:'93.85'
-              },
-              {
-                slNo:'004',
-                clientName: 'Chris Reid',
-                clienType: 'Family',
-                memPlan:'Monthly',
-                fees:'24.75',
-                groupCode:'USBAR009',
-                newComm:'',
-                chargeback:'9.9',
-                override:'4.95',
-                renewal:'',
-                total:'14.85',
-                interest:'0.15',
-                earnedComm:'14.70'
-              },
-              {
-                slNo:'005',
-                clientName: 'Ronty Martin',
-                clienType: 'Individual',
-                memPlan:'Annual',
-                fees:'297',
-                groupCode:'USBAR007',
-                newComm:'118.80',
-                chargeback:'',
-                override:'59.40',
-                renewal:'',
-                total:'59.40',
-                interest:'0.594',
-                earnedComm:'58.806'
-              }
+              insNo:'001',
+              month: 'January',
+              mode: 'monthly',
+              paymentype:'Check',
+              amount:'100',
+              status:'active'
+            }
           ]}
         };
     }
@@ -195,7 +85,7 @@ class PaymentSchedule extends Component {
                 <div className="col-md-12">
                   <div className="card">
                     <div className="card-header card-header-primary">
-                      <h4 className="card-title pull-left ">Due Commission Status</h4>
+                      <h4 className="card-title pull-left ">Membership Ledger</h4>
                     </div>
                     <div className="card-body">
                         <div className="text-center">
@@ -204,10 +94,10 @@ class PaymentSchedule extends Component {
                         </div>
                         <br/>
                         <div className="row">
-                          <div className="col-xs-12 col-sm-6 col-md-5 col-lg-5 pull-left">
+                            <div className="col-xs-12 col-sm-6 col-md-5 col-lg-5 pull-left">
                                 <div className="row">
                                     <label htmlFor="name" className="col-xs-6 col-sm-4 col-md-4 col-lg-4">Agent Name:</label>
-                                    <span className="col-xs-6 col-sm-8 col-md-8 col-lg-8">Simon Tyler</span>
+                                    <span className="col-xs-6 col-sm-8 col-md-8 col-lg-8">Ranjit Pradhan</span>
 
                                     <div class="clearfix"></div>
 
@@ -244,13 +134,11 @@ class PaymentSchedule extends Component {
                             </div>
                         </div>
                         <div className="clearfix"></div>
-                        <div className="table-responsive">
                          <MDBDataTable
                           striped
                           hover
                           data={this.state.data}
                         />
-                        </div>
                     </div>
                   </div>
                 </div>
@@ -260,4 +148,4 @@ class PaymentSchedule extends Component {
     }
 }
 
-export default PaymentSchedule;
+export default InstallmentSchedule;

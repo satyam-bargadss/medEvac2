@@ -13,6 +13,7 @@
     "jquery": "^3.4.1",
     "jquery-validation": "^1.19.0",
     "libphonenumber-js": "^1.7.20",
+    "material-ui-datetimepicker": "^1.0.7",
     "material-ui-next-pickers": "0.0.21",
     "mdbreact": "^4.15.0",
     "npm": "^6.9.0",

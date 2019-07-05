@@ -11,6 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import * as myConst from './helper/Constant';
 import Select2, {Option} from '@material/react-select';
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
+import TextField from '@material-ui/core/TextField';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
@@ -372,15 +373,15 @@ catch(error){
              }
     
              handleChange = (e) => {
-                console.log(e.target);
-                {/*if(e.target.name === "country" && e.target.value!="US"){
-                    var state_input=docoument.getElementByClassName('state_input');
-                    state_input.style.display="block";
-                    var state_option1=docoument.getElementByClassName('state_option1');
+                   {/*console.log(e.target);
+                    if(e.target.name === "country" && e.target.value!="US"){
+                    var stateInput=document.getElementByClassName('state_input');
+                    stateInput.style.display="block";
+                    var state_option1=document.getElementByClassName('state_option1');
                     state_option1.style.display="block";
-                    var state_option=docoument.getElementByClassName('state_option');
+                    var state_option=document.getElementByClassName('state_option');
                     state_option.style.display="block";
-                }*/}
+                  }*/}
                 this.setState({
                         [e.target.name]: e.target.value
                 }
@@ -521,7 +522,7 @@ catch(error){
                                                   <input type="date" name="dob" required value={this.state.dob}
                                                      onChange={e => this.handleChange(e)} 
                                                  />
-                                        <label htmlFor="Dob">Date Of Birth *</label>
+                                                    <label htmlFor="Dob">Date Of Birth *</label>
                                           </div>
                                       </div>
                                       <div className="col">
@@ -558,6 +559,10 @@ catch(error){
                                             />*/}
                                             <InputLabel htmlFor="phone">Alternate Phone Number </InputLabel>
                                             <ReactPhoneInput
+                                            inputExtraProps={{
+                                                name: 'alternatemobilenumber',
+                                                required: true                                                
+                                              }}
                                             defaultCountry="us"
                                             value={this.state.phone1}
                                             onChange={phone1 => this.setState({phone1})}
@@ -639,9 +644,9 @@ catch(error){
                                           </div>
                                       </div>
                                       <div className="col">
-                                          <div className="md-form">
-                                              <MDBInput  autoComplete="off" className="state_input" label="State*" name='state_s' value={this.state.state_s} onChange={e => this.handleChange(e)} required/>                                         
-                                              <InputLabel className="state_option1" htmlFor="state">State* </InputLabel>
+                                          <div className="md-form"> 
+                                                <MDBInput className="state_input"  autoComplete="off" label="State*" name='state_s' value={this.state.state_s} onChange={e => this.handleChange(e)} required/>                                        
+                                              {/*<InputLabel className="state_option1" htmlFor="state">State* </InputLabel>
                                               <Select className="state_option" value={this.state.state_s}                                               
                                               name="state_s"
                                               onChange={this.handleChange} 
@@ -699,7 +704,7 @@ catch(error){
                                                     <MenuItem value="WV">West Virginia</MenuItem>
                                                     <MenuItem value="WI">Wisconsin</MenuItem>
                                                     <MenuItem value="WY">Wyoming</MenuItem>
-                                              </Select>
+                                            </Select>*/}
                                           </div>
                                       </div>
                                   </div>
@@ -1057,7 +1062,17 @@ catch(error){
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" type="number" label="Primary Phone Number*" name="mobilenumber" value={this.state.mobilenumber}  onChange={e => this.handleChange(e)} required/>
+
+                                              {/*<MDBInput autoComplete="off" type="number" label="Primary Phone Number*" name="mobilenumber" value={this.state.phone}  onChange={e => this.handleChange(e)} required/>*/}
+                                              <ReactPhoneInput
+                                            inputExtraProps={{
+                                                name: 'mobilenumber',
+                                                required: true                                                
+                                              }}
+                                            defaultCountry="us"
+                                            value={this.state.phone}
+                                            onChange={phone => this.setState({phone})}
+                                            />
                                           </div>
                                       </div>
                                   </div>
@@ -1065,7 +1080,16 @@ catch(error){
                                   <div className="form-row px-2">
                                     <div className="col">
                                       <div className="md-form">
-                                            <MDBInput autoComplete="off" type="number" label="Alternate Phone Number*" name="alternatemobilenumber" value={this.state.alternatemobilenumber} onChange={e => this.handleChange(e)}/> 
+                                            {/*<MDBInput autoComplete="off" type="number" label="Alternate Phone Number*" name="alternatemobilenumber" value={this.state.alternatemobilenumber} onChange={e => this.handleChange(e)}/> */}
+                                            <ReactPhoneInput
+                                            inputExtraProps={{
+                                                name: 'alternatemobilenumber',
+                                                required: true                                                
+                                              }}
+                                            defaultCountry="us"
+                                            value={this.state.phone1}
+                                            onChange={phone1 => this.setState({phone1})}
+                                            />   
                                       </div>          
                                     </div>
                                     <div className="col">
