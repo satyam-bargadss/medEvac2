@@ -119,10 +119,10 @@ class PaymentSchedule extends Component {
           let data = await response.json()
          console.log(data);
          this.setState(()=>({
-            rows:data.agents,
+             rows:data.agents,
             agentName:data.agentDetails[0].agentName,
             agentLevel:data.agentDetails[0].agentLevel,
-            totalCustomer:data.total_customer
+            totalCustomer:data.total_customer[0]
           }))
     } catch(error){
       console.log(error);
@@ -217,6 +217,10 @@ class PaymentSchedule extends Component {
                         />
                         </div>
                     </div>
+                    <div className="buttons text-center">
+                      <button className="btn btn-rounded my-4 waves-effect">Payment</button>
+                      <button className="btn btn-rounded my-4 waves-effect">Print</button>
+                  </div>
                   </div>
                 </div>
             </div>
