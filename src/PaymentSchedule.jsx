@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route
-    ,NavLink,Redirect} from "react-router-dom";
+    ,NavLink,Redirect,Link} from "react-router-dom";
  import { MDBDataTable } from 'mdbreact';
  import  './css/material-dashboard.css';
  import Select from '@material-ui/core/Select';
@@ -14,10 +14,11 @@ const URL = myConst.HTTP_URL
 class PaymentSchedule extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
+        //console.log('Tirtha');
+        //console.log(props.match.params.agentId);
         this.state = {
+          agentId:props.match.params.agentId,
           switched: false,
-          data:  {
           columns: [
             {
               label: 'Serial No.',
@@ -97,87 +98,51 @@ class PaymentSchedule extends Component {
                 sort: 'asc',
                 width: 300
             }
-          ],
-          rows: [
-            {
-              slNo:'001',
-              clientName: 'Ranjit Pradhan',
-              clienType: 'Family',
-              memPlan:'Monthly',
-              fees:'37.5',
-              groupCode:'USBAR001',
-              newComm:'',
-              chargeback:'15',
-              override:'7.5',
-              renewal:'',
-              total:'22.5',
-              interest:'0.075',
-              earnedComm:'22.425'
-            },
-            {
-                slNo:'002',
-                clientName: 'Steven Finn',
-                clienType: 'Corporate',
-                memPlan:'Monthly',
-                fees:'24.75',
-                groupCode:'USBAR005',
-                newComm:'',
-                chargeback:'9.9',
-                override:'4.95',
-                renewal:'',
-                total:'14.85',
-                interest:'0.15',
-                earnedComm:'14.70'
-              },
-              {
-                slNo:'003',
-                clientName: 'Shane Bond',
-                clienType: 'Government',
-                memPlan:'Annual',
-                fees:'474',
-                groupCode:'USBAR006',
-                newComm:'189.6',
-                chargeback:'',
-                override:'94.8',
-                renewal:'',
-                total:'94.8',
-                interest:'0.95',
-                earnedComm:'93.85'
-              },
-              {
-                slNo:'004',
-                clientName: 'Chris Reid',
-                clienType: 'Family',
-                memPlan:'Monthly',
-                fees:'24.75',
-                groupCode:'USBAR009',
-                newComm:'',
-                chargeback:'9.9',
-                override:'4.95',
-                renewal:'',
-                total:'14.85',
-                interest:'0.15',
-                earnedComm:'14.70'
-              },
-              {
-                slNo:'005',
-                clientName: 'Ronty Martin',
-                clienType: 'Individual',
-                memPlan:'Annual',
-                fees:'297',
-                groupCode:'USBAR007',
-                newComm:'118.80',
-                chargeback:'',
-                override:'59.40',
-                renewal:'',
-                total:'59.40',
-                interest:'0.594',
-                earnedComm:'58.806'
-              }
-          ]}
+          ]
         };
     }
+    async fetchAgentsDetailsCommision() {
+     
+      try{
+        let response = await fetch(URL+'agentPaymentSchedule/'+this.state.agentId, {
+          method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        
+          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          //credentials: 'same-origin', // include, *same-origin, omit
+          headers: {
+              'Content-Type': 'application/json',
+              
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+          }
+        })
+        
+          let data = await response.json()
+         console.log(data);
+         this.setState(()=>({
+            rows:data.agents,
+            agentName:data.agentDetails[0].agentName,
+            agentLevel:data.agentDetails[0].agentLevel,
+            totalCustomer:data.total_customer
+          }))
+    } catch(error){
+      console.log(error);
+    }
+    //end Api calling
+    
+    }
+   componentDidMount(){
+      const agents= this.fetchAgentsDetailsCommision();
+       console.log(agents) ;
+     }
+
     render() {
+
+      let data={
+         columns: this.state.columns,
+         rows:this.state.rows
+      }
+       const { open } = this.state;
+
         return (
             <div style={{width: '100%'}}>
                 <div className="container-fluid">
@@ -204,20 +169,20 @@ class PaymentSchedule extends Component {
                         </div>
                         <br/>
                         <div className="row">
-                          <div className="col-xs-12 col-sm-6 col-md-5 col-lg-5 pull-left">
+                          <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4 pull-left">
                                 <div className="row">
-                                    <label htmlFor="name" className="col-xs-6 col-sm-4 col-md-4 col-lg-4">Agent Name:</label>
-                                    <span className="col-xs-6 col-sm-8 col-md-8 col-lg-8">Simon Tyler</span>
+                                    <label htmlFor="name" className="col-xs-6 col-sm-5 col-md-5 col-lg-5">Agent Name:</label>
+                                    <span className="col-xs-6 col-sm-7 col-md-7 col-lg-7">{this.state.agentName}</span>
 
                                     <div class="clearfix"></div>
 
-                                    <label htmlFor="name" className="col-xs-6 col-sm-4 col-md-4 col-lg-4">Agent Level:</label>
-                                    <span className="col-xs-6 col-sm-8 col-md-8 col-lg-8">1</span>
+                                    <label htmlFor="name" className="col-xs-6 col-sm-5 col-md-5 col-lg-5">Agent Level:</label>
+                                    <span className="col-xs-6 col-sm-7 col-md-7 col-lg-7">{this.state.agentLevel}</span>
                                 </div>
                             </div>
-                            <div className="col-xs-12 col-sm-6 col-md-7 col-lg-7">  
+                            <div className="col-xs-12 col-sm-6 col-md-8 col-lg-8">  
                                 <label htmlFor="period" className="col-xs-2 col-sm-2 col-md-2 col-lg-2 period">Period</label>
-                                <span clasName="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <span className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                     <TextField
                                     id="date"
                                     type="date"
@@ -227,7 +192,7 @@ class PaymentSchedule extends Component {
                                     }}
                                     />
                                 </span>&nbsp;&nbsp;
-                                <span clasName="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <span className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                     <TextField
                                     id="date1"
                                     type="date"
@@ -248,7 +213,7 @@ class PaymentSchedule extends Component {
                          <MDBDataTable
                           striped
                           hover
-                          data={this.state.data}
+                          data={data}
                         />
                         </div>
                     </div>

@@ -48,19 +48,19 @@ class Commissions extends Component {
               },
             
               {
-                label: 'Agent Commission',
+                label: 'Agent Comm',
                 field: 'acommission',
                 sort: 'asc',
                 width: 100
               },
               {
-                label: 'Agent Advance Commission',
+                label: 'Agent Advance Comm',
                 field: 'advance commision',
                 sort: 'asc',
                 width: 100
               },
               {
-                label: 'Manager Commission',
+                label: 'Manager Comm',
                 field: 'mcommission',
                 sort: 'asc',
                 width: 100

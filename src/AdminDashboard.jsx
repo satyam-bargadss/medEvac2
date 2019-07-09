@@ -214,7 +214,7 @@ class AdminDashboard extends Component {
               <Route path="/report" component={report} exact strict/>
               <Route path="/agentview/:agentId" component={agentview} exact strict/>
               <Route path="/agentcomm-report" component={AgentCommReport} exact strict/>
-              <Route path="/PaymentSchedule" component={PaymentSchedule} exact strict/>
+              <Route path="/PaymentSchedule/:agentId" component={PaymentSchedule} exact strict/>
               <Route path="/InstallmentSchedule" component={InstallmentSchedule} exact strict/>
           </Switch>
           </div>

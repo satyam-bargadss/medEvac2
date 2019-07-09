@@ -18,7 +18,7 @@ const URL = myConst.HTTP_URL;
 class Agent extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
+        //console.log(props);
         this.handleSelectedManager = this.handleSelectedManager.bind(this);
         //console.log(this.props.location.state.message)
         this.state = {
@@ -119,11 +119,12 @@ class Agent extends Component {
        })
        let data = await response.json()
 
-       //console.log(data);
+       console.log(data);
    if(data.status ==200)
    {
-     console.log(data.agentManager);
+     //console.log(data.AgentId);
     await  this.setState({agentManager: data.agentManager})
+
     /* for (var i = 1; i <= 1000; i++) {
       bigList.push({ id: i, name: `Item ${i}` });
     } */
@@ -176,6 +177,8 @@ catch(error){
         
          // console.log(data.customers.customers);
          // return await  data.customers;
+         //console.log(data.agents);
+         //console.log(data.commision);
           this.setState(()=>({
             rows:data.agents,
             activeAgents:data.activeAgents,
@@ -186,7 +189,12 @@ catch(error){
           // console.log('hi');
            const newrows =  this.state.rows.map((row) => {
 
-            return {...row, A:'', view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.agent_name,row.levelID)}><i className="material-icons">add_circle</i></a><Link data-toggle="tooltip" title="Payment Schedule" to="/PaymentSchedule"><i class="material-icons">payment</i></Link></React.Fragment>};
+            return {...row, view: <React.Fragment>
+              <Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link>
+              <a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.agent_name,row.levelID)}><i className="material-icons">add_circle</i></a>
+              <Link data-toggle="tooltip" title="Payment Schedule" to={`/PaymentSchedule/${row.agentId}`}><i class="material-icons">payment</i></Link>
+              </React.Fragment>};
+            //return {...row, view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.agent_name,row.levelID)}><i className="material-icons">add_circle</i></a><Link data-toggle="tooltip" title="Payment Schedule" to="/PaymentSchedule"><i class="material-icons">payment</i></Link></React.Fragment>};
         });
         this.setState({rows: newrows });
     } catch(error){
@@ -208,7 +216,8 @@ catch(error){
             console.count('onChange')
             console.log("Val", value);
             console.log("Val", value);
-          //  const optionValue  = this.state.selectedManager.push(value);
+            
+          //const optionValue  = this.state.selectedManager.push(value);
            
             this.setState( {
               selectedManager: value 
@@ -245,13 +254,13 @@ catch(error){
           
             let data = await response.json()
           
-            //console.log(data.status);
+            console.log(data);
             this.setState({
               status: data.status 
             });
             if(data.status == 200){
               // console.log('redirect in admin dashboard');
-               //console.log(data) ;
+               console.log(data) ;
                
                this.setState({ open: false });
               }
@@ -268,7 +277,7 @@ catch(error){
       let data={
         columns: this.state.columns,
          rows:this.state.rows
-       }
+    }
        const { open } = this.state;
         return (
             <div className="content" style={{width: '100%'}}>
@@ -348,7 +357,7 @@ catch(error){
                           striped
                           hover
                           data={data}
-                        />
+                         />
                     </div>
                   </div>
                 </div>

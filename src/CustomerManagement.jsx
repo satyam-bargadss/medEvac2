@@ -75,11 +75,7 @@ constructor(props) {
 
 onOpenModal = () => {
   
- this.setState({ open: true });
- 
-  
-
- 
+ this.setState({ open: true }); 
 }
 onCloseModal = () => {
   this.setState({ open: false });
@@ -141,14 +137,11 @@ async fetchUser(username,assa,aasss) {
 
 }
 componentDidMount(){
-
  let rows =  this.fetchUser();
  console.log(rows);
  this.setState(()=>({
       rows:rows,
-     
  }))
-  
 }
 	
     render() {
