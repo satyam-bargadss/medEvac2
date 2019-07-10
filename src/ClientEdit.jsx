@@ -4,41 +4,42 @@ import { HashRouter as Router, Route
  import  './css/material-dashboard.css';
  import Select from '@material-ui/core/Select';
  import MenuItem from '@material-ui/core/MenuItem';
+ import InputLabel from '@material-ui/core/InputLabel';
+ import { MDBInput } from "mdbreact";
  import * as myConst from './helper/Constant';
 
 class ClientEdit extends Component {
     render() {
         return (
             <div style={{width: '100%'}}>
+                <div className="container">
+                <div className="col-lg-12">
                 <div className="form_bg">
                     <div className="header_part">
                         <h2>Edit Client Application</h2>
                     </div>
-                </div>
                 <div className="form_body">
                     <div className="px-lg-2 pt-0">
                         <form style={{color: '#757575'}}>
                             <div className="summary">
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Client Name</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.firstName+" "+this.state.LastName}</span> 
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">&nbsp;</span> 
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Client Type</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{ this.state.type?this.state.type:'' }</span>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">&nbsp;</span>
 
                                     <div classname="clearfix"></div>
 
                                     <label htmlFor="membershipplan" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Membership Plan</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"> {this.state.planName?this.state.planName:''}</span>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">&nbsp;</span>
 
                                     <label htmlFor="fees" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Membership Fees</label>
-                                    {this.state.type=='family'?<span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.familyFee?this.state.familyFee:''}
-                                    </span>:<span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.fee?this.state.fee:''}
-                                    </span>}
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">&nbsp;</span>
 
                                     <div className="clearfix"></div>
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Membership Date</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.convertDate(this.state.created_at)}</span> 
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">&nbsp;</span> 
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Renewal Date</label>
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"></span>
@@ -46,7 +47,7 @@ class ClientEdit extends Component {
                                     <div classname="clearfix"></div>
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Agent Name</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"><p>{this.state.agentFirstName} </p><p>{this.state.agentLastName?this.state.agentLastName:''}</p></span>  
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"></span>  
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Payment Received</label>
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"></span>   
@@ -65,16 +66,13 @@ class ClientEdit extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                                  <input type="date" name="dob" required value={this.state.dob}
-                                                     onChange={e => this.handleChange(e)}
-                                                    
-                                                 />
-                                        <label htmlFor="Dob">Date Of Birth *</label>
+                                                    <input type="date" name="dob" required  />
+                                                    <label htmlFor="Dob">Date Of Birth *</label>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" type="number" label="Primary Mobile Number*" name="mobilenumber" value={this.state.mobilenumber} onChange={e => this.handleChange(e)} required/>
+                                              <MDBInput autoComplete="off" type="number" label="Primary Mobile Number*" name="mobilenumber" required/>
                                           </div>
                                       </div>
                                   </div>
@@ -82,12 +80,12 @@ class ClientEdit extends Component {
                                   <div className="form-row px-2">
                                     <div className="col">
                                         <div classname="md-form">
-                                            <MDBInput autoComplete="off" type="number" label="Alternate Mobile Number" name="alternatemobilenumber" value={this.state.alternatemobilenumber} onChange={e => this.handleChange(e)}/>
+                                            <MDBInput autoComplete="off" type="number" label="Alternate Mobile Number" name="alternatemobilenumber" />
                                         </div>
                                     </div>
                                     <div className="col">
                                         <div classname="md-form">
-                                            <MDBInput autoComplete="off" label="Email Address*" type="email" name="email" required value={this.state.email} onChange={e => this.handleChange(e)}/>
+                                            <MDBInput autoComplete="off" label="Email Address*" type="email" name="email" />
                                         </div>
                                     </div>
                                   </div>
@@ -123,10 +121,8 @@ class ClientEdit extends Component {
                                       <div className="col">
                                           <div className="md-form">
                                             <InputLabel htmlFor="country">Country* </InputLabel>
-                                              <Select id="country"
-                                              value={this.state.country}                                               
+                                              <Select id="country"                                              
                                               name="country"
-                                              onChange={this.handleChange} 
                                               placeholder='US' 
                                               required                               
                                               >
@@ -144,7 +140,7 @@ class ClientEdit extends Component {
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                            <MDBInput autoComplete="off" label="Client Address 1*" name="address1" value={this.state.address1} onChange={e => this.handleChange(e)} required/>
+                                            <MDBInput autoComplete="off" label="Client Address 1*" name="address1" required/>
                                           </div>
                                       </div>
                                   </div>
@@ -152,12 +148,12 @@ class ClientEdit extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                             <MDBInput autoComplete="off"  label="Client Address 2 (Optional)" name="address2" value={this.state.address2} onChange={e => this.handleChange(e)}/>
+                                             <MDBInput autoComplete="off"  label="Client Address 2 (Optional)" name="address2"/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" label="City*" name='city' value={this.state.city} onChange={e => this.handleChange(e)} required/> 
+                                              <MDBInput autoComplete="off" label="City*" name='city' required/> 
                                           </div>
                                       </div>
                                   </div>
@@ -165,12 +161,12 @@ class ClientEdit extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput  autoComplete="off" label="State*" name='state_s' value={this.state.state_s} onChange={e => this.handleChange(e)}required/>
+                                              <MDBInput  autoComplete="off" label="State*" name='state_s' required/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  type="number" label="Zip Code*" name='zipcode' value={this.state.zipcode} onChange={e => this.handleChange(e)} required/>                                             
+                                              <MDBInput autoComplete="off"  type="number" label="Zip Code*" name='zipcode' required/>                                             
                                           </div>
                                       </div>
                                   </div>
@@ -183,10 +179,8 @@ class ClientEdit extends Component {
                                       <div className="col">
                                           <div className="md-form">
                                             <InputLabel htmlFor="country">Country* </InputLabel>
-                                              <Select id="country"
-                                              value={this.state.country}                                               
+                                              <Select id="country"                                               
                                               name="country"
-                                              onChange={this.handleChange} 
                                               placeholder='US' 
                                               required                               
                                               >
@@ -204,7 +198,7 @@ class ClientEdit extends Component {
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                            <MDBInput autoComplete="off" label="Client Address 1*" name="address1" value={this.state.address1} onChange={e => this.handleChange(e)} required/>
+                                            <MDBInput autoComplete="off" label="Client Address 1*" name="address1" required/>
                                           </div>
                                       </div>
                                   </div>
@@ -212,12 +206,12 @@ class ClientEdit extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                             <MDBInput autoComplete="off"  label="Client Address 2 (Optional)" name="address2" value={this.state.address2} onChange={e => this.handleChange(e)}/>
+                                             <MDBInput autoComplete="off"  label="Client Address 2 (Optional)" name="address2"/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" label="City*" name='city' value={this.state.city} onChange={e => this.handleChange(e)} required/> 
+                                              <MDBInput autoComplete="off" label="City*" name='city' required/> 
                                           </div>
                                       </div>
                                   </div>
@@ -225,12 +219,12 @@ class ClientEdit extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput  autoComplete="off" label="State*" name='state_s' value={this.state.state_s} onChange={e => this.handleChange(e)}required/>
+                                              <MDBInput  autoComplete="off" label="State*" name='state_s' required/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  type="number" label="Zip Code*" name='zipcode' value={this.state.zipcode} onChange={e => this.handleChange(e)} required/>                                             
+                                              <MDBInput autoComplete="off"  type="number" label="Zip Code*" name='zipcode' required/>                                             
                                           </div>
                                       </div>
                                   </div>
@@ -250,23 +244,16 @@ class ClientEdit extends Component {
                                           <div className="md-form">        
                                               <InputLabel htmlFor="age-simple">Plan</InputLabel>
                                               <Select
-                                                 
-                                                  value={this.state.plan}
-                                                  name='plan'
-                                                  onChange={this. onChangeMemberPlanHandler}    
-                                                  inputProps={{
-                                                    id: 'plan-required',
-                                                  }}           
+                                                  name='plan'             
                                                   >
-                                                 
-                                                  {this.state.planOption? this.state.planOption.map((row2) => <MenuItem key={row2.planId} value={row2.planId}>{row2.planName}</MenuItem>) :''}
+                                                 <MenuItem ></MenuItem>)
                                                  
                                               </Select>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">  
-                                              <MDBInput autoComplete="off"  label="Company, Government or Group Name" name="companyname" value={this.state.companyname} onChange={e => this.handleChange(e)}/>  
+                                              <MDBInput autoComplete="off"  label="Company, Government or Group Name" name="companyname" />  
                                           </div>
                                       </div>
                                  </div>
@@ -278,21 +265,18 @@ class ClientEdit extends Component {
                                  <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                             <MDBInput  autoComplete="off" label="Group Code*" name='planid'onChange={this.handleChange}/>              
+                                             <MDBInput  autoComplete="off" label="Group Code*" name='planid'/>              
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
                                             <InputLabel htmlFor="select-agent">Select Agent</InputLabel>
                                             <Select
-                                                    label='Select Agent'
-                                                    name="selectedAgentId"
-                                                    value={this.state.selectedAgentId}
-                                                   
-                                                    onChange={this.onChangeAgentHandler}
-                                                    >
-                                                         <MenuItem value='' disabled selected>Please Select</MenuItem>
-                                                         {this.state.options.map((row1) => <MenuItem key={row1.agentId} value={row1.agentId}>{row1.firstName+" "+row1.lastName}</MenuItem>)}                                         
+                                                label='Select Agent'
+                                                name="selectedAgentId"
+                                            >
+                                                <MenuItem>Please Select</MenuItem>
+                                                <MenuItem></MenuItem>)                                        
                                             </Select>
                                           </div>
                                       </div>
@@ -305,12 +289,12 @@ class ClientEdit extends Component {
                                  <div className="form-row px-2">
                                     <div className="col">
                                         <div className="md-form">
-                                           <MDBInput  autoComplete="off" label="Payment Type" name='payment-type' onChange={this.handleChange}/>
+                                           <MDBInput  autoComplete="off" label="Payment Type" name='payment-type' />
                                         </div>
                                     </div>
                                     <div className="col">
                                         <div className="md-form">
-                                           <MDBInput  autoComplete="off" label="Payment Date" name='pdate' onChange={this.handleChange}/>
+                                           <MDBInput  autoComplete="off" label="Payment Date" name='pdate' />
                                         </div>
                                     </div>
                                  </div>
@@ -318,7 +302,7 @@ class ClientEdit extends Component {
                                  <div className="form-row px-2">
                                     <div className="col">
                                         <div className="md-form">
-                                           <MDBInput  autoComplete="off" label="Mode of Payment" name='paymentmode' onChange={this.handleChange}/>
+                                           <MDBInput  autoComplete="off" label="Mode of Payment" name='paymentmode' />
                                         </div>
                                     </div>
                                     <div className="col">
@@ -334,6 +318,9 @@ class ClientEdit extends Component {
                         </form>
                     </div>
                 </div>
+                </div>
+            </div>
+            </div>
             </div>
         );
     }

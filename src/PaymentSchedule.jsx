@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { render } from "react-dom";
 import { HashRouter as Router, Route
     ,NavLink,Redirect,Link} from "react-router-dom";
  import { MDBDataTable } from 'mdbreact';
  import  './css/material-dashboard.css';
  import Select from '@material-ui/core/Select';
  import MenuItem from '@material-ui/core/MenuItem';
+ import Modal from 'react-awesome-modal';
  import * as myConst from './helper/Constant';
  import Switch from 'react-toggle-switch';
  import { makeStyles } from '@material-ui/core/styles';
@@ -14,6 +17,9 @@ const URL = myConst.HTTP_URL
 class PaymentSchedule extends Component {
     constructor(props) {
         super(props);
+        {/*this.state = {
+          visible : false
+      }*/}
         //console.log('Tirtha');
         //console.log(props.match.params.agentId);
         this.state = {
@@ -63,7 +69,7 @@ class PaymentSchedule extends Component {
                 width: 300
             },
             {
-                label: 'ChargeBack Comm',
+                label: 'Advance Comm',
                 field: 'chargeback',
                 sort: 'asc',
                 width: 300
@@ -101,6 +107,7 @@ class PaymentSchedule extends Component {
           ]
         };
     }
+   
     async fetchAgentsDetailsCommision() {
      
       try{
@@ -124,6 +131,8 @@ class PaymentSchedule extends Component {
             agentLevel:data.agentDetails[0].agentLevel,
             totalCustomer:data.total_customer[0]
           }))
+
+
     } catch(error){
       console.log(error);
     }
@@ -191,7 +200,7 @@ class PaymentSchedule extends Component {
                                     shrink: true,
                                     }}
                                     />
-                                </span>&nbsp;&nbsp;
+                                </span>
                                 <span className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                     <TextField
                                     id="date1"
@@ -202,7 +211,6 @@ class PaymentSchedule extends Component {
                                     }}
                                     />
                                 </span>
-                                &nbsp;&nbsp;
                                 <span className="col-xs-4 col-sm-4 col-md-4 col-lg-4 installment">
                                     <button className="btn btn-rounded waves-effect" type="submit">Filter</button>
                                 </span>
@@ -218,9 +226,22 @@ class PaymentSchedule extends Component {
                         </div>
                     </div>
                     <div className="buttons text-center">
-                      <button className="btn btn-rounded my-4 waves-effect">Payment</button>
-                      <button className="btn btn-rounded my-4 waves-effect">Print</button>
-                  </div>
+                    {/*<button className="btn btn-rounded my-4 waves-effect" value="Open" onClick={() => this.openModal()}>Print</button>
+                      <Modal visible={this.state.visible} width="552" height="519" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                        <div className="header_part">
+                          <h2>Add Agent Manager</h2>
+                          <a href="javascript:void(0);" onClick={() => this.closeModal()}>
+                            <i class="material-icons">clear</i>
+                          </a>
+                        </div>
+                        <div className="modalBody pt-3">
+                          <p>Some Contents</p>
+                        </div>
+                      </Modal>
+                      <button className="btn btn-rounded my-4 waves-effect">Print</button>*/}
+                      <button className="btn btn-rounded my-4 waves-effect" onClick={() => window.history.back()}>Back</button>
+                      <button className="btn btn-rounded my-4 waves-effect" onClick={() => window.print()}>Print</button>
+                    </div>
                   </div>
                 </div>
             </div>

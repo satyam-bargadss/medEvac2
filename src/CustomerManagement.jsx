@@ -124,7 +124,7 @@ async fetchUser(username,assa,aasss) {
         <React.Fragment>
           <Link data-toggle="tooltip" title="View" to={`/MemberView/${row.customerId}`}><i class="material-icons">visibility</i></Link>
           <a data-toggle="tooltip" title="Claim" onClick={() => this.onOpenModal(row.agentId,row.firstName,row.lastName)}><i className="material-icons">monetization_on</i></a>
-          <Link data-toggle="tooltip" title="Edit" to={''}><i class="material-icons">edit</i></Link>
+          <Link data-toggle="tooltip" title="Edit" to={`/ClientEdit`}><i class="material-icons">edit</i></Link>
           <Link data-toggle="tooltip" title="Installment Schedule" to="/InstallmentSchedule"><i class="material-icons">payment</i></Link>
         </React.Fragment>};
     });

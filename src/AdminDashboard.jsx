@@ -24,6 +24,7 @@ import agentview from './agentView';
 import AgentCommReport from './AgentCommReport';
 import PaymentSchedule from './PaymentSchedule';
 import InstallmentSchedule from './InstallmentSchedule';
+import ClientEdit from './ClientEdit';
 //import { BrowserRouter as Router, Route, Switch,Link ,NavLink } from "react-router-dom";
 
 class AdminDashboard extends Component {
@@ -216,6 +217,7 @@ class AdminDashboard extends Component {
               <Route path="/agentcomm-report" component={AgentCommReport} exact strict/>
               <Route path="/PaymentSchedule/:agentId" component={PaymentSchedule} exact strict/>
               <Route path="/InstallmentSchedule" component={InstallmentSchedule} exact strict/>
+              <Route path="/ClientEdit" component={ClientEdit} exact strict/>
           </Switch>
           </div>
       </div>

@@ -46,9 +46,10 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 
 .form_bg{box-shadow:0 0 8px #101010; margin-bottom:80px;}
-.header_part{background:url(/images/top_bg.jpg) no-repeat; text-align:center; margin:0; background-size:cover;}
+.header_part{background:url(/images/top_bg.jpg) no-repeat; text-align:center; margin:0; background-size:cover; position:relative;}
+.header_part a{position:absolute; right:10px; top:10px;}
 .form_body{background:#F8F2E4; padding:20px;}
-.header_part h2{text-align:center; padding-bottom:20px; padding-top:20px; border-bottom:1px solid #ddd; font-weight:bold; margin-bottom:0; color:#fff;}
+.header_part h2{text-align:center; padding-bottom:20px; padding-top:20px; font-weight:bold; margin-bottom:0; color:#fff;}
 .form_body legend{text-align:left; font-size:1.2rem;}
 #spouse_information .fa{float:left; padding-top:10px; padding-right:30px; color:#007bff;}
 .btn-rounded{background:#9e1c20; color:#fff !important;}

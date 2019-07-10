@@ -189,10 +189,12 @@ catch(error){
           // console.log('hi');
            const newrows =  this.state.rows.map((row) => {
 
-            return {...row, view: <React.Fragment>
+            return {...row, view: 
+            <React.Fragment>
               <Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link>
               <a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.agent_name,row.levelID)}><i className="material-icons">add_circle</i></a>
-              <Link data-toggle="tooltip" title="Payment Schedule" to={`/PaymentSchedule/${row.agentId}`}><i class="material-icons">payment</i></Link>
+              <Link data-toggle="tooltip" title="Payment Schedule" to={`/PaymentSchedule/${row.agentId}`}><i class="material-icons">assignment</i></Link>
+              <Link data-toggle="tootltip" title="Payment" onClick={() => this.onOpenModal1()}><i class="material-icons">payment</i></Link>
               </React.Fragment>};
             //return {...row, view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.agent_name,row.levelID)}><i className="material-icons">add_circle</i></a><Link data-toggle="tooltip" title="Payment Schedule" to="/PaymentSchedule"><i class="material-icons">payment</i></Link></React.Fragment>};
         });
@@ -208,8 +210,7 @@ catch(error){
      
            const agents= this.fetchAgents();
             console.log(agents) ;
-           
-          
+
           }
     
      selectMultipleOption = (value) => {
@@ -263,6 +264,7 @@ catch(error){
                console.log(data) ;
                
                this.setState({ open: false });
+               this.setState({ open1: false });
               }
             }
             catch(error){
@@ -279,6 +281,7 @@ catch(error){
          rows:this.state.rows
     }
        const { open } = this.state;
+       const { open1 } = this.state;
         return (
             <div className="content" style={{width: '100%'}}>
               {this.state.sucessMessage?<p style={{'color':'green'}}>Thank you</p>:''}
@@ -286,10 +289,8 @@ catch(error){
                     <div className="col-md-12">
                         <div className="buttons ml-3" style={{overflow:'hidden'}}>
                         <NavLink class="btn btn-info pull-left mb-4" className="nav-link" to="/agent-registration"  activeClassName=" active">
-                  <span>Add Agent
-                      
-                  </span>
-                </NavLink>
+                          <span>Add Agent</span>
+                        </NavLink>
                         </div>
                     </div>
             </div>
@@ -362,7 +363,7 @@ catch(error){
                   </div>
                 </div>
             </div>
-            <Modal  open={open} onClose={this.onCloseModal} center>
+            <Modal open={open} onClose={this.onCloseModal} center>
               <div className="header_part">
                 <h2>Add Agent Manager</h2>
               </div>
@@ -402,6 +403,40 @@ catch(error){
                  <div className="clearfix"></div>
               </div>
             </Modal>
+
+            <Modal1 open={open1} onClose={this.onCloseModal1} center>
+              <div className="header_part">
+                <h2>Payment</h2>
+              </div>
+              <div className="modalBody pt-3">
+                <form>
+                  <label htmlFor="paymenttype" className="col-sm-4 col-md-4 col-lg-4 pull-left">Payment Type:</label>
+                  <div className="col-sm-8 col-md-8 col-lg-8 pull-left">
+                    <Select
+                      id="paymenttype"
+                      value={this.state.paymenttype}
+                      onChange={this.handleChange}
+                      name='paymenttype'
+                    >
+                      <MenuItem value={'Check'} selected>Check</MenuItem>
+                      <MenuItem value={'ACH'}>ACH</MenuItem>
+                      <MenuItem value={'Cash'}>Cash</MenuItem>
+                    </Select>
+                    </div>
+                    <div className="clearfix"></div><br/>
+                    <label htmlFor="paymenttype" className="col-sm-4 col-md-4 col-lg-4 pull-left">Narration:</label>
+                    <div className="col-sm-8 col-md-8 col-lg-8 pull-left">
+                      <textarea placeholder="Write your narration here" name="narration" className="form-control"></textarea>
+                    </div>
+                    <div className="clearfix"></div><br/><br/><br/>
+                    <div className="buttons text-center">
+                      <button className="btn btn-rounded my-4 waves-effect">Done</button>
+                    </div>
+                </form>
+                
+               
+              </div>
+            </Modal1>
 
           </div>
         );
