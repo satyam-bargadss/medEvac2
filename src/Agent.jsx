@@ -462,7 +462,7 @@ catch(error){
                 <h2>Payment</h2>
               </div>
               <div className="modalBody pt-3">
-                <form onSubmit={this.handleSubmit}>
+                <form method="post" onSubmit={this.handleSubmit}>
                 <label htmlFor="agentname" className="col-sm-4 col-md-4 col-lg-4 pull-left"> Agent Name :</label>
                 <div className="col-sm-8 col-md-8 col-lg-8 pull-left">{this.state.agentName !=''?this.state.agentName:''}</div>
                 <div className="clearfix"></div><br/>  
