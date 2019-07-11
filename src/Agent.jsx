@@ -1,4 +1,4 @@
-
+import FormControl from '@material-ui/core/FormControl';
 import React, { Component,Fragment } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import  './css/material-dashboard.css';
@@ -10,7 +10,7 @@ import Modal from 'react-responsive-modal';
 import Modal1 from 'react-responsive-modal';
 import Picky from 'react-picky';
 import 'react-picky/dist/picky.css';
-
+import Select2, {Option} from '@material/react-select';
 import { HashRouter as Router, Route ,NavLink,Link} from "react-router-dom";
 import { array } from 'prop-types';
 const URL = myConst.HTTP_URL;
@@ -20,6 +20,7 @@ class Agent extends Component {
         super(props);
         //console.log(props);
         this.handleSelectedManager = this.handleSelectedManager.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         //console.log(this.props.location.state.message)
         this.state = {
           switched: false,
@@ -72,14 +73,19 @@ class Agent extends Component {
             ]
         
       }
+      
     }
+    handleChange = (e) => {
+      this.setState({
+              [e.target.name]: e.target.value
+      })
+  }
     onOpenModal = (agentId,agentName,currentLevelId) => {
-      console.log(agentName);
+      //console.log(agentName);
    
       this.setState({
             agentId:agentId,
             agentName:agentName,
-            
             levelID:currentLevelId,
       },()=>{
         console.log(agentId)
@@ -87,9 +93,15 @@ class Agent extends Component {
       })
       this.setState({ open: true });
     }
-    onOpenModal1 = () => {
-      
-      this.setState({ open1 : true });
+    onOpenModal1 = (agentId,agentName,paymentAmount) => {
+      this.setState({
+        agentId:agentId,
+        agentName:agentName,
+        total_amount:paymentAmount,
+        },()=>{
+      console.log(agentId);
+      })
+      this.setState({open1 : true});
     }
     onCloseModal = () => {
       this.setState({ open: false });
@@ -175,7 +187,7 @@ catch(error){
         
           let data = await response.json()
         
-         // console.log(data.customers.customers);
+         console.log(data);
          // return await  data.customers;
          //console.log(data.agents);
          //console.log(data.commision);
@@ -183,18 +195,18 @@ catch(error){
             rows:data.agents,
             activeAgents:data.activeAgents,
             inActiveAgents:data.inActiveAgents,
-            totalAgents:data.totalAgents
+            totalAgents:data.totalAgents,
+            total_amount:data.total_amount
           }))
          
           // console.log('hi');
            const newrows =  this.state.rows.map((row) => {
-
             return {...row, view: 
             <React.Fragment>
               <Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link>
               <a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.agent_name,row.levelID)}><i className="material-icons">add_circle</i></a>
               <Link data-toggle="tooltip" title="Payment Schedule" to={`/PaymentSchedule/${row.agentId}`}><i class="material-icons">assignment</i></Link>
-              <Link data-toggle="tootltip" title="Payment" onClick={() => this.onOpenModal1()}><i class="material-icons">payment</i></Link>
+              <Link data-toggle="tootltip" title="Payment" onClick={() => this.onOpenModal1(row.agentId,row.agent_name,row.total_commission)}><i class="material-icons">payment</i></Link>
               </React.Fragment>};
             //return {...row, view: <React.Fragment><Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link><a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.agent_name,row.levelID)}><i className="material-icons">add_circle</i></a><Link data-toggle="tooltip" title="Payment Schedule" to="/PaymentSchedule"><i class="material-icons">payment</i></Link></React.Fragment>};
         });
@@ -263,6 +275,47 @@ catch(error){
               // console.log('redirect in admin dashboard');
                console.log(data) ;
                
+               this.setState({ open: false });
+               this.setState({ open1: false });
+              }
+            }
+            catch(error){
+              console.log(error);
+            }
+      }
+
+      async handleSubmit(event)
+      {
+        event.preventDefault();
+        //submit data
+        //await console.log(this.state.paymenttype)
+        const agentPaymentData = {
+          currentAgent: this.state.agentId,
+          total_amount:this.state.total_amount,
+          payment_method:this.state.paymenttype
+        }
+        console.log(agentPaymentData);
+        try{
+          let response = await fetch(URL+'agentpayNow', {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            //credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+                'Content-Type': 'application/json',
+                //'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(agentPaymentData), // body data type must match "Content-Type" header
+          })
+          
+            let data = await response.json()
+            console.log(data);
+            this.setState({
+              status: data.status 
+            });
+            if(data.status == 200){
+              console.log('redirect in admin dashboard');
+               console.log(data) ;
                this.setState({ open: false });
                this.setState({ open1: false });
               }
@@ -409,9 +462,21 @@ catch(error){
                 <h2>Payment</h2>
               </div>
               <div className="modalBody pt-3">
-                <form>
-                  <label htmlFor="paymenttype" className="col-sm-4 col-md-4 col-lg-4 pull-left">Payment Type:</label>
+                <form onSubmit={this.handleSubmit}>
+                <label htmlFor="agentname" className="col-sm-4 col-md-4 col-lg-4 pull-left"> Agent Name :</label>
+                <div className="col-sm-8 col-md-8 col-lg-8 pull-left">{this.state.agentName !=''?this.state.agentName:''}</div>
+                <div className="clearfix"></div><br/>  
+                  <label htmlFor="paymenttype" className="col-sm-4 col-md-4 col-lg-4 pull-left"> Total Amount :</label>
+                  <div className="col-sm-8 col-md-8 col-lg-8 pull-left">{this.state.total_amount !=''?this.state.total_amount:''}</div>
+                    {/*<div className="clearfix"></div><br/>
+                    <label htmlFor="paymenttype" className="col-sm-4 col-md-4 col-lg-4 pull-left">Narration:</label>
+                    <div className="col-sm-8 col-md-8 col-lg-8 pull-left">
+                      <textarea placeholder="Write your narration here" name="narration" className="form-control"></textarea>
+                    </div>*/}
+                    <div className="clearfix"></div><br/>
+                    <label htmlFor="paymenttype" className="col-sm-4 col-md-4 col-lg-4 pull-left"> Total Amount :</label>
                   <div className="col-sm-8 col-md-8 col-lg-8 pull-left">
+                   
                     <Select
                       id="paymenttype"
                       value={this.state.paymenttype}
@@ -423,14 +488,14 @@ catch(error){
                       <MenuItem value={'Cash'}>Cash</MenuItem>
                     </Select>
                     </div>
-                    <div className="clearfix"></div><br/>
+                    {/*<div className="clearfix"></div><br/>
                     <label htmlFor="paymenttype" className="col-sm-4 col-md-4 col-lg-4 pull-left">Narration:</label>
                     <div className="col-sm-8 col-md-8 col-lg-8 pull-left">
                       <textarea placeholder="Write your narration here" name="narration" className="form-control"></textarea>
-                    </div>
+                    </div>*/}
                     <div className="clearfix"></div><br/><br/><br/>
                     <div className="buttons text-center">
-                      <button className="btn btn-rounded my-4 waves-effect">Done</button>
+                      <button className="btn btn-rounded my-4 waves-effect">Pay Now</button>
                     </div>
                 </form>
                 
