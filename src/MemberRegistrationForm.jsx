@@ -280,6 +280,12 @@ catch(error){
           }));
          console.log(this.state.isSpouse); 
      }
+     handleDepentent1 = ()=>{
+        this.setState((preState) => ({
+            isFamily: !preState.isFamily 
+          }));
+         //console.log(this.state.isFamily); 
+     }
      addDependent = ()=>{
         
                  this.setState((preState) =>({
@@ -326,7 +332,35 @@ catch(error){
               }
               return(dependentFields);
              }
-             notsameAsContactHandler = (sameasValue)=>{
+             dependentField1 =() =>{
+                var dependentFields1 = [];
+                 dependentFields1.push(
+                    <div class="card-body" key="wife1">
+                            <div className="form-row px-2">
+                                <div className="col">
+                                    <div className="md-form">
+                                        <MDBInput autoComplete="off"  label="Spouse Name" required={this.state.type =='isFamily' ?'required':''} name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} />
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="md-form">
+                                        <input type="date" name="familyDateOfBirth"
+                                                value={this.state.familyDateOfBirth}    
+                                                onChange={this.handleChange}
+                                                required={ this.state.type =='isFamily' ?'required':''}
+                                            />
+                                        <label htmlFor="DateOfBirth">Spouse Date Of Birth</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                  );
+                console.log('Tirtha');
+                return(dependentFields1);
+               }
+               
+               notsameAsContactHandler = (sameasValue)=>{
                 if(sameasValue === true){
                     console.log(sameasValue)
                     return false
@@ -383,13 +417,10 @@ catch(error){
                     state_option.style.display="block";
                   }*/}
                 this.setState({
-                        [e.target.name]: e.target.value
+                        [e.target.name]: e.target.value,
                 }
                 )
-                
-              // console.log(this.state);
-             
-               
+                // console.log(this.state);               
             }
             
             handleSubmit(event) {
@@ -479,7 +510,36 @@ catch(error){
             }
             return(dependentFields);
            }
-        
+
+           let dependentField1 =() =>{
+            var dependentFields1 = [];
+                 dependentFields1.push(
+                        <div class="card-body">
+                            <div className="form-row px-2">
+                                <div className="col">
+                                    <div className="md-form">
+                                        <MDBInput autoComplete="off"  label="Spouse Name" required={ this.state.type =='isFamily' ?'required':''} name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} />
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="md-form">
+                                        <input type="date" name="familyDateOfBirth"
+                                                value={this.state.familyDateOfBirth}    
+                                                onChange={this.handleChange}
+                                                required={ this.state.type =='isFamily' ?'required':''}
+                                            />
+                                        <label htmlFor="DateOfBirth">Spouse Date Of Birth</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>);
+             console.log('Pradosh');
+            return(dependentFields1);
+            
+           }   
+           
+
+           
       }
     
     render() { 
@@ -598,13 +658,13 @@ catch(error){
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                            <InputLabel htmlFor="country">Country* </InputLabel>
-                                              <Select id="country"
+                                            <InputLabel class="custom_class" htmlFor="country">Country* </InputLabel>
+                                              <Select  id="country"
                                               value={this.state.country}                                               
                                               name="country"
                                               onChange={this.handleChange} 
                                               placeholder='US' 
-                                              required                               
+                                              required                         
                                               >
                                                   <MenuItem value="US" >
                                                       US
@@ -746,7 +806,7 @@ catch(error){
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                            <InputLabel htmlFor="country">Country* </InputLabel>
+                                            <InputLabel class="custom_class" htmlFor="country">Country* </InputLabel>
                                               <Select id="country1"
                                               value={this.state.country1}                                               
                                               name="country1"
@@ -818,7 +878,7 @@ catch(error){
                                       </div>
                                   </div>
                                     <br/>
-                                  <div className="form-row px-2">
+                                  {/*<div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
                                               <MDBInput autoComplete="off"  label="Spouse Name" required={ this.state.type =='Family' ?'required':''} name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} />
@@ -834,13 +894,41 @@ catch(error){
                                               <label htmlFor="spouseDateOfBirth">Spouse Date Of Birth</label>
                                           </div>
                                       </div>
-                                  </div>
+                                  </div>*/}
                                   <div className="form-row px-2">
                                           <div className="bs-example">
                                               <div className="accordion" id="accordionExample">
                                                   <div className="card">
+                                                    <div className="card-header" id="headingOne">
+                                                        <h2 class="mb-0">
+                                                        <button type="button" class="btn btn-link waves-effect waves-light collapsed" onClick = {this.handleDepentent1}>Spouse Information <i className={this.state.isFamily?"fa fa-minus":"fa fa-plus"}></i></button>
+                                                       </h2>  
+                                                    </div>
+                                                    {/*<div id="collapseOne" class="collapse" aria-labelledby="headingOne">*/}
+                                                    {this.state.isFamily? <div class="card-body">
+                                                            <div className="form-row px-2">
+                                                                <div className="col">
+                                                                    <div className="md-form">
+                                                                        <MDBInput autoComplete="off"  label="Spouse Name" required={ this.state.type =='isFamily' ?'required':''} name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} />
+                                                                    </div>
+                                                                </div>
+                                                                <div className="col">
+                                                                    <div className="md-form">
+                                                                        <input type="date" name="familyDateOfBirth"
+                                                                                value={this.state.familyDateOfBirth}    
+                                                                                onChange={this.handleChange}
+                                                                                required={ this.state.type =='isFamily' ?'required':''}
+                                                                            />
+                                                                        <label htmlFor="DateOfBirth">Spouse Date Of Birth</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>:''}
+                                                        {/*this.state.isFamily ? this.dependentField1():''*/}   
+                                                    </div>
+                                                {/*</div>*/}
+                                                  <div className="card">
                                                       <div className="card-header" id="headingTwo">
-                                                       
                                                           <h2 className="mb-0">
                                                               <button type="button" className="btn btn-link collapsed" onClick = {this.handleDepentent}>Dependant Information <i className={this.state.isSpouse?"fa fa-minus":"fa fa-plus"}></i></button>
                                                           </h2>
@@ -879,7 +967,7 @@ catch(error){
                                                           </div>:
                                                             ''
                                                             }
-                                                           {this.state.isSpouse ? this.dependentField():''}              
+                                                           {/*this.state.isSpouse ? this.dependentField():''*/}              
                                                   </div>
                                               </div>
                                           </div>
@@ -894,7 +982,7 @@ catch(error){
                                 <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                          <InputLabel htmlFor="age-simple">Client Type*</InputLabel>
+                                          <InputLabel class="custom_class" htmlFor="age-simple">Membership Type*</InputLabel>
                                               <Select
                                                   id="plantype"
                                                   value={this.state.type}
@@ -921,7 +1009,7 @@ catch(error){
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">        
-                                              <InputLabel htmlFor="age-simple">Plan* </InputLabel>
+                                              <InputLabel class="custom_class" htmlFor="age-simple">Membership Plan* </InputLabel>
                                               <Select
                                                  
                                                   value={this.state.plan}
@@ -981,7 +1069,7 @@ catch(error){
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                          <InputLabel htmlFor="select-agent">Select Agent</InputLabel>
+                                          <InputLabel class="custom_class" htmlFor="select-agent">Select Agent</InputLabel>
                                             <Select
                                                     label='Select Agent'
                                                     name="selectedAgentId"
@@ -997,7 +1085,7 @@ catch(error){
                                       <div className="col">
                                           <div className="md-form">
                                               {/*<MDBInput autoComplete="off"  label="Writing Agent*" name="writingagent" value ={this.state.writingagent} onChange={this.handleChange} required/>*/}
-                                                <InputLabel htmlFor="select-manager">Select Manager</InputLabel>
+                                                <InputLabel class="custom_class" htmlFor="select-manager">Select Manager</InputLabel>
                                                 <Select
                                                     label='Select Manager'
                                                     name="selectedManagerId"
@@ -1120,7 +1208,7 @@ catch(error){
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                          <InputLabel htmlFor="country">Country* </InputLabel>
+                                          <InputLabel class="custom_class" htmlFor="country">Country* </InputLabel>
                                               <Select id="country"
                                               value={this.state.country}                                               
                                               name="country"
@@ -1209,7 +1297,7 @@ catch(error){
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                            <InputLabel htmlFor="country">Country* </InputLabel>
+                                            <InputLabel class="custom_class" htmlFor="country">Country* </InputLabel>
                                               <Select id="country"
                                               value={this.state.country1}                                               
                                               name="country1"
@@ -1281,7 +1369,7 @@ catch(error){
                                   </div>
                                   <br/>
 
-                                  <div className="form-row px-2">
+                                  {/*<div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
                                               <MDBInput autoComplete="off"  label="Spouse Name" required={ this.state.type =='Family' ?'required':''} name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} />
@@ -1297,10 +1385,38 @@ catch(error){
                                               <label htmlFor="spouseDateOfBirth">Spouse Date Of Birth</label>
                                           </div>
                                       </div>
-                                  </div>
+                                  </div>*/}
                                   <div className="form-row px-2">
                                           <div className="bs-example">
                                               <div className="accordion" id="accordionExample">
+                                              <div className="card">
+                                                    <div className="card-header" id="headingOne">
+                                                        <h2 class="mb-0">
+                                                        <button type="button" class="btn btn-link waves-effect waves-light collapsed" onClick = {this.handleDepentent1}>Spouse Information <i className={this.state.isFamily?"fa fa-minus":"fa fa-plus"}></i></button>
+                                                       </h2>  
+                                                    </div>
+                                                    {/*<div id="collapseOne" class="collapse" aria-labelledby="headingOne">*/}
+                                                    {this.state.isFamily? <div class="card-body">
+                                                            <div className="form-row px-2">
+                                                                <div className="col">
+                                                                    <div className="md-form">
+                                                                        <MDBInput autoComplete="off"  label="Spouse Name" required={ this.state.type =='isFamily' ?'required':''} name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} />
+                                                                    </div>
+                                                                </div>
+                                                                <div className="col">
+                                                                    <div className="md-form">
+                                                                        <input type="date" name="familyDateOfBirth"
+                                                                                value={this.state.familyDateOfBirth}    
+                                                                                onChange={this.handleChange}
+                                                                                required={ this.state.type =='isFamily' ?'required':''}
+                                                                            />
+                                                                        <label htmlFor="DateOfBirth">Spouse Date Of Birth</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>:''}
+                                                        {/*this.state.isFamily ? this.dependentField1():''*/}   
+                                                    </div>
                                                   <div className="card">
                                                       <div className="card-header" id="headingTwo">
                                                        
@@ -1357,7 +1473,7 @@ catch(error){
                               <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                          <InputLabel htmlFor="age-simple">Client Type*</InputLabel>
+                                          <InputLabel class="custom_class" htmlFor="age-simple">Membership Type*</InputLabel>
                                               <Select
                                                   id="plantype"
                                                   value={this.state.type}
@@ -1383,7 +1499,7 @@ catch(error){
                               <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">        
-                                              <InputLabel htmlFor="age-simple">Plan* </InputLabel>
+                                              <InputLabel class="custom_class" htmlFor="age-simple">Membership Plan* </InputLabel>
                                               <Select
                                                  
                                                   value={this.state.plan}

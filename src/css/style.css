@@ -102,6 +102,8 @@ table.table-striped tr td, table.table-striped tr th{border:1px solid rgba(0, 0,
 table.table-striped tr th{border-top:1px solid rgba(0, 0, 0, 0.06) !important;}
 table tr td.date{font-size:14px !important; color:#aaa; font-weight:400 !important; padding-top:10px !important;}
 table tr td.select{width:25%; padding-top:4px !important;}
+label.custom_class{transform:translateY(-14px) scale(.8) !important; width:100%;}
+.md-form div{width:100%;}
 .MuiInputBase-root-71, 
 .MuiSelect-selectMenu-55,
 .MuiInputBase-root-107
