@@ -204,6 +204,8 @@ input[type="date"]+label{margin-top:14px;}
 .modalBody{padding:0 20px; height:auto;}
 .modalBody textarea{min-height:90px;}
 .picky__dropdown{max-height:215px !important;}
+.md-form div{background-color:none; padding-right:0;}
+.modalBody div{width:100%; pading-right:0;}
 
 
 .MuiInputBase-inputType-31{font-size:14px !important;}

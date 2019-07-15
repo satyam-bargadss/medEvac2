@@ -189,7 +189,7 @@ class PaymentSchedule extends Component {
                                     <span className="col-xs-6 col-sm-7 col-md-7 col-lg-7">{this.state.agentLevel}</span>
                                 </div>
                             </div>
-                            <div className="col-xs-12 col-sm-6 col-md-8 col-lg-8">  
+                            {/*<div className="col-xs-12 col-sm-6 col-md-8 col-lg-8">  
                                 <label htmlFor="period" className="col-xs-2 col-sm-2 col-md-2 col-lg-2 period">Period</label>
                                 <span className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                     <TextField
@@ -214,7 +214,7 @@ class PaymentSchedule extends Component {
                                 <span className="col-xs-4 col-sm-4 col-md-4 col-lg-4 installment">
                                     <button className="btn btn-rounded waves-effect" type="submit">Filter</button>
                                 </span>
-                            </div>
+                            </div>*/}
                         </div>
                         <div className="clearfix"></div>
                         <div className="table-responsive">

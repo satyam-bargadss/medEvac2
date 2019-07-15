@@ -18,10 +18,18 @@ class MemberView extends Component {
         this.fetchUser(this.state.customerId);
     }
     convertDate(data){
-      if(date!=='')
+      if(data!=='')
       {
-      var date = new Date(data);
-      return((date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear());
+      {/*var date = new Date(data);
+      console.log(date);
+      return((date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear());*/}
+         //console.log(data);
+          var timestamp=new Date(data).getTime();
+          var todate=new Date(timestamp).getDate();
+          var tomonth=new Date(timestamp).getMonth()+1;
+          var toyear=new Date(timestamp).getFullYear();
+          var original_date=tomonth+'/'+todate+'/'+toyear;
+          return original_date;
       }
       return null;
    
@@ -74,7 +82,7 @@ class MemberView extends Component {
               dependent1DOB:data.customer[0].dependent1DOB,
               email:data.customer[0].email,
               groupCode:data.customer[0].groupCode,
-              created_at:data.customer[0].created_at,
+              created_at:data.customer[0].cc_at,
               country:data.customer[0].country,
               companyName:data.customer[0].companyName,
               mailing_address1:data.customer[0].mailing_address1,
@@ -128,8 +136,6 @@ class MemberView extends Component {
                                     {this.state.type=='family'?<span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.familyFee?this.state.familyFee:''}
                                     </span>:<span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.fee?this.state.fee:''}
                                     </span>}
-                                    
-
                                     <div className="clearfix"></div>
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Membership Date</label>

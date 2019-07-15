@@ -427,9 +427,8 @@ catch(error){
                event.preventDefault();
                this.setState((preState) =>({
                 isPreviewSave:true
-            }))  
-              
-        
+            }));
+            window.scrollTo(0, 0);  
            }
          async  handleSubmit2(event) {
              event.preventDefault();

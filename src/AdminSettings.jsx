@@ -198,7 +198,7 @@ class AdminSettings extends Component {
                       <h4 className="card-title pull-left ">User Management</h4>
                     </div>
                     <div className="card-body">
-                       <table border="0" cellspacing="5" cellpadding="5">
+                       {/*<table border="0" cellspacing="5" cellpadding="5">
                             <tr>
                                 <td className="date">Date:</td>
                                 <td><input type="date" name="start_date" id="start_date" className="form-control" /></td>
@@ -214,7 +214,7 @@ class AdminSettings extends Component {
                                 </td>
                                 <td><button className="btn btn-rounded  waves-effect" type="submit">Filter</button></td>
                             </tr>
-                       </table>
+                       </table>*/}
                          <MDBDataTable
                           striped
                           hover
