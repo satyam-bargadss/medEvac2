@@ -123,8 +123,8 @@ async fetchUser(username,assa,aasss) {
         return {...row, action: 
         <React.Fragment>
           <Link data-toggle="tooltip" title="View" to={`/MemberView/${row.customerId}`}><i class="material-icons">visibility</i></Link>
+          <Link data-toggle="tooltip" title="Edit" to={`/ClientEdit/${row.customerId}`}><i class="material-icons">edit</i></Link>
           <a data-toggle="tooltip" title="Claim" onClick={() => this.onOpenModal(row.agentId,row.firstName,row.lastName)}><i className="material-icons">description</i></a>
-          <Link data-toggle="tooltip" title="Edit" to={`/ClientEdit`}><i class="material-icons">edit</i></Link>
           <Link data-toggle="tooltip" title="Payment" to="/InstallmentSchedule"><i class="material-icons">payment</i></Link>
         </React.Fragment>};
     });
@@ -164,7 +164,7 @@ componentDidMount(){
           <NavLink class="btn btn-info pull-left mb-4" className="nav-link" to="/member-registration"  activeClassName=" active">
                   <span>Add Client</span>
                 </NavLink>
-						<a href="#" class="btn btn-info pull-left mb-4" style={{cursor:'auto'}}>Import Clients</a>
+						<a class="btn btn-info pull-left mb-4" style={{cursor:'not-allowed'}}>Import Clients</a>
 						{/*<a href="#" class="btn btn-info pull-left mb-4">Contacts</a>*/}
 					</div>
 				</div>

@@ -215,7 +215,7 @@ class MemberView extends Component {
                                       <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.state1}</span>
 
                                       <label htmlFor="zip" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Zip Code</label>
-                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">456987</span>
+                                      <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold"></span>
                                    </div>
 
                                    <div className="subHead pt-3 px-2">
@@ -258,7 +258,7 @@ class MemberView extends Component {
 
                               <div className="form-row px-2 pt-3">
                                 <label htmlFor="plan" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Plan</label>
-                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold"></span>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.planName?this.state.planName:''}</span>
 
                                 <label htmlFor="plan" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Company, Government or Group Name</label>
                                 <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.state.companyName?this.state.companyName:''}</span>

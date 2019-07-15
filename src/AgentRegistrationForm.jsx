@@ -153,7 +153,7 @@ class AgentRegistrationForm extends Component {
                                             <div className="col">
                                                 <div className="md-form">
                                                     <Select
-                                                    label='Agent Approval'
+                                                    label='Agent Status'
                                                     value={this.state.isActive}
                                                     name="isActive"
                                                     onChange={this.handleChange}
@@ -180,7 +180,7 @@ class AgentRegistrationForm extends Component {
                                             <div className="col">
                                                 <div className="md-form">
                                                     <Select
-                                                    label='Choose Country *'
+                                                    label='Country *'
                                                     name="country"
 
                                                     value={this.state.country}
@@ -245,7 +245,7 @@ class AgentRegistrationForm extends Component {
                                         <div className="subHead px-2">
                                             <div className="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" id="defaultUnchecked"/>
-                                                <label className="custom-control-label" for="defaultUnchecked">Same as Member Address</label>
+                                                <label className="custom-control-label" for="defaultUnchecked">Same as Billing Address</label>
                                             </div>
                                             <h4><strong>Mailing Address</strong></h4>
                                         </div>
@@ -305,7 +305,8 @@ class AgentRegistrationForm extends Component {
                                                     onChange={this.handleChange}
                                                     >
                                                         <Option value={'check'}>Check</Option>
-                                                        <Option value={'Deposit'}>Deposit</Option>
+                                                        <Option value={'Deposit'}>Direct Deposit</Option>
+                                                        <Option value={'Deposit'}>Other</Option>
                                                                                                  
                                                     </Select>
                                                     </div>
@@ -420,7 +421,7 @@ class AgentRegistrationForm extends Component {
                                             <div className="col">
                                                 <div className="md-form">
                                                     <Select
-                                                    label='Agent Approval'
+                                                    label='Agent Status'
                                                     value={this.state.isActive}
                                                     name="isActive"
                                                     onChange={this.handleChange}
@@ -447,7 +448,7 @@ class AgentRegistrationForm extends Component {
                                             <div className="col">
                                                 <div className="md-form">
                                                     <Select
-                                                    label='Choose Country'
+                                                    label='Country'
                                                     name="country1"
 
                                                     value={this.state.country1}
@@ -511,7 +512,7 @@ class AgentRegistrationForm extends Component {
                                         <div className="subHead px-2">
                                             <div className="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" id="defaultUnchecked"/>
-                                                <label className="custom-control-label" for="defaultUnchecked">Same as Member Address</label>
+                                                <label className="custom-control-label" for="defaultUnchecked">Same as Billing Address</label>
                                             </div>
                                             <h4><strong>Mailing Address</strong></h4>
                                         </div>

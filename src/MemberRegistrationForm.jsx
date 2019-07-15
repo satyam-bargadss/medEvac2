@@ -437,7 +437,7 @@ catch(error){
             //return false
             
             try{
-             let response = await fetch(URL+'customber', {
+             let response = await fetch(URL+'customber-registration', {
                  method: 'POST', // *GET, POST, PUT, DELETE, etc.
              
                  cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -592,7 +592,7 @@ catch(error){
                                                 value={this.state.phone}
                                                 onChange={ phone => this.setState({phone})} 
                                           />*/}
-                                          <InputLabel htmlFor="phone">Primary Phone Number* </InputLabel>
+                                          <InputLabel class="custom_class" htmlFor="phone">Primary Phone Number* </InputLabel>
                                             <ReactPhoneInput
                                             inputExtraProps={{
                                                 name: 'phone',
@@ -617,7 +617,7 @@ catch(error){
                                                 value={ this.state.phone }
                                                 onChange={ phone1 => this.setState({ phone1 }) } 
                                             />*/}
-                                            <InputLabel htmlFor="phone">Alternate Phone Number </InputLabel>
+                                            <InputLabel class="custom_class" htmlFor="phone">Alternate Phone Number </InputLabel>
                                             <ReactPhoneInput
                                             inputExtraProps={{
                                                 name: 'alternatemobilenumber',
@@ -909,7 +909,7 @@ catch(error){
                                                             <div className="form-row px-2">
                                                                 <div className="col">
                                                                     <div className="md-form">
-                                                                        <MDBInput autoComplete="off"  label="Spouse Name" required={ this.state.type =='isFamily' ?'required':''} name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} />
+                                                                        <MDBInput autoComplete="off"  label="Spouse Name" required={this.state.type =='isFamily' ?'required':''} name="spousename" value={this.state.spousename} onChange={e => this.handleChange(e)} />
                                                                     </div>
                                                                 </div>
                                                                 <div className="col">
