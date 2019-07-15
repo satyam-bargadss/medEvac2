@@ -63,7 +63,7 @@ class ClientEdit extends Component {
                 dependent1DOB:data.customer[0].dependent1DOB,
                 email:data.customer[0].email,
                 groupCode:data.customer[0].groupCode,
-                created_at:data.customer[0].created_at,
+                created_at:data.customer[0].cc_at,
                 country:data.customer[0].country,
                 companyName:data.customer[0].companyName,
                 mailing_address1:data.customer[0].mailing_address1,
@@ -183,7 +183,7 @@ class ClientEdit extends Component {
                                   <div className="form-row px-2">
                                     <div className="col">
                                         <div classname="md-form">
-                                        <InputLabel class="custom_class" htmlFor="phone">Alternate Phone Number* </InputLabel>
+                                        <InputLabel class="custom_class_alternate_phone" htmlFor="phone2">Alternate Phone Number* </InputLabel>
                                             <ReactPhoneInput
                                             inputExtraProps={{
                                                 name: 'phone2',
@@ -292,11 +292,13 @@ class ClientEdit extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                            <InputLabel htmlFor="country">Country* </InputLabel>
-                                              <Select id="country"                                               
+                                          <InputLabel class="custom_class" htmlFor="country">Country* </InputLabel>
+                                              <Select  id="country"
+                                              value={this.state.country}                                               
                                               name="country"
+                                              onChange={this.handleChange} 
                                               placeholder='US' 
-                                              required                               
+                                              required                         
                                               >
                                                   <MenuItem value="US" >
                                                       US
@@ -367,7 +369,7 @@ class ClientEdit extends Component {
                                       </div>
                                       <div className="col">
                                           <div className="md-form">  
-                                              <MDBInput autoComplete="off"  label="Company, Government or Group Name" name="companyname" />  
+                                              <MDBInput autoComplete="off"  value={this.state.companyName?this.state.companyName:''} label="Company, Government or Group Name" name="companyname" />  
                                           </div>
                                       </div>
                                  </div>
@@ -379,7 +381,7 @@ class ClientEdit extends Component {
                                  <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                             <MDBInput  autoComplete="off" label="Group Code*" name='planid'/>              
+                                             <MDBInput  autoComplete="off" value={this.state.groupCode?this.state.groupCode:''} label="Group Code*" name='planid'/>              
                                           </div>
                                       </div>
                                       <div className="col">
