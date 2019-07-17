@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import { HashRouter as Router, Route
     ,NavLink,Redirect} from "react-router-dom";
  import  './css/material-dashboard.css';
@@ -19,8 +19,43 @@ class ClientEdit extends Component {
           customerId:props.match.params.customerId
         }
         this.fetchUser(this.state.customerId);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.getUsedrByIdName();
     }
-    async fetchUser(customerId) {
+    async  getUsedrByIdName() {
+      //return false
+      try{
+         let response = await fetch(URL+'agents-byname', {
+             method: 'GET', // *GET, POST, PUT, DELETE, etc.
+         
+             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+             //credentials: 'same-origin', // include, *same-origin, omit
+             headers: {
+                     'Content-Type': 'application/json',
+                     
+                     // 'Content-Type': 'application/x-www-form-urlencoded',
+             }
+             //redirect: 'follow', // manual, *follow, error
+             //referrer: 'no-referrer', // no-referrer, *client
+           // body data type must match "Content-Type" header
+         })
+         let data = await response.json()
+ 
+         //console.log(data);
+     if(data.status ==200)
+     {
+       console.log(data.AgentByIdName);
+       this.setState({options: data.AgentByIdName})
+       
+        console.log(this.state.options);
+     }
+ }
+ catch(error){
+     console.log(error);
+   }
+} 
+  
+  async fetchUser(customerId) {
      
         try{
           let response = await fetch(URL+'customberById?customerId='+customerId, {
@@ -39,18 +74,21 @@ class ClientEdit extends Component {
             let data = await response.json()
             if(data.status==200)
             {
-              console.log(data.customer)
+              console.log(data);
               //console.log(data.customer[0].firstName); 
                this.setState({
                 frequency:data.customer[0].frequency,
                 fee:data.customer[0].fee,
                 familyFee:data.customer[0].familyFee,
                 planName:data.customer[0].planName,
+                planId:data.customer[0].planId,
+                agentId:data.customer[0].agentId,
                 country1:data.customer[0].country1,
                 type:data.customer[0].clientType,
                 mobile2:data.customer[0].mobile2,
                 DOB:data.customer[0].DOB,
-                Dependent2LastName:data.customer[0].Dependent2LastName,
+                dependent1FirstName:data.customer[0].dependent1FirstName,
+                dependent1LastName:data.customer[0].dependent1LastName,
                 firstName:data.customer[0].firstName,
                 LastName:data.customer[0].LastName,
                 ModBy:data.customer[0].ModBy,
@@ -71,32 +109,156 @@ class ClientEdit extends Component {
                 spouseFirstName:data.customer[0].spouseFirstName,
                 zip:data.customer[0].zip,
                 zip1: data.customer[0].zip1,
+                state1:data.customer[0].state1,
                 agentFirstName:data.customer[0].agentFirstName,
                 agentLastName : data.customer[0].agentLastName ,
+                Agentoptions: data.agentlist,
+                agent_manager_id:data.customer[0].agent_manager,
+                Planoptions:data.plans,
+                familyDateOfBirth:data.customer[0].spouseDOB
+
                })
             }
       } catch(error){
         console.log(error);
       }
       //end Api calling
+}
+
+convertDate(data){
+    if(date!=='')
+    {
+    var date = new Date(data);
+    return((date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear());
+    }
+    return null;
+}
+async getManagerByIdName(currentAgentId) {
       
-      }
-      convertDate(data){
-        if(date!=='')
-        {
-        var date = new Date(data);
-        return((date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear());
-        }
-        return null;
+        
+    //return false
+  
+    try{
+     let response = await fetch(URL+'manager-by-agent?currentAgent='+currentAgentId, {
+         method: 'GET', // *GET, POST, PUT, DELETE, etc.
      
-      }
-      handleChange = (e) => {
+         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+         //credentials: 'same-origin', // include, *same-origin, omit
+         headers: {
+                 'Content-Type': 'application/json',
+                 
+                 // 'Content-Type': 'application/x-www-form-urlencoded',
+         }
+         //redirect: 'follow', // manual, *follow, error
+         //referrer: 'no-referrer', // no-referrer, *client
+       // body data type must match "Content-Type" header
+     })
+     let data = await response.json()
+
+     //console.log(data);
+ if(data.status ==200)
+ {
+   
+  await  this.setState({agentManager: data.agentManager});
+  console.log(this.state.agentManager);
+ }
+
+}
+catch(error){
+ console.log(error);
+}
+
+  
+}
+onChangeAgentHandler=(e)=>{
+    this.setState({
+        [e.target.name]: e.target.value},()=>{
+            console.log(this.state.selectedAgentId)
+            return this.getManagerByIdName(this.state.selectedAgentId);
+          })
+       }
+    onChangePlanHandler=(e)=>{
+        this.setState({
+            [e.target.name]: e.target.value,
+              })
+    }
+    
+    handleDepentent = ()=>{
+        this.setState((preState) => ({
+            isSpouse: !preState.isSpouse 
+          }));
+         //console.log(this.state.isSpouse); 
+     }
+    handleDepentent1 = ()=>{
+        this.setState((preState) => ({
+            isFamily: !preState.isFamily 
+          }));
+         //console.log(this.state.isFamily); 
+    }
+     
+    handleChange = (e) => {
            this.setState({
                     [e.target.name]: e.target.value,
-            }
-     )
-     // console.log(this.state);               
- }
+           })              
+    }
+
+       async handleSubmit(event)
+       {
+         event.preventDefault();
+         const agentPaymentData = {
+            customerId: this.state.customerId,
+            customer_dob:this.state.DOB,
+            phone1:this.state.phone1,
+            phone2:this.state.phone2,
+            email:this.state.email,
+            spouseFirstName:this.state.spouseFirstName,
+            familyDateOfBirth:this.state.familyDateOfBirth,
+            dependent1FirstName:this.state.dependent1FirstName,
+            dependent1LastName:this.state.dependent1LastName,
+            dependent1DOB:this.state.dependent1DOB,
+            country1:this.state.country,
+            address1:this.state.address1,
+            address2:this.state.address2,
+            city:this.state.city,
+            state1:this.state.state1,
+            zip1:this.state.zip1,
+            zip2:this.state.zip,
+            country2:this.state.country2,
+            city2:this.state.city2,
+            state2:this.state.state2,
+            companyName:this.state.companyName,
+            planid:this.state.planid,
+            
+          }
+          console.log(agentPaymentData);
+         try{
+           //let response = await fetch(URL+'updatecustomer?customerId='+this.state.customerId, {
+            let response = await fetch(URL+'updatecustomer', {    
+             method: 'POST', // *GET, POST, PUT, DELETE, etc.
+             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+             headers: {
+                 'Content-Type': 'application/json',
+             },
+             body: JSON.stringify(agentPaymentData), // body data type must match "Content-Type" header
+           })
+           
+             let data = await response.json()
+             console.log(data);
+             this.setState({
+               status: data.status 
+             });
+             if(data.status == 200){
+               console.log('redirect in admin dashboard');
+                console.log(data) ;
+                this.setState({ open: false });
+                this.setState({ open1: false });
+            
+               }
+             }
+             catch(error){
+               console.log(error);
+             }
+       }
     render() {
         return (
             <div style={{width: '100%'}}>
@@ -108,7 +270,7 @@ class ClientEdit extends Component {
                     </div>
                 <div className="form_body">
                     <div className="px-lg-2 pt-0">
-                        <form style={{color: '#757575'}}>
+                        <form style={{color: '#757575'}} method='post' onSubmit={this.handleSubmit}>
                             <div className="summary">
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Client Name</label>
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.firstName +' '+this.state.LastName}</span> 
@@ -125,7 +287,7 @@ class ClientEdit extends Component {
                                     {this.state.type=='family'?<span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.familyFee?this.state.familyFee:''}
                                     </span>:<span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.fee?this.state.fee:''}
                                     </span>}
-
+                                    <input type="hidden" value="{{this.state.customerId}}" name="customerId"></input>    
 
                                     <div className="clearfix"></div>
 
@@ -157,7 +319,7 @@ class ClientEdit extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                          <input type="date" name="dob" required value={this.state.DOB}
+                                          <input type="date" name="DOB" required value={this.state.DOB}
                                                      onChange={e => this.handleChange(e)} 
                                                  />
                                                     <label htmlFor="Dob">Date Of Birth *</label>
@@ -201,25 +363,8 @@ class ClientEdit extends Component {
                                         </div>
                                     </div>
                                   </div>
-
-                                  <div className="subHead pt-3 px-2">
-                                    <h4 classname="text-dark">Family Information</h4>
-                                  </div>
-
-                                  <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">
-                                              <MDBInput autoComplete="off"  label="Spouse Name" name="spousename" />
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">
-                                            <MDBInput  autoComplete="off" label="Dependant Name" type="text" name="DependantName" />
-                                          </div>
-                                      </div>
-                                  </div>
-
-                                  <div className="head">
+                                    
+                                    <div className="head">
                                     <div className="card text-dark bg-light">
                                         <div className="card-body">Account Information</div>
                                     </div>
@@ -275,12 +420,12 @@ class ClientEdit extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput  autoComplete="off" label="State*" value={this.state.state_s} onChange={e => this.handleChange(e)} name='state_s' required/>
+                                              <MDBInput  autoComplete="off" label="State*" value={this.state.state1} onChange={e => this.handleChange(e)} name='state1' required/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  type="number" label="Zip Code*" value={this.state.zipcode} onChange={e => this.handleChange(e)} name='zipcode' required/>                                             
+                                              <MDBInput autoComplete="off"  type="number" label="Zip Code*" value={this.state.zip1} onChange={e => this.handleChange(e)} name='zip1' required/>                                             
                                           </div>
                                       </div>
                                   </div>
@@ -335,15 +480,69 @@ class ClientEdit extends Component {
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput  autoComplete="off" label="State*" value={this.state.state_s} onChange={e => this.handleChange(e)} name='state_s' required/>
+                                              <MDBInput  autoComplete="off" label="State" value={this.state.state1} onChange={e => this.handleChange(e)} name='state_1'/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  type="number" label="Zip Code*" value={this.state.zipcode} onChange={e => this.handleChange(e)} name='zipcode' required/>                                             
+                                              <MDBInput autoComplete="off"  type="number" label="Zip Code*" value={this.state.zip} onChange={e => this.handleChange(e)} name='zip' required/>                                             
                                           </div>
                                       </div>
                                   </div>
+
+                                  <div className="head">
+                                      <div className="card text-dark bg-light">
+                                          <div className="card-body">Family Information</div>
+                                      </div>
+                                  </div>
+                                  <br/>
+
+                                  <div className="form-row px-2">
+                                                                <div className="col">
+                                                                    <div className="md-form">
+                                                                        <MDBInput autoComplete="off"  label="Spouse Name" required={ this.state.type =='isFamily' ?'required':''} name="spousename" value={this.state.spouseFirstName?this.state.spouseFirstName:' '} onChange={e => this.handleChange(e)} />
+                                                                    </div>
+                                                                </div>
+                                                                <div className="col">
+                                                                    <div className="md-form">
+                                                                        <input type="date" name="familyDateOfBirth"
+                                                                                value={this.state.familyDateOfBirth}    
+                                                                                onChange={e => this.handleChange(e)} 
+                                                                                required={ this.state.type =='isFamily' ?'required':''}
+                                                                            />
+                                                                        <label htmlFor="DateOfBirth">Spouse Date Of Birth</label>
+                                                                    </div>
+                                                                </div>
+                                                    </div>
+                                                    <div className="form-row px-2">
+                                                                 <div className="col">
+                                                                     <div className="md-form">
+                                                                         <MDBInput  autoComplete="off" label="Dependant First Name" type="text" name="dependent1FirstName" value={this.state.dependent1FirstName} onChange={e => this.handleChange(e)} />
+                                                                       
+                                                                     </div>
+                                                                 </div>
+                                                                 <div className="col">
+                                                                     <div className="md-form">
+                                                                         <MDBInput  autoComplete="off"label="Dependant Last Name" type="text" name="dependent1LastName" value={this.state.dependent1LastName} onChange={e => this.handleChange(e)} />
+                                                                         
+                                                                     </div>
+                                                                 </div>
+                                                            </div>
+                                                             <div className="form-row px-2">
+                                                                 <div className="col">
+                                                                     <div className="md-form">
+                                                                         <MDBInput autoComplete="off" label="Date of Birth" type="date" id="dependent1DOB" name="dependent1DOB" value={this.state.dependent1DOB} onChange={e => this.handleChange(e)}/>
+                                                                       
+                                                                     </div>
+                                                                 </div>
+                                                                 <div className="col">
+                                                                    <div className="md-form">
+                                                                        &nbsp;
+                                                                    </div>
+                                                                </div>
+                                                             </div>            
+                                                  
+                                      
 
                                   <div className="head">
                                     <div className="card text-dark bg-light">
@@ -351,55 +550,80 @@ class ClientEdit extends Component {
                                     </div>
                                  </div>
 
-                                <div className="subHead pt-3 px-2">
+                                {/*<div className="subHead pt-3 px-2">
                                     <h4 classname="text-dark">Plan Information</h4>
-                                </div>
-
-                                <div className="form-row px-2">
-                                      <div className="col">
-                                          <div className="md-form">        
-                                              <InputLabel htmlFor="age-simple">Plan</InputLabel>
-                                              <Select
-                                                  name='plan'             
-                                                  >
-                                                 <MenuItem ></MenuItem>)
-                                                 
-                                              </Select>
-                                          </div>
-                                      </div>
-                                      <div className="col">
-                                          <div className="md-form">  
-                                              <MDBInput autoComplete="off"  value={this.state.companyName?this.state.companyName:''} label="Company, Government or Group Name" name="companyname" />  
-                                          </div>
-                                      </div>
-                                 </div>
+                                </div>*/}
 
                                  <div className="subHead pt-3 px-2">
                                     <h4 classname="text-dark">Agent Information</h4>
                                  </div>
 
-                                 <div className="form-row px-2">
+                                <div className="form-row px-2">
+                                      {/*<div className="col">
+                                          <div className="md-form">        
+                                              <InputLabel htmlFor="selectedPlanId">Plan</InputLabel>
+                                              <Select
+                                                label='selectedPlanId'
+                                                name="selectedPlanId"
+                                                value={this.state.planId}
+                                                onChange={this.onChangePlanHandler}             
+                                                  >
+                                                 <MenuItem value=''>Please Select</MenuItem>
+                                                {this.state.Planoptions? this.state.Planoptions.map((row1) => <MenuItem key={row1.planId} value={row1.planId}>{row1.planName}</MenuItem>) :''}                                       
+
+                                                 
+                                              </Select>
+                                          </div>
+                                        </div>*/}
                                       <div className="col">
-                                          <div className="md-form">
-                                             <MDBInput  autoComplete="off" value={this.state.groupCode?this.state.groupCode:''} label="Group Code*" name='planid'/>              
+                                          <div className="md-form">  
+                                              <MDBInput autoComplete="off"  value={this.state.companyName?this.state.companyName:''}  onChange={e => this.handleChange(e)} label="Company, Government or Group Name" name="companyName" />  
                                           </div>
                                       </div>
+                                      <div className="col">
+                                          <div className="md-form">
+                                             <MDBInput  autoComplete="off" value={this.state.groupCode?this.state.groupCode:''} onChange={e => this.handleChange(e)} label="Group Code*" name='planid'/>              
+                                          </div>
+                                      </div>
+                                 </div>
+                                 <div className="form-row px-2">
+                                      
                                       <div className="col">
                                           <div className="md-form">
                                             <InputLabel htmlFor="select-agent">Select Agent</InputLabel>
                                             <Select
                                                 label='Select Agent'
                                                 name="selectedAgentId"
-                                            >
-                                                <MenuItem>Please Select</MenuItem>
-                                                <MenuItem></MenuItem>)                                        
+                                                value={this.state.agentId}
+                                                onChange={this.onChangeAgentHandler}
+    
+                                                >
+                                                <MenuItem value=''>Please Select</MenuItem>
+                                                {this.state.Agentoptions? this.state.Agentoptions.map((row2) => <MenuItem key={row2.agentId} value={row2.agentId}>{row2.agentName}</MenuItem>) :''}                                       
                                             </Select>
+                                            {console.log(this.state.Agentoptions)}
                                           </div>
                                       </div>
+                                      <div className="col">
+                                        <div className="md-form">
+                                           <InputLabel class="custom_class" htmlFor="select-manager">Select Manager</InputLabel>
+                                                <Select
+                                                    label='Select Manager'
+                                                    name="selectedManagerId"
+                                                    value={this.state.agent_manager_id}
+                                                   
+                                                    onChange={this.handleChange}
+                                                    >
+                                                       {this.state.agentManager? this.state.agentManager.map((row2) => <MenuItem key={row2.agentId} value={row2.agentId}>{row2.firstName+" "+row2.lastName}</MenuItem>) :''}
+                                                                                               
+                                                </Select>
+                                                {console.log(this.state.agentManager)}
+                                        </div>
+                                    </div>
                                   </div>
-
+                                  
                                   <div className="subHead pt-3 px-2">
-                                    <h4 classname="text-dark">Agent Information</h4>
+                                    <h4 classname="text-dark">Payment Information</h4>
                                  </div>
 
                                  <div className="form-row px-2">
@@ -429,7 +653,7 @@ class ClientEdit extends Component {
                                  </div>
 
                                  <div className="buttons text-center">
-                                  <button className="btn btn-rounded my-4 waves-effect" type="submit">Save</button>
+                                  <button className="btn btn-rounded my-4 waves-effect" type="submit">Update</button>
                                 </div>
                         </form>
                     </div>

@@ -204,6 +204,7 @@ catch(error){
             return {...row, view: 
             <React.Fragment>
               <Link data-toggle="tooltip" title="View" to={`/agentview/${row.agentId}`}><i class="material-icons">visibility</i></Link>
+              <Link data-toggle="tooltip" title="Edit" to={`/AgentEdit`}><i class="material-icons">edit</i></Link>
               <a data-toggle="tooltip" title="Add Manager" onClick={() => this.onOpenModal(row.agentId,row.agent_name,row.levelID)}><i className="material-icons">add_circle</i></a>
               <Link data-toggle="tooltip" title="Payment Schedule" to={`/PaymentSchedule/${row.agentId}`}><i class="material-icons">assignment</i></Link>
               <Link data-toggle="tootltip" title="Payment" onClick={() => this.onOpenModal1(row.agentId,row.agent_name,row.total_commission)}><i class="material-icons">payment</i></Link>
@@ -318,6 +319,7 @@ catch(error){
                console.log(data) ;
                this.setState({ open: false });
                this.setState({ open1: false });
+               window.location.reload();
               }
             }
             catch(error){

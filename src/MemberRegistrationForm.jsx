@@ -356,7 +356,7 @@ catch(error){
                         </div>
 
                   );
-                console.log('Tirtha');
+                //console.log('Tirtha');
                 return(dependentFields1);
                }
                
@@ -433,8 +433,6 @@ catch(error){
          async  handleSubmit2(event) {
              event.preventDefault();
             console.log(this.state);
-            //return false
-            
             try{
              let response = await fetch(URL+'customber-registration', {
                  method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -455,15 +453,18 @@ catch(error){
              console.log(data);
          if(data.status ==200)
          {
-         setTimeout(()=>{
-            this.props.history.push('/thanks');
+             console.log(data);
+          setTimeout(()=>{
+            //this.props.history.push('/thanks');
+            this.props.history.push('/MembershipCart/'+data.customerId);
         }, 1000)
          }
     }
      catch(error){
          console.log(error);
-       }
-          } 
+     }
+
+  } 
       componentDidMount()
       {
         this.setState({

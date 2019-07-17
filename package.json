@@ -32,10 +32,12 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
+    "react-stripe-elements": "^4.0.0",
     "react-toggle-switch": "^3.0.4",
     "reactstrap": "^8.0.0",
     "semantic-ui-react": "^0.87.2",
-    "simple-react-modal": "^0.5.1"
+    "simple-react-modal": "^0.5.1",
+    "stripe": "^7.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
