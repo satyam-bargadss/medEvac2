@@ -273,7 +273,7 @@ onChangeAgentHandler=(e)=>{
                         <form style={{color: '#757575'}} method='post' onSubmit={this.handleSubmit}>
                             <div className="summary">
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Client Name</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.firstName +' '+this.state.LastName}</span> 
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.firstName?this.state.firstName:''  +' '+ this.state.LastName?this.state.LastName:''}</span> 
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Client Type</label>
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{ this.state.type?this.state.type:'' }</span>
@@ -292,7 +292,7 @@ onChangeAgentHandler=(e)=>{
                                     <div className="clearfix"></div>
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Membership Date</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.convertDate(this.state.created_at)}</span> 
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.convertDate(this.state.created_at?this.state.created_at:'')}</span> 
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Renewal Date</label>
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"></span>
@@ -300,7 +300,7 @@ onChangeAgentHandler=(e)=>{
                                     <div classname="clearfix"></div>
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Agent Name</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"><p>{this.state.agentFirstName} </p><p>{this.state.agentLastName?this.state.agentLastName:''}</p></span>  
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"><p>{this.state.agentFirstName?this.state.agentFirstName:'' } </p><p>{this.state.agentLastName?this.state.agentLastName:''}</p></span>  
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Payment Received</label>
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"></span>   
@@ -319,7 +319,7 @@ onChangeAgentHandler=(e)=>{
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                          <input type="date" name="DOB" required value={this.state.DOB}
+                                          <input type="date" name="DOB" required value={this.state.DOB?this.state.DOB:''}
                                                      onChange={e => this.handleChange(e)} 
                                                  />
                                                     <label htmlFor="Dob">Date Of Birth *</label>
@@ -334,7 +334,7 @@ onChangeAgentHandler=(e)=>{
                                                 required: true                                                
                                               }}
                                             defaultCountry="us"
-                                            value={this.state.cellPhone}
+                                            value={this.state.cellPhone?this.state.cellPhone:''}
                                             onChange={phone => this.setState({phone})}
                                             
                                             />
@@ -352,7 +352,7 @@ onChangeAgentHandler=(e)=>{
                                                 required: true                                                
                                               }}
                                             defaultCountry="us"
-                                            value={this.state.mobile2}
+                                            value={this.state.mobile2?this.state.mobile2:''}
                                             onChange={phone2 => this.setState({phone2})}
                                             /> 
                                         </div>
@@ -379,7 +379,7 @@ onChangeAgentHandler=(e)=>{
                                           <div className="md-form">
                                           <InputLabel class="custom_class" htmlFor="country">Country* </InputLabel>
                                               <Select  id="country"
-                                              value={this.state.country}                                               
+                                              value={this.state.country?this.state.country:''}                                               
                                               name="country"
                                               onChange={this.handleChange} 
                                               placeholder='US' 
@@ -399,7 +399,7 @@ onChangeAgentHandler=(e)=>{
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                            <MDBInput autoComplete="off" label="Client Address 1*" name="address1" value={this.state.address1} onChange={e => this.handleChange(e)} required/>
+                                            <MDBInput autoComplete="off" label="Client Address 1*" name="address1" value={this.state.address1?this.state.address1:''} onChange={e => this.handleChange(e)} required/>
                                           </div>
                                       </div>
                                   </div>
@@ -407,12 +407,12 @@ onChangeAgentHandler=(e)=>{
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                             <MDBInput autoComplete="off"  label="Client Address 2 (Optional)" name="address2" value={this.state.address2} onChange={e => this.handleChange(e)}/>
+                                             <MDBInput autoComplete="off"  label="Client Address 2 (Optional)" name="address2" value={this.state.address2?this.state.address2:''} onChange={e => this.handleChange(e)}/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" label="City*" name='city' value={this.state.city} onChange={e => this.handleChange(e)} required/> 
+                                              <MDBInput autoComplete="off" label="City*" name='city' value={this.state.city?this.state.city:''} onChange={e => this.handleChange(e)} required/> 
                                           </div>
                                       </div>
                                   </div>
@@ -420,12 +420,12 @@ onChangeAgentHandler=(e)=>{
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput  autoComplete="off" label="State*" value={this.state.state1} onChange={e => this.handleChange(e)} name='state1' required/>
+                                              <MDBInput  autoComplete="off" label="State*" value={this.state.state1?this.state.state1:''} onChange={e => this.handleChange(e)} name='state1' required/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  type="number" label="Zip Code*" value={this.state.zip1} onChange={e => this.handleChange(e)} name='zip1' required/>                                             
+                                              <MDBInput autoComplete="off"  type="number" label="Zip Code*" value={this.state.zip1?this.state.zip1:''} onChange={e => this.handleChange(e)} name='zip1' required/>                                             
                                           </div>
                                       </div>
                                   </div>
@@ -439,7 +439,7 @@ onChangeAgentHandler=(e)=>{
                                           <div className="md-form">
                                           <InputLabel class="custom_class" htmlFor="country">Country* </InputLabel>
                                               <Select  id="country"
-                                              value={this.state.country}                                               
+                                              value={this.state.country?this.state.country:''}                                               
                                               name="country"
                                               onChange={this.handleChange} 
                                               placeholder='US' 
@@ -459,7 +459,7 @@ onChangeAgentHandler=(e)=>{
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                            <MDBInput autoComplete="off" label="Client Address 1*" value={this.state.address1} onChange={e => this.handleChange(e)} name="address1" required/>
+                                            <MDBInput autoComplete="off" label="Client Address 1*" value={this.state.address1?this.state.address1:''} onChange={e => this.handleChange(e)} name="address1" required/>
                                           </div>
                                       </div>
                                   </div>
@@ -467,12 +467,12 @@ onChangeAgentHandler=(e)=>{
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                             <MDBInput autoComplete="off"  label="Client Address 2 (Optional)" value={this.state.address2} onChange={e => this.handleChange(e)} name="address2"/>
+                                             <MDBInput autoComplete="off"  label="Client Address 2 (Optional)" value={this.state.address2?this.state.address2:''} onChange={e => this.handleChange(e)} name="address2"/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" label="City*" value={this.state.city} onChange={e => this.handleChange(e)} name='city' required/> 
+                                              <MDBInput autoComplete="off" label="City*" value={this.state.city?this.state.city:''} onChange={e => this.handleChange(e)} name='city' required/> 
                                           </div>
                                       </div>
                                   </div>
@@ -480,12 +480,12 @@ onChangeAgentHandler=(e)=>{
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput  autoComplete="off" label="State" value={this.state.state1} onChange={e => this.handleChange(e)} name='state_1'/>
+                                              <MDBInput  autoComplete="off" label="State" value={this.state.state1?this.state.state1:''} onChange={e => this.handleChange(e)} name='state_1'/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  type="number" label="Zip Code*" value={this.state.zip} onChange={e => this.handleChange(e)} name='zip' required/>                                             
+                                              <MDBInput autoComplete="off"  type="number" label="Zip Code*" value={this.state.zip?this.state.zip:''} onChange={e => this.handleChange(e)} name='zip' required/>                                             
                                           </div>
                                       </div>
                                   </div>
@@ -506,7 +506,7 @@ onChangeAgentHandler=(e)=>{
                                                                 <div className="col">
                                                                     <div className="md-form">
                                                                         <input type="date" name="familyDateOfBirth"
-                                                                                value={this.state.familyDateOfBirth}    
+                                                                                value={this.state.familyDateOfBirth?this.state.familyDateOfBirth:''}    
                                                                                 onChange={e => this.handleChange(e)} 
                                                                                 required={ this.state.type =='isFamily' ?'required':''}
                                                                             />
@@ -517,13 +517,13 @@ onChangeAgentHandler=(e)=>{
                                                     <div className="form-row px-2">
                                                                  <div className="col">
                                                                      <div className="md-form">
-                                                                         <MDBInput  autoComplete="off" label="Dependant First Name" type="text" name="dependent1FirstName" value={this.state.dependent1FirstName} onChange={e => this.handleChange(e)} />
+                                                                         <MDBInput  autoComplete="off" label="Dependant First Name" type="text" name="dependent1FirstName" value={this.state.dependent1FirstName?this.state.dependent1FirstName:''} onChange={e => this.handleChange(e)} />
                                                                        
                                                                      </div>
                                                                  </div>
                                                                  <div className="col">
                                                                      <div className="md-form">
-                                                                         <MDBInput  autoComplete="off"label="Dependant Last Name" type="text" name="dependent1LastName" value={this.state.dependent1LastName} onChange={e => this.handleChange(e)} />
+                                                                         <MDBInput  autoComplete="off"label="Dependant Last Name" type="text" name="dependent1LastName" value={this.state.dependent1LastName?this.state.dependent1LastName:''} onChange={e => this.handleChange(e)} />
                                                                          
                                                                      </div>
                                                                  </div>
@@ -531,7 +531,7 @@ onChangeAgentHandler=(e)=>{
                                                              <div className="form-row px-2">
                                                                  <div className="col">
                                                                      <div className="md-form">
-                                                                         <MDBInput autoComplete="off" label="Date of Birth" type="date" id="dependent1DOB" name="dependent1DOB" value={this.state.dependent1DOB} onChange={e => this.handleChange(e)}/>
+                                                                         <MDBInput autoComplete="off" label="Date of Birth" type="date" id="dependent1DOB" name="dependent1DOB" value={this.state.dependent1DOB?this.state.dependent1DOB:'' } onChange={e => this.handleChange(e)}/>
                                                                        
                                                                      </div>
                                                                  </div>
@@ -594,7 +594,7 @@ onChangeAgentHandler=(e)=>{
                                             <Select
                                                 label='Select Agent'
                                                 name="selectedAgentId"
-                                                value={this.state.agentId}
+                                                value={this.state.agentId?this.state.agentId:''}
                                                 onChange={this.onChangeAgentHandler}
     
                                                 >
@@ -610,7 +610,7 @@ onChangeAgentHandler=(e)=>{
                                                 <Select
                                                     label='Select Manager'
                                                     name="selectedManagerId"
-                                                    value={this.state.agent_manager_id}
+                                                    value={this.state.agent_manager_id?this.state.agent_manager_id:''} 
                                                    
                                                     onChange={this.handleChange}
                                                     >
