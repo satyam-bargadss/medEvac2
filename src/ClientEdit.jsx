@@ -171,10 +171,10 @@ catch(error){
   
 }
 onChangeAgentHandler=(e)=>{
-    this.setState({
+     this.setState({
         [e.target.name]: e.target.value},()=>{
             console.log(this.state.selectedAgentId)
-            return this.getManagerByIdName(this.state.selectedAgentId);
+            return this.getManagerByIdName(this.state.agentId);
           })
        }
     onChangePlanHandler=(e)=>{
@@ -228,6 +228,7 @@ onChangeAgentHandler=(e)=>{
             state2:this.state.state2,
             companyName:this.state.companyName,
             planid:this.state.planid,
+            agentId:this.state.agentId,
             
           }
           console.log(agentPaymentData);
@@ -242,16 +243,14 @@ onChangeAgentHandler=(e)=>{
              body: JSON.stringify(agentPaymentData), // body data type must match "Content-Type" header
            })
            
-             let data = await response.json()
-             console.log(data);
+             let data = await response.json();
+             {/*console.log(data);
              this.setState({
                status: data.status 
-             });
+             });*/}
              if(data.status == 200){
-               console.log('redirect in admin dashboard');
-                console.log(data) ;
-                this.setState({ open: false });
-                this.setState({ open1: false });
+                 this.props.history.push('/customer-management');
+                  //this.props.history.push('/thanks');
             
                }
              }
@@ -345,7 +344,7 @@ onChangeAgentHandler=(e)=>{
                                   <div className="form-row px-2">
                                     <div className="col">
                                         <div classname="md-form">
-                                        <InputLabel class="custom_class_alternate_phone" htmlFor="phone2">Alternate Phone Number* </InputLabel>
+                                        <InputLabel class="custom_class_alternate_phone" htmlFor="phone2">Alternate Phone Number(optional)</InputLabel>
                                             <ReactPhoneInput
                                             inputExtraProps={{
                                                 name: 'phone2',
@@ -500,7 +499,7 @@ onChangeAgentHandler=(e)=>{
                                   <div className="form-row px-2">
                                                                 <div className="col">
                                                                     <div className="md-form">
-                                                                        <MDBInput autoComplete="off"  label="Spouse Name" required={ this.state.type =='isFamily' ?'required':''} name="spousename" value={this.state.spouseFirstName?this.state.spouseFirstName:' '} onChange={e => this.handleChange(e)} />
+                                                                        <MDBInput autoComplete="off"  label="Spouse Name" required={ this.state.type =='isFamily' ?'required':''} name="spouseFirstName" value={this.state.spouseFirstName?this.state.spouseFirstName:' '}  onChange={e => this.handleChange(e)} />
                                                                     </div>
                                                                 </div>
                                                                 <div className="col">
@@ -593,13 +592,13 @@ onChangeAgentHandler=(e)=>{
                                             <InputLabel htmlFor="select-agent">Select Agent</InputLabel>
                                             <Select
                                                 label='Select Agent'
-                                                name="selectedAgentId"
+                                                name="agentId"
                                                 value={this.state.agentId?this.state.agentId:''}
                                                 onChange={this.onChangeAgentHandler}
     
                                                 >
                                                 <MenuItem value=''>Please Select</MenuItem>
-                                                {this.state.Agentoptions? this.state.Agentoptions.map((row2) => <MenuItem key={row2.agentId} value={row2.agentId}>{row2.agentName}</MenuItem>) :''}                                       
+                                                {this.state.Agentoptions? this.state.Agentoptions.map((row1) => <MenuItem key={row1.agentId} value={row1.agentId}>{row1.agentName}</MenuItem>) :''}                                       
                                             </Select>
                                             {console.log(this.state.Agentoptions)}
                                           </div>
@@ -611,8 +610,7 @@ onChangeAgentHandler=(e)=>{
                                                     label='Select Manager'
                                                     name="selectedManagerId"
                                                     value={this.state.agent_manager_id?this.state.agent_manager_id:''} 
-                                                   
-                                                    onChange={this.handleChange}
+                                                    onChange={e => this.handleChange(e)}
                                                     >
                                                        {this.state.agentManager? this.state.agentManager.map((row2) => <MenuItem key={row2.agentId} value={row2.agentId}>{row2.firstName+" "+row2.lastName}</MenuItem>) :''}
                                                                                                
@@ -653,7 +651,8 @@ onChangeAgentHandler=(e)=>{
                                  </div>
 
                                  <div className="buttons text-center">
-                                  <button className="btn btn-rounded my-4 waves-effect" type="submit">Update</button>
+                                    <button className="btn btn-rounded my-4 waves-effect" type="submit">Cancel</button>
+                                    <button className="btn btn-rounded my-4 waves-effect" type="submit">Update</button>
                                 </div>
                         </form>
                     </div>

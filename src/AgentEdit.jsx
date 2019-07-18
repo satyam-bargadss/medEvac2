@@ -56,14 +56,14 @@ class AgentEdit extends Component {
 
                                             <div className="col">
                                                 <div className="md-form">
-                                                <InputLabel class="custom_class" htmlFor="phone">Mobile Number</InputLabel>
+                                                <InputLabel class="custom_class" htmlFor="phone">Primary Phone Number* </InputLabel>
                                                 <ReactPhoneInput
-                                                inputExtraProps={{
-                                                    name: 'phone',
-                                                    required: true                                                
-                                                }}
-                                                defaultCountry="us"
-                                                />
+                                                        inputExtraProps={{
+                                                            name: 'mobilenumber',
+                                                            required: true                                                
+                                                        }}
+                                                        defaultCountry="us"
+                                                        />
                                                 </div>
                                             </div>
                                         </div>
@@ -71,13 +71,20 @@ class AgentEdit extends Component {
                                         <div className="form-row px-2">
                                             <div className="col">
                                                 <div className="md-form">
-                                                    <MDBInput autoComplete="off" label="Email Address*" type="email"  name="email" />
+                                                    <InputLabel class="custom_class" htmlFor="phone">Alternate Phone Number </InputLabel>
+                                                    <ReactPhoneInput
+                                                    inputExtraProps={{
+                                                        name: 'alternatemobilenumber',
+                                                        required: true                                                
+                                                    }}
+                                                    defaultCountry="us"
+                                                    /> 
                                                 </div>
                                             </div>
 
                                             <div className="col">
                                                 <div className="md-form">
-                                                    &nbsp;
+                                                    <MDBInput autoComplete="off" label="Email Address*" type="email"  name="email" />
                                                 </div>
                                             </div>
                                         </div>
@@ -225,7 +232,7 @@ class AgentEdit extends Component {
                                             </div>
                                             <div className="col">
                                                 <div className="md-form">
-                                                    <MDBInput autoComplete="off" label="Bank Name" name="bankname"/>
+                                                    {/*<MDBInput autoComplete="off" label="Bank Name" name="bankname"/>*/}
                                                 </div>
                                             </div>
                                         </div>
@@ -233,12 +240,12 @@ class AgentEdit extends Component {
                                         <div className="form-row px-2">
                                             <div className="col">
                                                 <div className="md-form">
-                                                    <MDBInput autoComplete="off" label="Account Name" name="accountname"/>
+                                                    {/*<MDBInput autoComplete="off" label="Account Name" name="accountname"/>*/}
                                                 </div>
                                             </div>
                                             <div className="col">
                                                 <div className="md-form">
-                                                    <MDBInput autoComplete="off" label="Account Number" name="accountnumber"/>
+                                                    {/*<MDBInput autoComplete="off" label="Account Number" name="accountnumber"/>*/}
                                                 </div>
                                             </div>
                                         </div>

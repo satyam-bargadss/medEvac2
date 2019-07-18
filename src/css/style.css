@@ -152,6 +152,18 @@ table.dataTable thead .sorting_desc_disabled:after{
   right:3px;
 }
 
+.md-form input[type=date]:focus:not([readonly]), .md-form input[type=datetime-local]:focus:not([readonly]), .md-form input[type=email]:focus:not([readonly]), .md-form input[type=number]:focus:not([readonly]), .md-form input[type=password]:focus:not([readonly]), .md-form input[type=search-md]:focus:not([readonly]), .md-form input[type=search]:focus:not([readonly]), .md-form input[type=tel]:focus:not([readonly]), .md-form input[type=text]:focus:not([readonly]), .md-form input[type=time]:focus:not([readonly]), .md-form input[type=url]:focus:not([readonly]), .md-form textarea.md-textarea:focus:not([readonly])
+{
+  border-bottom:1px solid #9e1c20 !important;
+  box-shadow:0 1px 0 0#9e1c20 !important;
+}
+
+
+.white_box .custom-control-label{padding-left:23px; padding-top:3px !important;}
+.white_box{background:#fff; border:4px double #ccc;}
+.white_box .head, .white_box .card{border-radius:0 !important;}
+.white_box h6{color:#aaa; margin:0; font-weight:bold;}
+
 
 .mdc-select{width:100%; margin:29px 0 0;}
 .mdc-select__native-control{

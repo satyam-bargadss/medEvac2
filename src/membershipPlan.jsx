@@ -34,6 +34,12 @@ class membershipPlan extends Component {
                 width: 200
               },
               {
+                label: 'Initiation Fees',
+                field: 'initiationfees',
+                sort: 'asc',
+                width: 200
+              },
+              {
                 label: 'Family Fees',
                 field: 'familyfees',
                 sort: 'asc',
@@ -45,24 +51,28 @@ class membershipPlan extends Component {
                 id:'0001',
                 name: 'Monthly',
                 indfees: '$24.75',
+                initiaonfees: '$60',
                 familyfees: '$37.50'
               },
               {
                 id:'0002',
                 name: 'Lifetime',
                 indfees: '$3,250',
+                initiaonfees: '$60',
                 familyfees: '$4,450'
               },
               {
                 id:'0003',
                 name: '5 Year',
                 indfees: '$2,150',
+                initiaonfees: '$60',
                 familyfees: '$3,150'
               },
               {
                 id:'0004',
                 name: 'Annual',
                 indfees: '$297',
+                initiaonfees: '$60',
                 familyfees: '$474'
               }
             ]}

@@ -1105,7 +1105,7 @@ catch(error){
                               <div className="buttons text-center">
                                   <button className="btn btn-rounded my-4 waves-effect">Cancel</button>
                                   <button className="btn btn-rounded my-4 waves-effect" type="submit">Preview & Edit</button>
-                                
+                                  <button className="btn btn-rounded my-4 waves-effect" >Submit</button>
                               </div>    
                           </form>
 
