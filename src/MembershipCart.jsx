@@ -97,7 +97,7 @@ class MembershipCart extends Component {
                     <div className="col-lg-12">
                         <div className="form_bg">
                             <div className="header_part">
-                                <h2>Payment</h2>
+                                <h2>Payment Information</h2>
                             </div>
                             <div className="form_body">
                                 {/*<div className="px-lg-2 pt-0">
@@ -121,68 +121,80 @@ class MembershipCart extends Component {
                                     </form> 
                                 </div> */}
                                 <div className="col-sm-7 col-md-7 col-lg-7 pull-left">
-                                  <div className="form-row px-2 pt-1">
-                                      <label htmlFor="planname" className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold">Client Name</label>
+                                  <div className="white_box">
+                                  <div className="head">
+                                      <div className="card bg-light text-dark">
+                                        <div className="card-body">Client Information</div>
+                                      </div>
+                                  </div>
+
+                                  <div className="form-row px-3 pt-3">
+                                      <label htmlFor="clientname" className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold">Client Name</label>
                                       <span className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold text-left">John Doe</span>
                                   </div>
-                                  <div className="form-row px-2 pt-1">
+                                  <div className="form-row px-3 pt-1">
+                                      <label htmlFor="email" className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold">Email Address</label>
+                                      <span className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold text-left">abcd@gmail.com</span>
+                                  </div>
+                                  <div className="form-row px-3 pt-1">
                                       <label htmlFor="planname" className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold">Plan Name</label>
                                       <span className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold text-left">Annually</span>
                                   </div>
-                                  <div className="form-row px-2 pt-1">
+                                  <div className="form-row px-3 pt-1 pb-3">
                                       <label htmlFor="frequency" className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold">Frequency</label>
                                       <span className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold text-left">Annually</span>
+                                  </div>
                                   </div>
                                 </div>
                                 <div className="col-sm-5 col-md-5 col-lg-5 pull-left">
                                     <div className="white_box">  
                                       <div className="head">
                                           <div className="card bg-light text-dark">
-                                              <div className="card-body">Payment Information</div>
+                                              <div className="card-body">Payment Details</div>
                                           </div>
                                       </div>
 
-                                      <div class="custom-control custom-radio pt-3 pl-3">
+                                      <div class="custom-control custom-radio pt-3 pl-3 pr-3">
                                         <input type="radio" class="custom-control-input" id="customRadio" name="example1" value="customEx"/>
                                         <label class="custom-control-label" for="customRadio">Pay Annually</label>
                                       </div>
 
-                                      <div class="custom-control custom-checkbox pt-1 pl-5">
+                                      <div class="custom-control custom-checkbox pt-1 pl-5 pr-3">
                                         <input type="checkbox" class="custom-control-input" id="customCheck" name="example2"/>
                                         <label class="custom-control-label" for="customCheck">Auto-renew my membership each year</label>
                                       </div>
 
-                                      <div class="custom-control custom-radio pt-3 pl-3">
+                                      <div class="custom-control custom-radio pt-3 pl-3 pr-3">
                                         <input type="radio" class="custom-control-input" id="customRadio1" name="example3" value="customEx2"/>
                                         <label class="custom-control-label" for="customRadio1">Pay Monthly</label>
                                       </div>
 
-                                      <h6 className="pt-1 pl-5"><strong>Recurring Payment</strong></h6>
-                                      <div class="custom-control custom-checkbox pl-5">
+                                      <h6 className="pt-1 pl-5 pr-3"><strong>Recurring Payment</strong></h6>
+                                      <div class="custom-control custom-checkbox pl-5 pr-3">
                                         <input type="checkbox" class="custom-control-input" id="customCheck1" name="example4"/>
                                         <label class="custom-control-label" for="customCheck1">Choose recurring date(2nd payment onwards)</label>
                                       </div>
-                                      <div className="col-sm-12 col-md-12 col-lg-12 pl-5">
+                                      <div className="col-sm-12 col-md-12 col-lg-12 pl-5 pr-3">
                                         <input type="date" name="recurringdate" className="form-control"/>
                                       </div>
 
-                                      <div className="form-row px-3 pt-5">
+                                      <div className="form-row px-3 pt-4">
                                         <label htmlFor="membershipfee" className="col-xs-8 col-sm-8 col-md-8 col-lg-8 font-weight-bold">Membership Fees:</label>
-                                        <span className="col-xs-4 col-sm-4 col-md-4 col-lg-4 font-weight-bold text-right">$ 45.00</span>
+                                        <span className="col-xs-4 col-sm-4 col-md-4 col-lg-4 font-weight-bold text-right">$ {this.state.fees?this.state.fees:''}</span>
                                       </div>
 
                                       <div className="form-row px-3">
                                         <label htmlFor="initiationfee" className="col-xs-8 col-sm-8 col-md-8 col-lg-8 font-weight-bold">Initiation Fees:</label>
-                                        <span className="col-xs-4 col-sm-4 col-md-4 col-lg-4 font-weight-bold text-right">$ 60.00</span>
+                                        <span className="col-xs-4 col-sm-4 col-md-4 col-lg-4 font-weight-bold text-right">${this.state.initiatonFee?this.state.initiatonFee:''}</span>
                                       </div>
 
                                       <div className="form-row px-3">
                                         <label htmlFor="totalfee" className="col-xs-8 col-sm-8 col-md-8 col-lg-8 font-weight-bold text-danger">Total Due:</label>
-                                        <span className="col-xs-4 col-sm-4 col-md-4 col-lg-4 font-weight-bold text-right text-danger">$ 105.00</span>
+                                        <span className="col-xs-4 col-sm-4 col-md-4 col-lg-4 font-weight-bold text-right text-danger">$ {this.state.total_cart_Fee?this.state.total_cart_Fee:''}</span>
                                       </div>
 
-                                      <div className="buttons text-center pt-2">
-                                        <button className="btn btn-rounded my-4 waves-effect" >Payment</button>
+                                      <div className="buttons text-center pt-2 px-5">
+                                        <button className="btn btn-rounded btn-block my-4 waves-effect" >Payment</button>
                                       </div>
                                     </div> 
                                 </div>

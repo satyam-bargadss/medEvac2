@@ -90,7 +90,7 @@ class ClientEdit extends Component {
                 dependent1FirstName:data.customer[0].dependent1FirstName,
                 dependent1LastName:data.customer[0].dependent1LastName,
                 firstName:data.customer[0].firstName,
-                LastName:data.customer[0].LastName,
+                lastName:data.customer[0].LastName,
                 ModBy:data.customer[0].ModBy,
                 address1:data.customer[0].address1,
                 address2:data.customer[0].address2,
@@ -272,8 +272,8 @@ onChangeAgentHandler=(e)=>{
                         <form style={{color: '#757575'}} method='post' onSubmit={this.handleSubmit}>
                             <div className="summary">
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Client Name</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.firstName?this.state.firstName:''  +' '+ this.state.LastName?this.state.LastName:''}</span> 
-
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{(this.state.firstName?this.state.firstName:'')+' '+(this.state.lastName?this.state.lastName:'')}</span> 
+                                    
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Client Type</label>
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{ this.state.type?this.state.type:'' }</span>
 
@@ -299,7 +299,7 @@ onChangeAgentHandler=(e)=>{
                                     <div classname="clearfix"></div>
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Agent Name</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"><p>{this.state.agentFirstName?this.state.agentFirstName:'' } </p><p>{this.state.agentLastName?this.state.agentLastName:''}</p></span>  
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{(this.state.agentFirstName ? this.state.agentFirstName:'')+' '+(this.state.agentLastName ?this.state.agentLastName:'')}</span>  
 
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Payment Received</label>
                                     <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3"></span>   

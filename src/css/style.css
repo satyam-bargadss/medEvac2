@@ -159,7 +159,7 @@ table.dataTable thead .sorting_desc_disabled:after{
 }
 
 
-.white_box .custom-control-label{padding-left:23px; padding-top:3px !important;}
+.white_box .custom-control-label{padding-left:23px; padding-top:3px !important; font-weight:500;}
 .white_box{background:#fff; border:4px double #ccc;}
 .white_box .head, .white_box .card{border-radius:0 !important;}
 .white_box h6{color:#aaa; margin:0; font-weight:bold;}
