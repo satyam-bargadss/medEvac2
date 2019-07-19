@@ -203,7 +203,6 @@ class AgentRegistrationForm extends Component {
                                                     <Select
                                                     label='Country *'
                                                     name="country"
-
                                                     value={this.state.country}
                                                     onChange={this.handleChange}
                                                     >
@@ -327,7 +326,7 @@ class AgentRegistrationForm extends Component {
                                                     >
                                                         <Option value={'check'}>Check</Option>
                                                         <Option value={'Deposit'}>Direct Deposit</Option>
-                                                        <Option value={'Deposit'}>Other</Option>
+                                                        <Option value={'Other'}>Other</Option>
                                                                                                  
                                                     </Select>
                                                     </div>

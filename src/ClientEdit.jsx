@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
 import { HashRouter as Router, Route
     ,NavLink,Redirect} from "react-router-dom";
- import  './css/material-dashboard.css';
- import Select from '@material-ui/core/Select';
- import MenuItem from '@material-ui/core/MenuItem';
- import InputLabel from '@material-ui/core/InputLabel';
- import { MDBInput } from "mdbreact";
- import * as myConst from './helper/Constant';
- import ReactPhoneInput from 'react-phone-input-2';
+import  './css/material-dashboard.css';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import { MDBInput } from "mdbreact";
+import * as myConst from './helper/Constant';
+import ReactPhoneInput from 'react-phone-input-2';
+
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
+
  const URL = myConst.HTTP_URL;
 
 class ClientEdit extends Component {
@@ -219,6 +224,8 @@ onChangeAgentHandler=(e)=>{
             country1:this.state.country,
             address1:this.state.address1,
             address2:this.state.address2,
+            mailing_address1:this.state.mailing_address1,
+            mailing_address2:this.state.mailing_address2,
             city:this.state.city,
             state1:this.state.state1,
             zip1:this.state.zip1,
@@ -228,8 +235,7 @@ onChangeAgentHandler=(e)=>{
             state2:this.state.state2,
             companyName:this.state.companyName,
             planid:this.state.planid,
-            agentId:this.state.agentId,
-            
+            agentId:this.state.agentId
           }
           console.log(agentPaymentData);
          try{
@@ -241,14 +247,16 @@ onChangeAgentHandler=(e)=>{
                  'Content-Type': 'application/json',
              },
              body: JSON.stringify(agentPaymentData), // body data type must match "Content-Type" header
-           })
+           });
            
-             let data = await response.json();
+             let data = await response.json()
+             console.log(data);
              {/*console.log(data);
              this.setState({
                status: data.status 
              });*/}
              if(data.status == 200){
+                 console.log('Pradosh');
                  this.props.history.push('/customer-management');
                   //this.props.history.push('/thanks');
             
@@ -258,6 +266,22 @@ onChangeAgentHandler=(e)=>{
                console.log(error);
              }
        }
+        cancelHandler= () => {
+            confirmAlert({
+              title: '',
+              message: 'Are you sure to do this.',
+              buttons: [
+                {
+                  label: 'Yes',
+                  onClick: () => window.history.back()
+                },
+                {
+                  label: 'No',
+                  onClick: () => document.location.reload(true)
+                }
+              ]
+            });
+          };
     render() {
         return (
             <div style={{width: '100%'}}>
@@ -458,7 +482,7 @@ onChangeAgentHandler=(e)=>{
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                            <MDBInput autoComplete="off" label="Client Address 1*" value={this.state.address1?this.state.address1:''} onChange={e => this.handleChange(e)} name="address1" required/>
+                                            <MDBInput autoComplete="off" label="Client Address 1*" value={this.state.mailing_address1?this.state.mailing_address1:''} onChange={e => this.handleChange(e)} name="mailing_address1" required/>
                                           </div>
                                       </div>
                                   </div>
@@ -466,12 +490,12 @@ onChangeAgentHandler=(e)=>{
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                             <MDBInput autoComplete="off"  label="Client Address 2 (Optional)" value={this.state.address2?this.state.address2:''} onChange={e => this.handleChange(e)} name="address2"/>
+                                             <MDBInput autoComplete="off"  label="Client Address 2 (Optional)" value={this.state.mailing_address2?this.state.mailing_address2:''} onChange={e => this.handleChange(e)} name="mailing_address2"/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off" label="City*" value={this.state.city?this.state.city:''} onChange={e => this.handleChange(e)} name='city' required/> 
+                                              <MDBInput autoComplete="off" label="City*" value={this.state.city1?this.state.city1:''} onChange={e => this.handleChange(e)} name='city1' required/> 
                                           </div>
                                       </div>
                                   </div>
@@ -479,12 +503,12 @@ onChangeAgentHandler=(e)=>{
                                   <div className="form-row px-2">
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput  autoComplete="off" label="State" value={this.state.state1?this.state.state1:''} onChange={e => this.handleChange(e)} name='state_1'/>
+                                              <MDBInput  autoComplete="off" label="State" value={this.state.state1?this.state.state1:''} onChange={e => this.handleChange(e)} name='state1'/>
                                           </div>
                                       </div>
                                       <div className="col">
                                           <div className="md-form">
-                                              <MDBInput autoComplete="off"  type="number" label="Zip Code*" value={this.state.zip?this.state.zip:''} onChange={e => this.handleChange(e)} name='zip' required/>                                             
+                                              <MDBInput autoComplete="off"  type="number" label="Zip Code*" value={this.state.zip1?this.state.zip1:''} onChange={e => this.handleChange(e)} name='zip1' required/>                                             
                                           </div>
                                       </div>
                                   </div>
@@ -589,7 +613,7 @@ onChangeAgentHandler=(e)=>{
                                       
                                       <div className="col">
                                           <div className="md-form">
-                                            <InputLabel htmlFor="select-agent">Select Agent</InputLabel>
+                                            <InputLabel class="custom_class" htmlFor="select-agent">Select Agent</InputLabel>
                                             <Select
                                                 label='Select Agent'
                                                 name="agentId"
@@ -651,7 +675,7 @@ onChangeAgentHandler=(e)=>{
                                  </div>
 
                                  <div className="buttons text-center">
-                                    <button className="btn btn-rounded my-4 waves-effect" type="submit">Cancel</button>
+                                    <button className="btn btn-rounded my-4 waves-effect" type="submit" onClick={this.cancelHandler}>Cancel</button>
                                     <button className="btn btn-rounded my-4 waves-effect" type="submit">Update</button>
                                 </div>
                         </form>
