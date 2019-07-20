@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import * as myConst from './helper/Constant';
 import Switch from 'react-toggle-switch';
 import { HashRouter as Router, Route ,NavLink,Redirect} from "react-router-dom";
+const URL = myConst.HTTP_URL;
 
 class membershipPlan extends Component {
     constructor(props) {
@@ -13,7 +14,6 @@ class membershipPlan extends Component {
         console.log(props);
         this.state = {
           switched: false,
-          data:  {
             columns: [
               {
                 label: 'Plan ID',
@@ -45,40 +45,43 @@ class membershipPlan extends Component {
                 sort: 'asc',
                 width: 200
               }
-            ],
-            rows: [
-              {
-                id:'0001',
-                name: 'Monthly',
-                indfees: '$24.75',
-                initiaonfees: '$60',
-                familyfees: '$37.50'
-              },
-              {
-                id:'0002',
-                name: 'Lifetime',
-                indfees: '$3,250',
-                initiaonfees: '$60',
-                familyfees: '$4,450'
-              },
-              {
-                id:'0003',
-                name: '5 Year',
-                indfees: '$2,150',
-                initiaonfees: '$60',
-                familyfees: '$3,150'
-              },
-              {
-                id:'0004',
-                name: 'Annual',
-                indfees: '$297',
-                initiaonfees: '$60',
-                familyfees: '$474'
-              }
-            ]}
+            ]
         };
+        this.getmembershipPlanDetails();
       }
-    render() {
+
+      async getmembershipPlanDetails(){
+        //return false
+        try{
+           let response = await fetch(URL+'getmembershipPlan', {
+               method: 'GET', // *GET, POST, PUT, DELETE, etc.
+               cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+               headers: {
+                       'Content-Type': 'application/json',
+                       
+                       // 'Content-Type': 'application/x-www-form-urlencoded',
+               }
+           })
+           let data = await response.json()
+              if(data.status ==200)
+              {
+                //console.log(data.planDetails);
+                this.setState(()=>({
+                  rows:data.planDetails,
+               }))
+              }
+          }
+          catch(error){
+              console.log(error);
+            }
+      }
+render() {
+    
+  let data={
+      columns: this.state.columns,
+      rows: this.state.rows
+    } 
+
         return (
                 <div className="content" style={{width: '100%'}}>
                     <div className="container-fluid">
@@ -150,11 +153,16 @@ class membershipPlan extends Component {
                                         <td><button className="btn btn-rounded  waves-effect" type="submit">Filter</button></td>
                                     </tr>
                             </table>*/}
-                                <MDBDataTable
-                    striped
-                    hover
-                    data={this.state.data}
-                        />
+                              <MDBDataTable 
+                                striped
+                                hover
+                                data={data}
+                              />
+                                {/*<MDBDataTable
+                                striped
+                                hover
+                                data={data}
+                                />*/}
                             </div>
                         </div>
                         </div>

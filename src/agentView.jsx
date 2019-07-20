@@ -108,15 +108,15 @@ class agentView extends Component {
              <div style={{color: '#757575'}}>
                                 <div className="summary">
                                     <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Agent Name</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.firstName?this.state.firstName:''}{this.state.firstName?this.state.lastName:''}</span> 
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.firstName?this.state.firstName:''}&nbsp;{this.state.firstName?this.state.lastName:''}</span> 
 
-                                    <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Agent Type</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Individual</span>
+                                    {/*<label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Agent Type</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Individual</span>*/}
 
                                     <div classname="clearfix"></div>
 
-                                    <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Agent Level</label>
-                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">1</span>     
+                                    {/*<label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Agent Level</label>
+                                    <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">1</span>*/}     
                                 </div>
 
                                 <div className="head">
@@ -213,16 +213,16 @@ class agentView extends Component {
                                 <label htmlFor="paymenttype" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Method of Payment</label>
                                 <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Check</span>
 
-                                <label htmlFor="pdate" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Bank Name</label>
-                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.checkState(this.state.bank_name)}</span>
+                                {/*<label htmlFor="pdate" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Bank Name</label>
+                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.checkState(this.state.bank_name)}</span>*/}
                               </div>
 
                               <div className="form-row px-2 pb-4">
-                                <label htmlFor="pdate" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Account Name</label>
+                                {/*<label htmlFor="pdate" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Account Name</label>
                                 <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.checkState(this.state.account_name)}</span>
 
                                 <label htmlFor="pdate" className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">Account Number</label>
-                                <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.checkState(this.state.account_number)}</span>
+                              <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">{this.checkState(this.state.account_number)}</span>*/}
                               </div>
 
                               <div className="buttons text-center">

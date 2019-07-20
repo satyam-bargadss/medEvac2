@@ -12,6 +12,10 @@ import FormControl from '@material-ui/core/FormControl';
 import * as myConst from './helper/Constant';
 
 import {DateFormatInput, TimeFormatInput} from 'material-ui-next-pickers';
+
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
 const URL = myConst.HTTP_URL;
 class AgentRegistrationForm extends Component {
 
@@ -86,6 +90,49 @@ class AgentRegistrationForm extends Component {
       }
         //this.setState({isPreview:true});
     }
+    sameAsContactHandler = (event) =>{
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked :'';
+        console.log(value);
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        })
+        if(value === true){
+         this.setState({country1:this.state.country,
+            maddress1:this.state.billingaddress1,
+            maddress2:this.state.billingaddress2,
+            city1:this.state.city,
+            state_s1:this.state.state_s,
+            zip:this.state.zipcode
+           })
+        }else{
+            this.setState({country1:'',
+                maddress1:'',
+                maddress2:'',
+                city1:'',
+                state_s1:'',
+                zip:''
+               }) 
+        }
+     }
+     cancelHandler= () => {
+        confirmAlert({
+          title: '',
+          message: 'Are you sure to do this.',
+          buttons: [
+            {
+              label: 'Yes',
+              onClick: () => window.history.back()
+            },
+            {
+              label: 'No',
+              onClick: () => document.location.reload(true)
+            }
+          ]
+        });
+      };
     render() {
              console.log(this.state.isPreviewSave);
            
@@ -96,6 +143,7 @@ class AgentRegistrationForm extends Component {
              
             <div style={{width: '100%'}}>
                {console.log(this.state.isPreview)} 
+               {this.state.sameAsContactInformation} 
                 <div className="container">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                <div className="form_bg">
@@ -129,6 +177,7 @@ class AgentRegistrationForm extends Component {
                                             <div className="col">
                                                 <div className="md-form">
                                                     <input type="date" name="agenDateOfBirth" onChange={this.handleChange} value={this.state.agenDateOfBirth} className="form-control"/>
+                                                    <label htmlFor="agentDateOfBirth">Date of Birth</label>
                                                 </div>
                                             </div>
                                             <div className="col">
@@ -137,7 +186,7 @@ class AgentRegistrationForm extends Component {
                                                     <InputLabel class="custom_class" htmlFor="phone">Primary Phone Number* </InputLabel>
                                                     <ReactPhoneInput
                                                         inputExtraProps={{
-                                                            name: 'mobilenumber',
+                                                            name: 'phone',
                                                             required: true                                                
                                                         }}
                                                         defaultCountry="us"
@@ -154,7 +203,7 @@ class AgentRegistrationForm extends Component {
                                                     <InputLabel class="custom_class" htmlFor="phone">Alternate Phone Number </InputLabel>
                                                     <ReactPhoneInput
                                                     inputExtraProps={{
-                                                        name: 'alternatemobilenumber',
+                                                        name: 'phone1',
                                                         required: true                                                
                                                     }}
                                                     defaultCountry="us"
@@ -179,6 +228,32 @@ class AgentRegistrationForm extends Component {
                                             <div className="col">
                                                 <div className="md-form">
                                                     <Select
+                                                    label='Agent Level'
+                                                    value={this.state.agentLevel}
+                                                    name="agentLevel"
+                                                    onChange={this.handleChange}
+                                                    >
+                                                        <Option value={1}>1</Option>
+                                                        <Option value={2}>2</Option>
+                                                        <Option value={3}>3</Option>
+                                                        <Option value={4}>4</Option>
+                                                        <Option value={5}>5</Option>
+                                                        <Option value={6}>6</Option>
+                                                        <Option value={7}>7</Option>
+                                                        <Option value={8}>8</Option>
+                                                        <Option value={9}>9</Option>
+                                                        <Option value={10}>10</Option>
+                                                        <Option value={11}>11</Option>
+                                                        <Option value={12}>12</Option>
+                                                    </Select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="form-row px-2">
+                                            <div className="col">
+                                                <div className="md-form">
+                                                <Select
                                                     label='Agent Status'
                                                     value={this.state.isActive}
                                                     name="isActive"
@@ -187,6 +262,11 @@ class AgentRegistrationForm extends Component {
                                                         <Option value={0}>Active</Option>
                                                         <Option value={1}>Inactive</Option>
                                                     </Select>
+                                                </div>
+                                            </div>
+                                            <div className="col">
+                                                <div className="md-form">
+                                                    &nbsp;
                                                 </div>
                                             </div>
                                         </div>
@@ -202,8 +282,8 @@ class AgentRegistrationForm extends Component {
                                                 <div className="md-form">
                                                     <Select
                                                     label='Country *'
-                                                    name="country"
-                                                    value={this.state.country}
+                                                    name="country1"
+                                                    value={this.state.country1}
                                                     onChange={this.handleChange}
                                                     >
                                                          <Option value={'US'}>US</Option>
@@ -263,11 +343,40 @@ class AgentRegistrationForm extends Component {
                                         </div>
     
                                         <div className="subHead px-2">
-                                            <div className="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="defaultUnchecked"/>
-                                                <label className="custom-control-label" for="defaultUnchecked">Same as Billing Address</label>
-                                            </div>
+                                            <div >
+                                                <input name="sameAsContactInformation"
+                                            type="checkbox" checked={this.state.sameAsContactInformation}
+                                            onChange={this.sameAsContactHandler} />&nbsp;&nbsp;Same as Billing Address
+                                               {/*<label className="custom-control-label" for="defaultUnchecked">Same as Billing Address</label>*/}
+                                                </div>
                                             <h4><strong>Mailing Address</strong></h4>
+                                        </div>
+
+                                        <div className="form-row px-2">
+                                            <div className="col">
+                                                <div className="md-form">
+                                                    <Select
+                                                    label='Country *'
+                                                    name="country1"
+                                                    value={this.state.country1}
+                                                    onChange={this.handleChange}
+                                                    >
+                                                         <Option value={'US'}>US</Option>
+                                                        <Option value={'Bahamas'}>Bahamas</Option>
+                                                        <Option value={'Bahamas'}>Barbados</Option>
+                                                        <Option value={'Barbados'}>Barbados</Option>
+                                                        <Option value={'Jamaica'}>Jamaica</Option>
+                                                        <Option value={'Antigua'}>Antigua</Option>
+                                                        <Option value={'Trinidad and Tobago'}>Trinidad and Tobago</Option>
+                                                        <Option value={'Dominican Republic'}>Dominican Republic</Option>                                           
+                                                    </Select>
+                                                </div>
+                                            </div>
+                                            <div className="col">
+                                                <div className="md-form">
+                                                    &nbsp;
+                                                </div>
+                                            </div>
                                         </div>
     
                                         <div className="form-row px-2">
@@ -364,9 +473,8 @@ class AgentRegistrationForm extends Component {
                                         </div>*/}
 
                                     <div className="buttons text-center">
-                                        <button className="btn btn-rounded my-4 waves-effect" >Cancel</button>
+                                        <button className="btn btn-rounded my-4 waves-effect" onClick={this.cancelHandler} >Cancel</button>
                                         <button className="btn btn-rounded my-4 waves-effect" >Preview & Edit</button>
-                                        <button className="btn btn-rounded my-4 waves-effect" >Submit</button>
                                     </div>    
                                 </form>
     
@@ -415,11 +523,43 @@ class AgentRegistrationForm extends Component {
                                             <div className="col">
                                                 <div className="md-form">
                                                     <input type="date" name="agenDateOfBirth" onChange={this.handleChange} value={this.state.agenDateOfBirth} className="form-control"/>
+                                                    <label htmlFor="agentDateOfBirth">Date of Birth</label>
                                                 </div>
                                             </div>
                                             <div className="col">
                                                 <div className="md-form">
-                                                    <MDBInput label="Mobile No.*" type="number" name="mobilenumber" onChange={this.handleChange} value={this.state.mobilenumber} required/>
+                                                    <InputLabel class="custom_class" htmlFor="phone">Primary Phone Number* </InputLabel>
+                                                    <ReactPhoneInput
+                                                        inputExtraProps={{
+                                                            name: 'phone',
+                                                            required: true                                                
+                                                        }}
+                                                        defaultCountry="us"
+                                                        value={this.state.phone}
+                                                        onChange={phone => this.setState({phone})}
+                                                        />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="form-row px-2">
+                                            <div className="col">
+                                                <div className="md-form">
+                                                    <InputLabel class="custom_class" htmlFor="phone">Alternate Phone Number </InputLabel>
+                                                    <ReactPhoneInput
+                                                    inputExtraProps={{
+                                                        name: 'phone1',
+                                                        required: true                                                
+                                                    }}
+                                                    defaultCountry="us"
+                                                    value={this.state.phone1}
+                                                    onChange={phone1 => this.setState({phone1})}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="col">
+                                                <div className="md-form">
+                                                <MDBInput label="Email Address*" type="email"  onChange={this.handleChange} name="email" value={this.state.email}  required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -427,17 +567,27 @@ class AgentRegistrationForm extends Component {
                                         <div className="form-row px-2">
                                             <div className="col">
                                                 <div className="md-form">
-                                                    <MDBInput label="Email Address*" type="email"  onChange={this.handleChange} name="email" value={this.state.email}  required/>
+                                                    <Select
+                                                    label='Agent Level'
+                                                    value={this.state.agentLevel}
+                                                    name="agentLevel"
+                                                    onChange={this.handleChange}
+                                                    >
+                                                        <Option value={1}>1</Option>
+                                                        <Option value={2}>2</Option>
+                                                        <Option value={3}>3</Option>
+                                                        <Option value={4}>4</Option>
+                                                        <Option value={5}>5</Option>
+                                                        <Option value={6}>6</Option>
+                                                        <Option value={7}>7</Option>
+                                                        <Option value={8}>8</Option>
+                                                        <Option value={9}>9</Option>
+                                                        <Option value={10}>10</Option>
+                                                        <Option value={11}>11</Option>
+                                                        <Option value={12}>12</Option>
+                                                    </Select>
                                                 </div>
                                             </div>
-                                            <div className="col">
-                                                <div className="md-form">
-                                                    <MDBInput label="Set Your Password*" name="password" type="password" onChange={this.handleChange} value={this.state.password}  required/>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="form-row px-2">
                                             <div className="col">
                                                 <div className="md-form">
                                                     <Select
@@ -449,11 +599,6 @@ class AgentRegistrationForm extends Component {
                                                         <Option value='{pomsky}'>Active</Option>
                                                         <Option value={'Inactive'}>Inactive</Option>
                                                     </Select>
-                                                </div>
-                                            </div>
-                                            <div className="col">
-                                                <div className="md-form">
-                                                    &nbsp;
                                                 </div>
                                             </div>
                                         </div>
@@ -530,11 +675,40 @@ class AgentRegistrationForm extends Component {
                                         </div>
     
                                         <div className="subHead px-2">
-                                            <div className="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="defaultUnchecked"/>
-                                                <label className="custom-control-label" for="defaultUnchecked">Same as Billing Address</label>
+                                              <div>
+                                                <input  name="sameAsContactInformation"
+                                            type="checkbox" id="defaultUnchecked" checked={this.state.sameAsContactInformation}
+                                            onChange={this.sameAsContactHandler}/>&nbsp;&nbsp;Same as Billing Address
+                                                {/*<label className="custom-control-label" for="defaultUnchecked">Same as Billing Address</label>*/}
                                             </div>
                                             <h4><strong>Mailing Address</strong></h4>
+                                        </div>
+
+                                        <div className="form-row px-2">
+                                            <div className="col">
+                                                <div className="md-form">
+                                                    <Select
+                                                    label='Country'
+                                                    name="country1"
+
+                                                    value={this.state.country1}
+                                                    onChange={this.handleChange}
+                                                    >
+                                                        <Option value='pomsky'>Bahamas</Option>
+                                                        <Option value={'Bahamas'}>Barbados</Option>
+                                                        <Option value={'Barbados'}>Barbados</Option>
+                                                        <Option value={'Jamaica'}>Jamaica</Option>
+                                                        <Option value={'Antigua'}>Antigua</Option>
+                                                        <Option value={'Trinidad and Tobago'}>Trinidad and Tobago</Option>
+                                                        <Option value={'Dominican Republic'}>Dominican Republic</Option>                                           
+                                                    </Select>
+                                                </div>
+                                            </div>
+                                            <div className="col">
+                                                <div className="md-form">
+                                                    &nbsp;
+                                                </div>
+                                            </div>
                                         </div>
     
                                         <div className="form-row px-2">
@@ -599,23 +773,11 @@ class AgentRegistrationForm extends Component {
                                             </div>
                                             <div className="col">
                                                 <div className="md-form">
-                                                    <MDBInput label="Bank Name" name="bankname"  onChange={this.handleChange} value={this.state.bankname}/>
+                                                    {/*<MDBInput label="Bank Name" name="bankname"  onChange={this.handleChange} value={this.state.bankname}/>*/}
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="form-row px-2">
-                                            <div className="col">
-                                                <div class="md-form">
-                                                    <MDBInput label="Account Name" name="accountname"  onChange={this.handleChange} value={this.state.accountname} />             
-                                                </div>
-                                            </div>
-                                            <div className="col">
-                                                <div className="md-form">
-                                                    <MDBInput label="Account No." name="accountnumber"  onChange={this.handleChange} value={this.state.accountnumber}/>
-                                                </div>
-                                            </div>
-                                        </div>
-    
+
                                         {/*<div className="form-row px-2">
                                             <div className="col">
                                                 <div className="md-form">
@@ -630,7 +792,7 @@ class AgentRegistrationForm extends Component {
                                         </div>*/}
 
                                     <div className="buttons text-center">
-                                        <button className="btn btn-rounded my-4 waves-effect" >Cancel</button>
+                                        <button className="btn btn-rounded my-4 waves-effect" onClick={this.cancelHandler} >Cancel</button>
                                        
                                         <button className="btn btn-rounded my-4 waves-effect" >Submit</button>
                                     </div>    

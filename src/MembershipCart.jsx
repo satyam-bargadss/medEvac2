@@ -52,6 +52,11 @@ class MembershipCart extends Component {
           fees: data.total_amount[0].feeAmount,
           initiatonFee: data.total_amount[0].initiatonFee,
           total_cart_Fee: data.total_amount[0].total_amount,
+          firstName:data.total_amount[0].firstName,
+          lastName:data.total_amount[0].LastName,
+          email:data.total_amount[0].email,
+          planName:data.total_amount[0].planName,
+          frequency:data.total_amount[0].frequency
         });
          
          
@@ -100,26 +105,7 @@ class MembershipCart extends Component {
                                 <h2>Payment Information</h2>
                             </div>
                             <div className="form_body">
-                                {/*<div className="px-lg-2 pt-0">
-                                    <div className="form-row px-2 pt-3">
-                                        <label htmlFor="membershipfees" className="col-xs-6 col-sm-9 col-md-9 col-lg-9 font-weight-bold">Membership Fees</label>
-                                        <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">$ {this.state.fees?this.state.fees:''}</span>
-                                    </div>
-                                    <div className="form-row px-2 pt-3">
-                                        <label htmlFor="initiationfees" className="col-xs-6 col-sm-9 col-md-9 col-lg-9 font-weight-bold">Initiation Fees</label>
-                                        <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">${this.state.initiatonFee?this.state.initiatonFee:''}</span>
-                                    </div>
-                                </div>
-                                <hr/>
-                                    <div className="form-row px-2">
-                                        <label htmlFor="totalpayment" className="col-xs-6 col-sm-9 col-md-9 col-lg-9 font-weight-bold">Total Payment</label>
-                                        <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3 font-weight-bold">${this.state.total_cart_Fee?this.state.total_cart_Fee:''} </span>
-                                    </div>
-                                <div className="buttons text-center pt-3">
-                                   <form onSubmit={this.handleSubmit}>
-                                     <button className="btn btn-rounded my-4 waves-effect">Payment</button>
-                                    </form> 
-                                </div> */}
+
                                 <div className="col-sm-7 col-md-7 col-lg-7 pull-left">
                                   <div className="white_box">
                                   <div className="head">
@@ -130,19 +116,19 @@ class MembershipCart extends Component {
 
                                   <div className="form-row px-3 pt-3">
                                       <label htmlFor="clientname" className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold">Client Name</label>
-                                      <span className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold text-left">John Doe</span>
+                                      <span className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold text-left">{(this.state.firstName ? this.state.firstName:'')+' '+(this.state.lastName ? this.state.lastName:'')}</span>
                                   </div>
                                   <div className="form-row px-3 pt-1">
                                       <label htmlFor="email" className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold">Email Address</label>
-                                      <span className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold text-left">abcd@gmail.com</span>
+                                      <span className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold text-left">{(this.state.email ? this.state.email:'')}</span>
                                   </div>
                                   <div className="form-row px-3 pt-1">
                                       <label htmlFor="planname" className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold">Plan Name</label>
-                                      <span className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold text-left">Annually</span>
+                                      <span className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold text-left">{(this.state.planName ? this.state.planName:'')}</span>
                                   </div>
                                   <div className="form-row px-3 pt-1 pb-3">
                                       <label htmlFor="frequency" className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold">Frequency</label>
-                                      <span className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold text-left">Annually</span>
+                                      <span className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font-weight-bold text-left">{(this.state.frequency ? this.state.frequency:'')}</span>
                                   </div>
                                   </div>
                                 </div>
@@ -185,7 +171,7 @@ class MembershipCart extends Component {
 
                                       <div className="form-row px-3">
                                         <label htmlFor="initiationfee" className="col-xs-8 col-sm-8 col-md-8 col-lg-8 font-weight-bold">Initiation Fees:</label>
-                                        <span className="col-xs-4 col-sm-4 col-md-4 col-lg-4 font-weight-bold text-right">${this.state.initiatonFee?this.state.initiatonFee:''}</span>
+                                        <span className="col-xs-4 col-sm-4 col-md-4 col-lg-4 font-weight-bold text-right">${this.state.initiatonFee?this.state.initiatonFee:'0.0'}</span>
                                       </div>
 
                                       <div className="form-row px-3">

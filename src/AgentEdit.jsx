@@ -149,11 +149,6 @@ class AgentEdit extends Component {
 
                                             {/*<label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Agent Type</label>
                                             <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Individual</span>*/}
-
-                                            <div classname="clearfix"></div>
-
-                                            <label htmlFor="name" className="col-xs-6 col-sm-3 col-md-3 col-lg-3">Agent Level</label>
-                                            <span className="col-xs-6 col-sm-3 col-md-3 col-lg-3">{this.state.LevelName?this.state.LevelName:''}</span>
                                         </div>
 
                                         <div className="head">
