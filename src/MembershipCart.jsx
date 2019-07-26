@@ -1,14 +1,21 @@
-import React, { Component , useState, useEffect } from 'react';
+import React, { Component ,Fragment , useState, useEffect } from 'react';
 import { MDBContainer, MDBInput } from "mdbreact";
 import DatePicker from "react-datepicker";
+
+import withStyles from "@material-ui/core/styles";
+import Button from '@material-ui/core/Button';
 import * as myConst from './helper/Constant';
 import { HashRouter as Router, Route,NavLink,Redirect} from "react-router-dom";
 import {CardElement, injectStripe} from 'react-stripe-elements';
-import {StripeProvider} from 'react-stripe-elements';
+
+//import {StripeProvider} from 'react-stripe-elements';
+
+//import StripeCheckout from 'react-stripe-elements';
+
+
+//var stripe = require('stripe-client')('pk_test_LKGmXM8PPcatPCogw1yUb5Pz00M5lR5LUy');
+
 const URL = myConst.HTTP_URL;
-
-
-
 
 class MembershipCart extends Component {
     constructor(props) {
@@ -16,16 +23,17 @@ class MembershipCart extends Component {
         //console.log(props.match.params.customerId);
         this.state = {
           customerId:props.match.params.customerId,
+          checked:false,
+          selected:false,
         };
-
+        //this.submit = this.submit.bind(this);
+        {/*this.checkIt = this.checkIt.bind(this);
+        this.unCheckIt = this.unCheckIt.bind(this);
+        this.handleChange = this.handleChange.bind(this);*/}
         this.getUserTotalAmount();
       }
-   
-  
-
-
-
-   async  getUserTotalAmount() {
+    
+async  getUserTotalAmount() {
         //return false
         try{
            let response = await fetch(URL+'customer-membership-payment/'+this.state.customerId, {
@@ -66,36 +74,20 @@ class MembershipCart extends Component {
    catch(error){
        console.log(error);
      }
-  } 
-      
+  }
 
-      handleSubmit = (ev) => {
-        // We don't want to let default form submission happen here, which would refresh the page.
-        ev.preventDefault();
-        var stripe = require('stripe')('sk_test_mthUsnTu0U27rTTGnXd3dwbF00hQeXxfHL');
+  onToken = (token) => {
+      fetch('/save-stripe-token', {
+        method: 'POST',
+        body: JSON.stringify(token), 
+      }).then(response => {
+        response.json().then(data => { 
+          alert(`We are in business, ${data.email}`);
+        });
+      });
+  }
 
-        const customer = stripe.customers.create({
-            email: 'foo-customer@example.com',
-  }).then((customer) => {
-    return stripe.customers.createSource(customer.id, {
-      source: 'tok_visa',
-    });
-  })
-  .then((source) => {
-    return stripe.charges.create({
-      amount: 1600,
-      currency: 'usd',
-      customer: source.customer,
-    });
-  })
-  .then((charge) => {
-    // New charge created on a new customer
-  })
-  .catch((err) => {
-    // Deal with an error
-  });
- };
-    render() {
+  render() {
         return (
             <div style={{width: '100%'}}>
                 <div className="container">
@@ -105,7 +97,11 @@ class MembershipCart extends Component {
                                 <h2>Payment Information</h2>
                             </div>
                             <div className="form_body">
-
+                              <div  className="col-lg-12 text-center">
+                              <p>Without receiving payment your membership data inserted.</p>
+                              </div>
+                              
+                              <form>
                                 <div className="col-sm-7 col-md-7 col-lg-7 pull-left">
                                   <div className="white_box">
                                   <div className="head">
@@ -141,7 +137,7 @@ class MembershipCart extends Component {
                                       </div>
 
                                       <div class="custom-control custom-radio pt-3 pl-3 pr-3">
-                                        <input type="radio" class="custom-control-input" id="customRadio" name="example1" value="customEx"/>
+                                        <input type="radio" class="custom-control-input" id="customRadio" name="payment_type" value="yearly"/>
                                         <label class="custom-control-label" for="customRadio">Pay Annually</label>
                                       </div>
 
@@ -151,7 +147,7 @@ class MembershipCart extends Component {
                                       </div>
 
                                       <div class="custom-control custom-radio pt-3 pl-3 pr-3">
-                                        <input type="radio" class="custom-control-input" id="customRadio1" name="example3" value="customEx2"/>
+                                        <input type="radio" class="custom-control-input" id="customRadio" name="payment_type" value="monthly"/>
                                         <label class="custom-control-label" for="customRadio1">Pay Monthly</label>
                                       </div>
 
@@ -181,11 +177,21 @@ class MembershipCart extends Component {
 
                                       <div className="buttons text-center pt-2 px-5">
                                         <button className="btn btn-rounded btn-block my-4 waves-effect" >Payment</button>
+                                        {/*<StripeCheckout token={this.onToken} 
+                                        label="Go Premium" //Component button text
+                                        name="Business LLC" //Modal Header
+                                        description="Upgrade to a premium account today."
+                                        panelLabel="Go Premium" //Submit button in modal
+                                        amount={999} //Amount in cents $9.99
+                                        billingAddress={false}
+        stripeKey="pk_test_i04T9DbYJ9vraIrG9SkKkFiS00Z3lQoTfF"/>*/}
                                       </div>
                                     </div> 
                                 </div>
                                 <div className="clearfix"></div>
+                                </form>
                             </div>
+        
                         </div>
                     </div>
                 </div>

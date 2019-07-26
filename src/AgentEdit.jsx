@@ -377,6 +377,7 @@ class AgentEdit extends Component {
                                         </div>
 
                                         <div className="buttons text-center pt-3">
+                                            <button className="btn btn-rounded my-4 waves-effect" type="submit">Cancel</button>
                                             <button className="btn btn-rounded my-4 waves-effect" type="submit">Update</button>
                                         </div>
 
